@@ -26,3 +26,5 @@ my-custom-theme/assets/images/source/
 my-custom-theme/Anandiitaa/*.pdf
 my-custom-theme/assets/design-refs/*.pdf
 my-custom-theme/assets/images/source/
+
+*.zip

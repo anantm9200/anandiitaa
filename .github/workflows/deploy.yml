@@ -1,0 +1,27 @@
+name: Deploy Theme to Pantheon
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - '**.md'
+      - '.gitignore'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Deploy via SFTP
+        uses: wlixcc/SFTP-Deploy-Action@v1.2
+        with:
+          username: ${{ secrets.PANTHEON_USERNAME }}
+          server: ${{ secrets.PANTHEON_HOST }}
+          port: 2222
+          ssh_private_key: ${{ secrets.PANTHEON_SSH_KEY }}
+          local_path: './'
+          remote_path: '/code/wp-content/themes/my-custom-theme'
+          args: '-o ConnectTimeout=5'
