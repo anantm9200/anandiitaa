@@ -1,0 +1,28 @@
+# OS Metadata
+.DS_Store
+Thumbs.db
+
+# Docker
+.docker/
+docker-compose.override.yml
+
+# WordPress core (we only care about our theme)
+wordpress/
+wp-config.php
+
+# Local Environment / Logs
+*.log
+npm-debug.log*
+
+# Theme specific
+node_modules/
+.sass-cache/
+
+# PDF Designs and high-res sources (keep local, too heavy for git)
+my-custom-theme/assets/design-refs/*.pdf
+my-custom-theme/assets/images/source/
+
+# PDF Designs and high-res sources (keep local, too heavy for git)
+my-custom-theme/Anandiitaa/*.pdf
+my-custom-theme/assets/design-refs/*.pdf
+my-custom-theme/assets/images/source/

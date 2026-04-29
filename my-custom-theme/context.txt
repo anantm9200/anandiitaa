@@ -1,0 +1,69 @@
+
+
+# PROJECT KNOWLEDGE BASE: ANANDIITAA CUSTOM WORDPRESS THEME
+
+## 1. PROJECT OVERVIEW
+* **Brand:** Anandiitaa (Premium Refined Sugar & Desi Jaggery).
+* **Developer:** Heramb Joshi.
+* **Objective:** Building a high-end, responsive, custom WordPress theme from scratch (No builders, no Elementor).
+* **Visual Style:** Luxury, minimalist, "clean." Primary colors: Maroon (`#6b0f1a`) and Cream.
+
+## 2. TECHNICAL ENVIRONMENT
+* **Local Stack:** Docker-based WordPress environment.
+* **Local URL:** `http://localhost:8084`
+* **Theme Name:** `Anandiitaa Custom Theme`
+* **Theme Directory:** `/wp-content/themes/my-custom-theme/`
+* **Coding Standards:** Provide code edits in **"Before" and "After"** versions. Always ask for the current version of the file before providing updates.
+
+## 3. FILE ARCHITECTURE
+The project currently consists of these 6 core files in the root:
+* `style.css`: Contains theme metadata, global resets, and specific section layouts.
+* `functions.php`: Enqueues the stylesheet.
+* `header.php`: Global HTML `<head>` and sticky Navigation Bar.
+* `footer.php`: Global footer and closing tags.
+* `front-page.php`: The primary engine for the 5-section scrolling homepage.
+* `index.php`: Fallback template.
+
+## 4. IMAGE ASSET ARCHITECTURE
+Images are organized by **Page**, then by **Device Resolution**.
+* **Format:** Currently using `.png`.
+* **Responsive Strategy:** Using HTML5 `<picture>` tags to serve different files based on screen width.
+* **Folder Structure:**
+    * `images/home/mac/` (2560px x 1664px)
+    * `images/home/laptop/` (1920px x 1080px)
+    * `images/home/phone/` (Mobile dimensions)
+    * *(Future folders prepared for: `about-us/`, `jaggery/`, `sugar/`)*
+
+## 5. UI/UX SPECIFICATIONS
+### Home Page Layout
+* A vertical stack of 5 sections, each featuring a full-width background image with layered text.
+* **Section 1 (Hero):**
+    * **Text:** "Choose Pure. Choose Anandiitaa." (No line breaks).
+    * **Position:** Top-centered (`top: 8%`, `left: 50%`).
+    * **Typography:** Maroon (`#6b0f1a`), font-size `2.8rem`, weight `800`.
+    * **Button:** Pill-shaped (`border-radius: 50px`), Maroon, Uppercase "EXPLORE MORE".
+* **Section 2 (Our Process):**
+    * **Position:** Left-aligned (`left: 5%`).
+    * **Design:** No background card/translucent box.
+    * **Heading:** Maroon, `3rem`.
+    * **Paragraph:** Dark Grey (`#333333`), weight `600`, max-width `500px`.
+* **Sections 3-5:** Follow a standard base layering system with translucent dark cards for readability until design updates are received.
+
+### Global Styles
+* **Typography Fallback:** `'Fraunces', 'Cooper Black', 'Georgia', serif`.
+* **Sticky Header:** Navigation stays at the top of the viewport.
+
+## 6. DEVOPS & WORKFLOW
+* **Git Strategy:** Project utilizes a `.gitignore` to skip OS metadata, Docker configs, and local PDFs, but **includes** theme images.
+* **Deployment Goal:** Transitioning PNGs to WebP for performance before launch.
+* **Isolated Env:** Developer prefers no storage bloat on host system; everything runs within Docker containers.
+
+---
+
+### CURRENT TASKS / ROADMAP
+1.  **Home Page Styling:** Refining Section 3 (Jaggery), Section 4 (Sugar), and Section 5 (Contact) to match design PDFs.
+2.  **Internal Pages:** Creating `page-about-us.php`, `page-products-jaggery.php`, and `page-products-sugar.php`.
+3.  **Dynamic Content:** Eventually replacing hardcoded HTML text with WordPress `the_content()` and Custom Fields.
+
+---
+**Note to AI Assistant:** When providing updates, strictly adhere to the responsive `<picture>` tag logic and ensure the folder paths `images/[page]/[device]/[file].png` remain intact.
