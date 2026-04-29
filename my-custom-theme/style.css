@@ -208,8 +208,8 @@ body:not(.home) { padding-top: 86px; }
     inset: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    object-position: center bottom; /* anchor bottom so products stay visible */
+    object-fit: contain; /* show full image, no cropping; cream bg fills any extra space */
+    object-position: center bottom; /* anchor bottom so empty space is at top */
 }
 
 .hero-slide__content {
@@ -257,9 +257,41 @@ body:not(.home) { padding-top: 86px; }
     letter-spacing: 0.08em;
 }
 
+/* Bottom-center variant: caption sits a bit above the bottom edge */
+.hero-slide__content--bottom-center {
+    top: auto;
+    bottom: 12%;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    max-width: 1100px;
+    width: 90%;
+    text-align: center;
+}
+.hero-slide__content--bottom-center h2 {
+    font-size: clamp(2.2rem, 3.6vw, 4.4rem);
+    margin-bottom: 0;
+}
+
+/* Top-caption variant: caption sits a bit below the top edge (mirrors bottom-center sizing) */
+.hero-slide__content--top-caption {
+    top: 7%;
+    bottom: auto;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    max-width: 1100px;
+    width: 90%;
+    text-align: center;
+}
+.hero-slide__content--top-caption h2 {
+    font-size: clamp(2.2rem, 3.6vw, 4.4rem);
+    margin-bottom: 0;
+}
+
 .hero-features {
     list-style: none;
-    margin-top: 56px;
+    margin-top: 110px;
     display: flex;
     flex-direction: column;
     gap: 22px;
@@ -378,6 +410,78 @@ body:not(.home) { padding-top: 86px; }
     font-size: 1.25rem;
     font-weight: 500;
     line-height: 1.55;
+}
+
+/* ========================================================================
+   STANDARDS SLIDE LAYOUT (carousel slide type=standards)
+   ======================================================================== */
+
+.standards-title {
+    position: absolute;
+    top: 14%;
+    left: 6%;
+    z-index: 5;
+    color: var(--brand-maroon);
+    line-height: 1;
+}
+.standards-title__small {
+    display: block;
+    font-family: 'Appetite Pro', 'Georgia', serif;
+    font-weight: 700;
+    font-size: clamp(2.4rem, 3.4vw, 4.2rem);
+    line-height: 1;
+}
+.standards-title__wordmark {
+    display: block;
+    width: clamp(360px, 38vw, 700px);
+    height: auto;
+    margin: 10px 0;
+}
+
+.standards-grid {
+    position: absolute;
+    bottom: 10%;
+    left: 6%;
+    right: 6%;
+    z-index: 5;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+}
+.standards-col {
+    padding: 0 32px;
+    border-right: 2px dashed var(--brand-maroon);
+    color: var(--brand-maroon);
+}
+.standards-col:first-child { padding-left: 0; }
+.standards-col:last-child  { padding-right: 0; border-right: none; }
+
+.standards-col__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    background: var(--brand-maroon);
+    color: #fff;
+    border-radius: 12px;
+    margin-bottom: 18px;
+}
+.standards-col__icon svg { width: 30px; height: 30px; }
+
+.standards-col__title {
+    font-family: 'Appetite Pro', 'Georgia', serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    line-height: 1.15;
+    color: var(--brand-maroon);
+    margin-bottom: 18px;
+}
+.standards-col__body {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    line-height: 1.45;
+    color: var(--brand-maroon);
 }
 
 /* ========================================================================
