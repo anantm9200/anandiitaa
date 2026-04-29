@@ -42,6 +42,9 @@ jobs:
           # Explicitly target the remote themes folder
           cd /code/wp-content/themes/my-custom-theme;
           
-          # Mirror the repository root directly to the remote folder
+          # Locally step into the nested theme folder inside the GitHub runner
+          lcd my-custom-theme;
+          
+          # Mirror the contents of that inner folder directly to Pantheon
           mirror -R --parallel=5 --exclude-glob .git/ --exclude-glob .github/ --exclude .gitignore --exclude docker-compose.yml ./ ./;
           "
