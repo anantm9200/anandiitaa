@@ -30,9 +30,10 @@ jobs:
           sudo apt-get update
           sudo apt-get install lftp -y
           
-          # Execute the mirror command over strict SFTP
+          # Execute the mirror command over strict SFTP with BatchMode
           lftp -c "
           set sftp:auto-confirm yes;
+          set sftp:connect-program 'ssh -a -x -i ~/.ssh/id_rsa -o BatchMode=yes -o StrictHostKeyChecking=no';
           open sftp://${{ secrets.PANTHEON_USERNAME }}@${{ secrets.PANTHEON_HOST }}:2222;
           mirror -R --parallel=5 --exclude-glob .git/ --exclude-glob .github/ ./ /code/wp-content/themes/my-custom-theme;
           "
