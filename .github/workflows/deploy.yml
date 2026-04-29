@@ -1,4 +1,4 @@
-name: Deploy Theme to Pantheon.
+name: Deploy Theme to Pantheon!
 
 on:
   push:
