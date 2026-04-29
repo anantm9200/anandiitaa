@@ -15,13 +15,24 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Deploy via SFTP
-        uses: wlixcc/SFTP-Deploy-Action@v1.2
-        with:
-          username: ${{ secrets.PANTHEON_USERNAME }}
-          server: ${{ secrets.PANTHEON_HOST }}
-          port: 2222
-          ssh_private_key: ${{ secrets.PANTHEON_SSH_KEY }}
-          local_path: './'
-          remote_path: '/code/wp-content/themes/my-custom-theme'
-          args: '-o ConnectTimeout=5'
+      - name: Set up SSH Environment
+        run: |
+          mkdir -p ~/.ssh
+          # Save the private key from secrets
+          echo "${{ secrets.PANTHEON_SSH_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          # Automatically trust the Pantheon host to bypass prompts
+          ssh-keyscan -p 2222 -H ${{ secrets.PANTHEON_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Deploy via Native LFTP
+        run: |
+          # Install lftp on the runner
+          sudo apt-get update
+          sudo apt-get install lftp -y
+          
+          # Execute the mirror command over strict SFTP
+          lftp -c "
+          set sftp:auto-confirm yes;
+          open sftp://${{ secrets.PANTHEON_USERNAME }}@${{ secrets.PANTHEON_HOST }}:2222;
+          mirror -R --parallel=5 --exclude-glob .git/ --exclude-glob .github/ ./ /code/wp-content/themes/my-custom-theme;
+          "
