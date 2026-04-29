@@ -18,10 +18,12 @@ jobs:
       - name: Set up SSH Environment
         run: |
           mkdir -p ~/.ssh
-          # Save the private key from secrets
-          echo "${{ secrets.PANTHEON_SSH_KEY }}" > ~/.ssh/id_rsa
+          # Safely write the private key preserving exact newlines
+          cat << 'EOF' > ~/.ssh/id_rsa
+          ${{ secrets.PANTHEON_SSH_KEY }}
+          EOF
           chmod 600 ~/.ssh/id_rsa
-          # Automatically trust the Pantheon host to bypass prompts
+          # Automatically trust the Pantheon host
           ssh-keyscan -p 2222 -H ${{ secrets.PANTHEON_HOST }} >> ~/.ssh/known_hosts
 
       - name: Deploy via Native LFTP
@@ -30,12 +32,12 @@ jobs:
           sudo apt-get update
           sudo apt-get install lftp -y
           
-          # Execute the mirror command over strict SFTP with BatchMode
+          # Execute the mirror command with legacy RSA support
           lftp -c "
           set net:max-retries 1;
           set net:timeout 10;
           set sftp:auto-confirm yes;
-          set sftp:connect-program 'ssh -a -x -i ~/.ssh/id_rsa -o BatchMode=yes -o StrictHostKeyChecking=no';
+          set sftp:connect-program 'ssh -a -x -i ~/.ssh/id_rsa -o BatchMode=yes -o StrictHostKeyChecking=no -o PubkeyAcceptedKeyTypes=+ssh-rsa';
           open sftp://${{ secrets.PANTHEON_USERNAME }}:x@${{ secrets.PANTHEON_HOST }}:2222;
           mirror -R --parallel=5 --exclude-glob .git/ --exclude-glob .github/ ./ /code/wp-content/themes/my-custom-theme;
           "
