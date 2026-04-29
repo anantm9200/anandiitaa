@@ -39,5 +39,5 @@ jobs:
           set sftp:auto-confirm yes;
           set sftp:connect-program 'ssh -a -x -i ~/.ssh/id_rsa -o BatchMode=yes -o StrictHostKeyChecking=no -o PubkeyAcceptedKeyTypes=+ssh-rsa';
           open sftp://${{ secrets.PANTHEON_USERNAME }}:x@${{ secrets.PANTHEON_HOST }}:2222;
-          mirror -R --parallel=5 --exclude-glob .git/ --exclude-glob .github/ ./ /code/wp-content/themes/my-custom-theme;
+          mirror -R --parallel=5 --exclude-glob .git/ --exclude-glob .github/ --exclude .gitignore --exclude docker-compose.yml ./ /code/wp-content/themes/my-custom-theme;
           "
