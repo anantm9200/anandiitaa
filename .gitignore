@@ -1,5 +1,6 @@
 # OS Metadata
 .DS_Store
+**/.DS_Store
 Thumbs.db
 
 # Docker
@@ -19,12 +20,40 @@ node_modules/
 .sass-cache/
 
 # PDF Designs and high-res sources (keep local, too heavy for git)
-my-custom-theme/assets/design-refs/*.pdf
-my-custom-theme/assets/images/source/
-
-# PDF Designs and high-res sources (keep local, too heavy for git)
 my-custom-theme/Anandiitaa/*.pdf
 my-custom-theme/assets/design-refs/*.pdf
 my-custom-theme/assets/images/source/
 
+# Archives
 *.zip
+
+# Claude Code (local skills, agent caches, IDE state)
+.claude/skills/
+.claude/settings.local.json
+.claude/cache/
+.claude/logs/
+.claude/.session*
+CLAUDE.local.md
+
+# Python bytecode (from skill scripts)
+__pycache__/
+*.pyc
+*.pyo
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Stray screenshots / scratch images at repo root
+# (theme PNGs under my-custom-theme/ stay tracked)
+/*.png
+/*.jpg
+/*.jpeg
+/*.gif
+/*.webp
+/Screenshot*.png
+/screenshot*.png
+**/scratch/*.png
+**/tmp/*.png
