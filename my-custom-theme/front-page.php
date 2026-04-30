@@ -94,6 +94,75 @@
             'heading'     => 'Choose Pure, Choose Anandiitaa',
             'position'    => 'bottom-center',
         ),
+        // Slide 8: Product grid (2x2 cards on cream bg)
+        array(
+            'type'     => 'products-grid',
+            'image'    => $tpl . '/images/home/laptop/sections/8.png',
+            'alt'      => 'Anandiitaa Product Range',
+            'products' => array(
+                array(
+                    'title' => 'Desi Jaggery Powder',
+                    'desc'  => 'Natural Mineral rich sweetness made for your everyday convenience.',
+                    'sizes' => '500 GM',
+                    'href'  => '/products-jaggery',
+                    'image' => $tpl . '/assets/images/lifestyle/lifestyle-2.png',
+                    'color' => '#6b0f1a',
+                ),
+                array(
+                    'title' => 'Bold Grain Sugar',
+                    'desc'  => 'Sweetness that stands out based on purity.',
+                    'sizes' => '1 KG | 5 KG | 25 KG',
+                    'href'  => '/products-sugar',
+                    'image' => $tpl . '/assets/images/lifestyle/lifestyle-3.png',
+                    'color' => '#1d5e2e',
+                ),
+                array(
+                    'title' => 'Fine Grain Sugar',
+                    'desc'  => 'It dissolves smoothly, leaving a balanced sweetness behind.',
+                    'sizes' => '1 KG | 5 KG | 25 KG',
+                    'href'  => '/products-sugar',
+                    'image' => $tpl . '/assets/images/lifestyle/lifestyle-6.png',
+                    'color' => '#1f3a8e',
+                ),
+                array(
+                    'title' => 'Desi Jaggery',
+                    'desc'  => 'Cooked low &amp; slow, the way jaggery has always been made.',
+                    'sizes' => '900 GM',
+                    'href'  => '/products-jaggery',
+                    'image' => $tpl . '/assets/images/products/jaggery/jaggery-900g.png',
+                    'color' => '#6b0f1a',
+                ),
+            ),
+        ),
+        // Slide 9: The Benefits of Jaggery (4 benefit cards on dark wood bg)
+        array(
+            'type'     => 'benefits',
+            'image'    => $tpl . '/images/home/laptop/sections/9.png',
+            'alt'      => 'The Benefits of Jaggery',
+            'title'    => 'The Benefits of Jaggery',
+            'benefits' => array(
+                array(
+                    'icon'  => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2.5"></circle><circle cx="4" cy="6" r="1.5"></circle><circle cx="20" cy="6" r="1.5"></circle><circle cx="4" cy="18" r="1.5"></circle><circle cx="20" cy="18" r="1.5"></circle><path d="M5.3 6.8 L9.6 10.7"></path><path d="M18.7 6.8 L14.4 10.7"></path><path d="M5.3 17.2 L9.6 13.3"></path><path d="M18.7 17.2 L14.4 13.3"></path></svg>',
+                    'title' => 'Rich in<br>Iron',
+                    'body'  => '100g of jaggery provides 61% of your daily iron needs.',
+                ),
+                array(
+                    'icon'  => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4v3.5C7 8 5.5 9.5 5.5 12c0 3.5 2.8 6.5 6 6.5 2.6 0 4.5-1.5 5-4 0.4-2-1-3.5-2.5-3.5-1 0-1.8 0.6-2 1.5"></path><path d="M9 4h6v3.5"></path><circle cx="14" cy="13" r="0.5"></circle></svg>',
+                    'title' => 'Boosts<br>Digestion',
+                    'body'  => 'Jaggery acts as a natural detoxifier, promoting healthy digestion.',
+                ),
+                array(
+                    'icon'  => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"></circle><ellipse cx="12" cy="12" rx="9" ry="3.5"></ellipse><ellipse cx="12" cy="12" rx="9" ry="3.5" transform="rotate(60 12 12)"></ellipse><ellipse cx="12" cy="12" rx="9" ry="3.5" transform="rotate(120 12 12)"></ellipse></svg>',
+                    'title' => 'Antioxidant-<br>Rich',
+                    'body'  => 'Jaggery is packed with antioxidants, offering more benefits than sugar.',
+                ),
+                array(
+                    'icon'  => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8c0-2 2-4 5-4h7c3 0 5 1 6 4 1 4-1 9-5 11-3 1.5-7 1-10-1-3-2-3-6-3-10z"></path><path d="M9 11l1.5 1.5L13 10"></path><path d="M17 5l1 1M19 7l1-1"></path></svg>',
+                    'title' => 'Helps<br>Liver Health',
+                    'body'  => 'Jaggery helps cleanse the digestive system and supports liver function.',
+                ),
+            ),
+        ),
     );
 
     $icons = array(
@@ -129,6 +198,46 @@
                                     <h3 class="standards-col__title"><?php echo esc_html( $std['title'] ); ?></h3>
                                     <p class="standards-col__body"><?php echo esc_html( $std['body'] ); ?></p>
                                 </div>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php elseif ( ! empty( $slide['type'] ) && $slide['type'] === 'benefits' ) : ?>
+                        <h2 class="benefits-title"><?php echo esc_html( $slide['title'] ); ?></h2>
+                        <div class="benefits-grid">
+                            <?php foreach ( $slide['benefits'] as $b ) : ?>
+                                <div class="benefit-card">
+                                    <span class="benefit-card__icon"><?php echo $b['icon']; ?></span>
+                                    <h3 class="benefit-card__title"><?php echo wp_kses( $b['title'], array( 'br' => array() ) ); ?></h3>
+                                    <p class="benefit-card__body"><?php echo esc_html( $b['body'] ); ?></p>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php elseif ( ! empty( $slide['type'] ) && $slide['type'] === 'products-grid' ) : ?>
+                        <div class="products-grid">
+                            <?php foreach ( $slide['products'] as $product ) : ?>
+                                <article class="product-card" style="--card-accent: <?php echo esc_attr( $product['color'] ); ?>">
+                                    <div class="product-card__body">
+                                        <div class="product-card__top">
+                                            <h3 class="product-card__title"><?php echo esc_html( $product['title'] ); ?></h3>
+                                            <p class="product-card__desc"><?php echo wp_kses( $product['desc'], array() ); ?></p>
+                                        </div>
+                                        <div class="product-card__bottom">
+                                            <div class="product-card__sizes">
+                                                <span class="product-card__sizes-label">AVAILABLE IN:</span>
+                                                <span class="product-card__sizes-value"><?php echo esc_html( $product['sizes'] ); ?></span>
+                                            </div>
+                                            <a class="product-card__arrow" href="<?php echo esc_url( $product['href'] ); ?>" aria-label="<?php echo esc_attr( $product['title'] ); ?>">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="13 6 19 12 13 18"></polyline></svg>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <?php
+                                        $img_rel = str_replace( $tpl, '', $product['image'] );
+                                        $img_abs = get_template_directory() . $img_rel;
+                                        $img_ver = file_exists( $img_abs ) ? filemtime( $img_abs ) : '';
+                                        $img_url = $img_ver ? $product['image'] . '?v=' . $img_ver : $product['image'];
+                                    ?>
+                                    <img class="product-card__image" src="<?php echo esc_url( $img_url ); ?>" alt="<?php echo esc_attr( $product['title'] ); ?>" loading="lazy">
+                                </article>
                             <?php endforeach; ?>
                         </div>
                     <?php else : ?>
