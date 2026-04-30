@@ -163,6 +163,33 @@
                 ),
             ),
         ),
+        // Slide 10: Words that matter (2 U-shaped review cards on cream bg)
+        array(
+            'type'    => 'reviews',
+            'image'   => $tpl . '/images/home/laptop/sections/10.png',
+            'alt'     => 'Words that matter',
+            'title'   => 'Words that matter',
+            'reviews' => array(
+                array(
+                    'image' => $tpl . '/assets/images/reviews/review1.png',
+                    'name'  => 'Aditi Parekh, 28',
+                    'role'  => '(Ahmedabad)',
+                    'quote' => 'In a busy life, convenience matters, but so does quality. Anandiitaa jaggery powder gives me both.',
+                ),
+                array(
+                    'image' => $tpl . '/assets/images/reviews/review2.png',
+                    'name'  => 'Kavya Bhosle, 34',
+                    'role'  => '(Mumbai)',
+                    'quote' => 'I switched to Anandiittaa jaggery powder for my morning chai. The taste is richer, and I don\'t need to worry about my Jaggery\'s Purity.',
+                ),
+            ),
+        ),
+        // Slide 11: Community / Social CTA
+        array(
+            'type'  => 'social',
+            'image' => $tpl . '/images/home/laptop/sections/11.png',
+            'alt'   => 'For Those Who Choose Better — Anandiitaa Community',
+        ),
     );
 
     $icons = array(
@@ -211,6 +238,25 @@
                                 </div>
                             <?php endforeach; ?>
                         </div>
+                    <?php elseif ( ! empty( $slide['type'] ) && $slide['type'] === 'reviews' ) : ?>
+                        <h2 class="reviews-title"><?php echo esc_html( $slide['title'] ); ?></h2>
+                        <div class="reviews-grid">
+                            <?php foreach ( $slide['reviews'] as $r ) : ?>
+                                <article class="review-card">
+                                    <div class="review-card__image">
+                                        <img src="<?php echo esc_url( $r['image'] ); ?>" alt="<?php echo esc_attr( $r['name'] ); ?>" loading="lazy">
+                                        <span class="review-card__quote-mark" aria-hidden="true">&rdquo;</span>
+                                    </div>
+                                    <div class="review-card__body">
+                                        <div class="review-card__meta">
+                                            <span class="review-card__name"><?php echo esc_html( $r['name'] ); ?></span>
+                                            <span class="review-card__role"><?php echo esc_html( $r['role'] ); ?></span>
+                                        </div>
+                                        <p class="review-card__quote"><?php echo esc_html( $r['quote'] ); ?></p>
+                                    </div>
+                                </article>
+                            <?php endforeach; ?>
+                        </div>
                     <?php elseif ( ! empty( $slide['type'] ) && $slide['type'] === 'products-grid' ) : ?>
                         <div class="products-grid">
                             <?php foreach ( $slide['products'] as $product ) : ?>
@@ -239,6 +285,26 @@
                                     <img class="product-card__image" src="<?php echo esc_url( $img_url ); ?>" alt="<?php echo esc_attr( $product['title'] ); ?>" loading="lazy">
                                 </article>
                             <?php endforeach; ?>
+                        </div>
+                    <?php elseif ( ! empty( $slide['type'] ) && $slide['type'] === 'social' ) : ?>
+                        <div class="social-slide">
+                            <img class="social-slide__wordmark" src="<?php echo $tpl; ?>/assets/images/logo/anandiitaa-wordmark.png" alt="ANANDIITAA">
+                            <h2 class="social-slide__heading">For Those Who<br>Choose Better.</h2>
+                            <p class="social-slide__subtitle">A growing community that believes everyday<br>food deserves higher standards.</p>
+                            <div class="social-slide__pills">
+                                <a href="https://instagram.com" class="social-pill" target="_blank" rel="noopener noreferrer">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke-width="3"></line></svg>
+                                    Instagram
+                                </a>
+                                <a href="https://facebook.com" class="social-pill" target="_blank" rel="noopener noreferrer">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                                    Facebook
+                                </a>
+                                <a href="https://youtube.com" class="social-pill" target="_blank" rel="noopener noreferrer">
+                                    <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.4 19.54C5.12 20 12 20 12 20s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon fill="#fff" points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+                                    YouTube
+                                </a>
+                            </div>
                         </div>
                     <?php else : ?>
                         <?php if ( ! empty( $slide['caption_top'] ) ) : ?>
