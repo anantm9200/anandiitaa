@@ -94,6 +94,20 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
+/* Snap each full-viewport section into place; one wheel/touch step lands on the next.
+   Scoped to home via :has() so other pages scroll normally.
+   Snap rules live on .hero-carousel and .page-section (scroll-snap-align: start). */
+html:has(body.home) {
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+}
+@media (prefers-reduced-motion: reduce) {
+    html:has(body.home) {
+        scroll-snap-type: none;
+        scroll-behavior: auto;
+    }
+}
+
 h1,
 h2,
 h3,
@@ -129,19 +143,32 @@ picture {
     left: 0;
     right: 0;
     z-index: 100;
-    transition: background 0.3s ease, box-shadow 0.3s ease;
+    transition:
+        background 0.35s ease,
+        backdrop-filter 0.35s ease,
+        -webkit-backdrop-filter 0.35s ease,
+        box-shadow 0.35s ease,
+        border-color 0.35s ease;
+    border-bottom: 1px solid transparent;
 }
 
+/* Glassmorphic state: tinted, blurred, hairline edge for definition.
+   Content underneath stays visible-but-soft instead of being clipped by an opaque bar. */
 .site-header.is-scrolled {
-    background: var(--brand-cream);
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+    background: rgba(245, 235, 210, 0.55); /* cream @ 55% — adjust to taste */
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+    backdrop-filter: blur(16px) saturate(140%);
+    border-bottom-color: rgba(107, 15, 26, 0.08);
+    box-shadow: 0 4px 24px rgba(107, 15, 26, 0.06);
 }
 
-/* For glass variant instead of solid cream, swap the .is-scrolled rule above with:
-   background: rgba(236, 225, 203, 0.78);
-   backdrop-filter: blur(14px);
-   -webkit-backdrop-filter: blur(14px);
-*/
+/* Fallback when backdrop-filter is unsupported (older Firefox, etc.):
+   bump the bg opacity so text stays legible without the blur. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .site-header.is-scrolled {
+        background: rgba(245, 235, 210, 0.92);
+    }
+}
 
 /* Pages other than the home page need top space so content isn't under the fixed header */
 body:not(.home) {
@@ -232,6 +259,8 @@ body:not(.home) {
     min-height: 560px;
     overflow: hidden;
     background: var(--brand-cream);
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
 }
 
 .hero-track {
@@ -248,6 +277,43 @@ body:not(.home) {
     width: 100%;
     height: 100%;
     overflow: hidden;
+}
+
+/* ========================================================================
+   STANDALONE PAGE SECTIONS (former carousel slides 6+, scroll-revealed)
+   Reuses .hero-slide internals; just gives each one its own block + height.
+   ======================================================================== */
+.page-section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 560px;
+    flex: initial;            /* override .hero-slide's flex sizing */
+    background: var(--brand-cream);
+    scroll-snap-align: start;
+    scroll-snap-stop: always; /* never skip past a section, even on fast scroll */
+}
+
+/* Reveal-on-scroll: idle state hidden + nudged down, .is-visible reveals.
+   Respects prefers-reduced-motion. */
+.reveal {
+    opacity: 0;
+    transform: translateY(48px);
+    transition:
+        opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms),
+        transform 0.9s cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms);
+    will-change: opacity, transform;
+}
+.reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+    .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
 }
 
 .hero-slide__bg,

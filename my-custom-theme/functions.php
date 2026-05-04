@@ -9,7 +9,7 @@ function anandiitaa_enqueue_assets() {
     );
 
     // Theme stylesheet (self-hosts AppetitePro + DM Sans via @font-face)
-    wp_enqueue_style( 'main-styles', get_stylesheet_uri(), array( 'google-fonts-montserrat' ), '1.1' );
+    wp_enqueue_style( 'main-styles', get_stylesheet_uri(), array( 'google-fonts-montserrat' ), '1.4' );
 
     // Hero carousel script
     wp_enqueue_script(
@@ -24,6 +24,15 @@ function anandiitaa_enqueue_assets() {
     wp_enqueue_script(
         'header-scroll',
         get_template_directory_uri() . '/assets/js/header-scroll.js',
+        array(),
+        '1.0',
+        true
+    );
+
+    // Scroll-triggered fade/slide reveal for standalone sections
+    wp_enqueue_script(
+        'scroll-reveal',
+        get_template_directory_uri() . '/assets/js/scroll-reveal.js',
         array(),
         '1.0',
         true
