@@ -95,14 +95,18 @@ body {
 }
 
 /* Snap each full-viewport section into place; one wheel/touch step lands on the next.
-   Scoped to home via :has() so other pages scroll normally.
-   Snap rules live on .hero-carousel and .page-section (scroll-snap-align: start). */
-html:has(body.home) {
+   Scoped to pages we want this on, via :has() body-class checks.
+   Snap rules live on .hero-carousel, .page-section, and .product-slide. */
+html:has(body.home),
+html:has(body.page-template-page-products-jaggery),
+html:has(body.page-template-page-products-sugar) {
     scroll-snap-type: y mandatory;
     scroll-behavior: smooth;
 }
 @media (prefers-reduced-motion: reduce) {
-    html:has(body.home) {
+    html:has(body.home),
+    html:has(body.page-template-page-products-jaggery),
+    html:has(body.page-template-page-products-sugar) {
         scroll-snap-type: none;
         scroll-behavior: auto;
     }
@@ -134,46 +138,75 @@ picture {
    HEADER / NAV
    ======================================================================== */
 
+/* Always-visible 1px coffee line at the top of the viewport.
+   Sits above the header so it's there even when the header is hidden. */
+.site-header-line {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: rgba(214, 190, 159, 0.55);
+    z-index: 101;
+    pointer-events: none;
+}
+
+/* Invisible hover-zone at the top of the viewport. Cursor entering this
+   strip wakes the header (handled in header-scroll.js). */
+.site-header-hover-zone {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    z-index: 99;          /* below the header so when the header is visible it takes hover */
+    background: transparent;
+}
+
 .site-header {
     background: transparent;
     padding: 22px 5%;
-    border-bottom: none;
+    border-bottom: 1px solid transparent;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 100;
+    /* Default (no scroll): hidden off-screen so slides own the full viewport.
+       The .is-scrolled state slides it back in with the glass treatment. */
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
     transition:
+        transform 0.35s ease,
+        opacity 0.35s ease,
         background 0.35s ease,
         backdrop-filter 0.35s ease,
         -webkit-backdrop-filter 0.35s ease,
         box-shadow 0.35s ease,
         border-color 0.35s ease;
-    border-bottom: 1px solid transparent;
 }
 
-/* Glassmorphic state: tinted, blurred, hairline edge for definition.
-   Content underneath stays visible-but-soft instead of being clipped by an opaque bar. */
+/* Scrolled state: glass header slides into view */
 .site-header.is-scrolled {
-    background: rgba(245, 235, 210, 0.55); /* cream @ 55% — adjust to taste */
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+    background: rgba(245, 235, 210, 0.55);
     -webkit-backdrop-filter: blur(16px) saturate(140%);
     backdrop-filter: blur(16px) saturate(140%);
     border-bottom-color: rgba(107, 15, 26, 0.08);
     box-shadow: 0 4px 24px rgba(107, 15, 26, 0.06);
 }
 
-/* Fallback when backdrop-filter is unsupported (older Firefox, etc.):
-   bump the bg opacity so text stays legible without the blur. */
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
     .site-header.is-scrolled {
         background: rgba(245, 235, 210, 0.92);
     }
 }
 
-/* Pages other than the home page need top space so content isn't under the fixed header */
-body:not(.home) {
-    padding-top: 86px;
-}
+/* Pages other than the home page used to need top space when the header was
+   always-visible. Header now auto-hides at the top, so no padding required. */
 
 .navbar {
     display: flex;
@@ -208,6 +241,92 @@ body:not(.home) {
 .main-navigation a:hover,
 .main-navigation a[aria-current="page"] {
     color: var(--brand-maroon);
+}
+
+/* Hover dropdown — used by Products (Jaggery / Sugar) */
+.nav-item {
+    position: relative;
+    display: inline-block;
+    margin-left: 28px;
+}
+.nav-item__trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: 0; /* nav-item already supplies the spacing */
+}
+.nav-item__caret {
+    width: 10px;
+    height: 7px;
+    transition: transform 0.25s ease;
+}
+.nav-item:hover .nav-item__caret,
+.nav-item:focus-within .nav-item__caret {
+    transform: rotate(180deg);
+}
+
+.nav-dropdown {
+    position: absolute;
+    top: calc(100% + 14px);
+    left: 50%;
+    transform: translate(-50%, 8px);
+    min-width: 180px;
+    padding: 10px 0;
+    background: rgba(255, 250, 240, 0.85);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    backdrop-filter: blur(18px) saturate(140%);
+    border: 1px solid rgba(107, 15, 26, 0.10);
+    border-radius: 14px;
+    box-shadow: 0 16px 40px rgba(107, 15, 26, 0.12);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+        opacity 0.22s ease,
+        transform 0.22s ease,
+        visibility 0s linear 0.22s;
+    z-index: 110;
+}
+.nav-item:hover .nav-dropdown,
+.nav-item:focus-within .nav-dropdown {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translate(-50%, 0);
+    transition:
+        opacity 0.22s ease,
+        transform 0.22s ease,
+        visibility 0s linear 0s;
+}
+
+/* Hover bridge: invisible strip between trigger and panel so the hover doesn't drop. */
+.nav-dropdown::before {
+    content: "";
+    position: absolute;
+    top: -14px;
+    left: 0;
+    right: 0;
+    height: 14px;
+}
+
+.nav-dropdown a {
+    display: block;
+    margin-left: 0;
+    padding: 10px 22px;
+    color: var(--brand-text);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.82rem;
+    transition: background 0.18s ease, color 0.18s ease;
+}
+.nav-dropdown a:hover,
+.nav-dropdown a:focus {
+    background: rgba(107, 15, 26, 0.06);
+    color: var(--brand-maroon);
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .nav-dropdown { background: rgba(255, 250, 240, 0.97); }
 }
 
 /* ========================================================================
@@ -972,7 +1091,510 @@ body:not(.home) {
 }
 
 /* ========================================================================
-   PRODUCT PAGES (basic)
+   PRODUCT PAGE (slide-based — Jaggery, Sugar)
+   Each slide is one full-viewport section. More slides will be added below.
+   ======================================================================== */
+
+.product-slide {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background: var(--brand-cream);
+    overflow: hidden;
+    padding-top: 24px;  /* header hides at top — slide owns the viewport */
+    padding-bottom: 0;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+}
+
+/* "Anandiitaa Jaggery" lockup above the packet — wordmark logo + serif word */
+.product-hero__title {
+    position: absolute;
+    top: 96px;                 /* tucked just under the fixed header */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 4;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    font-family: 'Appetite Pro', 'Georgia', serif;
+    font-weight: 700;
+    font-size: clamp(2.8rem, 4.2vw, 4.4rem);
+    line-height: 1;
+    color: var(--brand-maroon);
+    white-space: nowrap;
+}
+.product-hero__title img {
+    height: clamp(2.4rem, 3.6vw, 3.8rem);
+    width: auto;
+    display: block;
+}
+
+/* Slide-1 hero image fills the entire slide — composite already includes
+   its own background and pink halo, so the slide bg is irrelevant here. */
+.product-hero__stage {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    overflow: hidden;
+}
+.product-hero__image {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Green "100% Natural" badge — bigger, inside viewport, no rotation */
+.natural-seal {
+    position: absolute;
+    top: 50%;
+    right: 4%;
+    transform: translateY(-50%);
+    width: clamp(220px, 22vw, 340px);
+    height: auto;
+    z-index: 3;
+    pointer-events: none;
+    filter: drop-shadow(0 8px 22px rgba(29, 94, 46, 0.18));
+}
+
+/* Left-rail feature list — bright pink pill cards, larger text, more breathing room */
+.product-features {
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    transform: translateY(-50%);
+    z-index: 2;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 56px;
+    max-width: 380px;
+}
+.product-features li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 1.3rem;
+    line-height: 1.25;
+    color: var(--brand-maroon);
+}
+.product-features__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 68px;
+    height: 68px;
+    background: #CD3F60;          /* bright pink — matches home benefits row */
+    color: #fff;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+.product-features__icon svg { width: 32px; height: 32px; }
+
+/* ========================================================================
+   PROCESS TIMELINE SLIDE (jaggery slide 2 — "Process Defines Purity")
+   5 steps in a row, alternating top/bottom. Each step has a "lid" (thick arc
+   border + number knob) above or below an image circle, with text on the inside.
+   ======================================================================== */
+
+.product-slide--process {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;     /* title rides high; timeline gets pushed down by its own margin */
+    padding: 60px 3% 60px;
+}
+
+.process-title {
+    font-family: 'Appetite Pro', 'Georgia', serif;
+    font-weight: 700;
+    color: #000;
+    font-size: clamp(3rem, 5vw, 5rem);
+    line-height: 1.05;
+    text-align: center;
+    margin: 0 0 90px;                /* breathing room before the timeline */
+}
+
+/* Timeline: 5-column grid with explicit height so absolute-positioned
+   children (circle, text, connectors) align reliably across viewport sizes. */
+.process-timeline {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    column-gap: 12px;
+    width: 100%;
+    max-width: 1500px;
+    position: relative;
+    height: clamp(560px, 64vh, 720px);
+}
+
+/* Connector SVG layer — sits over the timeline.
+   z-index above the step text so the lines aren't covered, but below the
+   circle (which gets its own higher z-index) so the line tucks behind discs. */
+.process-connectors {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 3;
+}
+
+.process-step {
+    position: relative;
+    height: 100%;
+}
+
+.process-step__circle {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: clamp(220px, 18vw, 280px);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: #efe2c8;
+    border: 5px solid #d6be9f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
+    z-index: 4;                 /* above the connector layer so lines tuck under */
+}
+.process-step--top    .process-step__circle { top:    20px; }
+.process-step--bottom .process-step__circle { bottom: 20px; }
+
+.process-step__circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+.process-step__placeholder {
+    color: rgba(107, 15, 26, 0.35);
+}
+.process-step__placeholder svg { width: 80px; height: 80px; }
+
+/* Thick arc — a coffee ring grown beyond the circle, clipped to one half */
+.process-step__arc {
+    position: absolute;
+    border: 22px solid #d6be9f;
+    border-radius: 50%;
+    width: calc(100% + 36px);
+    height: calc(100% + 36px);
+    pointer-events: none;
+}
+.process-step--top .process-step__arc {
+    top: -18px;
+    left: -18px;
+    clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
+}
+.process-step--bottom .process-step__arc {
+    bottom: -18px;
+    left: -18px;
+    clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0 100%);
+}
+
+/* Number knob — coffee-filled rounded rectangle (pill-ish) with maroon numeral */
+.process-step__lid {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+}
+.process-step--top    .process-step__lid { top:    -90px; }
+.process-step--bottom .process-step__lid { bottom: -90px; }
+
+.process-step__number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 108px;
+    height: 72px;
+    background: #d6be9f;
+    border-radius: 22px;
+    font-family: 'Appetite Pro', 'Georgia', serif;
+    font-weight: 700;
+    font-size: 2.1rem;
+    color: var(--brand-maroon);
+    line-height: 1;
+}
+
+/* Step text — fixed-height block so all five start AND end at the same y.
+   Content is centered both horizontally (text-align) and vertically (flex). */
+/* Same fixed-height text box for every step → all five start AND end at the same y.
+   Narrower than the circle so the diagonal connector lines have a clear path. */
+.process-step__text {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: clamp(190px, 14vw, 240px);
+    height: 7em;
+    margin: 0;
+    text-align: center;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.45;
+    color: var(--brand-text);
+    overflow: hidden;
+}
+.process-step--top    .process-step__text { top:    calc(20px + clamp(220px, 18vw, 280px) + 40px); }
+.process-step--bottom .process-step__text { bottom: calc(20px + clamp(220px, 18vw, 280px) + 40px); }
+
+.process-step__text strong {
+    font-weight: 700;
+    color: var(--brand-text);
+}
+
+/* ========================================================================
+   HEALTH BENEFITS SLIDE (jaggery slide 3 — accordion)
+   Native <details>/<summary> styled to match the brand. Each row expands
+   to reveal a placeholder image + supporting body copy.
+   ======================================================================== */
+
+.product-slide--benefits {
+    display: block;                  /* simple vertical flow: title → list → footer */
+    padding: 60px 6% 60px;
+}
+
+.benefits-title {
+    display: block;
+    position: relative;
+    width: 100%;
+    font-family: 'Appetite Pro', 'Georgia', serif;
+    font-weight: 700;
+    color: #000;
+    font-size: clamp(2.6rem, 4.4vw, 4rem);
+    line-height: 1.1;
+    margin: 0 0 40px;
+    padding: 0 0 24px;
+    border-bottom: 3px solid #b89c70;  /* explicit divider line under the title */
+}
+
+.benefits-list {
+    display: block;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    clear: both;
+}
+
+/* The first item's top border was acting as the divider — title now owns that
+   line, so drop the redundant border from the first item. */
+.benefit-item:first-child {
+    border-top: none;
+}
+
+/* Thicker, bolder dividers */
+.benefit-item {
+    border-top: 3px solid #b89c70;
+}
+.benefit-item:last-child {
+    border-bottom: 3px solid #b89c70;
+}
+
+.benefit-item details {
+    width: 100%;
+}
+.benefit-item summary {
+    list-style: none;
+    cursor: pointer;
+}
+.benefit-item summary::-webkit-details-marker { display: none; }
+
+/* Bigger numbers + titles */
+.benefit-summary {
+    display: grid;
+    grid-template-columns: 72px 1fr auto;
+    align-items: center;
+    gap: 22px;
+    padding: 26px 10px;
+    font-family: 'Appetite Pro', 'Georgia', serif;
+    font-weight: 700;
+    color: var(--brand-maroon);
+    font-size: clamp(1.4rem, 1.8vw, 1.95rem);
+    line-height: 1.2;
+}
+.benefit-summary__number {
+    font-variant-numeric: tabular-nums;
+}
+.benefit-summary__caret {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    color: var(--brand-maroon);
+    transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.benefit-summary__caret svg { width: 100%; height: 100%; stroke-width: 2.4; }
+
+.benefit-item details[open] .benefit-summary__caret {
+    transform: rotate(180deg);
+}
+
+/* Smooth, slow, flowy open/close — grid-template-rows trick.
+   Wrapper animates from 0fr → 1fr; inner content + opacity also fade in.
+   Long duration + ease-out curve = luxurious unfurl. */
+.benefit-reveal {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.benefit-item details[open] .benefit-reveal {
+    grid-template-rows: 1fr;
+}
+.benefit-reveal > * {
+    min-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(-6px);
+    transition:
+        opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.1s,
+        transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.1s;
+}
+.benefit-item details[open] .benefit-reveal > * {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.benefit-content {
+    display: grid;
+    grid-template-columns: minmax(280px, 360px) 1fr;
+    gap: 40px;
+    align-items: center;
+    padding: 4px 10px 32px 94px;        /* aligned past the bigger number column */
+}
+
+.benefit-content__image {
+    aspect-ratio: 16 / 9;
+    background: #efe2c8;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.benefit-content__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.benefit-content__placeholder {
+    color: rgba(107, 15, 26, 0.35);
+}
+.benefit-content__placeholder svg { width: 64px; height: 64px; }
+
+.benefit-content__body {
+    margin: 0;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 1.15rem;
+    line-height: 1.55;
+    color: var(--brand-maroon);
+    max-width: 720px;
+}
+
+.benefits-footer {
+    margin: 32px 0 0;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    color: var(--brand-maroon);
+    opacity: 0.85;
+}
+
+/* ========================================================================
+   PRODUCT VARIANTS SLIDE (jaggery slide 4 — Powder + Block side by side)
+   Each card has a packet image overhanging the top, inside content below.
+   ======================================================================== */
+
+.product-slide--variants {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 4%;
+}
+
+.variants-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 120px;
+    width: 100%;
+    max-width: 1600px;
+}
+
+.variant-card {
+    position: relative;
+    background: #f5ebd2;
+    border-radius: 32px;
+    padding: 64px 72px;
+    min-height: 700px;
+    overflow: hidden;
+}
+
+/* Packet image on the right, sized so it doesn't overlap the bottom-left text */
+.variant-card__image {
+    position: absolute;
+    top: 50%;
+    right: 36px;
+    transform: translateY(-50%);
+    height: clamp(380px, 42vh, 500px);
+    width: auto;
+    display: block;
+    pointer-events: none;
+}
+
+/* Body anchored to the bottom-left. Right boundary leaves room for the packet,
+   but title sits well below it so the two never collide. */
+.variant-card__body {
+    position: absolute;
+    bottom: 56px;
+    left: 72px;
+    right: 36%;
+}
+
+.variant-card__avail {
+    margin: 0 0 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-family: 'Montserrat', system-ui, sans-serif;
+    color: var(--brand-maroon);
+}
+.variant-card__avail-label {
+    font-weight: 600;
+    font-size: 1.15rem;
+    letter-spacing: 0.08em;
+}
+.variant-card__avail-value {
+    font-weight: 700;
+    font-size: 1.25rem;
+    letter-spacing: 0.06em;
+}
+
+.variant-card__title {
+    margin: 0;
+    font-family: 'Appetite Pro', 'Georgia', serif;
+    font-weight: 700;
+    font-size: clamp(2.6rem, 3.6vw, 3.8rem);
+    line-height: 1.05;
+    color: var(--brand-maroon);
+    white-space: nowrap;                /* keep "Jaggery Powder" on a single line */
+}
+
+/* ========================================================================
+   PRODUCT PAGES — legacy basic grid (kept for any non-slide product pages)
    ======================================================================== */
 
 .products-page {
