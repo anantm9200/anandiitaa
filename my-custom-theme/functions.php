@@ -61,6 +61,7 @@ add_action( 'wp_head', 'anandiitaa_preconnect_fonts', 1 );
  */
 function anandiitaa_route_templates( $template ) {
     $routes = array(
+        'products'         => 'page-products.php',
         'products/jaggery' => 'page-products-jaggery.php',
         'products/sugar'   => 'page-products-sugar.php',
     );
