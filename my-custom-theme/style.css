@@ -94,22 +94,12 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-/* Snap each full-viewport section into place; one wheel/touch step lands on the next.
-   Scoped to pages we want this on, via :has() body-class checks.
-   Snap rules live on .hero-carousel, .page-section, and .product-slide. */
-html:has(body.home),
-html:has(body.page-template-page-products-jaggery),
-html:has(body.page-template-page-products-sugar) {
-    scroll-snap-type: y mandatory;
+/* Smooth, fluid native scrolling site-wide. No snap — content flows freely. */
+html {
     scroll-behavior: smooth;
 }
 @media (prefers-reduced-motion: reduce) {
-    html:has(body.home),
-    html:has(body.page-template-page-products-jaggery),
-    html:has(body.page-template-page-products-sugar) {
-        scroll-snap-type: none;
-        scroll-behavior: auto;
-    }
+    html { scroll-behavior: auto; }
 }
 
 h1,
@@ -165,7 +155,7 @@ picture {
 
 .site-header {
     background: transparent;
-    padding: 22px 5%;
+    padding: 14px 5%;                    /* was 22px — ~30% tighter */
     border-bottom: 1px solid transparent;
     position: fixed;
     top: 0;
@@ -220,14 +210,14 @@ picture {
 }
 
 .logo img {
-    height: 42px;
+    height: 30px;                        /* was 42 — ~30% smaller */
     width: auto;
 }
 
 .main-navigation {
     font-family: 'Montserrat', system-ui, sans-serif;
     font-weight: 500;
-    font-size: 0.85rem;
+    font-size: 0.78rem;                  /* slightly tighter to match shorter header */
     letter-spacing: 0.08em;
     text-transform: uppercase;
 }
@@ -335,6 +325,7 @@ picture {
 
 .btn {
     display: inline-block;
+    position: relative;
     padding: 14px 36px;
     border-radius: 50px;
     font-family: 'Montserrat', system-ui, sans-serif;
@@ -343,16 +334,29 @@ picture {
     letter-spacing: 0.05em;
     text-transform: uppercase;
     cursor: pointer;
-    transition: background 0.25s, color 0.25s, transform 0.25s;
+    transform: translateY(0);
+    transition:
+        background 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+        color 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+        border-color 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .btn-primary {
     background: #6b0f1a;
     color: #fff;
+    box-shadow: 0 6px 18px rgba(107, 15, 26, 0.18);
 }
 
 .btn-primary:hover {
     background: #4a0a12;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(107, 15, 26, 0.28);
+}
+.btn-primary:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 12px rgba(107, 15, 26, 0.20);
 }
 
 .btn-outline {
@@ -364,6 +368,8 @@ picture {
 .btn-outline:hover {
     background: #6b0f1a;
     color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(107, 15, 26, 0.22);
 }
 
 /* ========================================================================
@@ -378,8 +384,6 @@ picture {
     min-height: 560px;
     overflow: hidden;
     background: var(--brand-cream);
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
 }
 
 .hero-track {
@@ -409,8 +413,6 @@ picture {
     min-height: 560px;
     flex: initial;            /* override .hero-slide's flex sizing */
     background: var(--brand-cream);
-    scroll-snap-align: start;
-    scroll-snap-stop: always; /* never skip past a section, even on fast scroll */
 }
 
 /* Reveal-on-scroll: idle state hidden + nudged down, .is-visible reveals.
@@ -713,18 +715,17 @@ picture {
     bottom: 32%;
     left: 50%;
     transform: translateX(-50%);
-    width: 80%;
-    max-width: 1080px;
+    width: 82%;
+    max-width: 1100px;
     z-index: 5;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 22px;
+    gap: 32px;                              /* roomier than 22 — visible breathing room */
 }
 
 .benefit-card {
     position: relative;
     background: #6b0f1a;
-    /* default; nth-child overrides */
     border-radius: 22px;
     padding: 48px 22px 24px;
     color: #fff;
@@ -732,7 +733,24 @@ picture {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    /* push title + body toward bottom */
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.10);
+    transform: translateY(0);
+    transition:
+        transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.benefit-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 22px 40px rgba(0, 0, 0, 0.22);
+}
+.benefit-card .benefit-card__icon {
+    transition:
+        transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.benefit-card:hover .benefit-card__icon {
+    transform: scale(1.08) rotate(-6deg);
+    box-shadow: 0 0 0 8px #FEEBC7, 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 /* Maroon → pink gradient across the row */
@@ -813,12 +831,27 @@ picture {
 
 .product-card {
     position: relative;
-    background: #f5ebd2;
+    background: linear-gradient(155deg, #faf2dc 0%, #efe1bb 100%);
     border-radius: 65px;
     padding: 28px 32px 24px;
     overflow: visible;
     aspect-ratio: 2.05;
     box-shadow: 0 2px 14px rgba(80, 50, 20, 0.05);
+    transition:
+        transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.product-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(circle at 18% 0%, rgba(255, 255, 255, 0.45), transparent 55%);
+    pointer-events: none;
+}
+.product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 22px 48px rgba(80, 50, 20, 0.16);
 }
 
 .product-card__body {
@@ -840,10 +873,10 @@ picture {
 }
 
 .product-card__desc {
-    font-family: 'Appetite Pro', 'Georgia', serif;
-    font-weight: 500;
-    font-size: clamp(0.8rem, 0.9vw, 1rem);
-    line-height: 1.3;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;                       /* thick body per design system */
+    font-size: clamp(0.85rem, 0.95vw, 1.05rem);
+    line-height: 1.4;
     color: var(--card-accent);
     max-width: 380px;
 }
@@ -896,7 +929,6 @@ picture {
 .product-card__image {
     position: absolute;
     bottom: 18%;
-    /* lift higher so arrow + sizes block stay clear */
     right: 5%;
     height: auto;
     width: auto;
@@ -905,14 +937,24 @@ picture {
     object-fit: contain;
     pointer-events: none;
     z-index: 0;
-    /* sits behind body content */
-    /* Knocks out the white JPEG bg on lifestyle-2/3/6; transparent PNGs unaffected */
     mix-blend-mode: multiply;
+    transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.product-card:hover .product-card__image {
+    transform: translateY(-10px) scale(1.04);
 }
 
 .product-card__body {
     position: relative;
     z-index: 1;
+}
+.product-card__arrow {
+    transform: translateX(0);
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.product-card:hover .product-card__arrow {
+    transform: translateX(8px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.16);
 }
 
 /* ========================================================================
@@ -1091,6 +1133,160 @@ picture {
 }
 
 /* ========================================================================
+   PRODUCTS LANDING (`/products`) — two category cards (Jaggery + Sugar)
+   ======================================================================== */
+
+.products-landing {
+    min-height: 100vh;
+    background: var(--brand-cream);
+    padding: 96px 6% 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 56px;
+}
+
+.products-landing__intro {
+    text-align: center;
+    max-width: 720px;
+}
+.products-landing__intro h1 {
+    font-family: 'Appetite Pro', 'Georgia', serif;
+    font-weight: 700;
+    color: var(--brand-maroon);
+    font-size: clamp(2.6rem, 4.4vw, 4.2rem);
+    margin: 0 0 14px;
+    line-height: 1.05;
+}
+.products-landing__intro p {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--brand-text);
+    font-size: 1.15rem;
+    margin: 0;
+    opacity: 0.85;
+}
+
+.products-landing__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(360px, 560px));
+    justify-content: center;
+    gap: 48px;
+    width: 100%;
+    max-width: 1280px;
+}
+
+.category-card {
+    --card-accent: #6b0f1a;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: 28px;
+    background:
+        linear-gradient(160deg, color-mix(in srgb, var(--card-accent) 88%, #000 0%) 0%, color-mix(in srgb, var(--card-accent) 60%, #000 12%) 100%);
+    color: #fff;
+    text-decoration: none;
+    box-shadow: 0 18px 48px rgba(107, 15, 26, 0.18);
+    transform: translateY(0) scale(1);
+    transition:
+        transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    min-height: 480px;
+}
+
+.category-card::after {
+    /* subtle radial highlight for depth */
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.18), transparent 55%);
+    pointer-events: none;
+}
+
+.category-card:hover,
+.category-card:focus-visible {
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: 0 28px 64px rgba(107, 15, 26, 0.28);
+}
+
+.category-card__media {
+    position: relative;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 40px 16px;
+    min-height: 280px;
+}
+.category-card__media img {
+    max-width: 70%;
+    max-height: 320px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.25));
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.category-card:hover .category-card__media img {
+    transform: translateY(-8px) scale(1.04);
+}
+
+.category-card__body {
+    position: relative;
+    z-index: 1;
+    padding: 28px 40px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.18));
+}
+
+.category-card__title {
+    margin: 0;
+    font-family: 'Appetite Pro', 'Georgia', serif;
+    font-weight: 700;
+    font-size: clamp(2.2rem, 3.4vw, 3rem);
+    line-height: 1.05;
+    color: #fff;
+}
+.category-card__tagline {
+    margin: 0;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.45;
+    color: rgba(255, 255, 255, 0.92);
+}
+.category-card__cta {
+    margin-top: 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Montserrat', system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #fff;
+    transition: gap 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.category-card__cta svg {
+    width: 18px;
+    height: 18px;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.category-card:hover .category-card__cta {
+    gap: 16px;
+}
+.category-card:hover .category-card__cta svg {
+    transform: translateX(4px);
+}
+
+@media (max-width: 800px) {
+    .products-landing__grid { grid-template-columns: 1fr; }
+}
+
+/* ========================================================================
    PRODUCT PAGE (slide-based — Jaggery, Sugar)
    Each slide is one full-viewport section. More slides will be added below.
    ======================================================================== */
@@ -1103,8 +1299,6 @@ picture {
     overflow: hidden;
     padding-top: 24px;  /* header hides at top — slide owns the viewport */
     padding-bottom: 0;
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
 }
 
 /* "Anandiitaa Jaggery" lockup above the packet — wordmark logo + serif word */
@@ -1269,7 +1463,20 @@ picture {
     align-items: center;
     justify-content: center;
     overflow: visible;
-    z-index: 4;                 /* above the connector layer so lines tuck under */
+    z-index: 4;
+    transition:
+        transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.process-step__circle:hover {
+    transform: translateX(-50%) scale(1.04);
+    box-shadow: 0 18px 40px rgba(107, 15, 26, 0.18);
+}
+.process-step__circle img {
+    transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.process-step__circle:hover img {
+    transform: scale(1.08);
 }
 .process-step--top    .process-step__circle { top:    20px; }
 .process-step--bottom .process-step__circle { bottom: 20px; }
@@ -1382,7 +1589,9 @@ picture {
 }
 
 .benefits-list {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;                              /* visible spacing between rows */
     list-style: none;
     margin: 0;
     padding: 0;
@@ -1390,18 +1599,24 @@ picture {
     clear: both;
 }
 
-/* The first item's top border was acting as the divider — title now owns that
-   line, so drop the redundant border from the first item. */
-.benefit-item:first-child {
-    border-top: none;
-}
-
-/* Thicker, bolder dividers */
+/* Each row gets its own border + a subtle hover/open background so the
+   spacing reads as clear, separate cards rather than one continuous list. */
 .benefit-item {
     border-top: 3px solid #b89c70;
+    border-radius: 4px;
+    transition: background-color 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.benefit-item:first-child {
+    border-top: 3px solid #b89c70;          /* keep — gap from title now provides separation */
 }
 .benefit-item:last-child {
     border-bottom: 3px solid #b89c70;
+}
+.benefit-item:hover {
+    background-color: rgba(184, 156, 112, 0.08);
+}
+.benefit-item:has(details[open]) {
+    background-color: rgba(184, 156, 112, 0.10);
 }
 
 .benefit-item details {
@@ -1485,11 +1700,16 @@ picture {
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    box-shadow: 0 8px 24px rgba(107, 15, 26, 0.10);
 }
 .benefit-content__image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.benefit-item:hover .benefit-content__image img {
+    transform: scale(1.04);
 }
 .benefit-content__placeholder {
     color: rgba(107, 15, 26, 0.35);
@@ -1536,11 +1756,31 @@ picture {
 
 .variant-card {
     position: relative;
-    background: #faf1d8;
+    background:
+        linear-gradient(155deg, #fbf2dc 0%, #f1e2bd 100%);
     border-radius: 28px;
-    padding: 56px 60px;
-    min-height: 480px;                  /* smaller box overall */
+    padding: 64px 68px;
+    min-height: 500px;
     overflow: visible;
+    box-shadow: 0 14px 40px rgba(107, 15, 26, 0.08);
+    transition:
+        transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.variant-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.35), transparent 55%);
+    pointer-events: none;
+}
+.variant-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 24px 56px rgba(107, 15, 26, 0.16);
+}
+.variant-card:hover .variant-card__image {
+    transform: translateY(-12px);
 }
 
 /* Packet base aligned to the BASELINE of "AVAILABLE IN:" — the line the
@@ -1553,6 +1793,9 @@ picture {
     width: auto;
     display: block;
     pointer-events: none;
+    z-index: 2;
+    filter: drop-shadow(0 18px 32px rgba(0, 0, 0, 0.12));
+    transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* Body anchored to the bottom-left. */
@@ -1568,18 +1811,20 @@ picture {
     display: flex;
     flex-direction: column;
     gap: 6px;
-    font-family: 'Montserrat', system-ui, sans-serif;
+    font-family: 'DM Sans', sans-serif;     /* body font per design system */
     color: var(--brand-maroon);
 }
 .variant-card__avail-label {
-    font-weight: 600;
-    font-size: 1.15rem;
-    letter-spacing: 0.08em;
+    font-weight: 500;
+    font-size: 1.05rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    opacity: 0.75;
 }
 .variant-card__avail-value {
     font-weight: 700;
-    font-size: 1.25rem;
-    letter-spacing: 0.06em;
+    font-size: 1.4rem;
+    letter-spacing: 0.04em;
 }
 
 .variant-card__title {

@@ -9,7 +9,7 @@ function anandiitaa_enqueue_assets() {
     );
 
     // Theme stylesheet (self-hosts AppetitePro + DM Sans via @font-face)
-    wp_enqueue_style( 'main-styles', get_stylesheet_uri(), array( 'google-fonts-montserrat' ), '4.4' );
+    wp_enqueue_style( 'main-styles', get_stylesheet_uri(), array( 'google-fonts-montserrat' ), '4.7' );
 
     // Hero carousel script
     wp_enqueue_script(
@@ -25,7 +25,7 @@ function anandiitaa_enqueue_assets() {
         'header-scroll',
         get_template_directory_uri() . '/assets/js/header-scroll.js',
         array(),
-        '1.4',
+        '1.5',
         true
     );
 

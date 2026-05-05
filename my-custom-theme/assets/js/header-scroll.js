@@ -5,12 +5,14 @@
     const hoverZone = document.querySelector('.site-header-hover-zone');
     if (!header) return;
 
-    const SHOW_THRESHOLD = 60;    // require some scroll past the very top
-    const IDLE_MS        = 3000;  // ms of no scroll before header hides again
+    const SHOW_THRESHOLD   = 60;    // px of scroll before scroll-triggered show kicks in
+    const IDLE_MS          = 3000;  // hide N ms after last scroll
+    const INTRO_MS         = 4000;  // header is visible for N ms on initial load / page nav
 
     let raf       = null;
     let idleTimer = null;
-    let hovering  = false;       // true while cursor is over header or its hover zone
+    let introTimer = null;
+    let hovering  = false;
 
     function show() {
         header.classList.add('is-scrolled');
@@ -34,6 +36,8 @@
     }
 
     function onScroll() {
+        // Once the user has actually scrolled, the intro window is irrelevant.
+        clearTimeout(introTimer);
         if (raf !== null) return;
         raf = window.requestAnimationFrame(tick);
     }
@@ -41,7 +45,8 @@
     function onPointerEnter() {
         hovering = true;
         clearTimeout(idleTimer);
-        show();   // wake the header even at the very top of the page
+        clearTimeout(introTimer);
+        show();
     }
     function onPointerLeave() {
         hovering = false;
@@ -56,4 +61,12 @@
     }
 
     window.addEventListener('scroll', onScroll, { passive: true });
+
+    // Intro: show the header for INTRO_MS on every page load (first visit + every nav).
+    // No scroll required. After the timeout it fades out, and from then on only
+    // scroll/hover bring it back.
+    show();
+    introTimer = setTimeout(function () {
+        if (!hovering) hide();
+    }, INTRO_MS);
 })();

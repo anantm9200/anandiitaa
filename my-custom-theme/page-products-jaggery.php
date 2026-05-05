@@ -227,7 +227,7 @@ $tpl = get_template_directory_uri();
     <?php
         $variants = array(
             array(
-                'image'      => $tpl . '/assets/images/products/jaggery/jaggery-900g.png',
+                'image'      => $tpl . '/assets/images/lifestyle/lifestyle-2.png',
                 'available'  => '500 GM',
                 'title'      => 'Jaggery Powder',
             ),
