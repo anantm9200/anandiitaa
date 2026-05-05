@@ -1536,32 +1536,31 @@ picture {
 
 .variant-card {
     position: relative;
-    background: #f5ebd2;
-    border-radius: 32px;
-    padding: 64px 72px;
-    min-height: 700px;
-    overflow: hidden;
+    background: #faf1d8;
+    border-radius: 28px;
+    padding: 56px 60px;
+    min-height: 480px;                  /* smaller box overall */
+    overflow: visible;
 }
 
-/* Packet image on the right, sized so it doesn't overlap the bottom-left text */
+/* Packet base aligned to the BASELINE of "AVAILABLE IN:" — the line the
+   letters sit on, not their top edge. */
 .variant-card__image {
     position: absolute;
-    top: 50%;
-    right: 36px;
-    transform: translateY(-50%);
-    height: clamp(380px, 42vh, 500px);
+    right: 12px;
+    bottom: 148px;
+    height: clamp(520px, 60vh, 700px);
     width: auto;
     display: block;
     pointer-events: none;
 }
 
-/* Body anchored to the bottom-left. Right boundary leaves room for the packet,
-   but title sits well below it so the two never collide. */
+/* Body anchored to the bottom-left. */
 .variant-card__body {
     position: absolute;
-    bottom: 56px;
-    left: 72px;
-    right: 36%;
+    bottom: 48px;
+    left: 60px;
+    right: 38%;
 }
 
 .variant-card__avail {
