@@ -128,60 +128,25 @@ picture {
    HEADER / NAV
    ======================================================================== */
 
-/* Always-visible 1px coffee line at the top of the viewport.
-   Sits above the header so it's there even when the header is hidden. */
-.site-header-line {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: rgba(214, 190, 159, 0.55);
-    z-index: 101;
-    pointer-events: none;
-}
-
-/* Invisible hover-zone at the top of the viewport. Cursor entering this
-   strip wakes the header (handled in header-scroll.js). */
-.site-header-hover-zone {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 80px;
-    z-index: 99;          /* below the header so when the header is visible it takes hover */
-    background: transparent;
-}
-
 .site-header {
-    background: transparent;
-    padding: 14px 5%;                    /* was 22px — ~30% tighter */
-    border-bottom: 1px solid transparent;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 100;
-    /* Default (no scroll): hidden off-screen so slides own the full viewport.
-       The .is-scrolled state slides it back in with the glass treatment. */
-    transform: translateY(-100%);
-    opacity: 0;
-    pointer-events: none;
+    padding: 14px 5%;
+    background: transparent;             /* invisible at top — only logo + nav links show */
+    border-bottom: 1px solid transparent;
     transition:
-        transform 0.35s ease,
-        opacity 0.35s ease,
-        background 0.35s ease,
-        backdrop-filter 0.35s ease,
-        -webkit-backdrop-filter 0.35s ease,
-        box-shadow 0.35s ease,
-        border-color 0.35s ease;
+        background 0.4s ease,
+        backdrop-filter 0.4s ease,
+        -webkit-backdrop-filter 0.4s ease,
+        box-shadow 0.4s ease,
+        border-color 0.4s ease;
 }
 
-/* Scrolled state: glass header slides into view */
+/* Scrolled state: glassmorphic surface fades in */
 .site-header.is-scrolled {
-    transform: translateY(0);
-    opacity: 1;
-    pointer-events: auto;
     background: rgba(245, 235, 210, 0.55);
     -webkit-backdrop-filter: blur(16px) saturate(140%);
     backdrop-filter: blur(16px) saturate(140%);

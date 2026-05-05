@@ -8,8 +8,6 @@
 </head>
 <body <?php body_class(); ?>>
 
-    <span class="site-header-line" aria-hidden="true"></span>
-    <span class="site-header-hover-zone" aria-hidden="true"></span>
     <header class="site-header">
         <div class="navbar">
             <div class="logo">
