@@ -1334,12 +1334,15 @@ html.is-mac .hero-carousel__arrow--next {
     z-index: 1;
     overflow: hidden;
 }
+.product-hero__stage picture { display: contents; } /* keep .product-hero__image inheriting stage box */
 .product-hero__image {
     width: 100%;
     height: 100%;
     display: block;
     object-fit: cover;
-    object-position: center;
+    /* Anchor to bottom — both jaggery and sugar hero composites place the
+       packet/bowl/pile at the lower half. Top is empty cream space, safe to crop. */
+    object-position: center bottom;
 }
 
 /* Green "100% Natural" badge — bigger, inside viewport, no rotation */

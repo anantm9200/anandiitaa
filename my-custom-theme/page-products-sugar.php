@@ -41,11 +41,14 @@ $tpl = get_template_directory_uri();
         </h1>
 
         <div class="product-hero__stage">
-            <img
-                class="product-hero__image"
-                src="<?php echo $tpl; ?>/assets/images/products/sugar/sugar-slide-1.png"
-                alt="Anandiitaa Premium Refined Sugar — Bold Grain &amp; Fine Grain"
-                fetchpriority="high">
+            <picture>
+                <source media="(min-width: 1440px)" srcset="<?php echo $tpl; ?>/assets/images/products/sugar/mac/sugar-slide-1.png">
+                <img
+                    class="product-hero__image"
+                    src="<?php echo $tpl; ?>/assets/images/products/sugar/sugar-slide-1.png"
+                    alt="Anandiitaa Premium Refined Sugar — Bold Grain &amp; Fine Grain"
+                    fetchpriority="high">
+            </picture>
         </div>
 
         <img
