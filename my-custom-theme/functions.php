@@ -9,7 +9,7 @@ function anandiitaa_enqueue_assets() {
     );
 
     // Theme stylesheet (self-hosts AppetitePro + DM Sans via @font-face)
-    wp_enqueue_style( 'main-styles', get_stylesheet_uri(), array( 'google-fonts-montserrat' ), '6.8' );
+    wp_enqueue_style( 'main-styles', get_stylesheet_uri(), array( 'google-fonts-montserrat' ), '6.9' );
 
     // Hero carousel script
     wp_enqueue_script(
@@ -56,16 +56,15 @@ function anandiitaa_preconnect_fonts() {
 add_action( 'wp_head', 'anandiitaa_preconnect_fonts', 1 );
 
 /**
- * Server-side Mac UA detection → adds `is-mac` to <body class>.
- * CSS scopes the 1440 content-frame layout (constrained logo/nav, inset arrows)
- * to body.is-mac only — non-Mac visitors get the wide-edge desktop layout.
+ * Mac UA detection → adds `is-mac` to <html class> client-side.
+ * Done in JS (not PHP) because Pantheon's Varnish edge cache strips
+ * User-Agent from the cache key, so server-side UA logic gets cache-poisoned.
+ * Inlined in <head> with `documentElement` so the class is applied before
+ * the body renders — no FOUC on Mac visitors.
  */
-add_filter( 'body_class', function ( $classes ) {
-    if ( ! empty( $_SERVER['HTTP_USER_AGENT'] ) && preg_match( '/Macintosh|Mac OS X/i', $_SERVER['HTTP_USER_AGENT'] ) ) {
-        $classes[] = 'is-mac';
-    }
-    return $classes;
-} );
+add_action( 'wp_head', function () {
+    echo '<script>(function(){if(/Macintosh|Mac OS X/i.test(navigator.userAgent))document.documentElement.classList.add("is-mac");})();</script>' . "\n";
+}, 2 );
 
 /**
  * Map theme-owned URLs directly to template files so we don't need a WP page

@@ -221,19 +221,23 @@
         $abs = get_template_directory() . $rel;
         return file_exists( $abs ) ? $url . '?v=' . filemtime( $abs ) : $url;
     };
-    // Server-side Mac UA detection. Mac variants only ship when the request
-    // comes from a Mac device — Windows/Linux desktops always get laptop tier
-    // regardless of viewport size (per client request: strict Mac-only swap).
-    $is_mac_ua = ! empty( $_SERVER['HTTP_USER_AGENT'] ) && preg_match( '/Macintosh|Mac OS X/i', $_SERVER['HTTP_USER_AGENT'] );
-
     // Renders a slide's bg + inner content. Used by carousel AND standalone sections.
-    $render_slide = function ( $slide, $is_priority = false ) use ( $tpl, $icons, $mac_url_for, $mac_exists, $bust, $is_mac_ua ) {
+    // Bg uses <picture> with a viewport-based <source> so the browser picks the
+    // mac variant on screens >=1440px and the laptop variant otherwise. This is
+    // CDN/Pantheon-cache safe (no UA-dependent HTML), unlike server-side UA
+    // detection which Varnish strips at the cache key.
+    $render_slide = function ( $slide, $is_priority = false ) use ( $tpl, $icons, $mac_url_for, $mac_exists, $bust ) {
         $laptop_url = $slide['image'];
         $mac_url    = $mac_url_for( $laptop_url );
-        $bg_url     = ( $is_mac_ua && $mac_exists( $mac_url ) ) ? $mac_url : $laptop_url;
+        $has_mac    = $mac_exists( $mac_url );
         ?>
         <div class="hero-slide__bg">
-            <img src="<?php echo esc_url( $bust( $bg_url ) ); ?>" alt="<?php echo esc_attr( $slide['alt'] ); ?>" <?php echo $is_priority ? 'fetchpriority="high"' : 'loading="lazy"'; ?>>
+            <picture>
+                <?php if ( $has_mac ) : ?>
+                    <source media="(min-width: 1440px)" srcset="<?php echo esc_url( $bust( $mac_url ) ); ?>">
+                <?php endif; ?>
+                <img src="<?php echo esc_url( $bust( $laptop_url ) ); ?>" alt="<?php echo esc_attr( $slide['alt'] ); ?>" <?php echo $is_priority ? 'fetchpriority="high"' : 'loading="lazy"'; ?>>
+            </picture>
         </div>
 
         <?php if ( ! empty( $slide['type'] ) && $slide['type'] === 'standards' ) : ?>

@@ -147,7 +147,7 @@ picture {
 
 /* Mac override: pull header into the 1440 content frame (centered) so it
    matches the constrained content alignment used elsewhere on the page. */
-body.is-mac .site-header { padding: 14px 0; }
+html.is-mac .site-header { padding: 14px 0; }
 
 /* Scrolled state: glassmorphic surface fades in */
 .site-header.is-scrolled {
@@ -176,7 +176,7 @@ body.is-mac .site-header { padding: 14px 0; }
 
 /* Mac variant: navbar is centered inside a 1440 content frame so logo + nav
    sit inside the same column the rest of the page uses. */
-body.is-mac .navbar {
+html.is-mac .navbar {
     max-width: 1440px;
     margin: 0 auto;
     padding: 0 clamp(20px, 4vw, 48px);
@@ -575,10 +575,10 @@ body.is-mac .navbar {
 .hero-carousel__arrow--next { right: 24px; }
 
 /* Mac variant: pull arrows inside the 1440 content frame on ultra-wide screens. */
-body.is-mac .hero-carousel__arrow--prev {
+html.is-mac .hero-carousel__arrow--prev {
     left: max(24px, calc((100vw - 1440px) / 2 + 24px));
 }
-body.is-mac .hero-carousel__arrow--next {
+html.is-mac .hero-carousel__arrow--next {
     right: max(24px, calc((100vw - 1440px) / 2 + 24px));
 }
 
