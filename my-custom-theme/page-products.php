@@ -15,15 +15,13 @@ $categories = array(
         'image'   => $tpl . '/assets/images/products/jaggery/jaggery-900g.png',
         'accent'  => '#6b0f1a',
     ),
-    // Sugar card temporarily hidden until that page's content is final.
-    // Restore by uncommenting the entry below.
-    // array(
-    //     'title'   => 'Sugar',
-    //     'tagline' => 'Bold or fine grain. Clean, hygienic, dependable.',
-    //     'href'    => home_url( '/products/sugar' ),
-    //     'image'   => $tpl . '/assets/images/products/sugar/m30-1kg-front.png',
-    //     'accent'  => '#1d5e2e',
-    // ),
+    array(
+        'title'   => 'Sugar',
+        'tagline' => 'Bold or fine grain. Clean, hygienic, dependable.',
+        'href'    => home_url( '/products/sugar' ),
+        'image'   => $tpl . '/assets/images/products/sugar/m30-1kg-front.png',
+        'accent'  => '#1d5e2e',
+    ),
 );
 ?>
 

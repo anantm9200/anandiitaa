@@ -202,11 +202,38 @@
         'spoon'     => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0"></path><path d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v2"></path><path d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8"></path><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"></path></svg>',
     );
 
+    // Maps a laptop bg URL → equivalent mac URL. Slide 1 uses /laptop/slider/slide-1.png
+    // which maps to /mac/1.png; everything else mirrors path 1:1 under /mac/.
+    $mac_url_for = function ( $laptop_url ) use ( $tpl ) {
+        if ( strpos( $laptop_url, '/images/home/laptop/slider/slide-1.png' ) !== false ) {
+            return $tpl . '/images/home/mac/1.png';
+        }
+        return str_replace( '/images/home/laptop/', '/images/home/mac/', $laptop_url );
+    };
+    // Returns true only when the mac variant file actually exists on disk.
+    $mac_exists = function ( $mac_url ) use ( $tpl ) {
+        $rel = str_replace( $tpl, '', $mac_url );
+        return file_exists( get_template_directory() . $rel );
+    };
+    // Appends ?v=mtime to bust browser caches when an image's bytes change but its filename doesn't.
+    $bust = function ( $url ) use ( $tpl ) {
+        $rel = str_replace( $tpl, '', $url );
+        $abs = get_template_directory() . $rel;
+        return file_exists( $abs ) ? $url . '?v=' . filemtime( $abs ) : $url;
+    };
+    // Server-side Mac UA detection. Mac variants only ship when the request
+    // comes from a Mac device — Windows/Linux desktops always get laptop tier
+    // regardless of viewport size (per client request: strict Mac-only swap).
+    $is_mac_ua = ! empty( $_SERVER['HTTP_USER_AGENT'] ) && preg_match( '/Macintosh|Mac OS X/i', $_SERVER['HTTP_USER_AGENT'] );
+
     // Renders a slide's bg + inner content. Used by carousel AND standalone sections.
-    $render_slide = function ( $slide, $is_priority = false ) use ( $tpl, $icons ) {
+    $render_slide = function ( $slide, $is_priority = false ) use ( $tpl, $icons, $mac_url_for, $mac_exists, $bust, $is_mac_ua ) {
+        $laptop_url = $slide['image'];
+        $mac_url    = $mac_url_for( $laptop_url );
+        $bg_url     = ( $is_mac_ua && $mac_exists( $mac_url ) ) ? $mac_url : $laptop_url;
         ?>
         <div class="hero-slide__bg">
-            <img src="<?php echo esc_url( $slide['image'] ); ?>" alt="<?php echo esc_attr( $slide['alt'] ); ?>" <?php echo $is_priority ? 'fetchpriority="high"' : 'loading="lazy"'; ?>>
+            <img src="<?php echo esc_url( $bust( $bg_url ) ); ?>" alt="<?php echo esc_attr( $slide['alt'] ); ?>" <?php echo $is_priority ? 'fetchpriority="high"' : 'loading="lazy"'; ?>>
         </div>
 
         <?php if ( ! empty( $slide['type'] ) && $slide['type'] === 'standards' ) : ?>

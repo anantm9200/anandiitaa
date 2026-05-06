@@ -54,6 +54,50 @@ See `DESIGN.md` for fonts (Appetite Pro / DM Sans / Montserrat — strict, no ot
 - Images: `my-custom-theme/assets/images/{lifestyle,logo,products,reviews,source}/` and `my-custom-theme/images/home/`
 - JS: `my-custom-theme/assets/js/` (`hero-carousel.js`, `header-scroll.js`, `scroll-reveal.js`)
 
+## Performance / image optimization (2026-05-05 audit)
+
+The theme is currently shipping ~900 MB of raster images (`my-custom-theme/images` + `my-custom-theme/assets`). Per-page download weight at the time of audit:
+
+- Home (`/`): ~119 MB across 18 images
+- Jaggery (`/products/jaggery`): ~106 MB across 13 images
+- Reference: a normal modern page should be **<2 MB**.
+
+### Root causes
+1. **PNG everywhere** — including photos that don't need transparency. JPG/WebP of the same photo is 8–20× smaller.
+2. **Resolutions far above display needs.** `process/step-4.png` is 3375×3375 (19.9 MB) but renders inside a 280px circle. `jaggery-slide-1.png` is 6000×3375 (16 MB) but the display target is ~1920px.
+3. **No `srcset` / responsive variants** — desktop, mobile, slow-connection all pull the same massive file.
+4. **Patchy `loading="lazy"`** — covered in some templates but not consistently across every `<img>`.
+5. **Dead weight shipped** — `my-custom-theme/images/home/mac/*` (180 MB across 5 files) is referenced by nothing in any template.
+
+### Lossless / visually-lossless wins (the "no 1% loss" tier)
+Apply these *before* anything else — they typically yield 95%+ size reduction with zero perceptible quality loss:
+
+1. **Resize to display size.** Cap photos at 1920 px wide (hero) or 800–1200 px (inline). Anything beyond ~2× retina is invisible.
+2. **PNG → JPG (or WebP/AVIF) for photos** without transparency. Keep PNG only for logos / badges / anything with alpha.
+3. **Run through an optimizer** — Squoosh, TinyPNG, `sharp`, `cwebp`. Even after the above, re-encoding shaves another 30–50%.
+
+Combined: Home goes from 119 MB → ~3–6 MB; Jaggery from 106 MB → ~3–5 MB.
+
+### Markup-level wins (no image edits required)
+- Audit and add `loading="lazy"` to every `<img>` except the LCP / first-visible hero image.
+- Add `decoding="async"` to all non-critical images.
+- Add `fetchpriority="high"` *only* to the LCP image on each page (currently set on slide-1 hero — keep that pattern).
+
+### Cleanup
+- Delete `my-custom-theme/images/home/mac/*` (180 MB unreferenced).
+- Move `my-custom-theme/assets/images/source/*` (107 MB raw masters) out of the theme — keep on disk separately. Already gitignored.
+
+### Long-term / "right way"
+- Upload images via the **WP Media Library** rather than referencing theme paths. WP auto-generates multiple sizes and `wp_get_attachment_image()` emits proper `srcset`.
+- `<picture>` with AVIF + WebP + PNG fallback for best per-browser format.
+- CDN with on-the-fly transformation (Cloudflare Images, ImgIX, Pantheon image-styles plugin) — source one high-res file, CDN serves the right size on demand.
+
+### Order of operations recommendation
+1. Cleanup first (delete unused, move source masters out) — instant 287 MB drop.
+2. Lossless tier (resize + convert + optimize) — 95% reduction.
+3. Markup audit (`loading="lazy"`, `decoding="async"`).
+4. Long-term modernization only after the above is shipped.
+
 ## Pages built so far
 - **Home** (`front-page.php`) — hero carousel (slides 1–5) + scroll-revealed standalone sections (slides 6–11: Standards, news caption, Products grid, Benefits, Reviews, Social).
 - **Products / Jaggery** (`page-products-jaggery.php`) — slide 1 in progress.

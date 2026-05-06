@@ -134,7 +134,7 @@ picture {
     left: 0;
     right: 0;
     z-index: 100;
-    padding: 14px 5%;
+    padding: 14px clamp(20px, 4vw, 48px); /* desktop default: edge gutters spread logo & nav to viewport edges */
     background: transparent;             /* invisible at top — only logo + nav links show */
     border-bottom: 1px solid transparent;
     transition:
@@ -144,6 +144,10 @@ picture {
         box-shadow 0.4s ease,
         border-color 0.4s ease;
 }
+
+/* Mac override: pull header into the 1440 content frame (centered) so it
+   matches the constrained content alignment used elsewhere on the page. */
+body.is-mac .site-header { padding: 14px 0; }
 
 /* Scrolled state: glassmorphic surface fades in */
 .site-header.is-scrolled {
@@ -168,6 +172,15 @@ picture {
     justify-content: space-between;
     align-items: center;
     gap: 24px;
+}
+
+/* Mac variant: navbar is centered inside a 1440 content frame so logo + nav
+   sit inside the same column the rest of the page uses. */
+body.is-mac .navbar {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 clamp(20px, 4vw, 48px);
+    width: 100%;
 }
 
 .logo a {
@@ -408,10 +421,12 @@ picture {
     inset: 0;
     width: 100%;
     height: 100%;
-    object-fit: contain;
-    /* show full image, no cropping; cream bg fills any extra space */
-    object-position: center bottom;
-    /* anchor bottom so empty space is at top */
+    /* cover + centered keeps the bg flush to the slide regardless of which
+       variant is served (laptop 16:9 vs mac 3:2). Trade: minor edge crop on
+       the off-aspect variant. Per-slide overrides below tweak object-position
+       when a subject needs to anchor left/right instead of center. */
+    object-fit: cover;
+    object-position: center center;
 }
 
 .hero-slide__content {
@@ -556,12 +571,15 @@ picture {
     background: #fff;
 }
 
-.hero-carousel__arrow--prev {
-    left: 24px;
-}
+.hero-carousel__arrow--prev { left: 24px; }
+.hero-carousel__arrow--next { right: 24px; }
 
-.hero-carousel__arrow--next {
-    right: 24px;
+/* Mac variant: pull arrows inside the 1440 content frame on ultra-wide screens. */
+body.is-mac .hero-carousel__arrow--prev {
+    left: max(24px, calc((100vw - 1440px) / 2 + 24px));
+}
+body.is-mac .hero-carousel__arrow--next {
+    right: max(24px, calc((100vw - 1440px) / 2 + 24px));
 }
 
 .hero-carousel__arrow svg {
@@ -1016,15 +1034,18 @@ picture {
 .social-slide {
     position: absolute;
     top: 50%;
-    left: 7%;
+    left: clamp(20px, 6vw, 96px);
     transform: translateY(-50%);
     z-index: 5;
-    max-width: 620px;
+    /* Stay inside the bg's left negative-space band regardless of which variant
+       (laptop 16:9 vs mac 3:2) is being served — capping at 40vw guarantees
+       the overlay never crosses into the powder-bowl half of the bg. */
+    max-width: min(560px, 40vw);
 }
 
 .social-slide__wordmark {
     display: block;
-    width: clamp(260px, 32vw, 480px);
+    width: clamp(220px, 24vw, 420px);
     height: auto;
     margin-bottom: 28px;
     margin-top: 12px;
@@ -1033,7 +1054,7 @@ picture {
 .social-slide__heading {
     font-family: 'Appetite Pro', 'Georgia', serif;
     font-weight: 700;
-    font-size: clamp(1.9rem, 2.6vw, 3.2rem);
+    font-size: clamp(1.7rem, 2.2vw, 2.8rem);
     line-height: 1.1;
     color: var(--brand-maroon);
     margin: 0 0 18px;
@@ -1041,7 +1062,7 @@ picture {
 
 .social-slide__subtitle {
     font-family: 'DM Sans', sans-serif;
-    font-size: clamp(0.95rem, 1.1vw, 1.15rem);
+    font-size: clamp(0.9rem, 1vw, 1.05rem);
     line-height: 1.55;
     color: #1a1a1a;
     margin: 0 0 36px;
@@ -1078,6 +1099,17 @@ picture {
     width: 22px;
     height: 22px;
     flex-shrink: 0;
+}
+
+/* Slide 11 (social) bg: switch from `contain` (which letterboxes when bg
+   aspect != slide aspect) to `cover` with the subject anchored right.
+   This keeps the powder bowl on the right edge for both the 1920×1080
+   (laptop, 16:9) and 2560×1664 (mac, 3:2) variants, and guarantees the
+   left half always shows the bg's own cream/slate negative space — the
+   reading area where .social-slide content sits. */
+.page-section--social .hero-slide__bg img {
+    object-fit: cover;
+    object-position: 100% center;
 }
 
 /* ========================================================================
@@ -1120,7 +1152,7 @@ picture {
     font-family: 'Appetite Pro', 'Georgia', serif;
     font-weight: 700;
     color: var(--brand-maroon);
-    font-size: clamp(2.6rem, 4.4vw, 4.2rem);
+    font-size: clamp(2.4rem, 3.4vw, 4rem);   /* matches home benefits/reviews title scale */
     margin: 0 0 14px;
     line-height: 1.05;
 }
@@ -1148,11 +1180,11 @@ picture {
     flex-direction: column;
     overflow: hidden;
     border-radius: 28px;
-    background:
-        linear-gradient(160deg, color-mix(in srgb, var(--card-accent) 88%, #000 0%) 0%, color-mix(in srgb, var(--card-accent) 60%, #000 12%) 100%);
-    color: #fff;
+    /* Light cream gradient — same recipe as home slide-4 product cards */
+    background: linear-gradient(155deg, #faf2dc 0%, #efe1bb 100%);
+    color: var(--brand-maroon);
     text-decoration: none;
-    box-shadow: 0 18px 48px rgba(107, 15, 26, 0.18);
+    box-shadow: 0 14px 40px rgba(80, 50, 20, 0.10);
     transform: translateY(0) scale(1);
     transition:
         transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
@@ -1161,18 +1193,18 @@ picture {
 }
 
 .category-card::after {
-    /* subtle radial highlight for depth */
+    /* Soft radial highlight for depth */
     content: "";
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.18), transparent 55%);
+    background: radial-gradient(circle at 18% 0%, rgba(255, 255, 255, 0.45), transparent 55%);
     pointer-events: none;
 }
 
 .category-card:hover,
 .category-card:focus-visible {
     transform: translateY(-8px) scale(1.01);
-    box-shadow: 0 28px 64px rgba(107, 15, 26, 0.28);
+    box-shadow: 0 24px 56px rgba(80, 50, 20, 0.18);
 }
 
 .category-card__media {
@@ -1190,7 +1222,7 @@ picture {
     width: auto;
     height: auto;
     object-fit: contain;
-    filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.25));
+    filter: drop-shadow(0 12px 28px rgba(80, 50, 20, 0.18));
     transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .category-card:hover .category-card__media img {
@@ -1204,7 +1236,6 @@ picture {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.18));
 }
 
 .category-card__title {
@@ -1213,14 +1244,15 @@ picture {
     font-weight: 700;
     font-size: clamp(2.2rem, 3.4vw, 3rem);
     line-height: 1.05;
-    color: #fff;
+    color: var(--brand-maroon);
 }
 .category-card__tagline {
     margin: 0;
     font-family: 'DM Sans', sans-serif;
     font-size: 1.05rem;
     line-height: 1.45;
-    color: rgba(255, 255, 255, 0.92);
+    color: var(--brand-maroon);
+    opacity: 0.78;
 }
 .category-card__cta {
     margin-top: 8px;
@@ -1232,7 +1264,7 @@ picture {
     font-size: 0.9rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: #fff;
+    color: var(--brand-maroon);
     transition: gap 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .category-card__cta svg {
@@ -1269,26 +1301,30 @@ picture {
 /* "Anandiitaa Jaggery" lockup above the packet — wordmark logo + serif word */
 .product-hero__title {
     position: absolute;
-    top: 96px;                 /* tucked just under the fixed header */
+    top: 96px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 4;
     margin: 0;
     display: flex;
     align-items: center;
-    gap: 18px;
+    gap: 14px;
     font-family: 'Appetite Pro', 'Georgia', serif;
     font-weight: 700;
-    font-size: clamp(2.8rem, 4.2vw, 4.4rem);
+    font-size: clamp(2.4rem, 3.4vw, 4rem);   /* matches home benefits/reviews title scale */
     line-height: 1;
     color: var(--brand-maroon);
     white-space: nowrap;
 }
 .product-hero__title img {
-    height: clamp(2.4rem, 3.6vw, 3.8rem);
+    height: clamp(2rem, 3vw, 3.4rem);
     width: auto;
     display: block;
 }
+
+/* Sugar page: black wordmark + black logo PNG (filter recolors maroon → black) */
+.product-page--sugar .product-hero__title { color: #000; }
+.product-page--sugar .product-hero__title img { filter: brightness(0); }
 
 /* Slide-1 hero image fills the entire slide — composite already includes
    its own background and pink halo, so the slide bg is irrelevant here. */
@@ -1526,6 +1562,130 @@ picture {
 .process-step__text strong {
     font-weight: 700;
     color: var(--brand-text);
+}
+
+/* ========================================================================
+   RECIPES SLIDE (sugar slide 3 — "Home Delicacies Recipes")
+   2x2 grid of recipe cards. Each card: photo (left) + body+meta (right) +
+   recipe title under photo. Horizontal rules act as row dividers.
+   ======================================================================== */
+
+.product-slide--recipes {
+    display: block;
+    padding: 80px 6% 100px;
+}
+
+.recipes-title {
+    font-family: 'Appetite Pro', 'Georgia', serif;
+    font-weight: 700;
+    color: #000;
+    font-size: clamp(2.6rem, 4.4vw, 4.4rem);
+    line-height: 1.05;
+    margin: 0 0 36px;
+    padding: 0 0 28px;
+    border-bottom: 1.5px solid #b89c70;
+}
+
+.recipes-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 80px;
+    row-gap: 0;
+}
+
+.recipe-card {
+    display: grid;
+    grid-template-columns: clamp(220px, 22vw, 300px) 1fr;
+    grid-template-areas:
+        "media content"
+        "title content";
+    column-gap: 32px;
+    row-gap: 18px;
+    align-items: start;
+    padding: 36px 0;
+    border-bottom: 1.5px solid #b89c70;
+}
+
+.recipe-card__media {
+    grid-area: media;
+    width: 100%;
+    aspect-ratio: 16 / 11;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #e9d9b8;
+}
+.recipe-card__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.recipe-card__content {
+    grid-area: content;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.recipe-card__body {
+    margin: 0;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    line-height: 1.55;
+    color: #000;
+}
+
+.recipe-meta {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+}
+.recipe-meta__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    color: #000;
+}
+.recipe-meta__icon {
+    display: inline-flex;
+    width: 38px;
+    height: 38px;
+    color: #000;
+}
+.recipe-meta__icon svg { width: 100%; height: 100%; }
+
+.recipe-card__title {
+    grid-area: title;
+    margin: 0;
+    font-family: 'Appetite Pro', 'Georgia', serif;
+    font-weight: 700;
+    color: #000;
+    font-size: clamp(1.4rem, 1.8vw, 2rem);
+    line-height: 1.15;
+}
+
+@media (max-width: 900px) {
+    .recipes-grid { grid-template-columns: 1fr; column-gap: 0; }
+}
+@media (max-width: 560px) {
+    .recipe-card {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "media"
+            "title"
+            "content";
+    }
 }
 
 /* ========================================================================
@@ -1801,6 +1961,10 @@ picture {
     color: var(--brand-maroon);
     white-space: nowrap;                /* keep "Jaggery Powder" on a single line */
 }
+
+/* Sugar page: variant card text in black instead of maroon */
+.product-page--sugar .variant-card__avail,
+.product-page--sugar .variant-card__title { color: #000; }
 
 /* ========================================================================
    PRODUCT PAGES — legacy basic grid (kept for any non-slide product pages)

@@ -9,7 +9,7 @@ function anandiitaa_enqueue_assets() {
     );
 
     // Theme stylesheet (self-hosts AppetitePro + DM Sans via @font-face)
-    wp_enqueue_style( 'main-styles', get_stylesheet_uri(), array( 'google-fonts-montserrat' ), '4.8' );
+    wp_enqueue_style( 'main-styles', get_stylesheet_uri(), array( 'google-fonts-montserrat' ), '6.8' );
 
     // Hero carousel script
     wp_enqueue_script(
@@ -54,6 +54,18 @@ function anandiitaa_preconnect_fonts() {
     echo '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>' . "\n";
 }
 add_action( 'wp_head', 'anandiitaa_preconnect_fonts', 1 );
+
+/**
+ * Server-side Mac UA detection → adds `is-mac` to <body class>.
+ * CSS scopes the 1440 content-frame layout (constrained logo/nav, inset arrows)
+ * to body.is-mac only — non-Mac visitors get the wide-edge desktop layout.
+ */
+add_filter( 'body_class', function ( $classes ) {
+    if ( ! empty( $_SERVER['HTTP_USER_AGENT'] ) && preg_match( '/Macintosh|Mac OS X/i', $_SERVER['HTTP_USER_AGENT'] ) ) {
+        $classes[] = 'is-mac';
+    }
+    return $classes;
+} );
 
 /**
  * Map theme-owned URLs directly to template files so we don't need a WP page
