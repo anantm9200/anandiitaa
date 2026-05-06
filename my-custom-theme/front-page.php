@@ -402,7 +402,7 @@
     <?php foreach ( $section_slides as $i => $slide ) :
         $type_class = ! empty( $slide['type'] ) ? ' page-section--' . esc_attr( $slide['type'] ) : '';
     ?>
-        <section class="page-section hero-slide reveal<?php echo $type_class; ?>" data-reveal style="--reveal-delay: <?php echo (int) ( $i * 80 ); ?>ms">
+        <section class="page-section hero-slide<?php echo $type_class; ?>" data-reveal>
             <?php $render_slide( $slide ); ?>
         </section>
     <?php endforeach; ?>

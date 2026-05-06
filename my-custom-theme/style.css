@@ -393,24 +393,234 @@ html.is-mac .navbar {
     background: var(--brand-cream);
 }
 
-/* Reveal-on-scroll: idle state hidden + nudged down, .is-visible reveals.
-   Respects prefers-reduced-motion. */
-.reveal {
+/* ========================================================================
+   SCROLL-TRIGGERED CONTENT ANIMATIONS
+   Section bgs do NOT animate — only the content layered on top eases in
+   when scroll-reveal.js adds .is-visible to the [data-reveal] section.
+   The :where() block below lists every component that should animate; the
+   nth-child rules give each group a small stagger so groups read sequentially.
+   Carousel slides 1–5 are not [data-reveal] — they keep their auto-scroll.
+   ======================================================================== */
+
+/* Idle state for any animatable content inside a [data-reveal] section.
+   Excludes elements that use transform for positioning/centering — those go
+   to the opacity-only block below to avoid layout jumps. */
+[data-reveal] :where(
+    .product-features li,
+    .product-hero__image,
+    .product-hero__stage,
+    .natural-seal,
+    .process-title,
+    .process-step,
+    .benefits-title,
+    .benefit-item,
+    .benefits-footer,
+    .recipes-title,
+    .recipe-card,
+    .variants-grid > .variant-card,
+    .reviews-grid > .review-card,
+    .standards-title,
+    .standards-col,
+    .benefits-grid > .benefit-card,
+    .social-slide > *
+) {
     opacity: 0;
-    transform: translateY(48px);
+    transform: translateY(14px);             /* subtle rise — was 28px, kept short */
     transition:
-        opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms),
-        transform 0.9s cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms);
+        opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1) var(--anim-delay, 0ms),
+        transform 0.6s cubic-bezier(0.22, 1, 0.36, 1) var(--anim-delay, 0ms);
     will-change: opacity, transform;
 }
-.reveal.is-visible {
+
+/* Reveal state — same selector list, with .is-visible scope. */
+[data-reveal].is-visible :where(
+    .product-features li,
+    .product-hero__image,
+    .product-hero__stage,
+    .natural-seal,
+    .process-title,
+    .process-step,
+    .benefits-title,
+    .benefit-item,
+    .benefits-footer,
+    .recipes-title,
+    .recipe-card,
+    .variants-grid > .variant-card,
+    .reviews-grid > .review-card,
+    .standards-title,
+    .standards-col,
+    .benefits-grid > .benefit-card,
+    .social-slide > *
+) {
     opacity: 1;
     transform: translateY(0);
 }
+
+/* Elements that rely on transform for positioning/centering (translateX/Y -50%
+   etc) — animating their transform would break their anchored position, so
+   they use an opacity-only fade. Subtle, no jump. */
+[data-reveal] :where(
+    .hero-slide__content,
+    .hero-slide__content--top-center,
+    .hero-slide__content--bottom-center,
+    .hero-slide__content--top-caption,
+    .reviews-title,
+    .product-hero__title
+) {
+    opacity: 0;
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1) var(--anim-delay, 0ms);
+    will-change: opacity;
+}
+[data-reveal].is-visible :where(
+    .hero-slide__content,
+    .hero-slide__content--top-center,
+    .hero-slide__content--bottom-center,
+    .hero-slide__content--top-caption,
+    .reviews-title,
+    .product-hero__title
+) {
+    opacity: 1;
+}
+
+/* Per-group stagger delays (so items in the same group cascade in). */
+[data-reveal] .product-hero__title           { --anim-delay: 0ms; }
+[data-reveal] .product-hero__stage,
+[data-reveal] .product-hero__image           { --anim-delay: 80ms; }
+[data-reveal] .product-features li:nth-child(1) { --anim-delay: 160ms; }
+[data-reveal] .product-features li:nth-child(2) { --anim-delay: 240ms; }
+[data-reveal] .product-features li:nth-child(3) { --anim-delay: 320ms; }
+[data-reveal] .natural-seal                  { --anim-delay: 380ms; }
+
+[data-reveal] .process-title                 { --anim-delay: 0ms; }
+[data-reveal] .process-step:nth-child(1)     { --anim-delay: 120ms; }
+[data-reveal] .process-step:nth-child(2)     { --anim-delay: 220ms; }
+[data-reveal] .process-step:nth-child(3)     { --anim-delay: 320ms; }
+[data-reveal] .process-step:nth-child(4)     { --anim-delay: 420ms; }
+[data-reveal] .process-step:nth-child(5)     { --anim-delay: 520ms; }
+
+[data-reveal] .benefits-title                { --anim-delay: 0ms; }
+[data-reveal] .benefit-item:nth-child(1)     { --anim-delay: 100ms; }
+[data-reveal] .benefit-item:nth-child(2)     { --anim-delay: 180ms; }
+[data-reveal] .benefit-item:nth-child(3)     { --anim-delay: 260ms; }
+[data-reveal] .benefit-item:nth-child(4)     { --anim-delay: 340ms; }
+[data-reveal] .benefit-item:nth-child(5)     { --anim-delay: 420ms; }
+[data-reveal] .benefits-footer               { --anim-delay: 520ms; }
+
+[data-reveal] .recipes-title                 { --anim-delay: 0ms; }
+[data-reveal] .recipes-grid .recipe-card:nth-child(1) { --anim-delay: 100ms; }
+[data-reveal] .recipes-grid .recipe-card:nth-child(2) { --anim-delay: 180ms; }
+[data-reveal] .recipes-grid .recipe-card:nth-child(3) { --anim-delay: 280ms; }
+[data-reveal] .recipes-grid .recipe-card:nth-child(4) { --anim-delay: 360ms; }
+
+[data-reveal] .variants-grid > .variant-card:nth-child(1) { --anim-delay: 80ms; }
+[data-reveal] .variants-grid > .variant-card:nth-child(2) { --anim-delay: 220ms; }
+
+[data-reveal] .reviews-title                 { --anim-delay: 0ms; }
+[data-reveal] .reviews-grid > .review-card:nth-child(1) { --anim-delay: 140ms; }
+[data-reveal] .reviews-grid > .review-card:nth-child(2) { --anim-delay: 280ms; }
+
+[data-reveal] .standards-title               { --anim-delay: 0ms; }
+[data-reveal] .standards-col:nth-child(1)    { --anim-delay: 100ms; }
+[data-reveal] .standards-col:nth-child(2)    { --anim-delay: 200ms; }
+[data-reveal] .standards-col:nth-child(3)    { --anim-delay: 300ms; }
+[data-reveal] .standards-col:nth-child(4)    { --anim-delay: 400ms; }
+
+[data-reveal] .benefits-grid > .benefit-card:nth-child(1) { --anim-delay: 100ms; }
+[data-reveal] .benefits-grid > .benefit-card:nth-child(2) { --anim-delay: 200ms; }
+[data-reveal] .benefits-grid > .benefit-card:nth-child(3) { --anim-delay: 300ms; }
+[data-reveal] .benefits-grid > .benefit-card:nth-child(4) { --anim-delay: 400ms; }
+
+[data-reveal] .social-slide > *:nth-child(1) { --anim-delay: 80ms; }
+[data-reveal] .social-slide > *:nth-child(2) { --anim-delay: 200ms; }
+[data-reveal] .social-slide > *:nth-child(3) { --anim-delay: 320ms; }
+[data-reveal] .social-slide > *:nth-child(4) { --anim-delay: 440ms; }
+
+/* Per-element flavor overrides — different motion per element type. */
+
+/* Hero packet image: subtle scale-pop entrance. */
+[data-reveal] .product-hero__image,
+[data-reveal] .product-hero__stage {
+    transform: translateY(8px) scale(0.98);
+}
+[data-reveal].is-visible .product-hero__image,
+[data-reveal].is-visible .product-hero__stage {
+    transform: translateY(0) scale(1);
+}
+
+/* 100% Natural badge: small wax-seal-style rotate-in. */
+[data-reveal] .natural-seal {
+    transform: scale(0.85) rotate(-8deg);
+    transition-duration: 0.7s;
+}
+[data-reveal].is-visible .natural-seal {
+    transform: scale(1) rotate(0deg);
+}
+
+/* Process timeline circles: tiny scale-pop in sequence. */
+[data-reveal] .process-step {
+    transform: translateY(10px) scale(0.97);
+}
+[data-reveal].is-visible .process-step {
+    transform: translateY(0) scale(1);
+}
+
+/* Variant cards: subtle alternating slide from sides — kept short. */
+[data-reveal] .variants-grid > .variant-card:nth-child(1) {
+    transform: translateX(-12px);
+}
+[data-reveal] .variants-grid > .variant-card:nth-child(2) {
+    transform: translateX(12px);
+}
+[data-reveal].is-visible .variants-grid > .variant-card { transform: translateX(0); }
+
+/* Review cards: same subtle alternation. */
+[data-reveal] .reviews-grid > .review-card:nth-child(1) {
+    transform: translateX(-10px);
+}
+[data-reveal] .reviews-grid > .review-card:nth-child(2) {
+    transform: translateX(10px);
+}
+[data-reveal].is-visible .reviews-grid > .review-card { transform: translateX(0); }
+
+/* Subtle lift on card hover — adds tactile feedback without competing with the reveal. */
+.recipe-card,
+.variant-card,
+.benefit-card { transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease; }
+.recipe-card:hover { transform: translateY(-4px); }
+.variant-card:hover { transform: translateY(-6px); }
+.benefit-card:hover { transform: translateY(-4px); }
+
 @media (prefers-reduced-motion: reduce) {
-    .reveal {
+    [data-reveal] .product-hero__title,
+    [data-reveal] .product-hero__image,
+    [data-reveal] .product-hero__stage,
+    [data-reveal] .natural-seal,
+    [data-reveal] .process-step,
+    [data-reveal] .variants-grid > .variant-card,
+    [data-reveal] .reviews-grid > .review-card {
+        transform: none;
+        transition: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    [data-reveal] :where(
+        .product-features li, .product-hero__image, .product-hero__stage,
+        .natural-seal, .process-title, .process-step, .benefits-title, .benefit-item,
+        .benefits-footer, .recipes-title, .recipe-card, .variants-grid > .variant-card,
+        .reviews-grid > .review-card, .standards-title, .standards-col,
+        .benefits-grid > .benefit-card, .social-slide > *
+    ) {
         opacity: 1;
         transform: none;
+        transition: none;
+    }
+    [data-reveal] :where(
+        .hero-slide__content, .hero-slide__content--top-center,
+        .hero-slide__content--bottom-center, .hero-slide__content--top-caption,
+        .reviews-title, .product-hero__title
+    ) {
+        opacity: 1;
         transition: none;
     }
 }
@@ -1452,6 +1662,10 @@ html.is-mac .hero-carousel__arrow--next {
 .process-step {
     position: relative;
     height: 100%;
+    /* Step LI must sit above .process-connectors (z-index: 3). Required because
+       the reveal animation applies a transform → LI becomes a stacking context,
+       which would otherwise isolate the inner circle's z-index from the timeline. */
+    z-index: 5;
 }
 
 .process-step__circle {

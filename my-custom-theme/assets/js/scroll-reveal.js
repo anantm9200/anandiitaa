@@ -8,12 +8,11 @@
         return;
     }
 
-    var observer = new IntersectionObserver(function (entries, obs) {
+    /* Toggle .is-visible on every viewport entry/exit so content animates
+       every time the user revisits a section, not just the first time. */
+    var observer = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-                obs.unobserve(entry.target);
-            }
+            entry.target.classList.toggle('is-visible', entry.isIntersecting);
         });
     }, {
         root: null,

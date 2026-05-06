@@ -157,31 +157,31 @@ $tpl = get_template_directory_uri();
             array(
                 'number' => '01',
                 'title'  => 'Rich in Iron — Prevents Anaemia',
-                'image'  => '',
+                'image'  => $tpl . '/assets/images/products/jaggery/benefits/iron.png',
                 'body'   => 'Jaggery is an excellent source of plant-based iron. Some studies suggest that the iron found in jaggery is more easily absorbed by the body than other types of plant-based iron.',
             ),
             array(
                 'number' => '02',
                 'title'  => 'Rich in Vital Minerals',
-                'image'  => '',
+                'image'  => $tpl . '/assets/images/products/jaggery/benefits/minerals.png',
                 'body'   => 'Naturally rich in calcium, magnesium, potassium and phosphorus — minerals that support bone strength, steady energy, and overall wellness.',
             ),
             array(
                 'number' => '03',
                 'title'  => 'Boosts Immunity',
-                'image'  => '',
+                'image'  => $tpl . '/assets/images/products/jaggery/benefits/immunity.png',
                 'body'   => 'Loaded with antioxidants and zinc, jaggery helps strengthen the body&rsquo;s natural defenses and combat oxidative stress.',
             ),
             array(
                 'number' => '04',
                 'title'  => 'Respiratory Health',
-                'image'  => '',
+                'image'  => $tpl . '/assets/images/products/jaggery/benefits/respiratory.png',
                 'body'   => 'Traditionally used to ease coughs, colds and congestion. Its warming nature helps clear airways and soothe the throat.',
             ),
             array(
                 'number' => '05',
                 'title'  => 'Aids Digestion',
-                'image'  => '',
+                'image'  => $tpl . '/assets/images/products/jaggery/benefits/digestion.png',
                 'body'   => 'Acts as a natural digestive — stimulates digestive enzymes and supports a healthy gut, which is why it&rsquo;s often eaten after meals.',
             ),
         );
