@@ -1929,7 +1929,6 @@ picture {
     line-height: 1.1;
     margin: 0 0 40px;
     padding: 0 0 24px;
-    border-bottom: 3px solid #b89c70;  /* explicit divider line under the title */
 }
 
 .benefits-list {
