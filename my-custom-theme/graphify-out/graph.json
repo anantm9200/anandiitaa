@@ -1,0 +1,394 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {},
+  "nodes": [
+    {
+      "label": "functions.php",
+      "file_type": "code",
+      "source_file": "functions.php",
+      "source_location": "L1",
+      "id": "functions_php",
+      "community": 2
+    },
+    {
+      "label": "anandiitaa_enqueue_assets()",
+      "file_type": "code",
+      "source_file": "functions.php",
+      "source_location": "L2",
+      "id": "functions_anandiitaa_enqueue_assets",
+      "community": 2
+    },
+    {
+      "label": "anandiitaa_preconnect_fonts()",
+      "file_type": "code",
+      "source_file": "functions.php",
+      "source_location": "L52",
+      "id": "functions_anandiitaa_preconnect_fonts",
+      "community": 2
+    },
+    {
+      "label": "anandiitaa_route_templates()",
+      "file_type": "code",
+      "source_file": "functions.php",
+      "source_location": "L73",
+      "id": "functions_anandiitaa_route_templates",
+      "community": 2
+    },
+    {
+      "label": "page-products-sugar.php",
+      "file_type": "code",
+      "source_file": "my-custom-theme/page-products-sugar.php",
+      "source_location": "L1",
+      "id": "my_custom_theme_page_products_sugar_php",
+      "community": 3
+    },
+    {
+      "label": "page-products.php",
+      "file_type": "code",
+      "source_file": "my-custom-theme/page-products.php",
+      "source_location": "L1",
+      "id": "my_custom_theme_page_products_php",
+      "community": 4
+    },
+    {
+      "label": "index.php",
+      "file_type": "code",
+      "source_file": "my-custom-theme/index.php",
+      "source_location": "L1",
+      "id": "my_custom_theme_index_php",
+      "community": 5
+    },
+    {
+      "label": "page-products-jaggery.php",
+      "file_type": "code",
+      "source_file": "page-products-jaggery.php",
+      "source_location": "L1",
+      "id": "page_products_jaggery_php",
+      "community": 6
+    },
+    {
+      "label": "header.php",
+      "file_type": "code",
+      "source_file": "my-custom-theme/header.php",
+      "source_location": "L1",
+      "id": "my_custom_theme_header_php",
+      "community": 7
+    },
+    {
+      "label": "footer.php",
+      "file_type": "code",
+      "source_file": "my-custom-theme/footer.php",
+      "source_location": "L1",
+      "id": "my_custom_theme_footer_php",
+      "community": 8
+    },
+    {
+      "label": "front-page.php",
+      "file_type": "code",
+      "source_file": "my-custom-theme/front-page.php",
+      "source_location": "L1",
+      "id": "my_custom_theme_front_page_php",
+      "community": 9
+    },
+    {
+      "label": "benefits-accordion.js",
+      "file_type": "code",
+      "source_file": "my-custom-theme/assets/js/benefits-accordion.js",
+      "source_location": "L1",
+      "id": "my_custom_theme_assets_js_benefits_accordion_js",
+      "community": 10
+    },
+    {
+      "label": "hero-carousel.js",
+      "file_type": "code",
+      "source_file": "my-custom-theme/assets/js/hero-carousel.js",
+      "source_location": "L1",
+      "id": "my_custom_theme_assets_js_hero_carousel_js",
+      "community": 1
+    },
+    {
+      "label": "render()",
+      "file_type": "code",
+      "source_file": "my-custom-theme/assets/js/hero-carousel.js",
+      "source_location": "L20",
+      "id": "hero_carousel_render",
+      "community": 1
+    },
+    {
+      "label": "go()",
+      "file_type": "code",
+      "source_file": "my-custom-theme/assets/js/hero-carousel.js",
+      "source_location": "L29",
+      "id": "hero_carousel_go",
+      "community": 1
+    },
+    {
+      "label": "start()",
+      "file_type": "code",
+      "source_file": "my-custom-theme/assets/js/hero-carousel.js",
+      "source_location": "L34",
+      "id": "hero_carousel_start",
+      "community": 1
+    },
+    {
+      "label": "stop()",
+      "file_type": "code",
+      "source_file": "my-custom-theme/assets/js/hero-carousel.js",
+      "source_location": "L39",
+      "id": "hero_carousel_stop",
+      "community": 1
+    },
+    {
+      "label": "header-scroll.js",
+      "file_type": "code",
+      "source_file": "my-custom-theme/assets/js/header-scroll.js",
+      "source_location": "L1",
+      "id": "my_custom_theme_assets_js_header_scroll_js",
+      "community": 0
+    },
+    {
+      "label": "show()",
+      "file_type": "code",
+      "source_file": "my-custom-theme/assets/js/header-scroll.js",
+      "source_location": "L16",
+      "id": "header_scroll_show",
+      "community": 0
+    },
+    {
+      "label": "hide()",
+      "file_type": "code",
+      "source_file": "my-custom-theme/assets/js/header-scroll.js",
+      "source_location": "L19",
+      "id": "header_scroll_hide",
+      "community": 0
+    },
+    {
+      "label": "scheduleHide()",
+      "file_type": "code",
+      "source_file": "my-custom-theme/assets/js/header-scroll.js",
+      "source_location": "L22",
+      "id": "header_scroll_schedulehide",
+      "community": 0
+    },
+    {
+      "label": "tick()",
+      "file_type": "code",
+      "source_file": "my-custom-theme/assets/js/header-scroll.js",
+      "source_location": "L27",
+      "id": "header_scroll_tick",
+      "community": 0
+    },
+    {
+      "label": "onScroll()",
+      "file_type": "code",
+      "source_file": "my-custom-theme/assets/js/header-scroll.js",
+      "source_location": "L33",
+      "id": "header_scroll_onscroll",
+      "community": 0
+    },
+    {
+      "label": "scroll-reveal.js",
+      "file_type": "code",
+      "source_file": "assets/js/scroll-reveal.js",
+      "source_location": "L1",
+      "id": "assets_js_scroll_reveal_js",
+      "community": 11
+    }
+  ],
+  "links": [
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "functions.php",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_src": "functions_php",
+      "_tgt": "functions_anandiitaa_enqueue_assets",
+      "source": "functions_php",
+      "target": "functions_anandiitaa_enqueue_assets",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "functions.php",
+      "source_location": "L52",
+      "weight": 1.0,
+      "_src": "functions_php",
+      "_tgt": "functions_anandiitaa_preconnect_fonts",
+      "source": "functions_php",
+      "target": "functions_anandiitaa_preconnect_fonts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "functions.php",
+      "source_location": "L73",
+      "weight": 1.0,
+      "_src": "functions_php",
+      "_tgt": "functions_anandiitaa_route_templates",
+      "source": "functions_php",
+      "target": "functions_anandiitaa_route_templates",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "my-custom-theme/assets/js/hero-carousel.js",
+      "source_location": "L20",
+      "weight": 1.0,
+      "_src": "my_custom_theme_assets_js_hero_carousel_js",
+      "_tgt": "hero_carousel_render",
+      "source": "my_custom_theme_assets_js_hero_carousel_js",
+      "target": "hero_carousel_render",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "my-custom-theme/assets/js/hero-carousel.js",
+      "source_location": "L29",
+      "weight": 1.0,
+      "_src": "my_custom_theme_assets_js_hero_carousel_js",
+      "_tgt": "hero_carousel_go",
+      "source": "my_custom_theme_assets_js_hero_carousel_js",
+      "target": "hero_carousel_go",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "my-custom-theme/assets/js/hero-carousel.js",
+      "source_location": "L34",
+      "weight": 1.0,
+      "_src": "my_custom_theme_assets_js_hero_carousel_js",
+      "_tgt": "hero_carousel_start",
+      "source": "my_custom_theme_assets_js_hero_carousel_js",
+      "target": "hero_carousel_start",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "my-custom-theme/assets/js/hero-carousel.js",
+      "source_location": "L39",
+      "weight": 1.0,
+      "_src": "my_custom_theme_assets_js_hero_carousel_js",
+      "_tgt": "hero_carousel_stop",
+      "source": "my_custom_theme_assets_js_hero_carousel_js",
+      "target": "hero_carousel_stop",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "my-custom-theme/assets/js/hero-carousel.js",
+      "source_location": "L31",
+      "weight": 1.0,
+      "_src": "hero_carousel_go",
+      "_tgt": "hero_carousel_render",
+      "source": "hero_carousel_render",
+      "target": "hero_carousel_go",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "my-custom-theme/assets/js/hero-carousel.js",
+      "source_location": "L35",
+      "weight": 1.0,
+      "_src": "hero_carousel_start",
+      "_tgt": "hero_carousel_stop",
+      "source": "hero_carousel_start",
+      "target": "hero_carousel_stop",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "my-custom-theme/assets/js/header-scroll.js",
+      "source_location": "L16",
+      "weight": 1.0,
+      "_src": "my_custom_theme_assets_js_header_scroll_js",
+      "_tgt": "header_scroll_show",
+      "source": "my_custom_theme_assets_js_header_scroll_js",
+      "target": "header_scroll_show",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "my-custom-theme/assets/js/header-scroll.js",
+      "source_location": "L19",
+      "weight": 1.0,
+      "_src": "my_custom_theme_assets_js_header_scroll_js",
+      "_tgt": "header_scroll_hide",
+      "source": "my_custom_theme_assets_js_header_scroll_js",
+      "target": "header_scroll_hide",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "my-custom-theme/assets/js/header-scroll.js",
+      "source_location": "L22",
+      "weight": 1.0,
+      "_src": "my_custom_theme_assets_js_header_scroll_js",
+      "_tgt": "header_scroll_schedulehide",
+      "source": "my_custom_theme_assets_js_header_scroll_js",
+      "target": "header_scroll_schedulehide",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "my-custom-theme/assets/js/header-scroll.js",
+      "source_location": "L27",
+      "weight": 1.0,
+      "_src": "my_custom_theme_assets_js_header_scroll_js",
+      "_tgt": "header_scroll_tick",
+      "source": "my_custom_theme_assets_js_header_scroll_js",
+      "target": "header_scroll_tick",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "my-custom-theme/assets/js/header-scroll.js",
+      "source_location": "L33",
+      "weight": 1.0,
+      "_src": "my_custom_theme_assets_js_header_scroll_js",
+      "_tgt": "header_scroll_onscroll",
+      "source": "my_custom_theme_assets_js_header_scroll_js",
+      "target": "header_scroll_onscroll",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "my-custom-theme/assets/js/header-scroll.js",
+      "source_location": "L29",
+      "weight": 1.0,
+      "_src": "header_scroll_tick",
+      "_tgt": "header_scroll_show",
+      "source": "header_scroll_show",
+      "target": "header_scroll_tick",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "my-custom-theme/assets/js/header-scroll.js",
+      "source_location": "L30",
+      "weight": 1.0,
+      "_src": "header_scroll_tick",
+      "_tgt": "header_scroll_schedulehide",
+      "source": "header_scroll_schedulehide",
+      "target": "header_scroll_tick",
+      "confidence_score": 1.0
+    }
+  ],
+  "hyperedges": []
+}

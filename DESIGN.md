@@ -1,5 +1,31 @@
 # Anandiitaa — Design System
 
+## Type scale (canonical, mandatory)
+
+Three sizes. Three weights. No improvising. All component CSS must reference these tokens — never hard-code px or rem values for these tiers.
+
+| Tier | Size | Weight | Token (in `:root`) | Use for |
+|---|---|---|---|---|
+| **Heading** | 57px | 500 (medium, **never bold**) | `--fs-heading` / `--fw-heading` | Section titles, page titles, hero h2, all primary headlines |
+| **Subtext** | 27px | 500 (medium) | `--fs-subtext` / `--fw-heading` | Card titles, accordion summary titles, sub-headings, emphasized labels |
+| **Body** | 18px | 400 (DM Sans regular, **never bold**) | `--fs-body` / `--fw-body` | Paragraphs, descriptions, list items, captions, quotes |
+
+CSS sample:
+
+```css
+.my-section__title { font-size: var(--fs-heading); font-weight: var(--fw-heading); }
+.my-card__title    { font-size: var(--fs-subtext); font-weight: var(--fw-heading); }
+.my-card__body     { font-size: var(--fs-body);    font-weight: var(--fw-body); }
+```
+
+### Rules
+
+1. **Headings are medium (500), never bold (700).** Same for subtext.
+2. **Body text is DM Sans regular (400).** Do not set `font-weight: 500` or `700` on paragraphs / descriptions.
+3. **Never hard-code sizes for these tiers.** Reference the CSS variables. If a designer asks for a non-standard size, push back or treat it as a UI exception (see below).
+4. **UI exceptions (allowed to use literal sizes):** nav links, button labels, footer copyright, uppercase mini-labels, decorative ornaments. These are not body/heading/subtext — they're chrome.
+5. **Mobile breakpoints** can override these via `@media` if needed for readability — keep media-query overrides scoped to specific breakpoints, do not change the base tokens.
+
 ## Fonts (canonical, mandatory)
 
 These are the **ONLY** fonts that should be used across the site. No other typefaces. No fallbacks for new components beyond the system stacks listed here.
@@ -45,6 +71,18 @@ Defined in `style.css` `:root`:
 | `--brand-maroon` | `#6b0f1a` | Primary brand color, titles, accents |
 | `--brand-cream` | `#f5ebd2` | Light backgrounds, cards |
 | `--brand-yellow` | `#f0c869` | Accent (e.g. review-card quote mark) |
+
+## Type tokens
+
+Defined in `style.css` `:root` (mirrors the table above):
+
+| Token | Value |
+|---|---|
+| `--fs-heading` | `57px` |
+| `--fs-subtext` | `27px` |
+| `--fs-body` | `18px` |
+| `--fw-heading` | `500` |
+| `--fw-body` | `400` |
 
 ## Component conventions
 

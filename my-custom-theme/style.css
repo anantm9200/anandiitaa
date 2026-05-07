@@ -38,7 +38,7 @@ Version: 1.1
 @font-face {
     font-family: 'Appetite Pro';
     src: url('assets/fonts/appetite-pro/AppetitePro-Bold.otf') format('opentype');
-    font-weight: 700;
+    font-weight: 700;                       /* font-face descriptor — maps Bold OTF to 700 (untouched by global token) */
     font-style: normal;
     font-display: swap;
 }
@@ -77,6 +77,17 @@ Version: 1.1
     --brand-cream: #ece1cb;
     /* Match slide bg — adjust if needed */
     --brand-text: #333333;
+
+    /* === Type scale (per design system) ===
+       Headings = 57px / weight 500 (medium, never bold)
+       Subtext  = 27px / weight 500
+       Body     = 18px / DM Sans regular (weight 400)
+       Reference these tokens in every component rule for consistency. */
+    --fs-heading: 57px;
+    --fs-subtext: 27px;
+    --fs-body: 18px;
+    --fw-heading: 500;
+    --fw-body: 400;
 }
 
 * {
@@ -88,6 +99,8 @@ Version: 1.1
 html,
 body {
     font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: var(--fs-body);             /* 18px global body baseline */
+    font-weight: var(--fw-body);           /* DM Sans regular (400), never bold */
     color: var(--brand-text);
     background: var(--brand-cream);
     line-height: 1.5;
@@ -109,7 +122,7 @@ h4,
 h5,
 h6 {
     font-family: 'Appetite Pro', 'Georgia', serif;
-    font-weight: 500;
+    font-weight: var(--fw-heading);        /* medium 500 — never bold */
     line-height: 1.15;
 }
 
@@ -145,9 +158,6 @@ picture {
         border-color 0.4s ease;
 }
 
-/* Mac override: pull header into the 1440 content frame (centered) so it
-   matches the constrained content alignment used elsewhere on the page. */
-html.is-mac .site-header { padding: 14px 0; }
 
 /* Scrolled state: glassmorphic surface fades in */
 .site-header.is-scrolled {
@@ -174,14 +184,6 @@ html.is-mac .site-header { padding: 14px 0; }
     gap: 24px;
 }
 
-/* Mac variant: navbar is centered inside a 1440 content frame so logo + nav
-   sit inside the same column the rest of the page uses. */
-html.is-mac .navbar {
-    max-width: 1440px;
-    margin: 0 auto;
-    padding: 0 clamp(20px, 4vw, 48px);
-    width: 100%;
-}
 
 .logo a {
     display: inline-block;
@@ -650,15 +652,15 @@ html.is-mac .navbar {
 }
 
 .hero-slide__content h2 {
-    font-size: 3.6rem;
-    font-weight: 500;
+    font-size: var(--fs-heading);
+    font-weight: var(--fw-heading);
     line-height: 1.1;
     margin-bottom: 28px;
     color: #6b0f1a;
 }
 
 .hero-slide__content p {
-    font-size: 1.15rem;
+    font-size: var(--fs-body);
     color: #333;
     margin-bottom: 28px;
     max-width: 460px;
@@ -680,7 +682,7 @@ html.is-mac .navbar {
 }
 
 .hero-slide__content--top-center h2 {
-    font-size: 3.4rem;
+    font-size: var(--fs-heading);
     margin-bottom: 24px;
 }
 
@@ -703,13 +705,13 @@ html.is-mac .navbar {
 }
 
 .hero-slide__content--bottom-center h2 {
-    font-size: clamp(2.2rem, 3.6vw, 4.4rem);
+    font-size: var(--fs-heading);
     margin-bottom: 0;
 }
 
 /* Top-caption variant: caption sits a bit below the top edge (mirrors bottom-center sizing) */
 .hero-slide__content--top-caption {
-    top: 7%;
+    top: 2%;                            /* moved up — was 7%; sits above the news clipping rather than overlapping it */
     bottom: auto;
     left: 50%;
     right: auto;
@@ -720,7 +722,7 @@ html.is-mac .navbar {
 }
 
 .hero-slide__content--top-caption h2 {
-    font-size: clamp(2.2rem, 3.6vw, 4.4rem);
+    font-size: var(--fs-heading);
     margin-bottom: 0;
 }
 
@@ -737,7 +739,7 @@ html.is-mac .navbar {
     align-items: center;
     gap: 18px;
     font-family: 'DM Sans', sans-serif;
-    font-size: 1.05rem;
+    font-size: var(--fs-body);
     font-weight: 600;
     color: var(--brand-maroon);
 }
@@ -783,14 +785,6 @@ html.is-mac .navbar {
 
 .hero-carousel__arrow--prev { left: 24px; }
 .hero-carousel__arrow--next { right: 24px; }
-
-/* Mac variant: pull arrows inside the 1440 content frame on ultra-wide screens. */
-html.is-mac .hero-carousel__arrow--prev {
-    left: max(24px, calc((100vw - 1440px) / 2 + 24px));
-}
-html.is-mac .hero-carousel__arrow--next {
-    right: max(24px, calc((100vw - 1440px) / 2 + 24px));
-}
 
 .hero-carousel__arrow svg {
     width: 22px;
@@ -853,13 +847,13 @@ html.is-mac .hero-carousel__arrow--next {
 }
 
 .section-content h2 {
-    font-size: 2.5rem;
+    font-size: var(--fs-heading);
     margin-bottom: 15px;
-    font-weight: 500;
+    font-weight: var(--fw-heading);
 }
 
 .section-content p {
-    font-size: 1.15rem;
+    font-size: var(--fs-body);
     margin-bottom: 25px;
     line-height: 1.6;
 }
@@ -875,14 +869,14 @@ html.is-mac .hero-carousel__arrow--next {
 
 #section-2 .section-content h2 {
     color: #6b0f1a;
-    font-size: 3rem;
+    font-size: var(--fs-heading);
     margin-bottom: 18px;
 }
 
 #section-2 .section-content p {
     color: #333;
-    font-size: 1.25rem;
-    font-weight: 500;
+    font-size: var(--fs-body);
+    font-weight: var(--fw-body);
     line-height: 1.55;
 }
 
@@ -896,8 +890,8 @@ html.is-mac .hero-carousel__arrow--next {
     left: 6%;
     z-index: 5;
     font-family: 'Appetite Pro', 'Georgia', serif;
-    font-weight: 700;
-    font-size: clamp(2.4rem, 3.4vw, 4rem);
+    font-weight: var(--fw-heading);
+    font-size: var(--fs-heading);
     line-height: 1.1;
     color: var(--brand-maroon);
     margin: 0;
@@ -988,8 +982,8 @@ html.is-mac .hero-carousel__arrow--next {
 
 .benefit-card__title {
     font-family: 'Appetite Pro', 'Georgia', serif;
-    font-weight: 700;
-    font-size: clamp(1.3rem, 1.55vw, 1.85rem);
+    font-weight: var(--fw-heading);
+    font-size: var(--fs-subtext);
     line-height: 1.05;
     color: #fff;
     margin: 0 0 16px;
@@ -997,8 +991,8 @@ html.is-mac .hero-carousel__arrow--next {
 
 .benefit-card__body {
     font-family: 'DM Sans', sans-serif;
-    font-weight: 500;
-    font-size: clamp(0.85rem, 0.95vw, 1.05rem);
+    font-weight: var(--fw-body);
+    font-size: var(--fs-body);
     line-height: 1.4;
     color: #fff;
     margin: 0;
@@ -1058,8 +1052,8 @@ html.is-mac .hero-carousel__arrow--next {
 
 .product-card__title {
     font-family: 'Appetite Pro', 'Georgia', serif;
-    font-weight: 700;
-    font-size: clamp(1.7rem, 1.95vw, 2.4rem);
+    font-weight: var(--fw-heading);
+    font-size: var(--fs-subtext);
     line-height: 1.05;
     color: var(--card-accent);
     margin-bottom: 14px;
@@ -1067,8 +1061,8 @@ html.is-mac .hero-carousel__arrow--next {
 
 .product-card__desc {
     font-family: 'DM Sans', sans-serif;
-    font-weight: 700;                       /* thick body per design system */
-    font-size: clamp(0.85rem, 0.95vw, 1.05rem);
+    font-weight: var(--fw-body);
+    font-size: var(--fs-body);
     line-height: 1.4;
     color: var(--card-accent);
     max-width: 380px;
@@ -1084,15 +1078,15 @@ html.is-mac .hero-carousel__arrow--next {
 
 .product-card__sizes-label {
     font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
+    font-weight: var(--fw-heading);
     font-size: 0.72rem;
     letter-spacing: 0.12em;
 }
 
 .product-card__sizes-value {
     font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: 0.95rem;
+    font-weight: var(--fw-heading);
+    font-size: var(--fs-body);
     letter-spacing: 0.05em;
 }
 
@@ -1166,8 +1160,8 @@ html.is-mac .hero-carousel__arrow--next {
 .standards-title__small {
     display: block;
     font-family: 'Appetite Pro', 'Georgia', serif;
-    font-weight: 700;
-    font-size: clamp(2.4rem, 3.4vw, 4.2rem);
+    font-weight: var(--fw-heading);
+    font-size: var(--fs-heading);
     line-height: 1;
 }
 
@@ -1223,8 +1217,8 @@ html.is-mac .hero-carousel__arrow--next {
 
 .standards-col__title {
     font-family: 'Appetite Pro', 'Georgia', serif;
-    font-weight: 700;
-    font-size: 1.5rem;
+    font-weight: var(--fw-heading);
+    font-size: var(--fs-subtext);
     line-height: 1.15;
     color: var(--brand-maroon);
     margin-bottom: 18px;
@@ -1232,7 +1226,7 @@ html.is-mac .hero-carousel__arrow--next {
 
 .standards-col__body {
     font-family: 'DM Sans', sans-serif;
-    font-size: 1rem;
+    font-size: var(--fs-body);
     line-height: 1.45;
     color: var(--brand-maroon);
 }
@@ -1263,8 +1257,8 @@ html.is-mac .hero-carousel__arrow--next {
 
 .social-slide__heading {
     font-family: 'Appetite Pro', 'Georgia', serif;
-    font-weight: 700;
-    font-size: clamp(1.7rem, 2.2vw, 2.8rem);
+    font-weight: var(--fw-heading);
+    font-size: var(--fs-heading);
     line-height: 1.1;
     color: var(--brand-maroon);
     margin: 0 0 18px;
@@ -1272,7 +1266,7 @@ html.is-mac .hero-carousel__arrow--next {
 
 .social-slide__subtitle {
     font-family: 'DM Sans', sans-serif;
-    font-size: clamp(0.9rem, 1vw, 1.05rem);
+    font-size: var(--fs-body);
     line-height: 1.55;
     color: #1a1a1a;
     margin: 0 0 36px;
@@ -1322,6 +1316,13 @@ html.is-mac .hero-carousel__arrow--next {
     object-position: 100% center;
 }
 
+/* Carousel slides (1–5) place product packets at the bottom of the frame.
+   Anchor bg to the bottom so the packets stay fully visible regardless of
+   slide aspect — top (cream/empty space) crops instead. */
+.hero-track .hero-slide__bg img {
+    object-position: center bottom;
+}
+
 /* ========================================================================
    FOOTER
    ======================================================================== */
@@ -1360,16 +1361,16 @@ html.is-mac .hero-carousel__arrow--next {
 }
 .products-landing__intro h1 {
     font-family: 'Appetite Pro', 'Georgia', serif;
-    font-weight: 700;
+    font-weight: var(--fw-heading);
     color: var(--brand-maroon);
-    font-size: clamp(2.4rem, 3.4vw, 4rem);   /* matches home benefits/reviews title scale */
+    font-size: var(--fs-heading);   /* matches home benefits/reviews title scale */
     margin: 0 0 14px;
     line-height: 1.05;
 }
 .products-landing__intro p {
     font-family: 'DM Sans', sans-serif;
     color: var(--brand-text);
-    font-size: 1.15rem;
+    font-size: var(--fs-body);
     margin: 0;
     opacity: 0.85;
 }
@@ -1403,11 +1404,12 @@ html.is-mac .hero-carousel__arrow--next {
 }
 
 .category-card::after {
-    /* Soft radial highlight for depth */
+    /* Tiny corner highlight only — fades out by ~12% so it stays at the edge
+       and doesn't bleed into / wash out the packet image. */
     content: "";
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at 18% 0%, rgba(255, 255, 255, 0.45), transparent 55%);
+    background: radial-gradient(circle at 18% 0%, rgba(255, 255, 255, 0.45) 0%, transparent 12%);
     pointer-events: none;
 }
 
@@ -1451,15 +1453,15 @@ html.is-mac .hero-carousel__arrow--next {
 .category-card__title {
     margin: 0;
     font-family: 'Appetite Pro', 'Georgia', serif;
-    font-weight: 700;
-    font-size: clamp(2.2rem, 3.4vw, 3rem);
+    font-weight: var(--fw-heading);
+    font-size: var(--fs-heading);
     line-height: 1.05;
     color: var(--brand-maroon);
 }
 .category-card__tagline {
     margin: 0;
     font-family: 'DM Sans', sans-serif;
-    font-size: 1.05rem;
+    font-size: var(--fs-body);
     line-height: 1.45;
     color: var(--brand-maroon);
     opacity: 0.78;
@@ -1520,8 +1522,8 @@ html.is-mac .hero-carousel__arrow--next {
     align-items: center;
     gap: 14px;
     font-family: 'Appetite Pro', 'Georgia', serif;
-    font-weight: 700;
-    font-size: clamp(2.4rem, 3.4vw, 4rem);   /* matches home benefits/reviews title scale */
+    font-weight: var(--fw-heading);
+    font-size: var(--fs-heading);   /* matches home benefits/reviews title scale */
     line-height: 1;
     color: var(--brand-maroon);
     white-space: nowrap;
@@ -1591,7 +1593,7 @@ html.is-mac .hero-carousel__arrow--next {
     gap: 14px;
     font-family: 'DM Sans', sans-serif;
     font-weight: 600;
-    font-size: 1.3rem;
+    font-size: var(--fs-body);
     line-height: 1.25;
     color: var(--brand-maroon);
 }
@@ -1624,9 +1626,9 @@ html.is-mac .hero-carousel__arrow--next {
 
 .process-title {
     font-family: 'Appetite Pro', 'Georgia', serif;
-    font-weight: 700;
+    font-weight: var(--fw-heading);
     color: #000;
-    font-size: clamp(3rem, 5vw, 5rem);
+    font-size: var(--fs-heading);
     line-height: 1.05;
     text-align: center;
     margin: 0 0 90px;                /* breathing room before the timeline */
@@ -1749,8 +1751,8 @@ html.is-mac .hero-carousel__arrow--next {
     background: #d6be9f;
     border-radius: 22px;
     font-family: 'Appetite Pro', 'Georgia', serif;
-    font-weight: 700;
-    font-size: 2.1rem;
+    font-weight: var(--fw-heading);
+    font-size: var(--fs-subtext);
     color: var(--brand-maroon);
     line-height: 1;
 }
@@ -1768,7 +1770,7 @@ html.is-mac .hero-carousel__arrow--next {
     margin: 0;
     text-align: center;
     font-family: 'DM Sans', sans-serif;
-    font-size: 1.05rem;
+    font-size: var(--fs-body);
     line-height: 1.45;
     color: var(--brand-text);
     overflow: hidden;
@@ -1777,7 +1779,7 @@ html.is-mac .hero-carousel__arrow--next {
 .process-step--bottom .process-step__text { bottom: calc(20px + clamp(220px, 18vw, 280px) + 40px); }
 
 .process-step__text strong {
-    font-weight: 700;
+    font-weight: var(--fw-heading);
     color: var(--brand-text);
 }
 
@@ -1794,9 +1796,9 @@ html.is-mac .hero-carousel__arrow--next {
 
 .recipes-title {
     font-family: 'Appetite Pro', 'Georgia', serif;
-    font-weight: 700;
+    font-weight: var(--fw-heading);
     color: #000;
-    font-size: clamp(2.6rem, 4.4vw, 4.4rem);
+    font-size: var(--fs-heading);
     line-height: 1.05;
     margin: 0 0 36px;
     padding: 0 0 28px;
@@ -1851,7 +1853,7 @@ html.is-mac .hero-carousel__arrow--next {
 .recipe-card__body {
     margin: 0;
     font-family: 'DM Sans', sans-serif;
-    font-size: 1rem;
+    font-size: var(--fs-body);
     line-height: 1.55;
     color: #000;
 }
@@ -1871,7 +1873,7 @@ html.is-mac .hero-carousel__arrow--next {
     text-align: center;
     gap: 8px;
     font-family: 'DM Sans', sans-serif;
-    font-size: 0.95rem;
+    font-size: var(--fs-body);
     color: #000;
 }
 .recipe-meta__icon {
@@ -1886,9 +1888,9 @@ html.is-mac .hero-carousel__arrow--next {
     grid-area: title;
     margin: 0;
     font-family: 'Appetite Pro', 'Georgia', serif;
-    font-weight: 700;
+    font-weight: var(--fw-heading);
     color: #000;
-    font-size: clamp(1.4rem, 1.8vw, 2rem);
+    font-size: var(--fs-subtext);
     line-height: 1.15;
 }
 
@@ -1921,9 +1923,9 @@ html.is-mac .hero-carousel__arrow--next {
     position: relative;
     width: 100%;
     font-family: 'Appetite Pro', 'Georgia', serif;
-    font-weight: 700;
+    font-weight: var(--fw-heading);
     color: #000;
-    font-size: clamp(2.6rem, 4.4vw, 4rem);
+    font-size: var(--fs-heading);
     line-height: 1.1;
     margin: 0 0 40px;
     padding: 0 0 24px;
@@ -1978,9 +1980,9 @@ html.is-mac .hero-carousel__arrow--next {
     gap: 22px;
     padding: 26px 10px;
     font-family: 'Appetite Pro', 'Georgia', serif;
-    font-weight: 700;
+    font-weight: var(--fw-heading);
     color: var(--brand-maroon);
-    font-size: clamp(1.4rem, 1.8vw, 1.95rem);
+    font-size: var(--fs-subtext);
     line-height: 1.2;
 }
 .benefit-summary__number {
@@ -2061,8 +2063,8 @@ html.is-mac .hero-carousel__arrow--next {
 .benefit-content__body {
     margin: 0;
     font-family: 'DM Sans', sans-serif;
-    font-weight: 700;
-    font-size: 1.15rem;
+    font-weight: var(--fw-body);
+    font-size: var(--fs-body);
     line-height: 1.55;
     color: var(--brand-maroon);
     max-width: 720px;
@@ -2071,7 +2073,7 @@ html.is-mac .hero-carousel__arrow--next {
 .benefits-footer {
     margin: 32px 0 0;
     font-family: 'DM Sans', sans-serif;
-    font-size: 1rem;
+    font-size: var(--fs-body);
     color: var(--brand-maroon);
     opacity: 0.85;
 }
@@ -2158,22 +2160,22 @@ html.is-mac .hero-carousel__arrow--next {
 }
 .variant-card__avail-label {
     font-weight: 500;
-    font-size: 1.05rem;
+    font-size: var(--fs-body);
     letter-spacing: 0.14em;
     text-transform: uppercase;
     opacity: 0.75;
 }
 .variant-card__avail-value {
-    font-weight: 700;
-    font-size: 1.4rem;
+    font-weight: var(--fw-heading);
+    font-size: var(--fs-subtext);
     letter-spacing: 0.04em;
 }
 
 .variant-card__title {
     margin: 0;
     font-family: 'Appetite Pro', 'Georgia', serif;
-    font-weight: 700;
-    font-size: clamp(2.6rem, 3.6vw, 3.8rem);
+    font-weight: var(--fw-heading);
+    font-size: var(--fs-heading);
     line-height: 1.05;
     color: var(--brand-maroon);
     white-space: nowrap;                /* keep "Jaggery Powder" on a single line */
@@ -2194,7 +2196,7 @@ html.is-mac .hero-carousel__arrow--next {
 }
 
 .products-page h1 {
-    font-size: 3rem;
+    font-size: var(--fs-heading);
     color: #6b0f1a;
     margin-bottom: 16px;
     text-align: center;
@@ -2202,7 +2204,7 @@ html.is-mac .hero-carousel__arrow--next {
 
 .products-page .lead {
     text-align: center;
-    font-size: 1.15rem;
+    font-size: var(--fs-body);
     color: #555;
     max-width: 700px;
     margin: 0 auto 60px;
@@ -2236,14 +2238,14 @@ html.is-mac .hero-carousel__arrow--next {
 }
 
 .products-page .product-card h3 {
-    font-size: 1.4rem;
+    font-size: var(--fs-subtext);
     color: #6b0f1a;
     margin-bottom: 8px;
 }
 
 .products-page .product-card p {
     color: #666;
-    font-size: 0.95rem;
+    font-size: var(--fs-body);
     margin-bottom: 18px;
 }
 
@@ -2260,8 +2262,8 @@ html.is-mac .hero-carousel__arrow--next {
     z-index: 5;
     margin: 0;
     font-family: 'Appetite Pro', 'Georgia', serif;
-    font-weight: 700;
-    font-size: clamp(2.4rem, 3.6vw, 4.2rem);
+    font-weight: var(--fw-heading);
+    font-size: var(--fs-heading);
     line-height: 1.1;
     color: var(--brand-maroon);
     text-align: center;
@@ -2319,7 +2321,7 @@ html.is-mac .hero-carousel__arrow--next {
     bottom: 0;
     transform: translateY(85%);
     font-family: 'Cormorant Garamond', 'Georgia', serif;
-    font-weight: 700;
+    font-weight: var(--fw-heading);
     font-size: clamp(16rem, 22vw, 26rem);
     line-height: 0.8;
     color: #f0c869;
@@ -2354,9 +2356,9 @@ html.is-mac .hero-carousel__arrow--next {
 
 .review-card__name {
     font-family: 'Appetite Pro', 'Georgia', serif;
-    font-weight: 700;
+    font-weight: var(--fw-heading);
     font-style: italic;
-    font-size: 1.25rem;
+    font-size: var(--fs-subtext);
     /* unified — both cards same size */
     color: #1a1a1a;
     line-height: 1.25;
@@ -2364,9 +2366,9 @@ html.is-mac .hero-carousel__arrow--next {
 
 .review-card__role {
     font-family: 'Appetite Pro', 'Georgia', serif;
-    font-weight: 700;
+    font-weight: var(--fw-body);
     font-style: italic;
-    font-size: 1.1rem;
+    font-size: var(--fs-body);
     /* unified */
     color: #1a1a1a;
     line-height: 1.25;
@@ -2376,8 +2378,8 @@ html.is-mac .hero-carousel__arrow--next {
     margin: 0;
     font-family: 'DM Sans', sans-serif;
     font-style: italic;
-    font-weight: 500;
-    font-size: 1.05rem;
+    font-weight: var(--fw-body);
+    font-size: var(--fs-body);
     /* unified — not too small, consistent across both cards */
     line-height: 1.55;
     color: var(--brand-maroon);
