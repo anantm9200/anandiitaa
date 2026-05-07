@@ -30,6 +30,8 @@ services:
     volumes:
       # Binds your local folder directly into the container's theme directory.
       - ./my-custom-theme:/var/www/html/wp-content/themes/my-custom-theme
+      # Raises PHP upload limits so Media Library accepts files >2M (default)
+      - ./php-uploads.ini:/usr/local/etc/php/conf.d/uploads.ini:ro
 
 volumes:
   wp_custom_theme_db_data:

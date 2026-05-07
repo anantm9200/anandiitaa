@@ -67,3 +67,44 @@ Images are organized by **Page**, then by **Device Resolution**.
 
 ---
 **Note to AI Assistant:** When providing updates, strictly adhere to the responsive `<picture>` tag logic and ensure the folder paths `images/[page]/[device]/[file].png` remain intact.
+
+---
+
+## 7. WP-ADMIN EDITABILITY DECISION (logged 2026-05-07)
+
+### Goal
+Client wants to edit Home page content from WP admin post-launch. Layout stays designer-controlled; copy/images change.
+
+### Path comparison considered
+| Approach | Free? | Drag freedom | Lock-in | Verdict |
+|---|---|---|---|---|
+| ACF Free + flat fields | Yes | None | None | Workable but verbose for repeating sections |
+| ACF Pro (Repeater) | $59/yr | None | None | Best DX, paid |
+| **Carbon Fields** (htmlburger) | Yes | None | None | Code-registered repeater, equivalent to ACF Pro for dev needs. **Currently installed.** |
+| Spectra (Gutenberg-native blocks) | Yes | Block-level drag in Gutenberg | None — saves as native WP blocks | **Currently installed.** Best for free-form pages |
+| Elementor Free | Yes | Full canvas drag | High — proprietary shortcode/widget format | Skipped — lock-in tax |
+| Bricks / Oxygen | Paid | Full canvas drag | Some | Skipped — paid |
+| Nulled ACF Pro | "Yes" | — | — | **Refused** — malware risk, license violation, Pantheon WAF flag |
+
+### Current setup (May 2026)
+- **Carbon Fields v3.6.9** installed via Composer (`my-custom-theme/vendor/`). Bootstraps in `functions.php` on `after_setup_theme`.
+- **ACF free** installed but **inactive** (kept around in case we want it later).
+- **Spectra v2.19.26** installed + active. Adds Gutenberg blocks but no Page yet uses them.
+- **Carbon Fields fields registered**: a "Home Content" Theme Options page exposes a repeater `home_carousel_slides` with nested `features`. `front-page.php` reads it via `anandiitaa_get_carousel_slides()` and falls back to hardcoded `$slides` if empty.
+- **Status**: helper call temporarily disabled in `front-page.php` (carousel uses hardcoded `$slides` until carousel migration is complete). Saved Carbon Fields rows remain in DB.
+
+### Why we did NOT switch the Home page to a page builder
+- Existing Home page is rendered by `front-page.php` template (PHP), not stored as block JSON. No automatic import into Spectra/Elementor exists — would require manual rebuild section-by-section.
+- We've already invested in custom CSS animations, scroll-reveal, mac UA detection, `<picture>` srcset, Carbon Fields wiring. Page builder rebuild = retiring most of that work.
+- For brand/marketing site with ~5 pages, structured fields > free-form canvas. Performance + future-proof.
+
+### Recommended path forward (for new pages)
+- **Existing pages (Home, Products, Jaggery, Sugar)**: keep as PHP templates, use Carbon Fields for editable content where needed.
+- **New pages (Recipes, Blogs, Processing, Community, Contact per roadmap)**: build natively as Gutenberg Pages with Spectra blocks. Client gets drag-drop power on greenfield pages without breaking existing structured content.
+- If client genuinely needs to redesign Home from scratch later, plan a Spectra/Elementor migration as a separate dedicated effort (1–2 days).
+
+### Re-enabling the Carbon Fields carousel
+When ready: uncomment the `$acf_carousel = anandiitaa_get_carousel_slides()` line in `front-page.php`. Helper returns null when no rows are saved → hardcoded fallback continues working.
+
+### PHP upload limits
+Local Docker bumped to 128MB upload / 256MB memory. Persisted via `php-uploads.ini` in repo root, mounted into container at `/usr/local/etc/php/conf.d/uploads.ini` (see `docker-compose.yml`). For Pantheon prod, default is 100MB; install **Big File Uploads** plugin if higher needed.

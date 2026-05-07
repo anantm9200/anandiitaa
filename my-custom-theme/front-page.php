@@ -193,7 +193,12 @@
     );
 
     // Split: first 5 stay in the carousel, the rest become standalone scroll-revealed sections.
-    $carousel_slides = array_slice( $slides, 0, 5 );
+    // Carbon Fields integration TEMPORARILY DISABLED — admin had only 2 rows saved which
+    // overrode the 5 hardcoded slides. Re-enable by un-commenting the line below once a
+    // full set of slides is configured under WP admin → Home Content. See context.txt §7.
+    // $acf_carousel = function_exists( 'anandiitaa_get_carousel_slides' ) ? anandiitaa_get_carousel_slides() : null;
+    $acf_carousel    = null;
+    $carousel_slides = $acf_carousel ?: array_slice( $slides, 0, 5 );
     $section_slides  = array_slice( $slides, 5 );
 
     $icons = array(
@@ -228,8 +233,15 @@
     // detection which Varnish strips at the cache key.
     $render_slide = function ( $slide, $is_priority = false ) use ( $tpl, $icons, $mac_url_for, $mac_exists, $bust ) {
         $laptop_url = $slide['image'];
-        $mac_url    = $mac_url_for( $laptop_url );
-        $has_mac    = $mac_exists( $mac_url );
+        // ACF-driven slides may supply an explicit mac variant (uploaded to Media Library);
+        // otherwise we derive a mac URL from the laptop path and verify the file exists in-theme.
+        if ( ! empty( $slide['mac_image'] ) ) {
+            $mac_url = $slide['mac_image'];
+            $has_mac = true;
+        } else {
+            $mac_url = $mac_url_for( $laptop_url );
+            $has_mac = $mac_exists( $mac_url );
+        }
         ?>
         <div class="hero-slide__bg">
             <picture>

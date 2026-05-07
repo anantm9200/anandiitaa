@@ -9,7 +9,7 @@ function anandiitaa_enqueue_assets() {
     );
 
     // Theme stylesheet (self-hosts AppetitePro + DM Sans via @font-face)
-    wp_enqueue_style( 'main-styles', get_stylesheet_uri(), array( 'google-fonts-montserrat' ), '8.6' );
+    wp_enqueue_style( 'main-styles', get_stylesheet_uri(), array( 'google-fonts-montserrat' ), '8.8' );
 
     // Hero carousel script
     wp_enqueue_script(
@@ -65,6 +65,113 @@ add_action( 'wp_head', 'anandiitaa_preconnect_fonts', 1 );
 add_action( 'wp_head', function () {
     echo '<script>(function(){if(/Macintosh|Mac OS X/i.test(navigator.userAgent))document.documentElement.classList.add("is-mac");})();</script>' . "\n";
 }, 2 );
+
+/* ========================================================================
+   Carbon Fields migration — Step 1: Home carousel (slides 1–5)
+   Carbon Fields gives us a true repeater (Complex field) for free, so we
+   register one Theme Options page "Home Content" with a Complex field
+   "home_carousel_slides" + nested Complex "features". Admin can add /
+   remove / reorder slides freely. front-page.php reads the saved value
+   via anandiitaa_get_carousel_slides() and falls back to the hardcoded
+   $slides array when nothing is configured yet.
+   ======================================================================== */
+
+add_action( 'after_setup_theme', function () {
+    require_once get_template_directory() . '/vendor/autoload.php';
+    \Carbon_Fields\Carbon_Fields::boot();
+} );
+
+add_action( 'carbon_fields_register_fields', function () {
+    \Carbon_Fields\Container::make( 'theme_options', __( 'Home Content' ) )
+        ->set_icon( 'dashicons-images-alt2' )
+        ->add_fields( array(
+            \Carbon_Fields\Field::make( 'complex', 'home_carousel_slides', __( 'Carousel Slides' ) )
+                ->set_layout( 'tabbed-vertical' )
+                ->set_header_template( '<%- heading || "Slide" %>' )
+                ->add_fields( array(
+                    \Carbon_Fields\Field::make( 'image', 'image', 'Background image (laptop / default)' )
+                        ->set_value_type( 'url' )
+                        ->set_help_text( 'Default bg. Used everywhere except very large (1440+) Mac retina screens when a mac variant is provided.' ),
+                    \Carbon_Fields\Field::make( 'image', 'mac_image', 'Mac / retina background (optional)' )
+                        ->set_value_type( 'url' )
+                        ->set_help_text( 'High-res variant served on viewports ≥1440px. Leave empty to fall back to the default image.' ),
+                    \Carbon_Fields\Field::make( 'text', 'alt', 'Alt text' ),
+                    \Carbon_Fields\Field::make( 'textarea', 'heading', 'Heading' )
+                        ->set_rows( 2 )
+                        ->set_help_text( 'HTML allowed: use <br> for line breaks.' ),
+                    \Carbon_Fields\Field::make( 'select', 'position', 'Heading position' )
+                        ->set_options( array(
+                            ''               => 'Default (left, vertical center)',
+                            'top-center'     => 'Top center',
+                            'bottom-center'  => 'Bottom center',
+                            'top-caption'    => 'Top caption (small line)',
+                        ) ),
+                    \Carbon_Fields\Field::make( 'text', 'cta_label', 'CTA label' )
+                        ->set_help_text( 'Leave empty to hide the button.' ),
+                    \Carbon_Fields\Field::make( 'text', 'cta_href', 'CTA link' )
+                        ->set_default_value( '/about-us' ),
+                    \Carbon_Fields\Field::make( 'complex', 'features', 'Features (max 3)' )
+                        ->set_max( 3 )
+                        ->set_layout( 'tabbed-horizontal' )
+                        ->set_header_template( '<%- text || "feature" %>' )
+                        ->add_fields( array(
+                            \Carbon_Fields\Field::make( 'select', 'icon', 'Icon' )
+                                ->set_options( array(
+                                    'shield'    => 'Shield',
+                                    'clipboard' => 'Clipboard',
+                                    'spoon'     => 'Spoon',
+                                ) ),
+                            \Carbon_Fields\Field::make( 'text', 'text', 'Text' ),
+                        ) ),
+                ) ),
+        ) );
+} );
+
+/**
+ * Returns the carousel slides as an array shaped exactly like the existing
+ * front-page.php $slides[0..4]. Returns null when nothing is configured,
+ * so the template falls back to its hardcoded defaults.
+ */
+function anandiitaa_get_carousel_slides() {
+    if ( ! function_exists( 'carbon_get_theme_option' ) ) return null;
+    $rows = carbon_get_theme_option( 'home_carousel_slides' );
+    if ( empty( $rows ) ) return null;
+
+    $slides = array();
+    foreach ( $rows as $row ) {
+        if ( empty( $row['image'] ) ) continue;  // skip rows without a bg
+
+        $slide = array(
+            'image'     => $row['image'],
+            'mac_image' => ! empty( $row['mac_image'] ) ? $row['mac_image'] : '',
+            'alt'       => ! empty( $row['alt'] ) ? $row['alt'] : '',
+        );
+
+        if ( ! empty( $row['heading'] ) )  $slide['heading']  = $row['heading'];
+        if ( ! empty( $row['position'] ) ) $slide['position'] = $row['position'];
+
+        if ( ! empty( $row['cta_label'] ) && ! empty( $row['cta_href'] ) ) {
+            $slide['cta'] = array(
+                'label' => $row['cta_label'],
+                'href'  => $row['cta_href'],
+                'class' => 'btn-primary',
+            );
+        }
+
+        $features = array();
+        if ( ! empty( $row['features'] ) && is_array( $row['features'] ) ) {
+            foreach ( $row['features'] as $f ) {
+                if ( ! empty( $f['icon'] ) && ! empty( $f['text'] ) ) {
+                    $features[] = array( 'icon' => $f['icon'], 'text' => $f['text'] );
+                }
+            }
+        }
+        if ( $features ) $slide['features'] = $features;
+
+        $slides[] = $slide;
+    }
+    return $slides ?: null;
+}
 
 /**
  * Map theme-owned URLs directly to template files so we don't need a WP page
