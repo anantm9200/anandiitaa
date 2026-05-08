@@ -1327,17 +1327,176 @@ picture {
    FOOTER
    ======================================================================== */
 
+/* ---- Brand footer (Anandiitaa) ---- */
 .site-footer {
-    background: var(--brand-cream);
-    color: var(--brand-text);
-    text-align: center;
-    padding: 36px 5%;
-    font-size: 0.9rem;
-    border-top: 1px solid rgba(107, 15, 26, 0.12);
+    --footer-bg: #690B26;
+    --footer-fg: #F9EED1;
+    position: relative;
+    isolation: isolate;
+    background: var(--footer-bg);
+    color: var(--footer-fg);
+    padding: 88px 3% 28px;
+    font-family: 'Montserrat', system-ui, sans-serif;
+    overflow: hidden;
 }
 
-.site-footer a {
-    color: var(--brand-maroon);
+.site-footer__inner {
+    display: grid;
+    grid-template-columns: auto 1fr auto auto;
+    gap: 56px;
+    max-width: 100%;
+    margin: 0;
+    align-items: start;
+}
+
+.site-footer__col--nav  { grid-column: 3; }
+.site-footer__col--info { grid-column: 4; }
+
+/* --- Column 1: brand (logo + socials + legal) --- */
+.site-footer__col--brand {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 260px;
+}
+
+.site-footer__logo {
+    display: block;
+    width: 360px;
+    max-width: 100%;
+    height: 64px;
+    background-color: var(--footer-fg);
+    -webkit-mask: url('assets/images/logo/anandiitaa-wordmark.png') left center/contain no-repeat;
+            mask: url('assets/images/logo/anandiitaa-wordmark.png') left center/contain no-repeat;
+}
+
+.site-footer__brand-base {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 90px;
+}
+
+.site-footer__socials {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+}
+.site-footer__socials a {
+    color: var(--footer-fg);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 0;
+    transition: opacity .2s ease;
+}
+.site-footer__socials a:hover { opacity: 0.75; }
+
+.site-footer__legal {
+    font-size: 13px;
+    letter-spacing: 0.01em;
+    color: var(--footer-fg);
+    opacity: 0.92;
+    margin: 0;
+}
+.site-footer__legal a {
+    color: inherit;
+    text-decoration: none;
+}
+.site-footer__legal a:hover { text-decoration: underline; }
+.site-footer__sep {
+    margin: 0 8px;
+    opacity: 0.6;
+}
+
+/* --- Column 2: nav --- */
+.site-footer__col--nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-top: 8px;
+}
+.site-footer__col--nav a {
+    color: var(--footer-fg);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.85;
+    transition: opacity .2s ease;
+}
+.site-footer__col--nav a:hover { opacity: 1; }
+
+/* --- Column 3: corporate office + contact --- */
+.site-footer__col--info {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    padding-top: 8px;
+}
+.site-footer__info-block h4 {
+    font-family: 'Montserrat', system-ui, sans-serif;
+    color: var(--footer-fg);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    margin: 0 0 6px;
+}
+.site-footer__info-block p {
+    font-family: 'Montserrat', system-ui, sans-serif;
+    color: var(--footer-fg);
+    font-size: 14px;
+    line-height: 1.55;
+    margin: 0;
+    opacity: 0.92;
+}
+.site-footer__info-block a {
+    color: inherit;
+    text-decoration: none;
+}
+.site-footer__info-block a:hover { text-decoration: underline; }
+
+/* --- Bottom-right copyright (slightly raised) --- */
+.site-footer__copy {
+    position: absolute;
+    right: 6%;
+    bottom: 28px;
+    margin: 0;
+    color: var(--footer-fg);
+    font-size: 13px;
+    opacity: 0.9;
+    letter-spacing: 0.02em;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 960px) {
+    .site-footer { padding: 64px 6% 96px; }
+    .site-footer__inner {
+        grid-template-columns: 1fr 1fr;
+        gap: 48px;
+    }
+    .site-footer__col--brand {
+        grid-column: 1 / -1;
+        min-height: auto;
+    }
+    .site-footer__brand-base { margin-top: 36px; }
+    .site-footer__copy {
+        right: 0;
+        left: 0;
+        text-align: center;
+        bottom: 24px;
+    }
+}
+
+@media (max-width: 600px) {
+    .site-footer__inner {
+        grid-template-columns: 1fr;
+        gap: 36px;
+    }
+    .site-footer__logo { width: 260px; height: 52px; }
+    .site-footer__legal { font-size: 12px; }
+    .site-footer__sep { margin: 0 6px; }
 }
 
 /* ========================================================================
