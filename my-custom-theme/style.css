@@ -672,8 +672,7 @@ picture {
 
 /* Top-center variant: heading + CTA stack centered above the slide imagery */
 .hero-slide__content--top-center {
-    top: 11%;
-    /* clears the fixed header, sits high to avoid crowding products */
+    top: 4%;                                /* moved up from 11% — heading + CTA were crowding the packets */
     left: 50%;
     transform: translateX(-50%);
     max-width: 800px;
