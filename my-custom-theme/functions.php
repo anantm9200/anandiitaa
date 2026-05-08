@@ -66,6 +66,36 @@ add_action( 'wp_head', function () {
     echo '<script>(function(){if(/Macintosh|Mac OS X/i.test(navigator.userAgent))document.documentElement.classList.add("is-mac");})();</script>' . "\n";
 }, 2 );
 
+/**
+ * Document <title> handling.
+ * 1) `add_theme_support('title-tag')` lets WP emit the <title> automatically;
+ *    we removed the manual one in header.php so WP is now the single source.
+ * 2) `pre_get_document_title` overrides per-route so theme-routed URLs (e.g.
+ *    /products/jaggery) get a clean human title instead of WP's "Page not found"
+ *    fallback (the URL doesn't match a real Page, but our template_include
+ *    filter still renders the right template).
+ */
+add_action( 'after_setup_theme', function () {
+    add_theme_support( 'title-tag' );
+} );
+
+add_filter( 'pre_get_document_title', function ( $title ) {
+    $site = get_bloginfo( 'name' );
+    $req  = isset( $_SERVER['REQUEST_URI'] ) ? trim( strtok( $_SERVER['REQUEST_URI'], '?' ), '/' ) : '';
+
+    $titles = array(
+        ''                 => 'Anandiitaa — Premium Refined Sugar & Desi Jaggery',
+        'products'         => 'Our Products | ' . $site,
+        'products/jaggery' => 'Desi Jaggery | ' . $site,
+        'products/sugar'   => 'Premium Refined Sugar | ' . $site,
+    );
+
+    if ( isset( $titles[ $req ] ) ) {
+        return $titles[ $req ];
+    }
+    return $title; // let WP build the default for any other route
+} );
+
 /* ========================================================================
    Carbon Fields migration — Step 1: Home carousel (slides 1–5)
    Carbon Fields gives us a true repeater (Complex field) for free, so we
