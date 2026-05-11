@@ -2677,3 +2677,471 @@ picture {
         top: 8%;
     }
 }
+
+/* ========================================================================
+   ABOUT US — Slide 2 (Our Vision)
+   Split layout: giant decorative quote glyph + title + body on the left,
+   vertical dashed maroon divider, product photo on the right.
+   ======================================================================== */
+.about-slide--vision {
+    display: flex;
+    align-items: stretch;
+    padding: 0;
+}
+
+.about-vision__grid {
+    display: grid;
+    grid-template-columns: 1fr 1px 1fr;
+    align-items: stretch;
+    width: 100%;
+    max-width: 1700px;
+    margin: 0 auto;
+    padding: 100px 80px;
+    gap: 80px;
+}
+
+.about-vision__copy {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 40px 0;
+    min-height: 600px;
+}
+
+/* Giant pale quote glyph behind the title (decorative). Uses a tan/cream
+   fill on the cream bg for the soft watermark look in the reference. */
+.about-vision__quotemark {
+    position: absolute;
+    top: -90px;
+    left: 20px;
+    font-family: 'Appetite Pro', 'Georgia', serif;
+    font-size: 100rem;
+    line-height: 1;
+    color: #e6d6b3;            /* warm tan, sits on cream bg as subtle backdrop */
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+}
+
+.about-vision__title {
+    position: relative;
+    z-index: 1;
+    margin: 10px 0 0;
+    font-family: 'Appetite Pro', 'Georgia', serif;
+    font-size: var(--fs-heading);
+    font-weight: var(--fw-heading);
+    color: var(--brand-maroon);
+    line-height: 1;
+}
+
+.about-vision__body {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: var(--fs-subtext);
+    font-weight: 700;
+    color: var(--brand-maroon);
+    line-height: 1.35;
+}
+
+.about-vision__divider {
+    width: 1px;
+    border-left: 2px dashed var(--brand-maroon);
+    align-self: stretch;
+}
+
+.about-vision__photo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.about-vision__photo img {
+    width: 100%;
+    height: auto;
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: 20px;
+    display: block;
+}
+
+/* Reveal stagger for slide 2 */
+[data-reveal] :where(.about-vision__quotemark, .about-vision__title, .about-vision__body, .about-vision__divider, .about-vision__photo) {
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 700ms ease, transform 700ms ease;
+}
+[data-reveal] .about-vision__quotemark { transition-delay: 0ms; }
+[data-reveal] .about-vision__title     { transition-delay: 120ms; }
+[data-reveal] .about-vision__body      { transition-delay: 240ms; }
+[data-reveal] .about-vision__divider   { transition-delay: 340ms; }
+[data-reveal] .about-vision__photo     { transition-delay: 200ms; }
+
+[data-reveal].is-visible :where(.about-vision__quotemark, .about-vision__title, .about-vision__body, .about-vision__divider, .about-vision__photo) {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (max-width: 900px) {
+    .about-vision__grid {
+        grid-template-columns: 1fr;
+        padding: 60px 24px;
+        gap: 40px;
+    }
+    .about-vision__divider {
+        display: none;
+    }
+    .about-vision__quotemark {
+        font-size: 16rem;
+        top: -40px;
+    }
+    .about-vision__title {
+        margin-top: 40px;
+        font-size: 40px;
+    }
+    .about-vision__body {
+        font-size: 18px;
+    }
+}
+
+/* ========================================================================
+   ABOUT US — Slide 3 (Our Mission)
+   Full-bleed photo bg (sugarcane + sugar bowl on maroon wood). Copy is
+   placed on the right half over the darker wood area.
+   ======================================================================== */
+.about-slide--mission {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 640px;
+    overflow: hidden;
+}
+
+.about-mission__copy {
+    position: absolute;
+    z-index: 2;
+    right: 8%;
+    top: 50%;
+    transform: translateY(calc(-50% + 50px));
+    max-width: 620px;
+    color: #f5ebd2;
+    text-align: left;
+}
+
+.about-mission__title {
+    margin: 0 0 32px;
+    font-family: 'Appetite Pro', 'Georgia', serif;
+    font-size: var(--fs-heading);
+    font-weight: var(--fw-heading);
+    color: #f5ebd2;
+    line-height: 1;
+}
+
+.about-mission__body {
+    margin: 0;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: var(--fs-subtext);
+    font-weight: 700;
+    color: #f5ebd2;
+    line-height: 1.45;
+}
+
+/* Reveal stagger */
+[data-reveal] :where(.about-mission__title, .about-mission__body) {
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 700ms ease, transform 700ms ease;
+}
+[data-reveal] .about-mission__title { transition-delay: 0ms; }
+[data-reveal] .about-mission__body  { transition-delay: 180ms; }
+
+[data-reveal].is-visible :where(.about-mission__title, .about-mission__body) {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (max-width: 900px) {
+    .about-mission__copy {
+        right: 5%;
+        left: 5%;
+        max-width: none;
+    }
+    .about-mission__title {
+        font-size: 36px;
+    }
+    .about-mission__body {
+        font-size: 18px;
+    }
+}
+
+/* ========================================================================
+   ABOUT US — Slide 4 (The Anandiitaa Standards)
+   Centered header with inline wordmark + 2x2 grid of image/card pairs.
+   ======================================================================== */
+.about-slide--standards {
+    width: 100%;
+    min-height: 100vh;
+    padding: 100px 80px 120px;
+    background: var(--brand-cream);
+    overflow: hidden;
+}
+
+.about-standards__title {
+    margin: 0 auto 80px;
+    text-align: center;
+    font-family: 'Appetite Pro', 'Georgia', serif;
+    font-size: var(--fs-heading);
+    font-weight: var(--fw-heading);
+    color: var(--brand-maroon);
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+
+.about-standards__wordmark {
+    height: 0.85em;             /* matches surrounding heading line-box */
+    width: auto;
+    display: inline-block;
+    vertical-align: baseline;
+}
+
+.about-standards__grid {
+    /* Brick stagger: row 1 sits flush, row 2 shifted right by half a card so
+       each row 2 card sits between the two cards above it. */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 60px;
+    row-gap: 40px;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.standard-item:nth-child(n+3) {
+    transform: translateX(50%);
+}
+
+.standard-item {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 0;
+    align-items: stretch;
+    max-width: 560px;
+}
+
+.standard-item__image {
+    position: relative;
+    z-index: 2;
+    width: 200px;
+    aspect-ratio: 1 / 1;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+
+.standard-item__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.standard-item__card {
+    position: relative;
+    background: #fbf3df;        /* slightly lighter than page cream */
+    border-radius: 20px;
+    padding: 24px 28px;
+    margin-left: -32px;         /* image overlaps card's left edge */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 14px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.04);
+}
+
+.standard-item__title {
+    margin: 0;
+    font-family: 'Appetite Pro', 'Georgia', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--brand-maroon);
+    line-height: 1.15;
+}
+
+.standard-item__body {
+    margin: 0;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--brand-maroon);
+    line-height: 1.5;
+}
+
+/* Reveal stagger — header in first, cards cascade with slight offset. */
+[data-reveal] :where(.about-standards__title, .standard-item) {
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 700ms ease, transform 700ms ease;
+}
+[data-reveal] .about-standards__title       { transition-delay: 0ms; }
+[data-reveal] .standard-item:nth-child(1)   { transition-delay: 120ms; }
+[data-reveal] .standard-item:nth-child(2)   { transition-delay: 200ms; }
+[data-reveal] .standard-item:nth-child(3)   { transition-delay: 280ms; }
+[data-reveal] .standard-item:nth-child(4)   { transition-delay: 360ms; }
+
+[data-reveal].is-visible :where(.about-standards__title, .standard-item) {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (max-width: 1100px) {
+    .about-standards__grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+}
+
+@media (max-width: 700px) {
+    .about-slide--standards {
+        padding: 60px 24px 80px;
+    }
+    .about-standards__title {
+        font-size: 36px;
+        margin-bottom: 40px;
+        gap: 8px;
+    }
+    .standard-item {
+        grid-template-columns: 120px 1fr;
+    }
+    .standard-item__image {
+        width: 120px;
+    }
+    .standard-item__card {
+        padding: 20px 22px 20px 32px;
+        margin-left: -20px;
+    }
+    .standard-item__title {
+        font-size: 20px;
+    }
+    .standard-item__body {
+        font-size: 14px;
+    }
+}
+
+/* ========================================================================
+   ABOUT US — Slide 5 (Our Purpose)
+   Single rounded container with photo on top + maroon band beneath holding
+   the title and body copy in cream.
+   ======================================================================== */
+.about-slide--purpose {
+    width: 100%;
+    min-height: 100vh;
+    padding: 80px 80px;
+    background: var(--brand-cream);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.about-purpose__container {
+    width: 100%;
+    max-width: 1500px;
+    border-radius: 36px;
+    overflow: hidden;
+    background: #b73354;                 /* falls through behind both children */
+    box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+}
+
+.about-purpose__image {
+    width: 100%;
+    aspect-ratio: 16 / 6;
+    overflow: hidden;
+}
+
+.about-purpose__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.about-purpose__placeholder {
+    width: 100%;
+    height: 100%;
+    background: #d4d4d4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    color: #777;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 14px;
+}
+
+.about-purpose__band {
+    background: #b73354;
+    padding: 60px 80px 70px;
+    color: var(--brand-cream);
+}
+
+.about-purpose__title {
+    margin: 0 0 24px;
+    font-family: 'Appetite Pro', 'Georgia', serif;
+    font-size: var(--fs-heading);
+    font-weight: 700;
+    color: var(--brand-cream);
+    line-height: 1;
+}
+
+.about-purpose__body {
+    margin: 0;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: var(--fs-subtext);
+    font-weight: 400;
+    color: var(--brand-cream);
+    line-height: 1.45;
+    max-width: 1280px;
+}
+
+/* Reveal stagger */
+[data-reveal] :where(.about-purpose__container, .about-purpose__title, .about-purpose__body) {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 700ms ease, transform 700ms ease;
+}
+[data-reveal] .about-purpose__container { transition-delay: 0ms; }
+[data-reveal] .about-purpose__title     { transition-delay: 180ms; }
+[data-reveal] .about-purpose__body      { transition-delay: 300ms; }
+
+[data-reveal].is-visible :where(.about-purpose__container, .about-purpose__title, .about-purpose__body) {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (max-width: 900px) {
+    .about-slide--purpose {
+        padding: 40px 20px;
+    }
+    .about-purpose__container {
+        border-radius: 24px;
+    }
+    .about-purpose__image {
+        aspect-ratio: 4 / 3;
+    }
+    .about-purpose__band {
+        padding: 36px 28px 44px;
+    }
+    .about-purpose__title {
+        font-size: 36px;
+    }
+    .about-purpose__body {
+        font-size: 18px;
+    }
+}
