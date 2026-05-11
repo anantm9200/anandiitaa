@@ -2889,7 +2889,7 @@ picture {
 }
 
 .about-standards__title {
-    margin: 0 auto 80px;
+    margin: 0 auto 160px;
     text-align: center;
     font-family: 'Appetite Pro', 'Georgia', serif;
     font-size: var(--fs-heading);
@@ -2916,31 +2916,53 @@ picture {
     display: grid;
     grid-template-columns: 1fr 1fr;
     column-gap: 60px;
-    row-gap: 40px;
-    max-width: 1280px;
+    row-gap: 36px;
+    max-width: 1120px;
     margin: 0 auto;
 }
 
+/* Brick stagger split symmetrically: row 1 shifts -15%, row 2 shifts +15%.
+   Net horizontal offset between rows = 30% (gentle brick). Smaller offset
+   keeps both end-cards inside the section padding at common viewports. */
+.standard-item:nth-child(-n+2) {
+    transform: translateX(-15%);
+}
 .standard-item:nth-child(n+3) {
-    transform: translateX(50%);
+    transform: translateX(15%);
 }
 
 .standard-item {
     display: grid;
-    grid-template-columns: 200px 1fr;
+    grid-template-columns: 170px 1fr;
     gap: 0;
     align-items: stretch;
-    max-width: 560px;
+    max-width: 480px;
+    cursor: default;
+    transition: transform 380ms cubic-bezier(0.2, 0.7, 0.2, 1);
+    will-change: transform;
+}
+
+/* Hover lifts each card -8px while preserving its row brick offset. */
+.standard-item:nth-child(-n+2):hover {
+    transform: translateX(-15%) translateY(-8px);
+}
+.standard-item:nth-child(n+3):hover {
+    transform: translateX(15%) translateY(-8px);
 }
 
 .standard-item__image {
     position: relative;
     z-index: 2;
-    width: 200px;
+    width: 170px;
     aspect-ratio: 1 / 1;
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    transition: box-shadow 380ms ease;
+}
+
+.standard-item:hover .standard-item__image {
+    box-shadow: 0 16px 36px rgba(107, 15, 26, 0.18);
 }
 
 .standard-item__image img {
@@ -2948,21 +2970,60 @@ picture {
     height: 100%;
     object-fit: cover;
     display: block;
+    transition: transform 600ms cubic-bezier(0.2, 0.7, 0.2, 1);
+    will-change: transform;
+}
+
+.standard-item:hover .standard-item__image img {
+    transform: scale(1.08);
 }
 
 .standard-item__card {
     position: relative;
     background: #fbf3df;        /* slightly lighter than page cream */
     border-radius: 20px;
-    padding: 24px 28px;
-    margin-left: -32px;         /* image overlaps card's left edge */
+    padding: 20px 24px;
+    margin-left: -28px;         /* image overlaps card's left edge */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    gap: 14px;
+    gap: 12px;
     box-shadow: 0 4px 14px rgba(0,0,0,0.04);
+    transition: background 380ms ease, box-shadow 380ms ease;
+}
+
+.standard-item:hover .standard-item__card {
+    background: #fff;
+    box-shadow: 0 14px 30px rgba(107, 15, 26, 0.10);
+}
+
+.standard-item__title {
+    transition: color 380ms ease;
+}
+
+.standard-item:hover .standard-item__title {
+    color: var(--brand-maroon-dark, #4a0a12);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .standard-item,
+    .standard-item__image,
+    .standard-item__image img,
+    .standard-item__card,
+    .standard-item__title {
+        transition: none !important;
+    }
+    .standard-item:nth-child(-n+2):hover {
+        transform: translateX(-15%);
+    }
+    .standard-item:nth-child(n+3):hover {
+        transform: translateX(15%);
+    }
+    .standard-item:hover .standard-item__image img {
+        transform: none;
+    }
 }
 
 .standard-item__title {
@@ -2983,21 +3044,34 @@ picture {
     line-height: 1.5;
 }
 
-/* Reveal stagger — header in first, cards cascade with slight offset. */
-[data-reveal] :where(.about-standards__title, .standard-item) {
+/* Reveal stagger.
+   NOTE: cards animate via opacity only, never transform — `.standard-item`
+   already owns its transform (translateX(50%) for row-2 brick offset +
+   translateY(-8px) on hover). Layering a reveal transform would clobber
+   either the brick offset or the hover lift. */
+[data-reveal] .about-standards__title {
     opacity: 0;
     transform: translateY(12px);
-    transition: opacity 700ms ease, transform 700ms ease;
+    transition: opacity 700ms ease 0ms, transform 700ms ease 0ms;
 }
-[data-reveal] .about-standards__title       { transition-delay: 0ms; }
-[data-reveal] .standard-item:nth-child(1)   { transition-delay: 120ms; }
-[data-reveal] .standard-item:nth-child(2)   { transition-delay: 200ms; }
-[data-reveal] .standard-item:nth-child(3)   { transition-delay: 280ms; }
-[data-reveal] .standard-item:nth-child(4)   { transition-delay: 360ms; }
+[data-reveal] .standard-item {
+    opacity: 0;
+    /* Two-property transition: opacity for reveal, transform for hover/brick.
+       Per-card nth-child rules set the delay tuple in matching order so the
+       hover transform stays instant (0ms) while the reveal staggers. */
+    transition: opacity 700ms ease, transform 380ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+[data-reveal] .standard-item:nth-child(1)   { transition-delay: 120ms, 0ms; }
+[data-reveal] .standard-item:nth-child(2)   { transition-delay: 200ms, 0ms; }
+[data-reveal] .standard-item:nth-child(3)   { transition-delay: 280ms, 0ms; }
+[data-reveal] .standard-item:nth-child(4)   { transition-delay: 360ms, 0ms; }
 
-[data-reveal].is-visible :where(.about-standards__title, .standard-item) {
+[data-reveal].is-visible .about-standards__title {
     opacity: 1;
     transform: translateY(0);
+}
+[data-reveal].is-visible .standard-item {
+    opacity: 1;
 }
 
 @media (max-width: 1100px) {
