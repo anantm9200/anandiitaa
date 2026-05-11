@@ -2597,3 +2597,83 @@ picture {
         text-align: center;
     }
 }
+
+/* ========================================================================
+   ABOUT US — Slide 1 (Product wall + callouts)
+   Bg image bakes in the cream paper, plants, salt, jaggery, and 4 packets.
+   This block layers the page title and the four dashed-arrow callouts.
+   Mac viewport first — desktop / responsive tuning passes come later.
+   ======================================================================== */
+.about-page {
+    background: var(--brand-cream);
+}
+
+.about-slide {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 640px;
+    overflow: hidden;
+    background: var(--brand-cream);
+}
+
+.about-slide__bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+.about-slide__bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    display: block;
+}
+
+.about-slide__title {
+    position: absolute;
+    top: 14%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    margin: 0;
+    font-family: 'Appetite Pro', 'Georgia', serif;
+    font-size: var(--fs-heading);
+    font-weight: var(--fw-heading);
+    color: var(--brand-maroon);
+    letter-spacing: 0.5px;
+    line-height: 1;
+}
+
+/* Single full-slide overlay SVG. Its viewBox matches the bg image's native
+   pixel dimensions (2560×1664) and uses `xMidYMid slice` — same crop as the
+   bg <img>'s object-fit: cover — so every label and arrow drawn in image-
+   pixel space stays locked to the packets at any viewport aspect ratio. */
+.about-callouts {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;     /* don't block clicks on anything below */
+}
+
+/* Reveal stagger — title in first, callouts fade together. */
+[data-reveal] .about-slide__title  { --anim-delay: 0ms; }
+[data-reveal] .about-callouts      { --anim-delay: 200ms; }
+
+[data-reveal] :where(.about-slide__title, .about-callouts) {
+    opacity: 0;
+    transition: opacity 600ms ease var(--anim-delay, 0ms);
+}
+[data-reveal].is-visible :where(.about-slide__title, .about-callouts) {
+    opacity: 1;
+}
+
+@media (max-width: 900px) {
+    .about-slide__title {
+        font-size: 36px;
+        top: 8%;
+    }
+}

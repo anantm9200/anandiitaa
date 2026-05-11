@@ -1,11 +1,11 @@
 # Graph Report - .  (2026-05-08)
 
 ## Corpus Check
-- 329 files · ~25,674,483 words
+- 330 files · ~26,569,582 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1921 nodes · 2050 edges · 348 communities detected
+- 1922 nodes · 2050 edges · 349 communities detected
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 22 edges (avg confidence: 0.84)
 - Token cost: 0 input · 0 output
 
@@ -358,6 +358,7 @@
 - [[_COMMUNITY_Community 345|Community 345]]
 - [[_COMMUNITY_Community 346|Community 346]]
 - [[_COMMUNITY_Community 347|Community 347]]
+- [[_COMMUNITY_Community 348|Community 348]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `Field` - 72 edges
@@ -1708,81 +1709,85 @@ Nodes (0):
 
 ### Community 328 - "Community 328"
 Cohesion: 1.0
-Nodes (1): Unbuilt Pages (Recipes, Blogs, Processing, Community, Contact)
+Nodes (0): 
 
 ### Community 329 - "Community 329"
 Cohesion: 1.0
-Nodes (1): WP-CLI in Docker Container
+Nodes (1): Unbuilt Pages (Recipes, Blogs, Processing, Community, Contact)
 
 ### Community 330 - "Community 330"
 Cohesion: 1.0
-Nodes (1): Bump wp_enqueue_style Version (Cache Bust)
+Nodes (1): WP-CLI in Docker Container
 
 ### Community 331 - "Community 331"
 Cohesion: 1.0
-Nodes (1): Rule: Never Use Raw Generic Fallback Alone
+Nodes (1): Bump wp_enqueue_style Version (Cache Bust)
 
 ### Community 332 - "Community 332"
 Cohesion: 1.0
-Nodes (1): Rule: Italic & Weight Variants Allowed
+Nodes (1): Rule: Never Use Raw Generic Fallback Alone
 
 ### Community 333 - "Community 333"
 Cohesion: 1.0
-Nodes (1): Color Token --brand-cream (#f5ebd2)
+Nodes (1): Rule: Italic & Weight Variants Allowed
 
 ### Community 334 - "Community 334"
 Cohesion: 1.0
-Nodes (1): U-shaped Review Cards Convention
+Nodes (1): Color Token --brand-cream (#f5ebd2)
 
 ### Community 335 - "Community 335"
 Cohesion: 1.0
-Nodes (1): Coding Standard: Before/After Versions
+Nodes (1): U-shaped Review Cards Convention
 
 ### Community 336 - "Community 336"
 Cohesion: 1.0
-Nodes (1): DM Sans - SIL OFL 1.1 license
+Nodes (1): Coding Standard: Before/After Versions
 
 ### Community 337 - "Community 337"
 Cohesion: 1.0
-Nodes (1): Appetite Pro - Personal Use Only license
+Nodes (1): DM Sans - SIL OFL 1.1 license
 
 ### Community 338 - "Community 338"
 Cohesion: 1.0
-Nodes (1): Brand Guidelines (PDF)
+Nodes (1): Appetite Pro - Personal Use Only license
 
 ### Community 339 - "Community 339"
 Cohesion: 1.0
-Nodes (1): About Us - Anandiitaa (PDF reference)
+Nodes (1): Brand Guidelines (PDF)
 
 ### Community 340 - "Community 340"
 Cohesion: 1.0
-Nodes (1): Sugar Page - Anandiitaa (PDF reference)
+Nodes (1): About Us - Anandiitaa (PDF reference)
 
 ### Community 341 - "Community 341"
 Cohesion: 1.0
-Nodes (1): Jaggery Page - Anandiitaa (PDF reference)
+Nodes (1): Sugar Page - Anandiitaa (PDF reference)
 
 ### Community 342 - "Community 342"
 Cohesion: 1.0
-Nodes (1): Home Page (PDF reference)
+Nodes (1): Jaggery Page - Anandiitaa (PDF reference)
 
 ### Community 343 - "Community 343"
 Cohesion: 1.0
-Nodes (1): Source: Jaggery powder bowl with sugarcane stalks on wooden surface (high-res original for section 6)
+Nodes (1): Home Page (PDF reference)
 
 ### Community 344 - "Community 344"
 Cohesion: 1.0
-Nodes (1): Source: Coconut shell bowl filled with jaggery powder and wooden spoon, palm fronds in background (high-res original for section 11)
+Nodes (1): Source: Jaggery powder bowl with sugarcane stalks on wooden surface (high-res original for section 6)
 
 ### Community 345 - "Community 345"
 Cohesion: 1.0
-Nodes (1): Source: Anandiitaa product packaging lineup - Desi Jaggery, Desi Jaggery Powder, Premium Refined Sugar Bold Grain, Premium Refined Sugar Fine Grain with aloe and sugarcane props (high-res original for slide 1)
+Nodes (1): Source: Coconut shell bowl filled with jaggery powder and wooden spoon, palm fronds in background (high-res original for section 11)
 
 ### Community 346 - "Community 346"
 Cohesion: 1.0
-Nodes (1): Review 1: Hands spooning jaggery powder over a bowl with jaggery cubes and chai on a kitchen counter (Aditi Parekh testimonial)
+Nodes (1): Source: Anandiitaa product packaging lineup - Desi Jaggery, Desi Jaggery Powder, Premium Refined Sugar Bold Grain, Premium Refined Sugar Fine Grain with aloe and sugarcane props (high-res original for slide 1)
 
 ### Community 347 - "Community 347"
+Cohesion: 1.0
+Nodes (1): Review 1: Hands spooning jaggery powder over a bowl with jaggery cubes and chai on a kitchen counter (Aditi Parekh testimonial)
+
+### Community 348 - "Community 348"
 Cohesion: 1.0
 Nodes (1): Review 2: Woman in floral apron sprinkling jaggery powder over a steaming paratha on a steel plate (Kavya Bhosle testimonial)
 
@@ -1909,43 +1914,43 @@ Nodes (1): Review 2: Woman in floral apron sprinkling jaggery powder over a stea
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
 - **Thin community `Community 251`** (1 nodes): `front-page.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 252`** (1 nodes): `benefits-accordion.js`
+- **Thin community `Community 252`** (1 nodes): `page-about.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 253`** (1 nodes): `scroll-reveal.js`
+- **Thin community `Community 253`** (1 nodes): `benefits-accordion.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 254`** (1 nodes): `autoload.php`
+- **Thin community `Community 254`** (1 nodes): `scroll-reveal.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 255`** (1 nodes): `autoload_namespaces.php`
+- **Thin community `Community 255`** (1 nodes): `autoload.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 256`** (1 nodes): `autoload_psr4.php`
+- **Thin community `Community 256`** (1 nodes): `autoload_namespaces.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 257`** (1 nodes): `autoload_classmap.php`
+- **Thin community `Community 257`** (1 nodes): `autoload_psr4.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 258`** (1 nodes): `platform_check.php`
+- **Thin community `Community 258`** (1 nodes): `autoload_classmap.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 259`** (1 nodes): `installed.php`
+- **Thin community `Community 259`** (1 nodes): `platform_check.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 260`** (1 nodes): `webpack.config.js`
+- **Thin community `Community 260`** (1 nodes): `installed.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 261`** (1 nodes): `config.php`
+- **Thin community `Community 261`** (1 nodes): `webpack.config.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 262`** (1 nodes): `app.js`
+- **Thin community `Community 262`** (1 nodes): `config.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 263`** (1 nodes): `webpack.core.js`
+- **Thin community `Community 263`** (1 nodes): `app.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 264`** (1 nodes): `wp-packages.js`
+- **Thin community `Community 264`** (1 nodes): `webpack.core.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 265`** (1 nodes): `webpack.vendor.js`
+- **Thin community `Community 265`** (1 nodes): `wp-packages.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 266`** (1 nodes): `paths.js`
+- **Thin community `Community 266`** (1 nodes): `webpack.vendor.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 267`** (1 nodes): `webpack.base.js`
+- **Thin community `Community 267`** (1 nodes): `paths.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 268`** (1 nodes): `webpack.blocks.js`
+- **Thin community `Community 268`** (1 nodes): `webpack.base.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 269`** (1 nodes): `webpack.metaboxes.js`
+- **Thin community `Community 269`** (1 nodes): `webpack.blocks.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 270`** (1 nodes): `index.js`
+- **Thin community `Community 270`** (1 nodes): `webpack.metaboxes.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
 - **Thin community `Community 271`** (1 nodes): `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
@@ -1987,15 +1992,15 @@ Nodes (1): Review 2: Woman in floral apron sprinkling jaggery powder over a stea
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
 - **Thin community `Community 290`** (1 nodes): `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 291`** (1 nodes): `fetch-attachments-data.js`
+- **Thin community `Community 291`** (1 nodes): `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 292`** (1 nodes): `api-fetch.js`
+- **Thin community `Community 292`** (1 nodes): `fetch-attachments-data.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 293`** (1 nodes): `context.js`
+- **Thin community `Community 293`** (1 nodes): `api-fetch.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 294`** (1 nodes): `fields.js`
+- **Thin community `Community 294`** (1 nodes): `context.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 295`** (1 nodes): `index.js`
+- **Thin community `Community 295`** (1 nodes): `fields.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
 - **Thin community `Community 296`** (1 nodes): `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
@@ -2011,9 +2016,9 @@ Nodes (1): Review 2: Woman in floral apron sprinkling jaggery powder over a stea
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
 - **Thin community `Community 302`** (1 nodes): `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 303`** (1 nodes): `constants.js`
+- **Thin community `Community 303`** (1 nodes): `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 304`** (1 nodes): `index.js`
+- **Thin community `Community 304`** (1 nodes): `constants.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
 - **Thin community `Community 305`** (1 nodes): `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
@@ -2029,11 +2034,11 @@ Nodes (1): Review 2: Woman in floral apron sprinkling jaggery powder over a stea
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
 - **Thin community `Community 311`** (1 nodes): `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 312`** (1 nodes): `registry.js`
+- **Thin community `Community 312`** (1 nodes): `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 313`** (1 nodes): `hooks.js`
+- **Thin community `Community 313`** (1 nodes): `registry.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 314`** (1 nodes): `index.js`
+- **Thin community `Community 314`** (1 nodes): `hooks.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
 - **Thin community `Community 315`** (1 nodes): `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
@@ -2041,65 +2046,67 @@ Nodes (1): Review 2: Woman in floral apron sprinkling jaggery powder over a stea
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
 - **Thin community `Community 317`** (1 nodes): `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 318`** (1 nodes): `post_meta.php`
+- **Thin community `Community 318`** (1 nodes): `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 319`** (1 nodes): `nav_menu_item.php`
+- **Thin community `Community 319`** (1 nodes): `post_meta.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 320`** (1 nodes): `user_meta.php`
+- **Thin community `Community 320`** (1 nodes): `nav_menu_item.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 321`** (1 nodes): `network.php`
+- **Thin community `Community 321`** (1 nodes): `user_meta.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 322`** (1 nodes): `theme_options.php`
+- **Thin community `Community 322`** (1 nodes): `network.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 323`** (1 nodes): `widget.php`
+- **Thin community `Community 323`** (1 nodes): `theme_options.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 324`** (1 nodes): `comment_meta.php`
+- **Thin community `Community 324`** (1 nodes): `widget.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 325`** (1 nodes): `term_meta.php`
+- **Thin community `Community 325`** (1 nodes): `comment_meta.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 326`** (1 nodes): `options-page.php`
+- **Thin community `Community 326`** (1 nodes): `term_meta.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 327`** (1 nodes): `incorrect-syntax.php`
+- **Thin community `Community 327`** (1 nodes): `options-page.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 328`** (1 nodes): `Unbuilt Pages (Recipes, Blogs, Processing, Community, Contact)`
+- **Thin community `Community 328`** (1 nodes): `incorrect-syntax.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 329`** (1 nodes): `WP-CLI in Docker Container`
+- **Thin community `Community 329`** (1 nodes): `Unbuilt Pages (Recipes, Blogs, Processing, Community, Contact)`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 330`** (1 nodes): `Bump wp_enqueue_style Version (Cache Bust)`
+- **Thin community `Community 330`** (1 nodes): `WP-CLI in Docker Container`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 331`** (1 nodes): `Rule: Never Use Raw Generic Fallback Alone`
+- **Thin community `Community 331`** (1 nodes): `Bump wp_enqueue_style Version (Cache Bust)`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 332`** (1 nodes): `Rule: Italic & Weight Variants Allowed`
+- **Thin community `Community 332`** (1 nodes): `Rule: Never Use Raw Generic Fallback Alone`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 333`** (1 nodes): `Color Token --brand-cream (#f5ebd2)`
+- **Thin community `Community 333`** (1 nodes): `Rule: Italic & Weight Variants Allowed`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 334`** (1 nodes): `U-shaped Review Cards Convention`
+- **Thin community `Community 334`** (1 nodes): `Color Token --brand-cream (#f5ebd2)`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 335`** (1 nodes): `Coding Standard: Before/After Versions`
+- **Thin community `Community 335`** (1 nodes): `U-shaped Review Cards Convention`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 336`** (1 nodes): `DM Sans - SIL OFL 1.1 license`
+- **Thin community `Community 336`** (1 nodes): `Coding Standard: Before/After Versions`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 337`** (1 nodes): `Appetite Pro - Personal Use Only license`
+- **Thin community `Community 337`** (1 nodes): `DM Sans - SIL OFL 1.1 license`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 338`** (1 nodes): `Brand Guidelines (PDF)`
+- **Thin community `Community 338`** (1 nodes): `Appetite Pro - Personal Use Only license`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 339`** (1 nodes): `About Us - Anandiitaa (PDF reference)`
+- **Thin community `Community 339`** (1 nodes): `Brand Guidelines (PDF)`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 340`** (1 nodes): `Sugar Page - Anandiitaa (PDF reference)`
+- **Thin community `Community 340`** (1 nodes): `About Us - Anandiitaa (PDF reference)`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 341`** (1 nodes): `Jaggery Page - Anandiitaa (PDF reference)`
+- **Thin community `Community 341`** (1 nodes): `Sugar Page - Anandiitaa (PDF reference)`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 342`** (1 nodes): `Home Page (PDF reference)`
+- **Thin community `Community 342`** (1 nodes): `Jaggery Page - Anandiitaa (PDF reference)`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 343`** (1 nodes): `Source: Jaggery powder bowl with sugarcane stalks on wooden surface (high-res original for section 6)`
+- **Thin community `Community 343`** (1 nodes): `Home Page (PDF reference)`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 344`** (1 nodes): `Source: Coconut shell bowl filled with jaggery powder and wooden spoon, palm fronds in background (high-res original for section 11)`
+- **Thin community `Community 344`** (1 nodes): `Source: Jaggery powder bowl with sugarcane stalks on wooden surface (high-res original for section 6)`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 345`** (1 nodes): `Source: Anandiitaa product packaging lineup - Desi Jaggery, Desi Jaggery Powder, Premium Refined Sugar Bold Grain, Premium Refined Sugar Fine Grain with aloe and sugarcane props (high-res original for slide 1)`
+- **Thin community `Community 345`** (1 nodes): `Source: Coconut shell bowl filled with jaggery powder and wooden spoon, palm fronds in background (high-res original for section 11)`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 346`** (1 nodes): `Review 1: Hands spooning jaggery powder over a bowl with jaggery cubes and chai on a kitchen counter (Aditi Parekh testimonial)`
+- **Thin community `Community 346`** (1 nodes): `Source: Anandiitaa product packaging lineup - Desi Jaggery, Desi Jaggery Powder, Premium Refined Sugar Bold Grain, Premium Refined Sugar Fine Grain with aloe and sugarcane props (high-res original for slide 1)`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 347`** (1 nodes): `Review 2: Woman in floral apron sprinkling jaggery powder over a steaming paratha on a steel plate (Kavya Bhosle testimonial)`
+- **Thin community `Community 347`** (1 nodes): `Review 1: Hands spooning jaggery powder over a bowl with jaggery cubes and chai on a kitchen counter (Aditi Parekh testimonial)`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 348`** (1 nodes): `Review 2: Woman in floral apron sprinkling jaggery powder over a steaming paratha on a steel plate (Kavya Bhosle testimonial)`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
 
 ## Suggested Questions

@@ -142,7 +142,7 @@
       "label": "anandiitaa_get_carousel_slides()",
       "file_type": "code",
       "source_file": "my-custom-theme/functions.php",
-      "source_location": "L135",
+      "source_location": "L166",
       "id": "functions_anandiitaa_get_carousel_slides",
       "community": 93
     },
@@ -150,7 +150,7 @@
       "label": "anandiitaa_route_templates()",
       "file_type": "code",
       "source_file": "my-custom-theme/functions.php",
-      "source_location": "L180",
+      "source_location": "L211",
       "id": "functions_anandiitaa_route_templates",
       "community": 93
     },
@@ -211,12 +211,20 @@
       "community": 251
     },
     {
+      "label": "page-about.php",
+      "file_type": "code",
+      "source_file": "my-custom-theme/page-about.php",
+      "source_location": "L1",
+      "id": "my_custom_theme_page_about_php",
+      "community": 252
+    },
+    {
       "label": "benefits-accordion.js",
       "file_type": "code",
       "source_file": "my-custom-theme/assets/js/benefits-accordion.js",
       "source_location": "L1",
       "id": "my_custom_theme_assets_js_benefits_accordion_js",
-      "community": 252
+      "community": 253
     },
     {
       "label": "hero-carousel.js",
@@ -312,7 +320,7 @@
       "source_file": "assets/js/scroll-reveal.js",
       "source_location": "L1",
       "id": "assets_js_scroll_reveal_js",
-      "community": 253
+      "community": 254
     },
     {
       "label": "autoload.php",
@@ -320,7 +328,7 @@
       "source_file": "my-custom-theme/vendor/autoload.php",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_autoload_php",
-      "community": 254
+      "community": 255
     },
     {
       "label": "autoload_namespaces.php",
@@ -328,7 +336,7 @@
       "source_file": "my-custom-theme/vendor/composer/autoload_namespaces.php",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_composer_autoload_namespaces_php",
-      "community": 255
+      "community": 256
     },
     {
       "label": "ClassLoader.php",
@@ -544,7 +552,7 @@
       "source_file": "my-custom-theme/vendor/composer/autoload_psr4.php",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_composer_autoload_psr4_php",
-      "community": 256
+      "community": 257
     },
     {
       "label": "autoload_classmap.php",
@@ -552,7 +560,7 @@
       "source_file": "my-custom-theme/vendor/composer/autoload_classmap.php",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_composer_autoload_classmap_php",
-      "community": 257
+      "community": 258
     },
     {
       "label": "platform_check.php",
@@ -560,7 +568,7 @@
       "source_file": "my-custom-theme/vendor/composer/platform_check.php",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_composer_platform_check_php",
-      "community": 258
+      "community": 259
     },
     {
       "label": "autoload_static.php",
@@ -760,7 +768,7 @@
       "source_file": "my-custom-theme/vendor/composer/installed.php",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_composer_installed_php",
-      "community": 259
+      "community": 260
     },
     {
       "label": "webpack.config.js",
@@ -768,7 +776,7 @@
       "source_file": "my-custom-theme/vendor/htmlburger/carbon-fields/webpack.config.js",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_htmlburger_carbon_fields_webpack_config_js",
-      "community": 260
+      "community": 261
     },
     {
       "label": "config.php",
@@ -776,7 +784,7 @@
       "source_file": "my-custom-theme/vendor/htmlburger/carbon-fields/config.php",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_htmlburger_carbon_fields_config_php",
-      "community": 261
+      "community": 262
     },
     {
       "label": "functions.php",
@@ -1816,7 +1824,7 @@
       "source_file": "my-custom-theme/vendor/htmlburger/carbon-fields/core/Libraries/Sidebar_Manager/assets/js/app.js",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_htmlburger_carbon_fields_core_libraries_sidebar_manager_assets_js_app_js",
-      "community": 262
+      "community": 263
     },
     {
       "label": "Complex_Field.php",
@@ -10032,7 +10040,7 @@
       "source_file": "my-custom-theme/vendor/htmlburger/carbon-fields/bin/webpack.core.js",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_htmlburger_carbon_fields_bin_webpack_core_js",
-      "community": 263
+      "community": 264
     },
     {
       "label": "wp-packages.js",
@@ -10040,7 +10048,7 @@
       "source_file": "my-custom-theme/vendor/htmlburger/carbon-fields/bin/wp-packages.js",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_htmlburger_carbon_fields_bin_wp_packages_js",
-      "community": 264
+      "community": 265
     },
     {
       "label": "webpack.vendor.js",
@@ -10048,7 +10056,7 @@
       "source_file": "my-custom-theme/vendor/htmlburger/carbon-fields/bin/webpack.vendor.js",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_htmlburger_carbon_fields_bin_webpack_vendor_js",
-      "community": 265
+      "community": 266
     },
     {
       "label": "paths.js",
@@ -10056,7 +10064,7 @@
       "source_file": "my-custom-theme/vendor/htmlburger/carbon-fields/bin/paths.js",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_htmlburger_carbon_fields_bin_paths_js",
-      "community": 266
+      "community": 267
     },
     {
       "label": "webpack.base.js",
@@ -10064,7 +10072,7 @@
       "source_file": "my-custom-theme/vendor/htmlburger/carbon-fields/bin/webpack.base.js",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_htmlburger_carbon_fields_bin_webpack_base_js",
-      "community": 267
+      "community": 268
     },
     {
       "label": "webpack.blocks.js",
@@ -10072,7 +10080,7 @@
       "source_file": "my-custom-theme/vendor/htmlburger/carbon-fields/bin/webpack.blocks.js",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_htmlburger_carbon_fields_bin_webpack_blocks_js",
-      "community": 268
+      "community": 269
     },
     {
       "label": "webpack.metaboxes.js",
@@ -10080,7 +10088,7 @@
       "source_file": "my-custom-theme/vendor/htmlburger/carbon-fields/bin/webpack.metaboxes.js",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_htmlburger_carbon_fields_bin_webpack_metaboxes_js",
-      "community": 269
+      "community": 270
     },
     {
       "label": "index.js",
@@ -10264,7 +10272,7 @@
       "source_file": "my-custom-theme/vendor/htmlburger/carbon-fields/packages/blocks/components/field/index.js",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_htmlburger_carbon_fields_packages_blocks_components_field_index_js",
-      "community": 270
+      "community": 271
     },
     {
       "label": "index.js",
@@ -10288,7 +10296,7 @@
       "source_file": "my-custom-theme/vendor/htmlburger/carbon-fields/packages/blocks/fields/index.js",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_htmlburger_carbon_fields_packages_blocks_fields_index_js",
-      "community": 271
+      "community": 272
     },
     {
       "label": "index.js",
@@ -10296,7 +10304,7 @@
       "source_file": "my-custom-theme/vendor/htmlburger/carbon-fields/packages/blocks/fields/footer-scripts/index.js",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_htmlburger_carbon_fields_packages_blocks_fields_footer_scripts_index_js",
-      "community": 272
+      "community": 273
     },
     {
       "label": "index.js",
@@ -10304,7 +10312,7 @@
       "source_file": "my-custom-theme/vendor/htmlburger/carbon-fields/packages/blocks/fields/sidebar/index.js",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_htmlburger_carbon_fields_packages_blocks_fields_sidebar_index_js",
-      "community": 273
+      "community": 274
     },
     {
       "label": "index.js",
@@ -10312,7 +10320,7 @@
       "source_file": "my-custom-theme/vendor/htmlburger/carbon-fields/packages/blocks/fields/oembed/index.js",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_htmlburger_carbon_fields_packages_blocks_fields_oembed_index_js",
-      "community": 274
+      "community": 275
     },
     {
       "label": "index.js",
@@ -10336,7 +10344,7 @@
       "source_file": "my-custom-theme/vendor/htmlburger/carbon-fields/packages/blocks/fields/radio/index.js",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_htmlburger_carbon_fields_packages_blocks_fields_radio_index_js",
-      "community": 275
+      "community": 276
     },
     {
       "label": "index.js",
@@ -10344,7 +10352,7 @@
       "source_file": "my-custom-theme/vendor/htmlburger/carbon-fields/packages/blocks/fields/hidden/index.js",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_htmlburger_carbon_fields_packages_blocks_fields_hidden_index_js",
-      "community": 276
+      "community": 277
     },
     {
       "label": "index.js",
@@ -10352,7 +10360,7 @@
       "source_file": "my-custom-theme/vendor/htmlburger/carbon-fields/packages/blocks/fields/file/index.js",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_htmlburger_carbon_fields_packages_blocks_fields_file_index_js",
-      "community": 277
+      "community": 278
     },
     {
       "label": "index.js",
@@ -10416,7 +10424,7 @@
       "source_file": "my-custom-theme/vendor/htmlburger/carbon-fields/packages/blocks/fields/separator/index.js",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_htmlburger_carbon_fields_packages_blocks_fields_separator_index_js",
-      "community": 278
+      "community": 279
     },
     {
       "label": "index.js",
@@ -10424,7 +10432,7 @@
       "source_file": "my-custom-theme/vendor/htmlburger/carbon-fields/packages/blocks/fields/image/index.js",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_htmlburger_carbon_fields_packages_blocks_fields_image_index_js",
-      "community": 279
+      "community": 280
     },
     {
       "label": "index.js",
@@ -10432,7 +10440,7 @@
       "source_file": "my-custom-theme/vendor/htmlburger/carbon-fields/packages/blocks/fields/map/index.js",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_htmlburger_carbon_fields_packages_blocks_fields_map_index_js",
-      "community": 280
+      "community": 281
     },
     {
       "label": "index.js",
@@ -10440,7 +10448,7 @@
       "source_file": "my-custom-theme/vendor/htmlburger/carbon-fields/packages/blocks/fields/textarea/index.js",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_htmlburger_carbon_fields_packages_blocks_fields_textarea_index_js",
-      "community": 281
+      "community": 282
     },
     {
       "label": "index.js",
@@ -10448,7 +10456,7 @@
       "source_file": "my-custom-theme/vendor/htmlburger/carbon-fields/packages/blocks/fields/media-gallery/index.js",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_htmlburger_carbon_fields_packages_blocks_fields_media_gallery_index_js",
-      "community": 282
+      "community": 283
     },
     {
       "label": "index.js",
@@ -10456,7 +10464,7 @@
       "source_file": "my-custom-theme/vendor/htmlburger/carbon-fields/packages/blocks/fields/block-preview/index.js",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_htmlburger_carbon_fields_packages_blocks_fields_block_preview_index_js",
-      "community": 283
+      "community": 284
     },
     {
       "label": "index.js",
@@ -10464,7 +10472,7 @@
       "source_file": "my-custom-theme/vendor/htmlburger/carbon-fields/packages/blocks/fields/text/index.js",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_htmlburger_carbon_fields_packages_blocks_fields_text_index_js",
-      "community": 284
+      "community": 285
     },
     {
       "label": "index.js",
@@ -10472,7 +10480,7 @@
       "source_file": "my-custom-theme/vendor/htmlburger/carbon-fields/packages/blocks/fields/select/index.js",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_htmlburger_carbon_fields_packages_blocks_fields_select_index_js",
-      "community": 285
+      "community": 286
     },
     {
       "label": "index.js",
@@ -10480,7 +10488,7 @@
       "source_file": "my-custom-theme/vendor/htmlburger/carbon-fields/packages/blocks/fields/header-scripts/index.js",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_htmlburger_carbon_fields_packages_blocks_fields_header_scripts_index_js",
-      "community": 286
+      "community": 287
     },
     {
       "label": "index.js",
@@ -10488,7 +10496,7 @@
       "source_file": "my-custom-theme/vendor/htmlburger/carbon-fields/packages/blocks/fields/set/index.js",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_htmlburger_carbon_fields_packages_blocks_fields_set_index_js",
-      "community": 287
+      "community": 288
     },
     {
       "label": "index.js",
@@ -10496,7 +10504,7 @@
       "source_file": "my-custom-theme/vendor/htmlburger/carbon-fields/packages/blocks/fields/multiselect/index.js",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_htmlburger_carbon_fields_packages_blocks_fields_multiselect_index_js",
-      "community": 288
+      "community": 289
     },
     {
       "label": "index.js",
@@ -10504,7 +10512,7 @@
       "source_file": "my-custom-theme/vendor/htmlburger/carbon-fields/packages/blocks/fields/radio-image/index.js",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_htmlburger_carbon_fields_packages_blocks_fields_radio_image_index_js",
-      "community": 289
+      "community": 290
     },
     {
       "label": "index.js",
@@ -10624,7 +10632,7 @@
       "source_file": "my-custom-theme/vendor/htmlburger/carbon-fields/packages/blocks/store/index.js",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_htmlburger_carbon_fields_packages_blocks_store_index_js",
-      "community": 290
+      "community": 291
     },
     {
       "label": "index.js",
@@ -10664,7 +10672,7 @@
       "source_file": "my-custom-theme/vendor/htmlburger/carbon-fields/packages/core/utils/fetch-attachments-data.js",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_htmlburger_carbon_fields_packages_core_utils_fetch_attachments_data_js",
-      "community": 291
+      "community": 292
     },
     {
       "label": "unique-id.js",
@@ -10688,7 +10696,7 @@
       "source_file": "my-custom-theme/vendor/htmlburger/carbon-fields/packages/core/utils/api-fetch.js",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_htmlburger_carbon_fields_packages_core_utils_api_fetch_js",
-      "community": 292
+      "community": 293
     },
     {
       "label": "hex-and-rgba.js",
@@ -10848,7 +10856,7 @@
       "source_file": "my-custom-theme/vendor/htmlburger/carbon-fields/packages/core/components/disabled/context.js",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_htmlburger_carbon_fields_packages_core_components_disabled_context_js",
-      "community": 293
+      "community": 294
     },
     {
       "label": "index.js",
@@ -10920,7 +10928,7 @@
       "source_file": "my-custom-theme/vendor/htmlburger/carbon-fields/packages/core/registry/fields.js",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_htmlburger_carbon_fields_packages_core_registry_fields_js",
-      "community": 294
+      "community": 295
     },
     {
       "label": "index.js",
@@ -10944,7 +10952,7 @@
       "source_file": "my-custom-theme/vendor/htmlburger/carbon-fields/packages/core/fields/index.js",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_htmlburger_carbon_fields_packages_core_fields_index_js",
-      "community": 295
+      "community": 296
     },
     {
       "label": "index.js",
@@ -11448,7 +11456,7 @@
       "source_file": "my-custom-theme/vendor/htmlburger/carbon-fields/packages/core/fields/date/index.js",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_htmlburger_carbon_fields_packages_core_fields_date_index_js",
-      "community": 296
+      "community": 297
     },
     {
       "label": "index.js",
@@ -11496,7 +11504,7 @@
       "source_file": "my-custom-theme/vendor/htmlburger/carbon-fields/packages/core/fields/time/index.js",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_htmlburger_carbon_fields_packages_core_fields_time_index_js",
-      "community": 297
+      "community": 298
     },
     {
       "label": "google-map.js",
@@ -11848,7 +11856,7 @@
       "source_file": "my-custom-theme/vendor/htmlburger/carbon-fields/packages/core/fields/radio-image/index.js",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_htmlburger_carbon_fields_packages_core_fields_radio_image_index_js",
-      "community": 298
+      "community": 299
     },
     {
       "label": "required.js",
@@ -12032,7 +12040,7 @@
       "source_file": "my-custom-theme/vendor/htmlburger/carbon-fields/packages/core/store/index.js",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_htmlburger_carbon_fields_packages_core_store_index_js",
-      "community": 299
+      "community": 300
     },
     {
       "label": "index.js",
@@ -12040,7 +12048,7 @@
       "source_file": "my-custom-theme/vendor/htmlburger/carbon-fields/packages/vendor/index.js",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_htmlburger_carbon_fields_packages_vendor_index_js",
-      "community": 300
+      "community": 301
     },
     {
       "label": "index.js",
@@ -12048,7 +12056,7 @@
       "source_file": "my-custom-theme/vendor/htmlburger/carbon-fields/packages/metaboxes/index.js",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_htmlburger_carbon_fields_packages_metaboxes_index_js",
-      "community": 301
+      "community": 302
     },
     {
       "label": "index.js",
@@ -12696,7 +12704,7 @@
       "source_file": "my-custom-theme/vendor/htmlburger/carbon-fields/packages/metaboxes/components/field/index.js",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_htmlburger_carbon_fields_packages_metaboxes_components_field_index_js",
-      "community": 302
+      "community": 303
     },
     {
       "label": "index.js",
@@ -12744,7 +12752,7 @@
       "source_file": "my-custom-theme/vendor/htmlburger/carbon-fields/packages/metaboxes/lib/constants.js",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_htmlburger_carbon_fields_packages_metaboxes_lib_constants_js",
-      "community": 303
+      "community": 304
     },
     {
       "label": "index.js",
@@ -12752,7 +12760,7 @@
       "source_file": "my-custom-theme/vendor/htmlburger/carbon-fields/packages/metaboxes/fields/index.js",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_htmlburger_carbon_fields_packages_metaboxes_fields_index_js",
-      "community": 304
+      "community": 305
     },
     {
       "label": "index.js",
@@ -12760,7 +12768,7 @@
       "source_file": "my-custom-theme/vendor/htmlburger/carbon-fields/packages/metaboxes/fields/sidebar/index.js",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_htmlburger_carbon_fields_packages_metaboxes_fields_sidebar_index_js",
-      "community": 305
+      "community": 306
     },
     {
       "label": "index.js",
@@ -12784,7 +12792,7 @@
       "source_file": "my-custom-theme/vendor/htmlburger/carbon-fields/packages/metaboxes/fields/radio/index.js",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_htmlburger_carbon_fields_packages_metaboxes_fields_radio_index_js",
-      "community": 306
+      "community": 307
     },
     {
       "label": "index.js",
@@ -12792,7 +12800,7 @@
       "source_file": "my-custom-theme/vendor/htmlburger/carbon-fields/packages/metaboxes/fields/file/index.js",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_htmlburger_carbon_fields_packages_metaboxes_fields_file_index_js",
-      "community": 307
+      "community": 308
     },
     {
       "label": "index.js",
@@ -12800,7 +12808,7 @@
       "source_file": "my-custom-theme/vendor/htmlburger/carbon-fields/packages/metaboxes/fields/datetime/index.js",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_htmlburger_carbon_fields_packages_metaboxes_fields_datetime_index_js",
-      "community": 308
+      "community": 309
     },
     {
       "label": "index.js",
@@ -12816,7 +12824,7 @@
       "source_file": "my-custom-theme/vendor/htmlburger/carbon-fields/packages/metaboxes/fields/image/index.js",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_htmlburger_carbon_fields_packages_metaboxes_fields_image_index_js",
-      "community": 309
+      "community": 310
     },
     {
       "label": "index.js",
@@ -12824,7 +12832,7 @@
       "source_file": "my-custom-theme/vendor/htmlburger/carbon-fields/packages/metaboxes/fields/media-gallery/index.js",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_htmlburger_carbon_fields_packages_metaboxes_fields_media_gallery_index_js",
-      "community": 310
+      "community": 311
     },
     {
       "label": "index.js",
@@ -12832,7 +12840,7 @@
       "source_file": "my-custom-theme/vendor/htmlburger/carbon-fields/packages/metaboxes/fields/multiselect/index.js",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_htmlburger_carbon_fields_packages_metaboxes_fields_multiselect_index_js",
-      "community": 311
+      "community": 312
     },
     {
       "label": "registry.js",
@@ -12840,7 +12848,7 @@
       "source_file": "my-custom-theme/vendor/htmlburger/carbon-fields/packages/metaboxes/containers/registry.js",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_htmlburger_carbon_fields_packages_metaboxes_containers_registry_js",
-      "community": 312
+      "community": 313
     },
     {
       "label": "root-registry.js",
@@ -12872,7 +12880,7 @@
       "source_file": "my-custom-theme/vendor/htmlburger/carbon-fields/packages/metaboxes/containers/hooks.js",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_htmlburger_carbon_fields_packages_metaboxes_containers_hooks_js",
-      "community": 313
+      "community": 314
     },
     {
       "label": "index.js",
@@ -12912,7 +12920,7 @@
       "source_file": "my-custom-theme/vendor/htmlburger/carbon-fields/packages/metaboxes/containers/user-meta/index.js",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_htmlburger_carbon_fields_packages_metaboxes_containers_user_meta_index_js",
-      "community": 314
+      "community": 315
     },
     {
       "label": "index.js",
@@ -12936,7 +12944,7 @@
       "source_file": "my-custom-theme/vendor/htmlburger/carbon-fields/packages/metaboxes/hocs/with-container/index.js",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_htmlburger_carbon_fields_packages_metaboxes_hocs_with_container_index_js",
-      "community": 315
+      "community": 316
     },
     {
       "label": "index.js",
@@ -12960,7 +12968,7 @@
       "source_file": "my-custom-theme/vendor/htmlburger/carbon-fields/packages/metaboxes/hocs/with-field/index.js",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_htmlburger_carbon_fields_packages_metaboxes_hocs_with_field_index_js",
-      "community": 316
+      "community": 317
     },
     {
       "label": "selectors.js",
@@ -13208,7 +13216,7 @@
       "source_file": "my-custom-theme/vendor/htmlburger/carbon-fields/packages/metaboxes/store/index.js",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_htmlburger_carbon_fields_packages_metaboxes_store_index_js",
-      "community": 317
+      "community": 318
     },
     {
       "label": "helpers.js",
@@ -13232,7 +13240,7 @@
       "source_file": "my-custom-theme/vendor/htmlburger/carbon-fields/templates/Container/post_meta.php",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_htmlburger_carbon_fields_templates_container_post_meta_php",
-      "community": 318
+      "community": 319
     },
     {
       "label": "nav_menu_item.php",
@@ -13240,7 +13248,7 @@
       "source_file": "my-custom-theme/vendor/htmlburger/carbon-fields/templates/Container/nav_menu_item.php",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_htmlburger_carbon_fields_templates_container_nav_menu_item_php",
-      "community": 319
+      "community": 320
     },
     {
       "label": "user_meta.php",
@@ -13248,7 +13256,7 @@
       "source_file": "my-custom-theme/vendor/htmlburger/carbon-fields/templates/Container/user_meta.php",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_htmlburger_carbon_fields_templates_container_user_meta_php",
-      "community": 320
+      "community": 321
     },
     {
       "label": "network.php",
@@ -13256,7 +13264,7 @@
       "source_file": "my-custom-theme/vendor/htmlburger/carbon-fields/templates/Container/network.php",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_htmlburger_carbon_fields_templates_container_network_php",
-      "community": 321
+      "community": 322
     },
     {
       "label": "theme_options.php",
@@ -13264,7 +13272,7 @@
       "source_file": "my-custom-theme/vendor/htmlburger/carbon-fields/templates/Container/theme_options.php",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_htmlburger_carbon_fields_templates_container_theme_options_php",
-      "community": 322
+      "community": 323
     },
     {
       "label": "widget.php",
@@ -13272,7 +13280,7 @@
       "source_file": "my-custom-theme/vendor/htmlburger/carbon-fields/templates/Container/widget.php",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_htmlburger_carbon_fields_templates_container_widget_php",
-      "community": 323
+      "community": 324
     },
     {
       "label": "comment_meta.php",
@@ -13280,7 +13288,7 @@
       "source_file": "my-custom-theme/vendor/htmlburger/carbon-fields/templates/Container/comment_meta.php",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_htmlburger_carbon_fields_templates_container_comment_meta_php",
-      "community": 324
+      "community": 325
     },
     {
       "label": "term_meta.php",
@@ -13288,7 +13296,7 @@
       "source_file": "my-custom-theme/vendor/htmlburger/carbon-fields/templates/Container/term_meta.php",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_htmlburger_carbon_fields_templates_container_term_meta_php",
-      "community": 325
+      "community": 326
     },
     {
       "label": "options-page.php",
@@ -13296,7 +13304,7 @@
       "source_file": "my-custom-theme/vendor/htmlburger/carbon-fields/templates/Container/common/options-page.php",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_htmlburger_carbon_fields_templates_container_common_options_page_php",
-      "community": 326
+      "community": 327
     },
     {
       "label": "incorrect-syntax.php",
@@ -13304,7 +13312,7 @@
       "source_file": "my-custom-theme/vendor/htmlburger/carbon-fields/templates/Exception/incorrect-syntax.php",
       "source_location": "L1",
       "id": "my_custom_theme_vendor_htmlburger_carbon_fields_templates_exception_incorrect_syntax_php",
-      "community": 327
+      "community": 328
     },
     {
       "label": "Anandiitaa Brand",
@@ -13831,7 +13839,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 328,
+      "community": 329,
       "id": "project_unbuilt_pages"
     },
     {
@@ -13843,7 +13851,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 329,
+      "community": 330,
       "id": "project_wp_cli"
     },
     {
@@ -13855,7 +13863,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 330,
+      "community": 331,
       "id": "project_enqueue_version_bump"
     },
     {
@@ -14095,7 +14103,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 331,
+      "community": 332,
       "id": "design_no_raw_generic_fallback"
     },
     {
@@ -14107,7 +14115,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 332,
+      "community": 333,
       "id": "design_italic_weight_allowed"
     },
     {
@@ -14131,7 +14139,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 333,
+      "community": 334,
       "id": "design_token_brand_cream"
     },
     {
@@ -14167,7 +14175,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 334,
+      "community": 335,
       "id": "design_u_shaped_review_cards"
     },
     {
@@ -14227,7 +14235,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 335,
+      "community": 336,
       "id": "context_before_after_versions"
     },
     {
@@ -14359,7 +14367,7 @@
       "captured_at": null,
       "author": "DM Sans Project Authors",
       "contributor": null,
-      "community": 336,
+      "community": 337,
       "id": "font_dm_sans_license"
     },
     {
@@ -14371,7 +14379,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 337,
+      "community": 338,
       "id": "font_appetite_pro_license"
     },
     {
@@ -14383,7 +14391,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 338,
+      "community": 339,
       "id": "design_ref_brand_guidelines"
     },
     {
@@ -14395,7 +14403,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 339,
+      "community": 340,
       "id": "design_ref_about_us"
     },
     {
@@ -14407,7 +14415,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 340,
+      "community": 341,
       "id": "design_ref_sugar_page"
     },
     {
@@ -14419,7 +14427,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 341,
+      "community": 342,
       "id": "design_ref_jaggery_page"
     },
     {
@@ -14431,7 +14439,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 342,
+      "community": 343,
       "id": "design_ref_home_page"
     },
     {
@@ -16207,7 +16215,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 343,
+      "community": 344,
       "id": "source_section_6_jaggery_bowl_sugarcane"
     },
     {
@@ -16267,7 +16275,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 344,
+      "community": 345,
       "id": "source_section_11_coconut_jaggery_bowl_palm"
     },
     {
@@ -16279,7 +16287,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 345,
+      "community": 346,
       "id": "source_slide1_anandiitaa_product_lineup"
     },
     {
@@ -16555,7 +16563,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 346,
+      "community": 347,
       "id": "review_1_jaggery_powder_kitchen_scene"
     },
     {
@@ -16567,7 +16575,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 347,
+      "community": 348,
       "id": "review_2_jaggery_sprinkled_paratha"
     }
   ],
@@ -16600,7 +16608,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "my-custom-theme/functions.php",
-      "source_location": "L135",
+      "source_location": "L166",
       "weight": 1.0,
       "_src": "my_custom_theme_functions_php",
       "_tgt": "functions_anandiitaa_get_carousel_slides",
@@ -16612,7 +16620,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "my-custom-theme/functions.php",
-      "source_location": "L180",
+      "source_location": "L211",
       "weight": 1.0,
       "_src": "my_custom_theme_functions_php",
       "_tgt": "functions_anandiitaa_route_templates",

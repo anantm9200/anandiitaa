@@ -17,6 +17,7 @@
             <nav class="main-navigation" aria-label="Primary">
                 <a href="<?php echo esc_url( home_url( '/' ) ); ?>">Home</a>
                 <a href="<?php echo esc_url( home_url( '/products' ) ); ?>">Products</a>
+                <a href="<?php echo esc_url( home_url( '/about-us' ) ); ?>">About Us</a>
                 <?php // Temporarily hidden — flip false to true to restore. ?>
                 <?php if ( false ) : ?>
                     <a href="<?php echo esc_url( home_url( '/recipes' ) ); ?>">Recipes</a>

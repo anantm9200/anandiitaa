@@ -9,7 +9,7 @@ function anandiitaa_enqueue_assets() {
     );
 
     // Theme stylesheet (self-hosts AppetitePro + DM Sans via @font-face)
-    wp_enqueue_style( 'main-styles', get_stylesheet_uri(), array( 'google-fonts-montserrat' ), '9.2' );
+    wp_enqueue_style( 'main-styles', get_stylesheet_uri(), array( 'google-fonts-montserrat' ), '9.56' );
 
     // Hero carousel script
     wp_enqueue_script(
@@ -88,6 +88,7 @@ add_filter( 'pre_get_document_title', function ( $title ) {
         'products'         => 'Our Products | ' . $site,
         'products/jaggery' => 'Desi Jaggery | ' . $site,
         'products/sugar'   => 'Premium Refined Sugar | ' . $site,
+        'about-us'         => 'About Us | ' . $site,
     );
 
     if ( isset( $titles[ $req ] ) ) {
@@ -212,6 +213,7 @@ function anandiitaa_route_templates( $template ) {
         'products'         => 'page-products.php',
         'products/jaggery' => 'page-products-jaggery.php',
         'products/sugar'   => 'page-products-sugar.php',
+        'about-us'         => 'page-about.php',
     );
 
     $request = trim( parse_url( $_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH ) ?? '', '/' );
