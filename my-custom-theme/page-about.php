@@ -200,7 +200,9 @@ $tpl = get_template_directory_uri();
             The
             <img class="about-standards__wordmark"
                  src="<?php echo $tpl; ?>/assets/images/logo/anandiitaa-wordmark.png"
-                 alt="Anandiitaa">
+                 alt="Anandiitaa"
+                 loading="lazy"
+                 decoding="async">
             Standards
         </h2>
 
@@ -250,7 +252,7 @@ $tpl = get_template_directory_uri();
             </picture>
         </div>
         <div class="social-slide">
-            <img class="social-slide__wordmark" src="<?php echo $tpl; ?>/assets/images/logo/anandiitaa-wordmark.png" alt="ANANDIITAA">
+            <img class="social-slide__wordmark" src="<?php echo $tpl; ?>/assets/images/logo/anandiitaa-wordmark.png" alt="ANANDIITAA" loading="lazy" decoding="async">
             <h2 class="social-slide__heading">For Those Who<br>Choose Better.</h2>
             <p class="social-slide__subtitle">A growing community that believes everyday<br>food deserves higher standards.</p>
             <div class="social-slide__pills">

@@ -124,7 +124,7 @@ $tpl = get_template_directory_uri();
 
                     <div class="process-step__circle">
                         <?php if ( ! empty( $step['image'] ) ) : ?>
-                            <img src="<?php echo esc_url( $step['image'] ); ?>" alt="<?php echo esc_attr( strip_tags( $step['bold'] ) ); ?>">
+                            <img src="<?php echo esc_url( $step['image'] ); ?>" alt="<?php echo esc_attr( strip_tags( $step['bold'] ) ); ?>" loading="lazy" decoding="async">
                         <?php else : ?>
                             <span class="process-step__placeholder" aria-hidden="true">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"></rect><circle cx="9" cy="11" r="1.5"></circle><path d="M21 17l-5-5-5 5-3-3-5 5"></path></svg>
@@ -205,7 +205,7 @@ $tpl = get_template_directory_uri();
                             <div class="benefit-content">
                                 <div class="benefit-content__image">
                                     <?php if ( ! empty( $b['image'] ) ) : ?>
-                                        <img src="<?php echo esc_url( $b['image'] ); ?>" alt="<?php echo esc_attr( $b['title'] ); ?>">
+                                        <img src="<?php echo esc_url( $b['image'] ); ?>" alt="<?php echo esc_attr( $b['title'] ); ?>" loading="lazy" decoding="async">
                                     <?php else : ?>
                                         <span class="benefit-content__placeholder" aria-hidden="true">
                                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"></rect><circle cx="9" cy="11" r="1.5"></circle><path d="M21 17l-5-5-5 5-3-3-5 5"></path></svg>

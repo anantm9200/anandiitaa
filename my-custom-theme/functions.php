@@ -9,7 +9,7 @@ function anandiitaa_enqueue_assets() {
     );
 
     // Theme stylesheet (self-hosts AppetitePro + DM Sans via @font-face)
-    wp_enqueue_style( 'main-styles', get_stylesheet_uri(), array( 'google-fonts-montserrat' ), '9.76' );
+    wp_enqueue_style( 'main-styles', get_stylesheet_uri(), array( 'google-fonts-montserrat' ), '9.84' );
 
     // Hero carousel script
     wp_enqueue_script(
@@ -49,6 +49,21 @@ function anandiitaa_enqueue_assets() {
 }
 add_action( 'wp_enqueue_scripts', 'anandiitaa_enqueue_assets' );
 
+/**
+ * Defer all our custom theme scripts. None of them are critical-path —
+ * carousel, scroll-reveal, header-scroll, benefits-accordion all hook to
+ * DOMContentLoaded internally — so `defer` is safe and gets the parser
+ * unblocked sooner. Filter only touches our own handles to avoid
+ * surprising any future WP/plugin scripts.
+ */
+add_filter( 'script_loader_tag', function ( $tag, $handle ) {
+    $defer_handles = array( 'hero-carousel', 'header-scroll', 'scroll-reveal', 'benefits-accordion' );
+    if ( in_array( $handle, $defer_handles, true ) && false === strpos( $tag, ' defer' ) ) {
+        $tag = str_replace( '<script ', '<script defer ', $tag );
+    }
+    return $tag;
+}, 10, 2 );
+
 function anandiitaa_preconnect_fonts() {
     echo '<link rel="preconnect" href="https://fonts.googleapis.com">' . "\n";
     echo '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>' . "\n";
@@ -65,6 +80,37 @@ add_action( 'wp_head', 'anandiitaa_preconnect_fonts', 1 );
 add_action( 'wp_head', function () {
     echo '<script>(function(){if(/Macintosh|Mac OS X/i.test(navigator.userAgent))document.documentElement.classList.add("is-mac");})();</script>' . "\n";
 }, 2 );
+
+/**
+ * Home-page perf hints:
+ *   - Preload the LCP hero image (laptop variant; mac viewers get a separate
+ *     imagesrcset path so the browser picks correctly without download waste).
+ *   - Prefetch the most likely next pages so click-to-paint feels instant.
+ * Only emits on the front page — other pages don't need these hints.
+ */
+add_action( 'wp_head', function () {
+    if ( ! is_front_page() ) return;
+    $tpl = get_template_directory_uri();
+    $bust = function ( $rel ) {
+        $abs = get_template_directory() . $rel;
+        return file_exists( $abs ) ? get_template_directory_uri() . $rel . '?v=' . filemtime( $abs ) : get_template_directory_uri() . $rel;
+    };
+
+    $laptop_lcp = $bust( '/images/home/laptop/slider/slide-1.png' );
+    $mac_lcp    = $bust( '/images/home/mac/1.png' );
+
+    // Preload LCP hero. Browser picks the right variant via media query +
+    // imagesrcset. fetchpriority=high tells the browser this is the LCP.
+    echo '<link rel="preload" as="image" href="' . esc_url( $laptop_lcp ) . '" imagesrcset="' . esc_url( $mac_lcp ) . ' 1440w, ' . esc_url( $laptop_lcp ) . ' 1200w" imagesizes="100vw" fetchpriority="high">' . "\n";
+
+    // Prefetch sibling pages — browser pulls them during idle time so nav
+    // clicks render instantly. as="document" keeps prefetch from being
+    // mistreated as a stylesheet/script preload.
+    $prefetch_paths = array( '/products/jaggery', '/products/sugar', '/about-us', '/products' );
+    foreach ( $prefetch_paths as $p ) {
+        echo '<link rel="prefetch" href="' . esc_url( home_url( $p ) ) . '" as="document">' . "\n";
+    }
+}, 3 );
 
 /**
  * Document <title> handling.
@@ -203,6 +249,44 @@ function anandiitaa_get_carousel_slides() {
     }
     return $slides ?: null;
 }
+
+/**
+ * Serve the Service Worker file at the site root (/service-worker.js) so its
+ * scope covers the entire origin, not just /wp-content/themes/. Pantheon's
+ * Nginx doesn't let us add `Service-Worker-Allowed` to a static file response,
+ * so we proxy through PHP and emit the right headers manually.
+ */
+add_action( 'init', function () {
+    if ( '/service-worker.js' !== ( parse_url( $_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH ) ?? '' ) ) {
+        return;
+    }
+    $file = get_template_directory() . '/service-worker.js';
+    if ( ! file_exists( $file ) ) return;
+
+    header( 'Content-Type: application/javascript; charset=UTF-8' );
+    header( 'Service-Worker-Allowed: /' );
+    // Short TTL so we can iterate; bump SW's own CACHE_VERSION for real changes.
+    header( 'Cache-Control: no-cache, must-revalidate' );
+    readfile( $file );
+    exit;
+} );
+
+/**
+ * Inline SW registration. Runs ASAP, doesn't block render. Uses scope '/'
+ * which works because the response sets `Service-Worker-Allowed: /` above.
+ * If the browser already has the SW installed, this is a no-op.
+ */
+add_action( 'wp_head', function () {
+    ?>
+    <script>
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function () {
+            navigator.serviceWorker.register('/service-worker.js', { scope: '/' }).catch(function () {});
+        });
+    }
+    </script>
+    <?php
+}, 4 );
 
 /**
  * Map theme-owned URLs directly to template files so we don't need a WP page

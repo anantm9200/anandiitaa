@@ -1780,6 +1780,28 @@ picture {
     align-items: center;
     justify-content: flex-start;     /* title rides high; timeline gets pushed down by its own margin */
     padding: 60px 3% 60px;
+    position: relative;
+}
+
+/* Mac-only background: only large viewports (≥1440px) get the process bg
+   image. Non-mac variants intentionally absent — content still readable
+   on the existing cream slide bg for smaller screens. Same pattern reused
+   below for the variants slide. */
+@media (min-width: 1440px) {
+    .product-page--jaggery .product-slide--process {
+        background: url('assets/images/products/jaggery/mac/process-bg.png') center / 100% 100% no-repeat;
+    }
+    .product-page--sugar .product-slide--process {
+        background: url('assets/images/products/sugar/mac/process-bg.png') center / 100% 100% no-repeat;
+    }
+    .product-page--jaggery .product-slide--variants,
+    .product-page--jaggery .product-slide--benefits {
+        background: url('assets/images/products/jaggery/mac/variants-bg.png') center / cover no-repeat;
+    }
+    .product-page--sugar .product-slide--variants,
+    .product-page--sugar .product-slide--recipes {
+        background: url('assets/images/products/sugar/mac/variants-bg.png') center / cover no-repeat;
+    }
 }
 
 .process-title {

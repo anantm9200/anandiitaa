@@ -255,7 +255,7 @@
         <?php if ( ! empty( $slide['type'] ) && $slide['type'] === 'standards' ) : ?>
             <div class="standards-title">
                 <span class="standards-title__small">The</span>
-                <img class="standards-title__wordmark" src="<?php echo $tpl; ?>/assets/images/logo/anandiitaa-wordmark.png" alt="ANANDIITAA">
+                <img class="standards-title__wordmark" src="<?php echo $tpl; ?>/assets/images/logo/anandiitaa-wordmark.png" alt="ANANDIITAA" loading="lazy" decoding="async">
                 <span class="standards-title__small">Standards</span>
             </div>
             <div class="standards-grid">
@@ -328,7 +328,7 @@
             </div>
         <?php elseif ( ! empty( $slide['type'] ) && $slide['type'] === 'social' ) : ?>
             <div class="social-slide">
-                <img class="social-slide__wordmark" src="<?php echo $tpl; ?>/assets/images/logo/anandiitaa-wordmark.png" alt="ANANDIITAA">
+                <img class="social-slide__wordmark" src="<?php echo $tpl; ?>/assets/images/logo/anandiitaa-wordmark.png" alt="ANANDIITAA" loading="lazy" decoding="async">
                 <h2 class="social-slide__heading">For Those Who<br>Choose Better.</h2>
                 <p class="social-slide__subtitle">A growing community that believes everyday<br>food deserves higher standards.</p>
                 <div class="social-slide__pills">
