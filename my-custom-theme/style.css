@@ -3241,3 +3241,17 @@ picture {
         font-size: 18px;
     }
 }
+
+/* ========================================================================
+   ABOUT US — Mac-only paper-bg for slides 2 (Vision), 4 (Standards), 5
+   (Purpose). Placed at the very end of the file so it wins over each
+   slide's own base rule, which sets background to flat cream.
+   Non-mac viewports stay on the flat cream bg.
+   ======================================================================== */
+@media (min-width: 1440px) {
+    .about-slide--vision,
+    .about-slide--standards,
+    .about-slide--purpose {
+        background: url('images/about-us/mac/paper-bg.png') center / cover no-repeat;
+    }
+}
