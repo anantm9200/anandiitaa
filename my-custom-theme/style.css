@@ -107,8 +107,37 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
+/* ========================================================================
+   Custom scrollbar — maroon thumb on cream track.
+   WebKit pseudos cover Chrome/Safari/Edge; scrollbar-color covers Firefox.
+   ======================================================================== */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--brand-cream, #ece1cb);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--brand-maroon, #6b0f1a);
+    border-radius: 999px;
+    transition: background 200ms ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--brand-maroon-dark, #4a0a12);
+}
+
+::-webkit-scrollbar-corner {
+    background: var(--brand-cream, #ece1cb);
+}
+
 /* Smooth, fluid native scrolling site-wide. No snap — content flows freely. */
 html {
+    scrollbar-width: thin;
+    scrollbar-color: var(--brand-maroon, #6b0f1a) var(--brand-cream, #ece1cb);
     scroll-behavior: smooth;
 }
 @media (prefers-reduced-motion: reduce) {
