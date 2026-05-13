@@ -11,10 +11,12 @@
  *   - HTML (`/`, `/about-us`, `/products/...`)  → network-first, fall back to
  *     cache if offline. Keeps content fresh during dev iteration.
  *   - Theme static assets (.png / .jpg / .css / .js / .woff2 under
- *     /wp-content/themes/) → cache-first, fall back to network on miss.
- *     These rarely change between visits; when they do, the URL gets a
- *     `?v=mtime` cache-buster (added by the bust() helper in front-page.php
- *     and wp_enqueue_style's $ver argument), so a new URL = a fresh fetch.
+ *     /wp-content/themes/) → stale-while-revalidate. Cached copy is served
+ *     instantly (fast), and in the background the SW refetches and updates
+ *     the cache. Second visit after any change picks up the new bytes
+ *     automatically — no manual CACHE_VERSION bump, no ?v=mtime needed on
+ *     every URL. (Critical assets like CSS/JS still get a filemtime ?ver via
+ *     wp_enqueue, so first-visit-after-change is also fresh for those.)
  *   - Everything else (cross-origin fonts, wp-admin, etc.) is passed through
  *     to the network unchanged.
  *
@@ -23,7 +25,7 @@
  * delete any caches whose name doesn't match the current version.
  */
 
-const CACHE_VERSION = 'v1';
+const CACHE_VERSION = 'v2';
 const HTML_CACHE    = `anandiitaa-html-${CACHE_VERSION}`;
 const ASSET_CACHE   = `anandiitaa-assets-${CACHE_VERSION}`;
 
@@ -61,13 +63,13 @@ self.addEventListener('fetch', (event) => {
     // Skip wp-admin + wp-login — admin needs fresh data.
     if (url.pathname.startsWith('/wp-admin') || url.pathname.startsWith('/wp-login')) return;
 
-    // Theme assets: cache-first.
+    // Theme assets: stale-while-revalidate.
     if (
         url.pathname.startsWith('/wp-content/themes/') ||
         url.pathname.startsWith('/wp-content/plugins/') ||
         url.pathname.startsWith('/wp-includes/')
     ) {
-        event.respondWith(cacheFirst(req));
+        event.respondWith(staleWhileRevalidate(req));
         return;
     }
 
@@ -78,21 +80,21 @@ self.addEventListener('fetch', (event) => {
     }
 });
 
-async function cacheFirst(req) {
+async function staleWhileRevalidate(req) {
     const cache = await caches.open(ASSET_CACHE);
     const cached = await cache.match(req);
-    if (cached) return cached;
-    try {
-        const res = await fetch(req);
-        // Only cache successful, same-origin responses.
+
+    // Always kick off a background refetch to update the cache for next time.
+    const networkPromise = fetch(req).then((res) => {
         if (res && res.status === 200 && res.type === 'basic') {
             cache.put(req, res.clone());
         }
         return res;
-    } catch (err) {
-        // Offline + no cache. Let the browser surface the failure.
-        throw err;
-    }
+    }).catch(() => null);
+
+    // If we have a cached copy, serve it immediately (fast). Otherwise
+    // wait for the network response (cold cache).
+    return cached || networkPromise;
 }
 
 async function networkFirst(req) {

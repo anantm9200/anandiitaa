@@ -4,7 +4,8 @@
  * Slug-based: applies to a page with slug "products-sugar"
  */
 get_header();
-$tpl = get_template_directory_uri();
+$tpl  = get_template_directory_uri();
+$bust = 'anandiitaa_bust';
 ?>
 
 <main class="product-page product-page--sugar">
@@ -36,16 +37,16 @@ $tpl = get_template_directory_uri();
         </ul>
 
         <h1 class="product-hero__title">
-            <img src="<?php echo $tpl; ?>/assets/images/logo/anandiitaa-wordmark.png" alt="Anandiitaa">
+            <img src="<?php echo esc_url( $bust( $tpl . '/assets/images/logo/anandiitaa-wordmark.png' ) ); ?>" alt="Anandiitaa">
             <span>Sugar</span>
         </h1>
 
         <div class="product-hero__stage">
             <picture>
-                <source media="(min-width: 1440px)" srcset="<?php echo $tpl; ?>/assets/images/products/sugar/mac/sugar-slide-1.png">
+                <source media="(min-width: 1440px)" srcset="<?php echo esc_url( $bust( $tpl . '/assets/images/products/sugar/mac/sugar-slide-1.png' ) ); ?>">
                 <img
                     class="product-hero__image"
-                    src="<?php echo $tpl; ?>/assets/images/products/sugar/sugar-slide-1.png"
+                    src="<?php echo esc_url( $bust( $tpl . '/assets/images/products/sugar/sugar-slide-1.png' ) ); ?>"
                     alt="Anandiitaa Premium Refined Sugar — Bold Grain &amp; Fine Grain"
                     fetchpriority="high">
             </picture>
@@ -53,7 +54,7 @@ $tpl = get_template_directory_uri();
 
         <img
             class="natural-seal"
-            src="<?php echo $tpl; ?>/assets/images/products/sugar/100-natural.png"
+            src="<?php echo esc_url( $bust( $tpl . '/assets/images/products/sugar/100-natural.png' ) ); ?>"
             alt="100% Natural">
 
     </section>
@@ -118,7 +119,7 @@ $tpl = get_template_directory_uri();
                 <li class="process-step process-step--<?php echo $variant; ?>">
 
                     <div class="process-step__circle">
-                        <img src="<?php echo esc_url( $step['image'] ); ?>" alt="<?php echo esc_attr( strip_tags( $step['bold'] ) ); ?>" loading="lazy">
+                        <img src="<?php echo esc_url( $bust( $step['image'] ) ); ?>" alt="<?php echo esc_attr( strip_tags( $step['bold'] ) ); ?>" loading="lazy">
 
                         <span class="process-step__arc" aria-hidden="true"></span>
 
@@ -185,7 +186,7 @@ $tpl = get_template_directory_uri();
             <?php foreach ( $recipes as $r ) : ?>
                 <li class="recipe-card">
                     <div class="recipe-card__media">
-                        <img src="<?php echo esc_url( $r['image'] ); ?>" alt="<?php echo esc_attr( $r['title'] ); ?>" loading="lazy">
+                        <img src="<?php echo esc_url( $bust( $r['image'] ) ); ?>" alt="<?php echo esc_attr( $r['title'] ); ?>" loading="lazy">
                     </div>
 
                     <div class="recipe-card__content">
@@ -225,12 +226,12 @@ $tpl = get_template_directory_uri();
     <?php
         $variants = array(
             array(
-                'image'     => $tpl . '/assets/images/products/sugar/m30-1kg-front.png',
+                'image'     => $tpl . '/assets/images/products/packets/bold-grain.png',
                 'available' => '1kg | 5kg | 25kg',
                 'title'     => 'Bold Grain Sugar',
             ),
             array(
-                'image'     => $tpl . '/assets/images/products/sugar/s30-1kg-front.png',
+                'image'     => $tpl . '/assets/images/products/packets/fine-grain.png',
                 'available' => '1kg | 5kg | 25kg',
                 'title'     => 'Fine Grain Sugar',
             ),
@@ -240,7 +241,7 @@ $tpl = get_template_directory_uri();
         <div class="variants-grid">
             <?php foreach ( $variants as $v ) : ?>
                 <article class="variant-card">
-                    <img class="variant-card__image" src="<?php echo esc_url( $v['image'] ); ?>" alt="<?php echo esc_attr( $v['title'] ); ?>" loading="lazy">
+                    <img class="variant-card__image" src="<?php echo esc_url( $bust( $v['image'] ) ); ?>" alt="<?php echo esc_attr( $v['title'] ); ?>" loading="lazy">
                     <div class="variant-card__body">
                         <p class="variant-card__avail">
                             <span class="variant-card__avail-label">AVAILABLE IN:</span>
@@ -274,14 +275,14 @@ $tpl = get_template_directory_uri();
     ?>
     <section class="product-slide product-slide--reviews hero-slide" data-reveal>
         <div class="hero-slide__bg">
-            <img src="<?php echo $tpl; ?>/images/home/laptop/sections/10.png" alt="" loading="lazy">
+            <img src="<?php echo esc_url( $bust( $tpl . '/images/home/laptop/sections/10.png' ) ); ?>" alt="" loading="lazy">
         </div>
         <h2 class="reviews-title">Words that matter</h2>
         <div class="reviews-grid">
             <?php foreach ( $reviews as $r ) : ?>
                 <article class="review-card">
                     <div class="review-card__image">
-                        <img src="<?php echo esc_url( $r['image'] ); ?>" alt="<?php echo esc_attr( $r['name'] ); ?>" loading="lazy">
+                        <img src="<?php echo esc_url( $bust( $r['image'] ) ); ?>" alt="<?php echo esc_attr( $r['name'] ); ?>" loading="lazy">
                         <span class="review-card__quote-mark" aria-hidden="true">&rdquo;</span>
                     </div>
                     <div class="review-card__body">

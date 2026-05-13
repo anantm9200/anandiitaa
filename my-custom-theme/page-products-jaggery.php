@@ -4,7 +4,8 @@
  * Slug-based: applies to a page with slug "products-jaggery"
  */
 get_header();
-$tpl = get_template_directory_uri();
+$tpl  = get_template_directory_uri();
+$bust = 'anandiitaa_bust';
 ?>
 
 <main class="product-page product-page--jaggery">
@@ -35,16 +36,16 @@ $tpl = get_template_directory_uri();
         </ul>
 
         <h1 class="product-hero__title">
-            <img src="<?php echo $tpl; ?>/assets/images/logo/anandiitaa-wordmark.png" alt="Anandiitaa">
+            <img src="<?php echo esc_url( $bust( $tpl . '/assets/images/logo/anandiitaa-wordmark.png' ) ); ?>" alt="Anandiitaa">
             <span>Jaggery</span>
         </h1>
 
         <div class="product-hero__stage">
             <picture>
-                <source media="(min-width: 1440px)" srcset="<?php echo $tpl; ?>/assets/images/products/jaggery/mac/jaggery-slide-1.png">
+                <source media="(min-width: 1440px)" srcset="<?php echo esc_url( $bust( $tpl . '/assets/images/products/jaggery/mac/jaggery-slide-1.png' ) ); ?>">
                 <img
                     class="product-hero__image"
-                    src="<?php echo $tpl; ?>/assets/images/products/jaggery/jaggery-slide-1.png"
+                    src="<?php echo esc_url( $bust( $tpl . '/assets/images/products/jaggery/jaggery-slide-1.png' ) ); ?>"
                     alt="Anandiitaa Desi Jaggery — full product composition"
                     fetchpriority="high">
             </picture>
@@ -52,7 +53,7 @@ $tpl = get_template_directory_uri();
 
         <img
             class="natural-seal"
-            src="<?php echo $tpl; ?>/assets/images/products/jaggery/100-natural.png"
+            src="<?php echo esc_url( $bust( $tpl . '/assets/images/products/jaggery/100-natural.png' ) ); ?>"
             alt="100% Natural">
 
     </section>
@@ -124,7 +125,7 @@ $tpl = get_template_directory_uri();
 
                     <div class="process-step__circle">
                         <?php if ( ! empty( $step['image'] ) ) : ?>
-                            <img src="<?php echo esc_url( $step['image'] ); ?>" alt="<?php echo esc_attr( strip_tags( $step['bold'] ) ); ?>" loading="lazy" decoding="async">
+                            <img src="<?php echo esc_url( $bust( $step['image'] ) ); ?>" alt="<?php echo esc_attr( strip_tags( $step['bold'] ) ); ?>" loading="lazy" decoding="async">
                         <?php else : ?>
                             <span class="process-step__placeholder" aria-hidden="true">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"></rect><circle cx="9" cy="11" r="1.5"></circle><path d="M21 17l-5-5-5 5-3-3-5 5"></path></svg>
@@ -159,6 +160,7 @@ $tpl = get_template_directory_uri();
                 'title'  => 'Rich in Iron — Prevents Anaemia',
                 'image'  => $tpl . '/assets/images/products/jaggery/benefits/iron.png',
                 'body'   => 'Jaggery is an excellent source of plant-based iron. Some studies suggest that the iron found in jaggery is more easily absorbed by the body than other types of plant-based iron.',
+                'open'   => true,
             ),
             array(
                 'number' => '02',
@@ -205,7 +207,7 @@ $tpl = get_template_directory_uri();
                             <div class="benefit-content">
                                 <div class="benefit-content__image">
                                     <?php if ( ! empty( $b['image'] ) ) : ?>
-                                        <img src="<?php echo esc_url( $b['image'] ); ?>" alt="<?php echo esc_attr( $b['title'] ); ?>" loading="lazy" decoding="async">
+                                        <img src="<?php echo esc_url( $bust( $b['image'] ) ); ?>" alt="<?php echo esc_attr( $b['title'] ); ?>" loading="lazy" decoding="async">
                                     <?php else : ?>
                                         <span class="benefit-content__placeholder" aria-hidden="true">
                                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"></rect><circle cx="9" cy="11" r="1.5"></circle><path d="M21 17l-5-5-5 5-3-3-5 5"></path></svg>
@@ -230,12 +232,12 @@ $tpl = get_template_directory_uri();
     <?php
         $variants = array(
             array(
-                'image'      => $tpl . '/assets/images/lifestyle/lifestyle-2.png',
+                'image'      => $tpl . '/assets/images/products/packets/jaggery-powder.png',
                 'available'  => '500 GM',
                 'title'      => 'Jaggery Powder',
             ),
             array(
-                'image'      => $tpl . '/assets/images/products/jaggery/jaggery-900g.png',
+                'image'      => $tpl . '/assets/images/products/packets/desi-jaggery.png',
                 'available'  => '900 GM',
                 'title'      => 'Jaggery Block',
             ),
@@ -245,7 +247,7 @@ $tpl = get_template_directory_uri();
         <div class="variants-grid">
             <?php foreach ( $variants as $v ) : ?>
                 <article class="variant-card">
-                    <img class="variant-card__image" src="<?php echo esc_url( $v['image'] ); ?>" alt="<?php echo esc_attr( $v['title'] ); ?>" loading="lazy">
+                    <img class="variant-card__image" src="<?php echo esc_url( $bust( $v['image'] ) ); ?>" alt="<?php echo esc_attr( $v['title'] ); ?>" loading="lazy">
                     <div class="variant-card__body">
                         <p class="variant-card__avail">
                             <span class="variant-card__avail-label">AVAILABLE IN:</span>
@@ -279,14 +281,14 @@ $tpl = get_template_directory_uri();
     ?>
     <section class="product-slide product-slide--reviews hero-slide" data-reveal>
         <div class="hero-slide__bg">
-            <img src="<?php echo $tpl; ?>/images/home/laptop/sections/10.png" alt="" loading="lazy">
+            <img src="<?php echo esc_url( $bust( $tpl . '/images/home/laptop/sections/10.png' ) ); ?>" alt="" loading="lazy">
         </div>
         <h2 class="reviews-title">Words that matter</h2>
         <div class="reviews-grid">
             <?php foreach ( $reviews as $r ) : ?>
                 <article class="review-card">
                     <div class="review-card__image">
-                        <img src="<?php echo esc_url( $r['image'] ); ?>" alt="<?php echo esc_attr( $r['name'] ); ?>" loading="lazy">
+                        <img src="<?php echo esc_url( $bust( $r['image'] ) ); ?>" alt="<?php echo esc_attr( $r['name'] ); ?>" loading="lazy">
                         <span class="review-card__quote-mark" aria-hidden="true">&rdquo;</span>
                     </div>
                     <div class="review-card__body">

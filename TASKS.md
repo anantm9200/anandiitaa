@@ -14,6 +14,15 @@ Status legend: `[ ]` todo · `[~]` in progress · `[x]` done · `[!]` blocked / 
 - [x] **6. Benefits-of-jaggery polish** — `display: flex; gap: 14px` on the list so rows have visible breathing room (was tightly stacked); each row gets a subtle hover bg tint (`rgba(184,156,112,0.08)`) and a slightly stronger one when open (`0.10`); transitions on color so it eases in.
 - [x] **7. `/products` landing page** — created `page-products.php` with two gradient category cards (Jaggery + Sugar) linking to detail pages. Hover lift, image scale on hover, animated CTA arrow. Auto-resolves via `page-{slug}.php` hierarchy.
 
+- [!] **8. Home hero heading overlaps the fixed header** — "Choose Pure. Choose Anandiitaa." sits at the very top of slide 1 and crowds the nav bar; bumping `.hero-slide__content--top-center { top }` down pushes the text into the packet imagery instead. Needs a different fix. Options on the table:
+  - **A.** Shrink the header further (smaller logo + padding) so text fits above image with `top: 2-3%`.
+  - **B.** Add `padding-top` to the hero slide so the image starts lower; heading + CTA get a clear band.
+  - **C.** Side layout — text left, image right (60/40 or similar). Bigger restructure.
+  - **D.** Move heading + CTA to the bottom of the slide on a cream band, image owns the top.
+  - **E.** Translucent fixed header floating over the image; text starts at slide top normally.
+  - **F.** Tighten the text stack — reduce gap between H2 and CTA so the block is shorter.
+  - Recommendation in the conversation: A + F combined.
+
 ## Notes
 - Tasks marked `[~]` are mid-flight. Always finish or move to `[ ]` before starting another so the list reflects reality.
 - When a task generates follow-ups (e.g. tuning sizes after a layout change), append to the relevant entry as a sub-bullet rather than splitting into a new top-level item.

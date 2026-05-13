@@ -578,13 +578,14 @@ picture {
     transform: translateY(0) scale(1);
 }
 
-/* 100% Natural badge: small wax-seal-style rotate-in. */
+/* 100% Natural badge: small wax-seal-style rotate-in. translateY keeps the
+   lift offset from the base .natural-seal rule applied during the reveal. */
 [data-reveal] .natural-seal {
-    transform: scale(0.85) rotate(-8deg);
+    transform: translateY(calc(-50% - 200px)) scale(0.85) rotate(-8deg);
     transition-duration: 0.7s;
 }
 [data-reveal].is-visible .natural-seal {
-    transform: scale(1) rotate(0deg);
+    transform: translateY(calc(-50% - 200px)) scale(1) rotate(0deg);
 }
 
 /* Process timeline circles: tiny scale-pop in sequence. */
@@ -701,7 +702,7 @@ picture {
 
 /* Top-center variant: heading + CTA stack centered above the slide imagery */
 .hero-slide__content--top-center {
-    top: 4%;                                /* moved up from 11% — heading + CTA were crowding the packets */
+    top: 9%;                                /* bumped down from 4% so heading clears the fixed header */
     left: 50%;
     transform: translateX(-50%);
     max-width: 800px;
@@ -1749,7 +1750,7 @@ picture {
     position: absolute;
     top: 50%;
     right: 4%;
-    transform: translateY(-50%);
+    transform: translateY(calc(-50% - 200px));
     width: clamp(220px, 22vw, 340px);
     height: auto;
     z-index: 3;
@@ -2154,21 +2155,12 @@ picture {
 /* Each row gets its own border + a subtle hover/open background so the
    spacing reads as clear, separate cards rather than one continuous list. */
 .benefit-item {
-    border-top: 3px solid #b89c70;
-    border-radius: 4px;
-    transition: background-color 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    border: none;
+    border-bottom: 3px solid #b89c70;
+    contain: layout paint;
 }
 .benefit-item:first-child {
-    border-top: 3px solid #b89c70;          /* keep — gap from title now provides separation */
-}
-.benefit-item:last-child {
-    border-bottom: 3px solid #b89c70;
-}
-.benefit-item:hover {
-    background-color: rgba(184, 156, 112, 0.08);
-}
-.benefit-item:has(details[open]) {
-    background-color: rgba(184, 156, 112, 0.10);
+    border-top: 3px solid #b89c70;
 }
 
 .benefit-item details {
@@ -2211,25 +2203,18 @@ picture {
     transform: rotate(180deg);
 }
 
-/* Smooth, slow, flowy open/close — grid-template-rows trick.
-   Wrapper animates from 0fr → 1fr; inner content + opacity also fade in.
-   Long duration + ease-out curve = luxurious unfurl. */
+/* Reveal container — JS owns the open/close animation via Web Animations API.
+   CSS only defines the static states; JS interpolates `height` between them. */
 .benefit-reveal {
-    display: grid;
-    grid-template-rows: 0fr;
-    transition: grid-template-rows 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+    overflow: hidden;
+    height: 0;
 }
 .benefit-item details[open] .benefit-reveal {
-    grid-template-rows: 1fr;
+    height: auto;
 }
 .benefit-reveal > * {
-    min-height: 0;
-    overflow: hidden;
     opacity: 0;
     transform: translateY(-6px);
-    transition:
-        opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.1s,
-        transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.1s;
 }
 .benefit-item details[open] .benefit-reveal > * {
     opacity: 1;
@@ -2246,13 +2231,12 @@ picture {
 
 .benefit-content__image {
     aspect-ratio: 16 / 9;
-    background: #efe2c8;
+    background: transparent;
     border-radius: 18px;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    box-shadow: 0 8px 24px rgba(107, 15, 26, 0.10);
 }
 .benefit-content__image img {
     width: 100%;

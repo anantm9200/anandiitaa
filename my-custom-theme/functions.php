@@ -9,14 +9,16 @@ function anandiitaa_enqueue_assets() {
     );
 
     // Theme stylesheet (self-hosts AppetitePro + DM Sans via @font-face)
-    wp_enqueue_style( 'main-styles', get_stylesheet_uri(), array( 'google-fonts-montserrat' ), '9.89' );
+    wp_enqueue_style( 'main-styles', get_stylesheet_uri(), array( 'google-fonts-montserrat' ), filemtime( get_stylesheet_directory() . '/style.css' ) );
+
+    $js_dir = get_template_directory() . '/assets/js';
 
     // Hero carousel script
     wp_enqueue_script(
         'hero-carousel',
         get_template_directory_uri() . '/assets/js/hero-carousel.js',
         array(),
-        '1.0',
+        filemtime( $js_dir . '/hero-carousel.js' ),
         true
     );
 
@@ -25,7 +27,7 @@ function anandiitaa_enqueue_assets() {
         'header-scroll',
         get_template_directory_uri() . '/assets/js/header-scroll.js',
         array(),
-        '1.7',
+        filemtime( $js_dir . '/header-scroll.js' ),
         true
     );
 
@@ -34,7 +36,7 @@ function anandiitaa_enqueue_assets() {
         'scroll-reveal',
         get_template_directory_uri() . '/assets/js/scroll-reveal.js',
         array(),
-        '1.1',
+        filemtime( $js_dir . '/scroll-reveal.js' ),
         true
     );
 
@@ -43,11 +45,34 @@ function anandiitaa_enqueue_assets() {
         'benefits-accordion',
         get_template_directory_uri() . '/assets/js/benefits-accordion.js',
         array(),
-        '1.0',
+        filemtime( $js_dir . '/benefits-accordion.js' ),
         true
     );
 }
 add_action( 'wp_enqueue_scripts', 'anandiitaa_enqueue_assets' );
+
+/**
+ * Global asset cache-buster. Appends ?v=<mtime> so the SW + browser caches
+ * refetch whenever an asset's bytes change, without bumping CACHE_VERSION
+ * in service-worker.js manually.
+ *
+ * Accepts either a full theme URL (e.g. get_template_directory_uri() . '/x.png')
+ * or a theme-relative path (e.g. '/assets/images/x.png'). Returns the URL with
+ * ?v=mtime appended if the file exists, otherwise the URL unchanged.
+ */
+if ( ! function_exists( 'anandiitaa_bust' ) ) {
+    function anandiitaa_bust( $url_or_rel ) {
+        $tpl_uri = get_template_directory_uri();
+        $tpl_dir = get_template_directory();
+        $rel     = ( strpos( $url_or_rel, $tpl_uri ) === 0 )
+                   ? substr( $url_or_rel, strlen( $tpl_uri ) )
+                   : $url_or_rel;
+        if ( $rel === '' || $rel[0] !== '/' ) $rel = '/' . $rel;
+        $abs = $tpl_dir . $rel;
+        $full = $tpl_uri . $rel;
+        return file_exists( $abs ) ? $full . '?v=' . filemtime( $abs ) : $full;
+    }
+}
 
 /**
  * Defer all our custom theme scripts. None of them are critical-path —
@@ -91,13 +116,8 @@ add_action( 'wp_head', function () {
 add_action( 'wp_head', function () {
     if ( ! is_front_page() ) return;
     $tpl = get_template_directory_uri();
-    $bust = function ( $rel ) {
-        $abs = get_template_directory() . $rel;
-        return file_exists( $abs ) ? get_template_directory_uri() . $rel . '?v=' . filemtime( $abs ) : get_template_directory_uri() . $rel;
-    };
-
-    $laptop_lcp = $bust( '/images/home/laptop/slider/slide-1.png' );
-    $mac_lcp    = $bust( '/images/home/mac/1.png' );
+    $laptop_lcp = anandiitaa_bust( '/images/home/laptop/slider/slide-1.png' );
+    $mac_lcp    = anandiitaa_bust( '/images/home/mac/1.png' );
 
     // Preload LCP hero. Browser picks the right variant via media query +
     // imagesrcset. fetchpriority=high tells the browser this is the LCP.

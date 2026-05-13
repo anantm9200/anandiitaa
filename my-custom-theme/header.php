@@ -11,7 +11,7 @@
         <div class="navbar">
             <div class="logo">
                 <a href="<?php echo esc_url( home_url( '/' ) ); ?>" aria-label="Anandiitaa Home">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo/anandiitaa-wordmark.png" alt="Anandiitaa">
+                    <img src="<?php echo esc_url( anandiitaa_bust( '/assets/images/logo/anandiitaa-wordmark.png' ) ); ?>" alt="Anandiitaa">
                 </a>
             </div>
             <nav class="main-navigation" aria-label="Primary">

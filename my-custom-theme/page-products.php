@@ -12,14 +12,14 @@ $categories = array(
         'title'   => 'Jaggery',
         'tagline' => 'Slow-cooked. Mineral-rich. Pure tradition.',
         'href'    => home_url( '/products/jaggery' ),
-        'image'   => $tpl . '/assets/images/products/jaggery/jaggery-900g.png',
+        'image'   => $tpl . '/assets/images/products/packets/desi-jaggery.png',
         'accent'  => '#6b0f1a',
     ),
     array(
         'title'   => 'Sugar',
         'tagline' => 'Bold or fine grain. Clean, hygienic, dependable.',
         'href'    => home_url( '/products/sugar' ),
-        'image'   => $tpl . '/assets/images/products/sugar/m30-1kg-front.png',
+        'image'   => $tpl . '/assets/images/products/packets/bold-grain.png',
         'accent'  => '#1d5e2e',
     ),
 );
@@ -36,7 +36,7 @@ $categories = array(
         <?php foreach ( $categories as $c ) : ?>
             <a class="category-card" href="<?php echo esc_url( $c['href'] ); ?>" style="--card-accent: <?php echo esc_attr( $c['accent'] ); ?>">
                 <div class="category-card__media">
-                    <img src="<?php echo esc_url( $c['image'] ); ?>" alt="<?php echo esc_attr( $c['title'] ); ?>" loading="lazy">
+                    <img src="<?php echo esc_url( anandiitaa_bust( $c['image'] ) ); ?>" alt="<?php echo esc_attr( $c['title'] ); ?>" loading="lazy">
                 </div>
                 <div class="category-card__body">
                     <h2 class="category-card__title"><?php echo esc_html( $c['title'] ); ?></h2>

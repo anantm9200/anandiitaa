@@ -16,7 +16,8 @@
  * locked to the packets regardless of viewport aspect ratio.
  */
 get_header();
-$tpl = get_template_directory_uri();
+$tpl  = get_template_directory_uri();
+$bust = 'anandiitaa_bust';
 ?>
 
 <main class="about-page">
@@ -26,7 +27,7 @@ $tpl = get_template_directory_uri();
 
         <div class="about-slide__bg">
             <img
-                src="<?php echo $tpl; ?>/images/about-us/mac/about-slide-1.png"
+                src="<?php echo esc_url( $bust( $tpl . '/images/about-us/mac/about-slide-1.png' ) ); ?>"
                 alt="Anandiitaa product range — Desi Jaggery, Jaggery Powder, Bold Grain Sugar, Fine Grain Sugar"
                 fetchpriority="high">
         </div>
@@ -132,7 +133,7 @@ $tpl = get_template_directory_uri();
             <div class="about-vision__divider" aria-hidden="true"></div>
 
             <div class="about-vision__photo">
-                <img src="<?php echo $tpl; ?>/images/about-us/mac/vision.png"
+                <img src="<?php echo esc_url( $bust( $tpl . '/images/about-us/mac/vision.png' ) ); ?>"
                      alt="Anandiitaa jaggery"
                      loading="lazy">
             </div>
@@ -146,7 +147,7 @@ $tpl = get_template_directory_uri();
     <section class="about-slide about-slide--mission" data-reveal>
         <div class="about-slide__bg">
             <img
-                src="<?php echo $tpl; ?>/images/about-us/mac/about-slide-3.png"
+                src="<?php echo esc_url( $bust( $tpl . '/images/about-us/mac/about-slide-3.png' ) ); ?>"
                 alt="Sugarcane stalks and a bowl of sugar on a maroon wooden surface"
                 loading="lazy">
         </div>
@@ -199,7 +200,7 @@ $tpl = get_template_directory_uri();
         <h2 class="about-standards__title">
             The
             <img class="about-standards__wordmark"
-                 src="<?php echo $tpl; ?>/assets/images/logo/anandiitaa-wordmark.png"
+                 src="<?php echo esc_url( $bust( $tpl . '/assets/images/logo/anandiitaa-wordmark.png' ) ); ?>"
                  alt="Anandiitaa"
                  loading="lazy"
                  decoding="async">
@@ -210,7 +211,7 @@ $tpl = get_template_directory_uri();
             <?php foreach ( $standards as $s ) : ?>
                 <article class="standard-item">
                     <div class="standard-item__image">
-                        <img src="<?php echo esc_url( $s['image'] ); ?>"
+                        <img src="<?php echo esc_url( $bust( $s['image'] ) ); ?>"
                              alt="<?php echo esc_attr( $s['alt'] ); ?>"
                              loading="lazy">
                     </div>
@@ -229,7 +230,7 @@ $tpl = get_template_directory_uri();
     <section class="about-slide about-slide--purpose" data-reveal>
         <div class="about-purpose__container">
             <div class="about-purpose__image">
-                <img src="<?php echo $tpl; ?>/images/about-us/mac/purpose.png"
+                <img src="<?php echo esc_url( $bust( $tpl . '/images/about-us/mac/purpose.png' ) ); ?>"
                      alt="Anandiitaa jaggery powder and jaggery lumps"
                      loading="lazy">
             </div>
@@ -247,12 +248,12 @@ $tpl = get_template_directory_uri();
     <section class="page-section hero-slide page-section--social" data-reveal>
         <div class="hero-slide__bg">
             <picture>
-                <source media="(min-width: 1440px)" srcset="<?php echo $tpl; ?>/images/home/mac/sections/11.png">
-                <img src="<?php echo $tpl; ?>/images/home/laptop/sections/11.png" alt="For Those Who Choose Better — Anandiitaa Community" loading="lazy">
+                <source media="(min-width: 1440px)" srcset="<?php echo esc_url( $bust( $tpl . '/images/home/mac/sections/11.png' ) ); ?>">
+                <img src="<?php echo esc_url( $bust( $tpl . '/images/home/laptop/sections/11.png' ) ); ?>" alt="For Those Who Choose Better — Anandiitaa Community" loading="lazy">
             </picture>
         </div>
         <div class="social-slide">
-            <img class="social-slide__wordmark" src="<?php echo $tpl; ?>/assets/images/logo/anandiitaa-wordmark.png" alt="ANANDIITAA" loading="lazy" decoding="async">
+            <img class="social-slide__wordmark" src="<?php echo esc_url( $bust( $tpl . '/assets/images/logo/anandiitaa-wordmark.png' ) ); ?>" alt="ANANDIITAA" loading="lazy" decoding="async">
             <h2 class="social-slide__heading">For Those Who<br>Choose Better.</h2>
             <p class="social-slide__subtitle">A growing community that believes everyday<br>food deserves higher standards.</p>
             <div class="social-slide__pills">

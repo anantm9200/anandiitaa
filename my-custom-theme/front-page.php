@@ -105,7 +105,7 @@
                     'desc'  => 'Natural Mineral rich sweetness made for your everyday convenience.',
                     'sizes' => '500 GM',
                     'href'  => '/products/jaggery',
-                    'image' => $tpl . '/assets/images/lifestyle/lifestyle-2.png',
+                    'image' => $tpl . '/assets/images/products/packets/jaggery-powder.png',
                     'color' => '#6b0f1a',
                 ),
                 array(
@@ -113,7 +113,7 @@
                     'desc'  => 'Sweetness that stands out based on purity.',
                     'sizes' => '1 KG | 5 KG | 25 KG',
                     'href'  => '/products/sugar',
-                    'image' => $tpl . '/assets/images/lifestyle/lifestyle-3.png',
+                    'image' => $tpl . '/assets/images/products/packets/bold-grain.png',
                     'color' => '#1d5e2e',
                 ),
                 array(
@@ -121,7 +121,7 @@
                     'desc'  => 'It dissolves smoothly, leaving a balanced sweetness behind.',
                     'sizes' => '1 KG | 5 KG | 25 KG',
                     'href'  => '/products/sugar',
-                    'image' => $tpl . '/assets/images/lifestyle/lifestyle-6.png',
+                    'image' => $tpl . '/assets/images/products/packets/fine-grain.png',
                     'color' => '#1f3a8e',
                 ),
                 array(
@@ -129,7 +129,7 @@
                     'desc'  => 'Cooked low &amp; slow, the way jaggery has always been made.',
                     'sizes' => '900 GM',
                     'href'  => '/products/jaggery',
-                    'image' => $tpl . '/assets/images/products/jaggery/jaggery-900g.png',
+                    'image' => $tpl . '/assets/images/products/packets/desi-jaggery.png',
                     'color' => '#6b0f1a',
                 ),
             ),
@@ -220,12 +220,8 @@
         $rel = str_replace( $tpl, '', $mac_url );
         return file_exists( get_template_directory() . $rel );
     };
-    // Appends ?v=mtime to bust browser caches when an image's bytes change but its filename doesn't.
-    $bust = function ( $url ) use ( $tpl ) {
-        $rel = str_replace( $tpl, '', $url );
-        $abs = get_template_directory() . $rel;
-        return file_exists( $abs ) ? $url . '?v=' . filemtime( $abs ) : $url;
-    };
+    // Use the global cache-buster (defined in functions.php).
+    $bust = 'anandiitaa_bust';
     // Renders a slide's bg + inner content. Used by carousel AND standalone sections.
     // Bg uses <picture> with a viewport-based <source> so the browser picks the
     // mac variant on screens >=1440px and the laptop variant otherwise. This is
@@ -255,7 +251,7 @@
         <?php if ( ! empty( $slide['type'] ) && $slide['type'] === 'standards' ) : ?>
             <div class="standards-title">
                 <span class="standards-title__small">The</span>
-                <img class="standards-title__wordmark" src="<?php echo $tpl; ?>/assets/images/logo/anandiitaa-wordmark.png" alt="ANANDIITAA" loading="lazy" decoding="async">
+                <img class="standards-title__wordmark" src="<?php echo esc_url( $bust( $tpl . '/assets/images/logo/anandiitaa-wordmark.png' ) ); ?>" alt="ANANDIITAA" loading="lazy" decoding="async">
                 <span class="standards-title__small">Standards</span>
             </div>
             <div class="standards-grid">
@@ -284,7 +280,7 @@
                 <?php foreach ( $slide['reviews'] as $r ) : ?>
                     <article class="review-card">
                         <div class="review-card__image">
-                            <img src="<?php echo esc_url( $r['image'] ); ?>" alt="<?php echo esc_attr( $r['name'] ); ?>" loading="lazy">
+                            <img src="<?php echo esc_url( $bust( $r['image'] ) ); ?>" alt="<?php echo esc_attr( $r['name'] ); ?>" loading="lazy">
                             <span class="review-card__quote-mark" aria-hidden="true">&rdquo;</span>
                         </div>
                         <div class="review-card__body">
@@ -322,13 +318,13 @@
                             $img_ver = file_exists( $img_abs ) ? filemtime( $img_abs ) : '';
                             $img_url = $img_ver ? $product['image'] . '?v=' . $img_ver : $product['image'];
                         ?>
-                        <img class="product-card__image" src="<?php echo esc_url( $img_url ); ?>" alt="<?php echo esc_attr( $product['title'] ); ?>" loading="lazy">
+                        <img class="product-card__image" src="<?php echo esc_url( $bust( $img_url ) ); ?>" alt="<?php echo esc_attr( $product['title'] ); ?>" loading="lazy">
                     </article>
                 <?php endforeach; ?>
             </div>
         <?php elseif ( ! empty( $slide['type'] ) && $slide['type'] === 'social' ) : ?>
             <div class="social-slide">
-                <img class="social-slide__wordmark" src="<?php echo $tpl; ?>/assets/images/logo/anandiitaa-wordmark.png" alt="ANANDIITAA" loading="lazy" decoding="async">
+                <img class="social-slide__wordmark" src="<?php echo esc_url( $bust( $tpl . '/assets/images/logo/anandiitaa-wordmark.png' ) ); ?>" alt="ANANDIITAA" loading="lazy" decoding="async">
                 <h2 class="social-slide__heading">For Those Who<br>Choose Better.</h2>
                 <p class="social-slide__subtitle">A growing community that believes everyday<br>food deserves higher standards.</p>
                 <div class="social-slide__pills">
