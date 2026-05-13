@@ -745,7 +745,7 @@ picture {
 
 /* Top-caption variant: caption sits a bit below the top edge (mirrors bottom-center sizing) */
 .hero-slide__content--top-caption {
-    top: 2%;                            /* moved up — was 7%; sits above the news clipping rather than overlapping it */
+    top: 7%;                            /* pushed down from 2% — caption was crowding the slide's top edge */
     bottom: auto;
     left: 50%;
     right: auto;
@@ -920,7 +920,7 @@ picture {
 
 .benefits-title {
     position: absolute;
-    top: 12%;
+    top: 18%;
     left: 6%;
     z-index: 5;
     font-family: 'Appetite Pro', 'Georgia', serif;
@@ -1053,8 +1053,8 @@ picture {
 .product-card {
     position: relative;
     background: linear-gradient(155deg, #faf2dc 0%, #efe1bb 100%);
-    border-radius: 65px;
-    padding: 28px 32px 24px;
+    border-radius: 55px;
+    padding: 40px 32px 24px;
     overflow: visible;
     aspect-ratio: 2.05;
     box-shadow: 0 2px 14px rgba(80, 50, 20, 0.05);
@@ -1090,7 +1090,7 @@ picture {
     font-size: var(--fs-subtext);
     line-height: 1.05;
     color: var(--card-accent);
-    margin-bottom: 14px;
+    margin-bottom: 22px;
 }
 
 .product-card__desc {
@@ -1106,7 +1106,7 @@ picture {
     display: flex;
     flex-direction: column;
     gap: 4px;
-    margin-bottom: 22px;
+    margin-bottom: 10px;
     color: var(--card-accent);
 }
 
@@ -3271,5 +3271,17 @@ picture {
     .about-slide--standards,
     .about-slide--purpose {
         background: url('images/about-us/mac/paper-bg.png') center / cover no-repeat;
+    }
+}
+
+/* Mac (>=1440px) — late override so it beats the base .reviews-title /
+   .reviews-grid rules that appear earlier in this file. Home slide 10
+   (Words that matter): lift heading + U-cards up. */
+@media (min-width: 1440px) {
+    .reviews-title {
+        top: 6%;
+    }
+    .reviews-grid {
+        top: 45%;
     }
 }
