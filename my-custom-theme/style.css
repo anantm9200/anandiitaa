@@ -721,6 +721,11 @@ picture {
     letter-spacing: 0.08em;
 }
 
+/* Slide 1 only: pull the CTA up so it sits closer to the heading. */
+.hero-slide:first-child .hero-slide__content--top-center .btn {
+    margin-top: -100px;
+}
+
 /* Bottom-center variant: caption sits a bit above the bottom edge */
 .hero-slide__content--bottom-center {
     top: auto;
