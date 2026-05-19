@@ -1,0 +1,160 @@
+/* Shared styles for all 5 background tests.
+   Sections are TRANSPARENT on purpose — the whole point is letting body bg show through.
+   Only the body background changes between options. */
+
+:root {
+    --brand-maroon: #6b0f1a;
+    --brand-cream:  #f5ebd2;
+    --brand-yellow: #f0c869;
+    --fs-heading: 48px;
+    --fs-subtext: 22px;
+    --fs-body: 18px;
+}
+
+* { box-sizing: border-box; }
+
+html, body { margin: 0; padding: 0; }
+
+body {
+    color: var(--brand-maroon);
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: var(--fs-body);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Simple top bar so demo feels like a real page */
+.demo-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 16px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(245, 235, 210, 0.75);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+}
+.demo-header .logo {
+    font-family: 'Montserrat', system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: 0.04em;
+}
+.demo-header nav {
+    display: flex;
+    gap: 24px;
+    font-family: 'Montserrat', system-ui, sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+.demo-header nav a {
+    color: var(--brand-maroon);
+    text-decoration: none;
+}
+
+/* Sections — TRANSPARENT so body bg shows through.
+   This is the whole trick: no per-section background = no seams. */
+.demo-section {
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 60px;
+    text-align: center;
+    background: transparent;       /* <-- critical */
+}
+.demo-section > div { max-width: 760px; }
+
+.demo-section h1 {
+    font-family: 'Montserrat', system-ui, sans-serif;
+    font-weight: 700;
+    font-size: var(--fs-heading);
+    margin: 0 0 18px;
+    line-height: 1.1;
+}
+.demo-section p {
+    font-size: var(--fs-subtext);
+    margin: 0 0 12px;
+}
+.demo-section .label {
+    display: inline-block;
+    font-family: 'Montserrat', system-ui, sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border: 1px solid var(--brand-maroon);
+    border-radius: 999px;
+    margin-bottom: 24px;
+    opacity: 0.7;
+}
+
+/* Optional: cards that DO have their own bg, to show how content blocks sit on top */
+.card-row {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 32px;
+}
+.card {
+    background: #fbf3df;
+    padding: 28px 24px;
+    border-radius: 18px;
+    max-width: 320px;
+    box-shadow: 0 8px 22px rgba(107, 15, 26, 0.10);
+    text-align: left;
+}
+.card h3 {
+    font-family: 'Montserrat', system-ui, sans-serif;
+    font-size: 18px;
+    margin: 0 0 8px;
+}
+.card p {
+    font-size: 15px;
+    margin: 0;
+    opacity: 0.8;
+}
+
+.return-link {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--brand-maroon);
+    color: #fff;
+    padding: 10px 16px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-family: 'Montserrat', system-ui, sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    z-index: 200;
+    box-shadow: 0 8px 20px rgba(107, 15, 26, 0.25);
+}
+
+.tech-note {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: rgba(0,0,0,0.78);
+    color: #fff;
+    padding: 14px 18px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-family: 'Montserrat', system-ui, sans-serif;
+    max-width: 360px;
+    z-index: 200;
+    line-height: 1.5;
+}
+.tech-note strong { color: var(--brand-yellow); }
+.tech-note code {
+    background: rgba(255,255,255,0.12);
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-family: 'SF Mono', Menlo, monospace;
+    font-size: 11px;
+}

@@ -57,3 +57,40 @@ __pycache__/
 /screenshot*.png
 **/scratch/*.png
 **/tmp/*.png
+
+# Graphify build cache (auto-generated, regenerable)
+graphify-out/cache/
+**/graphify-out/cache/
+graphify-out/.graphify_python
+**/graphify-out/.graphify_python
+
+# Env / secrets
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# Database dumps & backups
+*.sql
+*.sql.gz
+*.dump
+*.bak
+*~
+
+# Temp / cache
+*.tmp
+*.temp
+*.cache
+.phpunit.result.cache
+coverage/
+
+# OS extras (in addition to .DS_Store)
+Icon?
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Desktop.ini
+
+# Test files — explicitly KEEP TRACKED (do not ignore)
+# background-tests/ and header-tests/ are tracked deliberately for cross-machine use

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Option A — Always-on glass, faded bottom</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+/* Option A — always-on glass header. No border, no shadow.
+   Background is a vertical gradient that fades to fully transparent
+   at the bottom so there's no hard seam against the content below. */
+.test-header {
+    background: linear-gradient(to bottom,
+        rgba(245, 235, 210, 0.78) 0%,
+        rgba(245, 235, 210, 0.55) 60%,
+        rgba(245, 235, 210, 0.00) 100%);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+    backdrop-filter: blur(16px) saturate(140%);
+    padding-bottom: 30px;       /* extra room so the gradient has somewhere to fade */
+    /* No border, no box-shadow — that's the whole point */
+    -webkit-mask-image: linear-gradient(to bottom, #000 60%, transparent 100%);
+            mask-image: linear-gradient(to bottom, #000 60%, transparent 100%);
+}
+</style>
+</head>
+<body>
+
+<header class="test-header">
+    <div class="test-header__inner">
+        <div class="logo"><a href="#"><img src="assets/logo.png" alt="Anandiitaa"></a></div>
+        <nav class="main-nav">
+            <a href="#">Home</a>
+            <a href="#">Products</a>
+            <a href="#">About Us</a>
+        </nav>
+    </div>
+</header>
+
+<section class="test-section test-section--hero">
+    <div>
+        <h1>Option A — Glass Always On</h1>
+        <p>Vertical gradient bg with backdrop blur. No border, no shadow. The bottom of the header dissolves into the content below — no hard seam.</p>
+    </div>
+</section>
+
+<section class="test-section">
+    <div>
+        <h1>Scroll down to test</h1>
+        <p>The header stays. The bottom edge fades out. Logo sits on a soft veil at all times, so overlap with text/imagery is mitigated by the blur underneath.</p>
+    </div>
+</section>
+
+<section class="test-section test-section--dark">
+    <div>
+        <h1>Dark background test</h1>
+        <p>This section is dark to see if the glass header still feels comfortable when content underneath is high contrast. The faded bottom helps the transition.</p>
+    </div>
+</section>
+
+<section class="test-section test-section--reviews">
+    <h1>Reviews</h1>
+    <div class="review-card"><p>"Switched to Anandiitaa for our morning chai. The taste is richer and we don't have to second-guess what's in it."</p></div>
+    <div class="review-card"><p>"My grandmother used to make jaggery this way. Finally found one that actually keeps that flavor."</p></div>
+</section>
+
+<section class="test-section">
+    <div>
+        <h1>End of page</h1>
+        <p>Scroll back up to compare top vs scrolled state. Header behavior should feel identical at every position.</p>
+    </div>
+</section>
+
+<a href="index.html" class="return-link">← All Options</a>
+
+</body>
+</html>

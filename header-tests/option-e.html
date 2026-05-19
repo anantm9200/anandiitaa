@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Option E — Logo only at page top</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+/* Option E — logo only at page top. Header bg stays transparent always.
+   Logo fades out once scrolled past threshold, fades back in at the top.
+   Nav stays visible throughout. */
+.test-header {
+    background: transparent;
+    /* No bg, no border, no shadow — no seam at all */
+}
+.logo {
+    transition: opacity 0.35s ease;
+}
+.test-header.is-scrolled .logo {
+    opacity: 0;
+    pointer-events: none;
+}
+</style>
+</head>
+<body>
+
+<header class="test-header" id="header">
+    <div class="test-header__inner">
+        <div class="logo"><a href="#"><img src="assets/logo.png" alt="Anandiitaa"></a></div>
+        <nav class="main-nav">
+            <a href="#">Home</a>
+            <a href="#">Products</a>
+            <a href="#">About Us</a>
+        </nav>
+    </div>
+</header>
+
+<section class="test-section test-section--hero">
+    <div>
+        <h1>Option E — Logo at top only</h1>
+        <p>Logo visible at the very top of the page (where the hero usually has its own brand mark anyway). Once you scroll past the threshold, the logo fades out. Nav stays. Returns when you scroll back to top.</p>
+    </div>
+</section>
+
+<section class="test-section">
+    <div>
+        <h1>Scroll down — logo gone</h1>
+        <p>Just the nav remains. No header bg, no seam, no overlap with content. Apple does this. Stripe does this. Reads as intentional.</p>
+    </div>
+</section>
+
+<section class="test-section test-section--dark">
+    <div>
+        <h1>Dark background test</h1>
+        <p>Nav links sit raw on the dark bg — could become hard to read here. Trade-off: nav legibility on varied backgrounds without a header surface to back it up.</p>
+    </div>
+</section>
+
+<section class="test-section test-section--reviews">
+    <h1>Reviews</h1>
+    <div class="review-card"><p>"Switched to Anandiitaa for our morning chai. The taste is richer and we don't have to second-guess what's in it."</p></div>
+    <div class="review-card"><p>"My grandmother used to make jaggery this way. Finally found one that actually keeps that flavor."</p></div>
+</section>
+
+<section class="test-section">
+    <div>
+        <h1>End of page</h1>
+        <p>Scroll all the way back to the top — logo should fade back in smoothly. That's the intent: logo lives with the hero, nav lives everywhere.</p>
+    </div>
+</section>
+
+<a href="index.html" class="return-link">← All Options</a>
+
+<script>
+(function () {
+    const header = document.getElementById('header');
+    let raf = null;
+    function update() {
+        raf = null;
+        header.classList.toggle('is-scrolled', window.scrollY > 80);
+    }
+    window.addEventListener('scroll', () => {
+        if (raf) return;
+        raf = requestAnimationFrame(update);
+    }, { passive: true });
+})();
+</script>
+
+</body>
+</html>

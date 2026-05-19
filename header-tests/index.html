@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Header Tests — Anandiitaa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+    --brand-maroon: #6b0f1a;
+    --brand-cream:  #f5ebd2;
+}
+* { box-sizing: border-box; }
+body {
+    margin: 0;
+    padding: 60px 40px;
+    background: var(--brand-cream);
+    color: var(--brand-maroon);
+    font-family: 'DM Sans', system-ui, sans-serif;
+    line-height: 1.55;
+    font-size: 17px;
+}
+h1 {
+    font-family: 'Montserrat', system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 42px;
+    margin: 0 0 8px;
+}
+.subtitle {
+    font-size: 18px;
+    opacity: 0.75;
+    margin: 0 0 48px;
+    max-width: 720px;
+}
+.options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
+    max-width: 1280px;
+}
+.option {
+    display: block;
+    padding: 28px 28px 26px;
+    background: #fbf3df;
+    border-radius: 18px;
+    text-decoration: none;
+    color: var(--brand-maroon);
+    box-shadow: 0 8px 22px rgba(107, 15, 26, 0.06);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.option:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 32px rgba(107, 15, 26, 0.12);
+}
+.option h2 {
+    font-family: 'Montserrat', system-ui, sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    margin: 0 0 10px;
+}
+.option p {
+    font-size: 15px;
+    margin: 0 0 10px;
+}
+.option .tagline {
+    font-style: italic;
+    opacity: 0.7;
+    font-size: 14px;
+    margin: 0;
+}
+.note {
+    max-width: 720px;
+    margin-top: 48px;
+    padding: 20px 24px;
+    background: rgba(107, 15, 26, 0.05);
+    border-left: 3px solid var(--brand-maroon);
+    border-radius: 6px;
+    font-size: 15px;
+}
+.note code {
+    background: rgba(107, 15, 26, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 13px;
+}
+</style>
+</head>
+<body>
+
+<h1>Header Behavior — 5 Options</h1>
+<p class="subtitle">Each card opens a full-page demo with identical content but a different header. Test scrolling through cream, image, and dark sections to see how each holds up.</p>
+
+<div class="options">
+    <a class="option" href="option-a.html">
+        <h2>A · Always-on glass, faded edge</h2>
+        <p>Glass blur + cream tint always visible. Background fades to transparent at the bottom — no hard seam against page content.</p>
+        <p class="tagline">→ My recommendation</p>
+    </a>
+
+    <a class="option" href="option-b.html">
+        <h2>B · Floating glass pills</h2>
+        <p>Header bg fully transparent. Logo and nav each sit inside their own glass-pill backdrop. Modern, no header-wide seam at all.</p>
+        <p class="tagline">→ Linear / Vercel style</p>
+    </a>
+
+    <a class="option" href="option-c.html">
+        <h2>C · Solid cream header</h2>
+        <p>No glass, no border, no shadow. Header is its own opaque surface. Boring but bulletproof — zero seam confusion.</p>
+        <p class="tagline">→ Safest, least modern</p>
+    </a>
+
+    <a class="option" href="option-d.html">
+        <h2>D · Auto-hide on scroll</h2>
+        <p>Header slides up out of view when scrolling down. Reveals on scroll up. No overlap possible, header reappears the moment you signal navigation intent.</p>
+        <p class="tagline">→ Medium / mobile pattern</p>
+    </a>
+
+    <a class="option" href="option-e.html">
+        <h2>E · Logo only at top</h2>
+        <p>Logo visible at very top, fades out after scroll threshold. Nav stays. Apple / Stripe pattern — logo lives with the hero, nav lives everywhere.</p>
+        <p class="tagline">→ Your original workaround idea</p>
+    </a>
+</div>
+
+<div class="note">
+    <strong>How to run:</strong> open these HTML files directly in a browser, OR run <code>python3 -m http.server</code> from inside this folder and visit <code>localhost:8000</code>. No WordPress needed.
+</div>
+
+</body>
+</html>

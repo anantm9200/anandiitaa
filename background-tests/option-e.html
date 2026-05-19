@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Option E — Gradient + Texture Hybrid</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+/* Option E — Hybrid. Multiple backgrounds stacked:
+   1. Tiny tileable noise/dot pattern on TOP (texture)
+   2. CSS linear-gradient on BOTTOM (color journey)
+   CSS supports multiple bgs separated by commas. Topmost listed = rendered on top.
+   Result: rich, painterly feel — premium look. Total weight: gradient is free, texture ~2 KB. */
+body {
+    background-image:
+        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' seed='5'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.18 0'/></filter><rect width='120' height='120' filter='url(%23n)'/></svg>"),
+        linear-gradient(180deg, #f5ebd2 0%, #f0c869 35%, #6b0f1a 70%, #2a1810 100%);
+    background-repeat: repeat, no-repeat;
+    background-attachment: fixed, fixed;
+    background-size: 120px 120px, 100% 100%;
+}
+</style>
+</head>
+<body>
+
+<header class="demo-header">
+    <div class="logo">ANANDIITAA</div>
+    <nav><a href="#">Home</a><a href="#">Products</a><a href="#">About</a></nav>
+</header>
+
+<section class="demo-section">
+    <div>
+        <span class="label">Option E</span>
+        <h1>Gradient + Texture Hybrid</h1>
+        <p>Stack a noise/grain texture on top of a brand gradient. CSS allows multiple backgrounds — best of B and D combined.</p>
+    </div>
+</section>
+
+<section class="demo-section">
+    <div>
+        <h1>Look at the Grain</h1>
+        <p>That subtle noise on top of the gradient? Adds richness, prevents the "flat CSS" feel. Looks like a painted backdrop.</p>
+    </div>
+</section>
+
+<section class="demo-section">
+    <div>
+        <h1>Why This Wins</h1>
+        <div class="card-row">
+            <div class="card"><h3>File Size</h3><p>~2-5 KB. Just the texture overlay.</p></div>
+            <div class="card"><h3>Color Journey</h3><p>Gradient handles top-to-bottom mood shift.</p></div>
+            <div class="card"><h3>Material Feel</h3><p>Texture adds tactility. Not "flat web".</p></div>
+            <div class="card"><h3>Scales Forever</h3><p>Both layers handle any page height.</p></div>
+        </div>
+    </div>
+</section>
+
+<section class="demo-section">
+    <div>
+        <h1>My Pick for Anandiitaa</h1>
+        <p>Cream → yellow → maroon gradient matches brand. Subtle grain adds the "natural/artisan" feel that fits chai &amp; jaggery. Lightweight, scalable, beautiful.</p>
+    </div>
+</section>
+
+<div class="tech-note">
+    <strong>Option E · Hybrid (Recommended)</strong><br>
+    <code>background-image: url(noise), linear-gradient(...)</code><br>
+    ~2-5 KB total. Scales infinitely.<br>
+    <strong>Best balance.</strong>
+</div>
+
+<a href="index.html" class="return-link">← All Options</a>
+
+</body>
+</html>

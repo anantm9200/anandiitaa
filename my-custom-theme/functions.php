@@ -22,15 +22,6 @@ function anandiitaa_enqueue_assets() {
         true
     );
 
-    // Header scroll-state toggle
-    wp_enqueue_script(
-        'header-scroll',
-        get_template_directory_uri() . '/assets/js/header-scroll.js',
-        array(),
-        filemtime( $js_dir . '/header-scroll.js' ),
-        true
-    );
-
     // Scroll-triggered fade/slide reveal for standalone sections
     wp_enqueue_script(
         'scroll-reveal',
@@ -76,13 +67,13 @@ if ( ! function_exists( 'anandiitaa_bust' ) ) {
 
 /**
  * Defer all our custom theme scripts. None of them are critical-path —
- * carousel, scroll-reveal, header-scroll, benefits-accordion all hook to
+ * carousel, scroll-reveal, benefits-accordion all hook to
  * DOMContentLoaded internally — so `defer` is safe and gets the parser
  * unblocked sooner. Filter only touches our own handles to avoid
  * surprising any future WP/plugin scripts.
  */
 add_filter( 'script_loader_tag', function ( $tag, $handle ) {
-    $defer_handles = array( 'hero-carousel', 'header-scroll', 'scroll-reveal', 'benefits-accordion' );
+    $defer_handles = array( 'hero-carousel', 'scroll-reveal', 'benefits-accordion' );
     if ( in_array( $handle, $defer_handles, true ) && false === strpos( $tag, ' defer' ) ) {
         $tag = str_replace( '<script ', '<script defer ', $tag );
     }

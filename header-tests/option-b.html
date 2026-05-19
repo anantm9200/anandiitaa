@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Option B — Glass pills around logo + nav</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+/* Option B — header itself is fully transparent. The logo and nav each
+   sit inside their own glass-pill backdrop so they stay readable on any
+   bg without imposing a full-width header surface. Modern web pattern
+   (Linear, Vercel landing). */
+.test-header {
+    background: transparent;
+    padding: 18px 48px;
+}
+.test-header .logo {
+    background: rgba(245, 235, 210, 0.65);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    backdrop-filter: blur(14px) saturate(140%);
+    padding: 8px 18px;
+    border-radius: 999px;
+    border: 1px solid rgba(107, 15, 26, 0.06);
+}
+.test-header .logo img { height: 22px; }
+.test-header nav.main-nav {
+    background: rgba(245, 235, 210, 0.65);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    backdrop-filter: blur(14px) saturate(140%);
+    padding: 12px 24px;
+    border-radius: 999px;
+    border: 1px solid rgba(107, 15, 26, 0.06);
+}
+</style>
+</head>
+<body>
+
+<header class="test-header">
+    <div class="test-header__inner">
+        <div class="logo"><a href="#"><img src="assets/logo.png" alt="Anandiitaa"></a></div>
+        <nav class="main-nav">
+            <a href="#">Home</a>
+            <a href="#">Products</a>
+            <a href="#">About Us</a>
+        </nav>
+    </div>
+</header>
+
+<section class="test-section test-section--hero">
+    <div>
+        <h1>Option B — Glass Pills</h1>
+        <p>Header is fully transparent. Logo and nav each have their own glass pill backdrop. No header-wide bg means no seam at all.</p>
+    </div>
+</section>
+
+<section class="test-section">
+    <div>
+        <h1>Scroll to test</h1>
+        <p>Pills float independently. Always readable on any bg. Feels intentional — like floating UI rather than a slab header.</p>
+    </div>
+</section>
+
+<section class="test-section test-section--dark">
+    <div>
+        <h1>Dark background test</h1>
+        <p>Pills still legible against dark content because each has its own blur backdrop. The header concept doesn't fight with the page below.</p>
+    </div>
+</section>
+
+<section class="test-section test-section--reviews">
+    <h1>Reviews</h1>
+    <div class="review-card"><p>"Switched to Anandiitaa for our morning chai. The taste is richer and we don't have to second-guess what's in it."</p></div>
+    <div class="review-card"><p>"My grandmother used to make jaggery this way. Finally found one that actually keeps that flavor."</p></div>
+</section>
+
+<section class="test-section">
+    <div>
+        <h1>End of page</h1>
+        <p>Compare with the full-width header options — this one stays minimal regardless of scroll position.</p>
+    </div>
+</section>
+
+<a href="index.html" class="return-link">← All Options</a>
+
+</body>
+</html>

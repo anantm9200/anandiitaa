@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Option D — Seamless Tileable Pattern</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+/* Option D — Small tileable PNG/SVG that repeats. File is tiny because it's small.
+   Infinite vertical (and horizontal) coverage via CSS repeat. Pattern must be
+   designed so edges align — "seamless tile". Inline SVG demo below: subtle dot pattern. */
+body {
+    background-color: #f5ebd2;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'><circle cx='40' cy='40' r='2' fill='%236b0f1a' opacity='0.15'/><circle cx='0' cy='0' r='2' fill='%236b0f1a' opacity='0.15'/><circle cx='80' cy='0' r='2' fill='%236b0f1a' opacity='0.15'/><circle cx='0' cy='80' r='2' fill='%236b0f1a' opacity='0.15'/><circle cx='80' cy='80' r='2' fill='%236b0f1a' opacity='0.15'/></svg>");
+    background-repeat: repeat;
+}
+</style>
+</head>
+<body>
+
+<header class="demo-header">
+    <div class="logo">ANANDIITAA</div>
+    <nav><a href="#">Home</a><a href="#">Products</a><a href="#">About</a></nav>
+</header>
+
+<section class="demo-section">
+    <div>
+        <span class="label">Option D</span>
+        <h1>Seamless Tileable Pattern</h1>
+        <p>Small image (80×80px here) that tiles. Edges designed to match so repeats are invisible. File size: tiny.</p>
+    </div>
+</section>
+
+<section class="demo-section">
+    <div>
+        <h1>Look Closely</h1>
+        <p>Notice the subtle dot pattern? Same texture top to bottom. No section seams — body bg is continuous. Pattern itself is ~2 KB.</p>
+    </div>
+</section>
+
+<section class="demo-section">
+    <div>
+        <h1>When to Use</h1>
+        <div class="card-row">
+            <div class="card"><h3>File Size</h3><p>1-10 KB. Tiniest of all options.</p></div>
+            <div class="card"><h3>Texture</h3><p>Adds material feel — paper, fabric, noise, dots.</p></div>
+            <div class="card"><h3>Limit</h3><p>Same look top to bottom. No color journey.</p></div>
+        </div>
+    </div>
+</section>
+
+<section class="demo-section">
+    <div>
+        <h1>Pro Combo</h1>
+        <p>Stack a gradient (Option B) UNDER the tile pattern. Gradient gives color journey, tile gives texture. Best of both. See Option E.</p>
+    </div>
+</section>
+
+<div class="tech-note">
+    <strong>Option D · Tileable Pattern</strong><br>
+    <code>background-image: url(tile.png)</code><br>
+    <code>background-repeat: repeat</code><br>
+    ~1-10 KB. Texture but no color flow.
+</div>
+
+<a href="index.html" class="return-link">← All Options</a>
+
+</body>
+</html>

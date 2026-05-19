@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Option C — Fixed Viewport Image (parallax-ish)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+/* Option C — ONE viewport-sized image, attached fixed.
+   Image stays put while content scrolls past it. Looks seamless because the bg never
+   moves — there's no seam to see. Image stays small (one screen worth, ~200-400 KB). */
+body {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1600' height='900' viewBox='0 0 1600 900'><defs><radialGradient id='r' cx='30%25' cy='25%25' r='90%25'><stop offset='0' stop-color='%23f5ebd2'/><stop offset='0.5' stop-color='%23f0c869'/><stop offset='1' stop-color='%236b0f1a'/></radialGradient></defs><rect width='1600' height='900' fill='url(%23r)'/><circle cx='1300' cy='200' r='150' fill='%23ffffff' opacity='0.12'/><circle cx='200' cy='700' r='120' fill='%23ffffff' opacity='0.10'/><circle cx='900' cy='500' r='80' fill='%23ffffff' opacity='0.08'/></svg>");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;       /* THE trick — image locks to viewport */
+    background-color: #f5ebd2;
+}
+</style>
+</head>
+<body>
+
+<header class="demo-header">
+    <div class="logo">ANANDIITAA</div>
+    <nav><a href="#">Home</a><a href="#">Products</a><a href="#">About</a></nav>
+</header>
+
+<section class="demo-section">
+    <div>
+        <span class="label">Option C</span>
+        <h1>Fixed Viewport Image</h1>
+        <p>One image, viewport-sized. <code>background-attachment: fixed</code> locks it in place while content scrolls past.</p>
+    </div>
+</section>
+
+<section class="demo-section">
+    <div>
+        <h1>Scroll — Watch the BG</h1>
+        <p>The background doesn't move. Content slides over a static image. Result: no seams ever, because there's nothing to seam against.</p>
+    </div>
+</section>
+
+<section class="demo-section">
+    <div>
+        <h1>Tradeoffs</h1>
+        <div class="card-row">
+            <div class="card"><h3>File Size</h3><p>~200-400 KB. One screen worth.</p></div>
+            <div class="card"><h3>Mobile Issue</h3><p>iOS Safari ignores <code>fixed</code> attachment. Fallback: image scrolls normally.</p></div>
+            <div class="card"><h3>Feel</h3><p>Premium, almost cinematic. Apple uses this pattern.</p></div>
+        </div>
+    </div>
+</section>
+
+<section class="demo-section">
+    <div>
+        <h1>Best For</h1>
+        <p>Hero-driven sites where the bg is a vibe, not the focus. Less great if you want bg to "tell a story" as user scrolls.</p>
+    </div>
+</section>
+
+<div class="tech-note">
+    <strong>Option C · Fixed Viewport Image</strong><br>
+    <code>background-attachment: fixed</code><br>
+    <code>background-size: cover</code><br>
+    ~200-400 KB. iOS quirk: scrolls instead.
+</div>
+
+<a href="index.html" class="return-link">← All Options</a>
+
+</body>
+</html>

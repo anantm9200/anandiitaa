@@ -102,7 +102,10 @@ body {
     font-size: var(--fs-body);             /* 18px global body baseline */
     font-weight: var(--fw-body);           /* DM Sans regular (400), never bold */
     color: var(--brand-text);
-    background: var(--brand-cream);
+    /* SEAMLESS_BG_TEST: original cream bg commented; brand gradient per design spec. Restore by uncommenting below and removing gradient. */
+    /* background: var(--brand-cream); */
+    background: linear-gradient(90deg, #feebc7 0%, #fcf9f3 100%);
+    background-attachment: fixed;
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
 }
@@ -177,30 +180,7 @@ picture {
     right: 0;
     z-index: 100;
     padding: 14px clamp(20px, 4vw, 48px); /* desktop default: edge gutters spread logo & nav to viewport edges */
-    background: transparent;             /* invisible at top — only logo + nav links show */
-    border-bottom: 1px solid transparent;
-    transition:
-        background 0.4s ease,
-        backdrop-filter 0.4s ease,
-        -webkit-backdrop-filter 0.4s ease,
-        box-shadow 0.4s ease,
-        border-color 0.4s ease;
-}
-
-
-/* Scrolled state: glassmorphic surface fades in */
-.site-header.is-scrolled {
-    background: rgba(245, 235, 210, 0.55);
-    -webkit-backdrop-filter: blur(16px) saturate(140%);
-    backdrop-filter: blur(16px) saturate(140%);
-    border-bottom-color: rgba(107, 15, 26, 0.08);
-    box-shadow: 0 4px 24px rgba(107, 15, 26, 0.06);
-}
-
-@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-    .site-header.is-scrolled {
-        background: rgba(245, 235, 210, 0.92);
-    }
+    background: var(--brand-cream);      /* solid cream — same surface at every scroll position */
 }
 
 /* Pages other than the home page used to need top space when the header was
@@ -392,7 +372,8 @@ picture {
     /* full viewport — header overlays transparently */
     min-height: 560px;
     overflow: hidden;
-    background: var(--brand-cream);
+    /* SEAMLESS_BG_TEST: commented to let body bg show through. */
+    /* background: var(--brand-cream); */
 }
 
 .hero-track {
@@ -421,7 +402,10 @@ picture {
     height: 100vh;
     min-height: 560px;
     flex: initial;            /* override .hero-slide's flex sizing */
-    background: var(--brand-cream);
+    /* SEAMLESS_BG_TEST: commented to let body bg show through. */
+    /* background: var(--brand-cream); */
+    /* SEAMLESS_BG_TEST: breathing room between sections (no hard borders → margin OK). */
+    margin-top: 10vh;
 }
 
 /* ========================================================================
@@ -671,6 +655,34 @@ picture {
     object-position: center center;
 }
 
+/* SEAMLESS_BG_TEST: first slide uses transparent-bg sticker.
+   No override needed — default `cover` + L1344's `object-position: center bottom`
+   anchor products to bottom and crop the transparent top, matching other slides' width.
+   Mac-focused for now; windows assets pending. */
+
+/* SEAMLESS_BG_TEST: standards section sticker (corner-vignette design).
+   Uses contain (not cover) so the upper-right bowl/sugarcane stays in its designed
+   position and doesn't get scaled-up + cropped. Transparent edges = no visible
+   section border because gradient flows uninterrupted across the seam. */
+.page-section--standards .hero-slide__bg img {
+    object-fit: contain;
+    object-position: center center;
+}
+
+/* SEAMLESS_BG_TEST: option 2 safety net — soft top/bottom fade on stickers.
+   Targets only *-sticker.png so old full-bleed slides stay untouched.
+   Any hard image edge dissolves into the gradient instead of cutting hard. */
+.hero-slide__bg img[src*="-sticker"] {
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
+            mask-image: linear-gradient(180deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
+}
+
+/* SEAMLESS_BG_TEST: benefits section — bottom fade removed per design feedback. */
+.page-section--benefits .hero-slide__bg img[src*="-sticker"] {
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 6%, #000 100%);
+            mask-image: linear-gradient(180deg, transparent 0%, #000 6%, #000 100%);
+}
+
 .hero-slide__content {
     position: absolute;
     top: 50%;
@@ -729,7 +741,7 @@ picture {
 /* Bottom-center variant: caption sits a bit above the bottom edge */
 .hero-slide__content--bottom-center {
     top: auto;
-    bottom: 12%;
+    bottom: calc(12% - 50px);
     left: 50%;
     right: auto;
     transform: translateX(-50%);
@@ -1539,7 +1551,8 @@ picture {
 
 .products-landing {
     min-height: 100vh;
-    background: var(--brand-cream);
+    /* SEAMLESS_BG_TEST: commented to let body bg show through. */
+    /* background: var(--brand-cream); */
     padding: 96px 6% 80px;
     display: flex;
     flex-direction: column;
@@ -1697,7 +1710,8 @@ picture {
     position: relative;
     width: 100%;
     min-height: 100vh;
-    background: var(--brand-cream);
+    /* SEAMLESS_BG_TEST: commented to let body bg show through. */
+    /* background: var(--brand-cream); */
     overflow: hidden;
     padding-top: 24px;  /* header hides at top — slide owns the viewport */
     padding-bottom: 0;
@@ -1822,6 +1836,8 @@ picture {
    image. Non-mac variants intentionally absent — content still readable
    on the existing cream slide bg for smaller screens. Same pattern reused
    below for the variants slide. */
+/* SEAMLESS_BG_TEST: entire mac-only bg-image block commented to let body bg show through. Uncomment to restore product page bgs. */
+/*
 @media (min-width: 1440px) {
     .product-page--jaggery .product-slide--process {
         background: url('assets/images/products/jaggery/mac/process-bg.png') center / 100% 100% no-repeat;
@@ -1838,6 +1854,7 @@ picture {
         background: url('assets/images/products/sugar/mac/variants-bg.png') center / cover no-repeat;
     }
 }
+*/
 
 .process-title {
     font-family: 'Appetite Pro', 'Georgia', serif;
@@ -2645,7 +2662,8 @@ picture {
    Mac viewport first — desktop / responsive tuning passes come later.
    ======================================================================== */
 .about-page {
-    background: var(--brand-cream);
+    /* SEAMLESS_BG_TEST: commented to let body bg show through. */
+    /* background: var(--brand-cream); */
 }
 
 .about-slide {
@@ -2654,7 +2672,8 @@ picture {
     height: 100vh;
     min-height: 640px;
     overflow: hidden;
-    background: var(--brand-cream);
+    /* SEAMLESS_BG_TEST: commented to let body bg show through. */
+    /* background: var(--brand-cream); */
 }
 
 .about-slide__bg {
@@ -2744,7 +2763,8 @@ picture {
     position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 32px;
     padding: 40px 0;
     min-height: 600px;
 }
@@ -2783,7 +2803,7 @@ picture {
     font-size: var(--fs-subtext);
     font-weight: 700;
     color: var(--brand-maroon);
-    line-height: 1.35;
+    line-height: 1.45;
 }
 
 .about-vision__divider {
@@ -2924,7 +2944,8 @@ picture {
     width: 100%;
     min-height: 100vh;
     padding: 100px 80px 120px;
-    background: var(--brand-cream);
+    /* SEAMLESS_BG_TEST: commented to let body bg show through. */
+    /* background: var(--brand-cream); */
     overflow: hidden;
 }
 
@@ -2937,17 +2958,18 @@ picture {
     color: var(--brand-maroon);
     line-height: 1;
     display: flex;
-    align-items: center;
+    align-items: baseline;       /* sit text + wordmark on common baseline */
     justify-content: center;
     gap: 18px;
     flex-wrap: wrap;
 }
 
 .about-standards__wordmark {
-    height: 0.85em;             /* matches surrounding heading line-box */
+    height: 0.78em;              /* slightly tighter; wordmark sits cleanly with the surrounding text */
     width: auto;
     display: inline-block;
-    vertical-align: baseline;
+    align-self: baseline;
+    transform: translateY(0.05em); /* nudge down so wordmark glyph baseline meets text baseline */
 }
 
 .about-standards__grid {
@@ -2993,9 +3015,9 @@ picture {
 .standard-item__image {
     position: relative;
     z-index: 2;
-    width: 170px;
+    width: 210px;
     aspect-ratio: 1 / 1;
-    border-radius: 20px;
+    border-radius: 22px;
     overflow: hidden;
     box-shadow: 0 6px 18px rgba(0,0,0,0.06);
     transition: box-shadow 380ms ease;
@@ -3021,15 +3043,15 @@ picture {
 .standard-item__card {
     position: relative;
     background: #fbf3df;        /* slightly lighter than page cream */
-    border-radius: 20px;
-    padding: 20px 24px;
+    border-radius: 22px;
+    padding: 28px 34px;
     margin-left: -28px;         /* image overlaps card's left edge */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    gap: 12px;
+    gap: 14px;
     box-shadow: 0 4px 14px rgba(0,0,0,0.04);
     transition: background 380ms ease, box-shadow 380ms ease;
 }
@@ -3069,7 +3091,7 @@ picture {
 .standard-item__title {
     margin: 0;
     font-family: 'Appetite Pro', 'Georgia', serif;
-    font-size: 22px;
+    font-size: 26px;
     font-weight: 700;
     color: var(--brand-maroon);
     line-height: 1.15;
@@ -3078,7 +3100,7 @@ picture {
 .standard-item__body {
     margin: 0;
     font-family: 'DM Sans', system-ui, sans-serif;
-    font-size: 15px;
+    font-size: var(--fs-body);
     font-weight: 500;
     color: var(--brand-maroon);
     line-height: 1.5;
@@ -3157,7 +3179,8 @@ picture {
     width: 100%;
     min-height: 100vh;
     padding: 80px 80px;
-    background: var(--brand-cream);
+    /* SEAMLESS_BG_TEST: commented to let body bg show through. */
+    /* background: var(--brand-cream); */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -3266,6 +3289,8 @@ picture {
    slide's own base rule, which sets background to flat cream.
    Non-mac viewports stay on the flat cream bg.
    ======================================================================== */
+/* SEAMLESS_BG_TEST: about-us mac paper-bg commented to let body bg show through. */
+/*
 @media (min-width: 1440px) {
     .about-slide--vision,
     .about-slide--standards,
@@ -3273,6 +3298,7 @@ picture {
         background: url('images/about-us/mac/paper-bg.png') center / cover no-repeat;
     }
 }
+*/
 
 /* Mac (>=1440px) — late override so it beats the base .reviews-title /
    .reviews-grid rules that appear earlier in this file. Home slide 10

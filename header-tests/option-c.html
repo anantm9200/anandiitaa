@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Option C — Solid cream header</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+/* Option C — fully solid cream header. No glass, no border, no shadow,
+   no transparency. The header is clearly its own surface, not pretending
+   to blend with the content below. Boring but bulletproof. */
+.test-header {
+    background: var(--brand-cream);
+    /* No border. No box-shadow. Just a solid block. */
+}
+</style>
+</head>
+<body>
+
+<header class="test-header">
+    <div class="test-header__inner">
+        <div class="logo"><a href="#"><img src="assets/logo.png" alt="Anandiitaa"></a></div>
+        <nav class="main-nav">
+            <a href="#">Home</a>
+            <a href="#">Products</a>
+            <a href="#">About Us</a>
+        </nav>
+    </div>
+</header>
+
+<section class="test-section test-section--hero">
+    <div>
+        <h1>Option C — Solid Cream</h1>
+        <p>Header is solid brand-cream. No glass effect, no border, no shadow. It just sits there as its own surface.</p>
+    </div>
+</section>
+
+<section class="test-section">
+    <div>
+        <h1>Scroll to test</h1>
+        <p>Header looks identical at every scroll position. Logo always readable. The trade-off is that it loses the modern glassy feel completely.</p>
+    </div>
+</section>
+
+<section class="test-section test-section--dark">
+    <div>
+        <h1>Dark background test</h1>
+        <p>This is where the trade-off shows — the cream header now contrasts hard against dark content. Clearly two separate surfaces.</p>
+    </div>
+</section>
+
+<section class="test-section test-section--reviews">
+    <h1>Reviews</h1>
+    <div class="review-card"><p>"Switched to Anandiitaa for our morning chai. The taste is richer and we don't have to second-guess what's in it."</p></div>
+    <div class="review-card"><p>"My grandmother used to make jaggery this way. Finally found one that actually keeps that flavor."</p></div>
+</section>
+
+<section class="test-section">
+    <div>
+        <h1>End of page</h1>
+        <p>Most conservative option. No surprises, no overlap issues, no seams. Just less interesting.</p>
+    </div>
+</section>
+
+<a href="index.html" class="return-link">← All Options</a>
+
+</body>
+</html>

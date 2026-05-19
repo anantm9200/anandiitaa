@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Option A — One Long Image (your idea)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+/* Option A — Your original plan: ONE long vertical image stretched down the whole body.
+   Using an inline SVG data-URI as a stand-in "long image" so the demo is self-contained.
+   In production this would be a real PNG/JPG file you commission. */
+body {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1440' height='4000' viewBox='0 0 1440 4000' preserveAspectRatio='none'><defs><linearGradient id='g' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='%23f5ebd2'/><stop offset='0.25' stop-color='%23f0c869'/><stop offset='0.5' stop-color='%236b0f1a'/><stop offset='0.75' stop-color='%232a1810'/><stop offset='1' stop-color='%23f5ebd2'/></linearGradient></defs><rect width='1440' height='4000' fill='url(%23g)'/><circle cx='200' cy='800' r='180' fill='%23ffffff' opacity='0.08'/><circle cx='1200' cy='1600' r='240' fill='%23ffffff' opacity='0.06'/><circle cx='400' cy='2400' r='200' fill='%23ffffff' opacity='0.07'/><circle cx='1000' cy='3200' r='160' fill='%23ffffff' opacity='0.08'/></svg>");
+    background-size: 100% auto;            /* stretches image width to viewport, keeps aspect */
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-color: #f5ebd2;              /* fallback if image doesn't cover full page */
+}
+</style>
+</head>
+<body>
+
+<header class="demo-header">
+    <div class="logo">ANANDIITAA</div>
+    <nav><a href="#">Home</a><a href="#">Products</a><a href="#">About</a></nav>
+</header>
+
+<section class="demo-section">
+    <div>
+        <span class="label">Option A</span>
+        <h1>One Long Vertical Image</h1>
+        <p>Your original plan. One huge PNG/JPG stretched down the whole body. Sections are transparent so the image shows through everywhere.</p>
+    </div>
+</section>
+
+<section class="demo-section">
+    <div>
+        <h1>Scroll Down →</h1>
+        <p>Notice no section boundaries. Bg flows top to bottom as one continuous image.</p>
+    </div>
+</section>
+
+<section class="demo-section">
+    <div>
+        <h1>The Problem</h1>
+        <p>If you add a new section, the image doesn't stretch — it either tiles (ugly seam) or runs out (background-color fallback shows). Try resizing window width too: aspect ratio may distort.</p>
+        <div class="card-row">
+            <div class="card"><h3>File Size</h3><p>A 1440×4000 image at decent quality = 1-3 MB. Heavy on mobile.</p></div>
+            <div class="card"><h3>Page Length Lock</h3><p>Each page needs its own custom-length image.</p></div>
+            <div class="card"><h3>Hard to Iterate</h3><p>Want a color tweak? Re-export the whole image.</p></div>
+        </div>
+    </div>
+</section>
+
+<section class="demo-section">
+    <div>
+        <h1>End of Image</h1>
+        <p>If page grows past 4000px tall, background-color fallback kicks in below. Seam reappears.</p>
+    </div>
+</section>
+
+<div class="tech-note">
+    <strong>Option A · One Long Image</strong><br>
+    <code>background-image: url(long.png)</code><br>
+    <code>background-size: 100% auto</code><br>
+    File: ~1-3 MB. Locked to page height.
+</div>
+
+<a href="index.html" class="return-link">← All Options</a>
+
+</body>
+</html>

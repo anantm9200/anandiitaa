@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Background Tests — Anandiitaa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+    --brand-maroon: #6b0f1a;
+    --brand-cream:  #f5ebd2;
+    --brand-yellow: #f0c869;
+}
+* { box-sizing: border-box; }
+body {
+    margin: 0;
+    padding: 60px 40px;
+    background: var(--brand-cream);
+    color: var(--brand-maroon);
+    font-family: 'DM Sans', system-ui, sans-serif;
+    line-height: 1.55;
+    font-size: 17px;
+}
+h1 {
+    font-family: 'Montserrat', system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 42px;
+    margin: 0 0 8px;
+}
+.subtitle {
+    font-size: 18px;
+    opacity: 0.75;
+    margin: 0 0 48px;
+    max-width: 760px;
+}
+.options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
+    max-width: 1280px;
+}
+.option {
+    display: block;
+    padding: 28px 28px 26px;
+    background: #fbf3df;
+    border-radius: 18px;
+    text-decoration: none;
+    color: var(--brand-maroon);
+    box-shadow: 0 8px 22px rgba(107, 15, 26, 0.06);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.option:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 32px rgba(107, 15, 26, 0.12);
+}
+.option h2 {
+    font-family: 'Montserrat', system-ui, sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    margin: 0 0 10px;
+}
+.option p {
+    font-size: 15px;
+    margin: 0 0 10px;
+}
+.option .tagline {
+    font-style: italic;
+    opacity: 0.7;
+    font-size: 14px;
+    margin: 0;
+}
+.option .meta {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: 0 0 12px;
+}
+.option .meta span {
+    background: rgba(107, 15, 26, 0.08);
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-family: 'Montserrat', system-ui, sans-serif;
+    letter-spacing: 0.04em;
+}
+.note {
+    max-width: 760px;
+    margin-top: 48px;
+    padding: 20px 24px;
+    background: rgba(107, 15, 26, 0.05);
+    border-left: 3px solid var(--brand-maroon);
+    border-radius: 6px;
+    font-size: 15px;
+}
+.note code {
+    background: rgba(107, 15, 26, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 13px;
+}
+.compare {
+    max-width: 760px;
+    margin-top: 32px;
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 14px;
+}
+.compare th, .compare td {
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 1px solid rgba(107, 15, 26, 0.15);
+}
+.compare th {
+    font-family: 'Montserrat', system-ui, sans-serif;
+    background: rgba(107, 15, 26, 0.06);
+}
+</style>
+</head>
+<body>
+
+<h1>Seamless Background — 5 Options</h1>
+<p class="subtitle">5 ways to give your site a continuous, seam-free background. Open each demo, scroll through, see how the bg behaves. Section backgrounds are <code>transparent</code> in every demo — that's the whole trick.</p>
+
+<div class="options">
+    <a class="option" href="option-a.html">
+        <div class="meta"><span>~1-3 MB</span><span>Image</span></div>
+        <h2>A · One Long Vertical Image</h2>
+        <p>Your original idea. One tall PNG/JPG stretched down the whole body.</p>
+        <p class="tagline">→ Works but heavy & rigid</p>
+    </a>
+
+    <a class="option" href="option-b.html">
+        <div class="meta"><span>0 KB</span><span>CSS only</span></div>
+        <h2>B · CSS Gradient on Body</h2>
+        <p>Pure CSS <code>linear-gradient</code>. No image. Scales infinitely. Easy to tweak.</p>
+        <p class="tagline">→ Lightest, most flexible</p>
+    </a>
+
+    <a class="option" href="option-c.html">
+        <div class="meta"><span>~200-400 KB</span><span>1 image</span></div>
+        <h2>C · Fixed Viewport Image</h2>
+        <p>One screen-sized image, locked via <code>background-attachment: fixed</code>. Content scrolls past it.</p>
+        <p class="tagline">→ Premium cinematic feel</p>
+    </a>
+
+    <a class="option" href="option-d.html">
+        <div class="meta"><span>~1-10 KB</span><span>Tile</span></div>
+        <h2>D · Seamless Tileable Pattern</h2>
+        <p>Tiny image that repeats. Edges designed to align. Great for texture/grain.</p>
+        <p class="tagline">→ Tiniest file, texture only</p>
+    </a>
+
+    <a class="option" href="option-e.html">
+        <div class="meta"><span>~2-5 KB</span><span>Gradient + texture</span></div>
+        <h2>E · Gradient + Texture Hybrid</h2>
+        <p>CSS gradient UNDER a tiny noise/grain layer. Best of B and D combined.</p>
+        <p class="tagline">→ My recommendation</p>
+    </a>
+</div>
+
+<table class="compare">
+    <thead>
+        <tr><th>Option</th><th>Size</th><th>Scales</th><th>Texture</th><th>Color flow</th></tr>
+    </thead>
+    <tbody>
+        <tr><td>A · Long image</td><td>1-3 MB</td><td>No (locked)</td><td>Yes</td><td>Yes</td></tr>
+        <tr><td>B · CSS gradient</td><td>0 KB</td><td>Infinite</td><td>No</td><td>Yes</td></tr>
+        <tr><td>C · Fixed image</td><td>200-400 KB</td><td>Infinite</td><td>Yes</td><td>Static</td></tr>
+        <tr><td>D · Tile pattern</td><td>1-10 KB</td><td>Infinite</td><td>Yes</td><td>No</td></tr>
+        <tr><td>E · Hybrid</td><td>2-5 KB</td><td>Infinite</td><td>Yes</td><td>Yes</td></tr>
+    </tbody>
+</table>
+
+<div class="note">
+    <strong>How to run:</strong> open the HTML files directly in a browser, OR run <code>python3 -m http.server</code> from inside this folder and visit <code>localhost:8000</code>. No WordPress needed. Each demo is self-contained (SVG-encoded "images" inline so no asset files required).
+</div>
+
+</body>
+</html>

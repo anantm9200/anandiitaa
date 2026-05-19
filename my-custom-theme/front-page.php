@@ -8,14 +8,16 @@
     // (using existing section bgs) until client supplies remaining 4 slides.
     $slides = array(
         array(
-            'image'    => $tpl . '/images/home/laptop/slider/slide-1.png',
+            // SEAMLESS_BG_TEST: swapped slide-1.png → slide-1-sticker.png (transparent bg). Revert by restoring filename.
+            'image'    => $tpl . '/images/home/laptop/slider/slide-1-sticker.png',
             'alt'      => 'Anandiitaa — Choose Pure',
             'heading'  => 'Choose Pure.<br>Choose Anandiitaa.',
             'cta'      => array( 'label' => 'Explore More', 'href' => '/about-us', 'class' => 'btn-primary' ),
             'position' => 'top-center',
         ),
         array(
-            'image'    => $tpl . '/images/home/laptop/2.png',
+            // SEAMLESS_BG_TEST: swapped 2.png → 2-sticker.png (transparent bg). Revert by restoring filename.
+            'image'    => $tpl . '/images/home/laptop/2-sticker.png',
             'alt'      => 'Choose Pure. Choose Anandiitaa.',
             'heading'  => 'Choose Pure.<br>Choose Anandiitaa.',
             'cta'      => array( 'label' => 'Explore More', 'href' => '/about-us', 'class' => 'btn-primary' ),
@@ -26,7 +28,8 @@
             ),
         ),
         array(
-            'image'    => $tpl . '/images/home/laptop/3.png',
+            // SEAMLESS_BG_TEST: swapped 3.png → 3-sticker.png (transparent bg). Revert by restoring filename.
+            'image'    => $tpl . '/images/home/laptop/3-sticker.png',
             'alt'      => 'Choose Pure. Choose Anandiitaa.',
             'heading'  => 'Choose Pure.<br>Choose Anandiitaa.',
             'cta'      => array( 'label' => 'Explore More', 'href' => '/about-us', 'class' => 'btn-primary' ),
@@ -37,7 +40,8 @@
             ),
         ),
         array(
-            'image'    => $tpl . '/images/home/laptop/4.png',
+            // SEAMLESS_BG_TEST: swapped 4.png → 4-sticker.png (transparent bg). Revert by restoring filename.
+            'image'    => $tpl . '/images/home/laptop/4-sticker.png',
             'alt'      => 'Choose Pure. Choose Anandiitaa.',
             'heading'  => 'Choose Pure.<br>Choose Anandiitaa.',
             'cta'      => array( 'label' => 'Explore More', 'href' => '/about-us', 'class' => 'btn-primary' ),
@@ -48,7 +52,8 @@
             ),
         ),
         array(
-            'image'    => $tpl . '/images/home/laptop/5.png',
+            // SEAMLESS_BG_TEST: swapped 5.png → 5-sticker.png (transparent bg). Revert by restoring filename.
+            'image'    => $tpl . '/images/home/laptop/5-sticker.png',
             'alt'      => 'Choose Pure. Choose Anandiitaa.',
             'heading'  => 'Choose Pure.<br>Choose Anandiitaa.',
             'cta'      => array( 'label' => 'Explore More', 'href' => '/about-us', 'class' => 'btn-primary' ),
@@ -61,7 +66,8 @@
         // Slide 6: The Anandiitaa Standards (custom 4-column layout)
         array(
             'type'      => 'standards',
-            'image'     => $tpl . '/images/home/laptop/sections/6.png',
+            // SEAMLESS_BG_TEST: swapped 6.png → 6-sticker.png (transparent bg). Revert by restoring filename.
+            'image'     => $tpl . '/images/home/laptop/sections/6-sticker.png',
             'alt'       => 'The Anandiitaa Standards',
             'standards' => array(
                 array(
@@ -88,7 +94,8 @@
         ),
         // Slide 7: News-clippings bg, caption near top + caption near bottom
         array(
-            'image'       => $tpl . '/images/home/laptop/sections/7.png',
+            // SEAMLESS_BG_TEST: swapped 7.png → 7-sticker.png (transparent bg). Revert by restoring filename.
+            'image'       => $tpl . '/images/home/laptop/sections/7-sticker.png',
             'alt'         => 'In the era of food adulteration',
             'caption_top' => 'Not all jaggery is made the same.',
             'heading'     => 'Choose Pure, Choose Anandiitaa',
@@ -97,7 +104,8 @@
         // Slide 8: Product grid (2x2 cards on cream bg)
         array(
             'type'     => 'products-grid',
-            'image'    => $tpl . '/images/home/laptop/sections/8.png',
+            // SEAMLESS_BG_TEST: no bg image — let body gradient show through. Restore '/images/home/laptop/sections/8.png' to revert.
+            'image'    => '',
             'alt'      => 'Anandiitaa Product Range',
             'products' => array(
                 array(
@@ -137,7 +145,8 @@
         // Slide 9: The Benefits of Jaggery (4 benefit cards on dark wood bg)
         array(
             'type'     => 'benefits',
-            'image'    => $tpl . '/images/home/laptop/sections/9.png',
+            // SEAMLESS_BG_TEST: swapped 9.png → 9-sticker.png (transparent bg). Revert by restoring filename.
+            'image'    => $tpl . '/images/home/laptop/sections/9-sticker.png',
             'alt'      => 'The Benefits of Jaggery',
             'title'    => 'The Benefits of Jaggery',
             'benefits' => array(
@@ -166,7 +175,8 @@
         // Slide 10: Words that matter (2 U-shaped review cards on cream bg)
         array(
             'type'    => 'reviews',
-            'image'   => $tpl . '/images/home/laptop/sections/10.png',
+            // SEAMLESS_BG_TEST: no bg image — let body gradient show through. Restore '/images/home/laptop/sections/10.png' to revert.
+            'image'   => '',
             'alt'     => 'Words that matter',
             'title'   => 'Words that matter',
             'reviews' => array(
@@ -228,17 +238,21 @@
     // CDN/Pantheon-cache safe (no UA-dependent HTML), unlike server-side UA
     // detection which Varnish strips at the cache key.
     $render_slide = function ( $slide, $is_priority = false ) use ( $tpl, $icons, $mac_url_for, $mac_exists, $bust ) {
-        $laptop_url = $slide['image'];
+        $laptop_url = $slide['image'] ?? '';
         // ACF-driven slides may supply an explicit mac variant (uploaded to Media Library);
         // otherwise we derive a mac URL from the laptop path and verify the file exists in-theme.
         if ( ! empty( $slide['mac_image'] ) ) {
             $mac_url = $slide['mac_image'];
             $has_mac = true;
-        } else {
+        } elseif ( $laptop_url ) {
             $mac_url = $mac_url_for( $laptop_url );
             $has_mac = $mac_exists( $mac_url );
+        } else {
+            $mac_url = '';
+            $has_mac = false;
         }
         ?>
+        <?php if ( $laptop_url ) : ?>
         <div class="hero-slide__bg">
             <picture>
                 <?php if ( $has_mac ) : ?>
@@ -247,6 +261,7 @@
                 <img src="<?php echo esc_url( $bust( $laptop_url ) ); ?>" alt="<?php echo esc_attr( $slide['alt'] ); ?>" <?php echo $is_priority ? 'fetchpriority="high"' : 'loading="lazy"'; ?>>
             </picture>
         </div>
+        <?php endif; ?>
 
         <?php if ( ! empty( $slide['type'] ) && $slide['type'] === 'standards' ) : ?>
             <div class="standards-title">

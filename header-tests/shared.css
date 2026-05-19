@@ -1,0 +1,116 @@
+/* Shared page styles — identical content for all 5 header tests so only the header behavior differs. */
+
+:root {
+    --brand-maroon: #6b0f1a;
+    --brand-cream:  #f5ebd2;
+    --brand-yellow: #f0c869;
+    --fs-heading: 57px;
+    --fs-subtext: 27px;
+    --fs-body: 18px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    background: var(--brand-cream);
+    color: var(--brand-maroon);
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: var(--fs-body);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Common header chrome — each option overrides specifics */
+.test-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 14px 48px;
+}
+.test-header__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+}
+.logo img {
+    height: 30px;
+    width: auto;
+    display: block;
+}
+nav.main-nav {
+    display: flex;
+    gap: 28px;
+    font-family: 'Montserrat', system-ui, sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+nav.main-nav a {
+    color: var(--brand-maroon);
+    text-decoration: none;
+}
+
+/* Page sections — designed to stress-test the header against varied bgs */
+.test-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 60px;
+    text-align: center;
+}
+.test-section h1 {
+    font-family: 'Montserrat', system-ui, sans-serif;
+    font-weight: 700;
+    font-size: var(--fs-heading);
+    margin: 0 0 16px;
+    color: var(--brand-maroon);
+    line-height: 1.05;
+}
+.test-section p {
+    max-width: 700px;
+    font-size: var(--fs-subtext);
+    margin: 0 auto;
+}
+
+.test-section--hero {
+    background: url('assets/hero.png') center/cover no-repeat var(--brand-cream);
+}
+.test-section--dark {
+    background: #2a1810;
+    color: #f5ebd2;
+}
+.test-section--dark h1 { color: var(--brand-cream); }
+
+.test-section--reviews {
+    background: var(--brand-cream);
+    flex-direction: column;
+    gap: 40px;
+}
+.review-card {
+    background: #fbf3df;
+    padding: 32px 28px;
+    border-radius: 24px;
+    max-width: 540px;
+    box-shadow: 0 8px 22px rgba(107, 15, 26, 0.08);
+}
+.return-link {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--brand-maroon);
+    color: #fff;
+    padding: 10px 16px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-family: 'Montserrat', system-ui, sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    z-index: 200;
+    box-shadow: 0 8px 20px rgba(107, 15, 26, 0.25);
+}
