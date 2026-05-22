@@ -660,15 +660,6 @@ picture {
    anchor products to bottom and crop the transparent top, matching other slides' width.
    Mac-focused for now; windows assets pending. */
 
-/* SEAMLESS_BG_TEST: standards section sticker (corner-vignette design).
-   Uses contain (not cover) so the upper-right bowl/sugarcane stays in its designed
-   position and doesn't get scaled-up + cropped. Transparent edges = no visible
-   section border because gradient flows uninterrupted across the seam. */
-.page-section--standards .hero-slide__bg img {
-    object-fit: contain;
-    object-position: center center;
-}
-
 /* SEAMLESS_BG_TEST: option 2 safety net — soft top/bottom fade on stickers.
    Targets only *-sticker.png so old full-bleed slides stay untouched.
    Any hard image edge dissolves into the gradient instead of cutting hard. */
@@ -1196,7 +1187,8 @@ picture {
 
 .standards-title {
     position: absolute;
-    top: 14%;
+    /* SEAMLESS_BG_TEST: shift title up ~100px via top (transform is owned by scroll-reveal anim). */
+    top: calc(14% - 100px);
     left: 6%;
     z-index: 5;
     color: var(--brand-maroon);
@@ -2748,9 +2740,17 @@ picture {
     padding: 0;
 }
 
+/* SEAMLESS_BG_TEST: vision section bg = new mac image (≥1440px). */
+@media (min-width: 1440px) {
+    .about-slide--vision {
+        background: url('images/about-us/mac/vision-new.png') center / cover no-repeat;
+    }
+}
+
 .about-vision__grid {
     display: grid;
-    grid-template-columns: 1fr 1px 1fr;
+    /* SEAMLESS_BG_TEST: was `1fr 1px 1fr` (copy | divider | photo). Divider + photo removed → single column. */
+    grid-template-columns: 1fr;
     align-items: stretch;
     width: 100%;
     max-width: 1700px;
@@ -2767,6 +2767,8 @@ picture {
     gap: 32px;
     padding: 40px 0;
     min-height: 600px;
+    /* SEAMLESS_BG_TEST: lift heading + body ~50px (not in scroll-reveal list, so transform is safe). */
+    transform: translateY(-50px);
 }
 
 /* Giant pale quote glyph behind the title (decorative). Uses a tan/cream
@@ -2789,10 +2791,13 @@ picture {
     z-index: 1;
     margin: 10px 0 0;
     font-family: 'Appetite Pro', 'Georgia', serif;
-    font-size: var(--fs-heading);
+    /* SEAMLESS_BG_TEST: title/body font sizes interchanged (was --fs-heading). */
+    font-size: var(--fs-subtext);
     font-weight: var(--fw-heading);
     color: var(--brand-maroon);
     line-height: 1;
+    /* SEAMLESS_BG_TEST: uppercase "Our Vision". */
+    text-transform: uppercase;
 }
 
 .about-vision__body {
@@ -2800,7 +2805,8 @@ picture {
     z-index: 1;
     margin: 0;
     font-family: 'DM Sans', system-ui, sans-serif;
-    font-size: var(--fs-subtext);
+    /* SEAMLESS_BG_TEST: title/body font sizes interchanged (was --fs-subtext). */
+    font-size: var(--fs-heading);
     font-weight: 700;
     color: var(--brand-maroon);
     line-height: 1.45;
@@ -2943,7 +2949,9 @@ picture {
 .about-slide--standards {
     width: 100%;
     min-height: 100vh;
-    padding: 100px 80px 120px;
+    /* SEAMLESS_BG_TEST: edge-relative side padding — boxes stay ~5vw from every
+       device border regardless of screen size (was fixed 80px). */
+    padding: 100px clamp(24px, 5vw, 100px) 120px;
     /* SEAMLESS_BG_TEST: commented to let body bg show through. */
     /* background: var(--brand-cream); */
     overflow: hidden;
@@ -2979,18 +2987,21 @@ picture {
     grid-template-columns: 1fr 1fr;
     column-gap: 60px;
     row-gap: 36px;
-    max-width: 1120px;
+    /* SEAMLESS_BG_TEST: grid fits inside the padded section; can't exceed it (was 1520px). */
+    width: 100%;
+    max-width: 1280px;
     margin: 0 auto;
 }
 
 /* Brick stagger split symmetrically: row 1 shifts -15%, row 2 shifts +15%.
    Net horizontal offset between rows = 30% (gentle brick). Smaller offset
    keeps both end-cards inside the section padding at common viewports. */
+/* SEAMLESS_BG_TEST: gentler brick stagger (was ±15%) so big cards stay inside the padded area. */
 .standard-item:nth-child(-n+2) {
-    transform: translateX(-15%);
+    transform: translateX(-6%);
 }
 .standard-item:nth-child(n+3) {
-    transform: translateX(15%);
+    transform: translateX(6%);
 }
 
 .standard-item {
@@ -2998,7 +3009,8 @@ picture {
     grid-template-columns: 170px 1fr;
     gap: 0;
     align-items: stretch;
-    max-width: 480px;
+    /* SEAMLESS_BG_TEST: bigger card boxes (was 480px). */
+    max-width: 780px;
     cursor: default;
     transition: transform 380ms cubic-bezier(0.2, 0.7, 0.2, 1);
     will-change: transform;
@@ -3006,10 +3018,10 @@ picture {
 
 /* Hover lifts each card -8px while preserving its row brick offset. */
 .standard-item:nth-child(-n+2):hover {
-    transform: translateX(-15%) translateY(-8px);
+    transform: translateX(-6%) translateY(-8px);
 }
 .standard-item:nth-child(n+3):hover {
-    transform: translateX(15%) translateY(-8px);
+    transform: translateX(6%) translateY(-8px);
 }
 
 .standard-item__image {
@@ -3044,13 +3056,15 @@ picture {
     position: relative;
     background: #fbf3df;        /* slightly lighter than page cream */
     border-radius: 22px;
-    padding: 28px 34px;
+    /* SEAMLESS_BG_TEST: bigger box + symmetric L/R padding (equal margins). */
+    padding: 64px 72px;
     margin-left: -28px;         /* image overlaps card's left edge */
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    text-align: center;
+    /* SEAMLESS_BG_TEST: text block hugs left (near image), heading + body share one straight left edge. */
+    align-items: flex-start;
+    text-align: left;
     gap: 14px;
     box-shadow: 0 4px 14px rgba(0,0,0,0.04);
     transition: background 380ms ease, box-shadow 380ms ease;
@@ -3140,6 +3154,33 @@ picture {
     .about-standards__grid {
         grid-template-columns: 1fr;
         gap: 40px;
+    }
+}
+
+/* SEAMLESS_BG_TEST: MAC version (>=1440px) — own layout, distinct from the
+   tighter desktop/laptop base. Card text pushed right off the images; rows
+   lifted up so the spread doesn't overflow the slide bottom.
+   Row 1 (Purity, Hygiene) up 40px; Row 2 (Food Safety, Quality) up 60px.
+   Transforms re-declare translateX (brick) since transform isn't additive;
+   hover keeps the lift + an extra -8px raise. */
+@media (min-width: 1440px) {
+    .about-standards__grid {
+        row-gap: 96px;
+    }
+    .standard-item__card {
+        padding-left: 104px;
+    }
+    .standard-item:nth-child(-n+2) {
+        transform: translateX(-6%) translateY(-40px);
+    }
+    .standard-item:nth-child(n+3) {
+        transform: translateX(6%) translateY(-60px);
+    }
+    .standard-item:nth-child(-n+2):hover {
+        transform: translateX(-6%) translateY(-48px);
+    }
+    .standard-item:nth-child(n+3):hover {
+        transform: translateX(6%) translateY(-68px);
     }
 }
 

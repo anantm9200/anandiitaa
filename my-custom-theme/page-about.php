@@ -121,7 +121,7 @@ $bust = 'anandiitaa_bust';
         <div class="about-vision__grid">
 
             <div class="about-vision__copy">
-                <span class="about-vision__quotemark" aria-hidden="true">&ldquo;</span>
+                <?php // SEAMLESS_BG_TEST: quotemark glyph removed. ?>
                 <h2 class="about-vision__title">Our Vision</h2>
                 <p class="about-vision__body">
                     To redefine everyday food<br>
@@ -129,14 +129,7 @@ $bust = 'anandiitaa_bust';
                     purity &amp; trust.
                 </p>
             </div>
-
-            <div class="about-vision__divider" aria-hidden="true"></div>
-
-            <div class="about-vision__photo">
-                <img src="<?php echo esc_url( $bust( $tpl . '/images/about-us/mac/vision.png' ) ); ?>"
-                     alt="Anandiitaa jaggery"
-                     loading="lazy">
-            </div>
+            <?php // SEAMLESS_BG_TEST: divider + photo removed — image now lives in section bg. ?>
 
         </div>
 
@@ -166,29 +159,30 @@ $bust = 'anandiitaa_bust';
     </section>
 
     <?php
+        // SEAMLESS_BG_TEST: removed forced \n / <br> in titles + bodies — wide cards have room, let text flow on one line.
         $standards = array(
             array(
                 'image' => $tpl . '/images/about-us/mac/standards/purity.png',
-                'title' => "Purity First,\nAlways",
-                'body'  => 'No Sugar, No Bleach,<br>No harmful Adulterants',
+                'title' => 'Purity First, Always',
+                'body'  => 'No Sugar, No Bleach, No harmful Adulterants',
                 'alt'   => 'Workers shaping pure jaggery in a traditional setting mould',
             ),
             array(
                 'image' => $tpl . '/images/about-us/mac/standards/hygiene.png',
-                'title' => "Hygiene without\ncompromise",
-                'body'  => 'The Highest Hygiene<br>Standards. Period.',
+                'title' => 'Hygiene without compromise',
+                'body'  => 'The Highest Hygiene Standards. Period.',
                 'alt'   => 'Jaggery being cooked in a clean traditional kitchen',
             ),
             array(
                 'image' => $tpl . '/images/about-us/mac/standards/safety.png',
-                'title' => "Food Safety.\nNon-Negotiable",
-                'body'  => 'World Class food<br>safety Standards',
+                'title' => 'Food Safety. Non-Negotiable',
+                'body'  => 'World Class food safety Standards',
                 'alt'   => 'Finished jaggery blocks plated on a wooden board',
             ),
             array(
                 'image' => $tpl . '/images/about-us/mac/standards/quality.png',
-                'title' => "Quality Without\nDoubt",
-                'body'  => 'Each Batch Quality<br>tested by Professionals',
+                'title' => 'Quality Without Doubt',
+                'body'  => 'Each Batch Quality tested by Professionals',
                 'alt'   => 'Bowl of jaggery powder beside jaggery lumps',
             ),
         );
