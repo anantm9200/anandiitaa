@@ -46,6 +46,8 @@ $bust = 'anandiitaa_bust';
                 <source media="(min-width: 1440px)" srcset="<?php echo esc_url( $bust( $tpl . '/assets/images/products/jaggery/mac/jaggery-slide-1-new.png' ) ); ?>">
                 <?php // SEAMLESS_BG_TEST: 1366 tier (1281–1439px) hero. ?>
                 <source media="(min-width: 1281px) and (max-width: 1439px)" srcset="<?php echo esc_url( $bust( $tpl . '/assets/images/products/jaggery/d1366/jaggery-slide-1.png' ) ); ?>">
+                <?php // SEAMLESS_BG_TEST: 1280 tier (1101–1280px) hero. ?>
+                <source media="(min-width: 1101px) and (max-width: 1280px)" srcset="<?php echo esc_url( $bust( $tpl . '/assets/images/products/jaggery/d1280/jaggery-slide-1.png' ) ); ?>">
                 <img
                     class="product-hero__image"
                     src="<?php echo esc_url( $bust( $tpl . '/assets/images/products/jaggery/jaggery-slide-1.png' ) ); ?>"
