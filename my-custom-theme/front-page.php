@@ -230,6 +230,10 @@
         $rel = str_replace( $tpl, '', $mac_url );
         return file_exists( get_template_directory() . $rel );
     };
+    // SEAMLESS_BG_TEST: 1366-tier (1281–1439px) variant. Mirrors laptop path under /d1366/.
+    $d1366_url_for = function ( $laptop_url ) use ( $tpl ) {
+        return str_replace( '/images/home/laptop/', '/images/home/d1366/', $laptop_url );
+    };
     // Use the global cache-buster (defined in functions.php).
     $bust = 'anandiitaa_bust';
     // Renders a slide's bg + inner content. Used by carousel AND standalone sections.
@@ -237,7 +241,7 @@
     // mac variant on screens >=1440px and the laptop variant otherwise. This is
     // CDN/Pantheon-cache safe (no UA-dependent HTML), unlike server-side UA
     // detection which Varnish strips at the cache key.
-    $render_slide = function ( $slide, $is_priority = false ) use ( $tpl, $icons, $mac_url_for, $mac_exists, $bust ) {
+    $render_slide = function ( $slide, $is_priority = false ) use ( $tpl, $icons, $mac_url_for, $mac_exists, $d1366_url_for, $bust ) {
         $laptop_url = $slide['image'] ?? '';
         // ACF-driven slides may supply an explicit mac variant (uploaded to Media Library);
         // otherwise we derive a mac URL from the laptop path and verify the file exists in-theme.
@@ -251,12 +255,18 @@
             $mac_url = '';
             $has_mac = false;
         }
+        // SEAMLESS_BG_TEST: 1366-tier variant (served 1281–1439px) when the file exists.
+        $d1366_url = $laptop_url ? $d1366_url_for( $laptop_url ) : '';
+        $has_d1366 = $d1366_url && $mac_exists( $d1366_url );
         ?>
         <?php if ( $laptop_url ) : ?>
         <div class="hero-slide__bg">
             <picture>
                 <?php if ( $has_mac ) : ?>
                     <source media="(min-width: 1440px)" srcset="<?php echo esc_url( $bust( $mac_url ) ); ?>">
+                <?php endif; ?>
+                <?php if ( $has_d1366 ) : ?>
+                    <source media="(min-width: 1281px) and (max-width: 1439px)" srcset="<?php echo esc_url( $bust( $d1366_url ) ); ?>">
                 <?php endif; ?>
                 <img src="<?php echo esc_url( $bust( $laptop_url ) ); ?>" alt="<?php echo esc_attr( $slide['alt'] ); ?>" <?php echo $is_priority ? 'fetchpriority="high"' : 'loading="lazy"'; ?>>
             </picture>

@@ -1,4 +1,12 @@
 <?php
+/**
+ * SEAMLESS_BG_TEST: single manual cache-busting version for ALL theme assets
+ * (CSS / JS / images). Replaces per-file filemtime() busting site-wide.
+ * BUMP this string whenever you want every client to refetch assets.
+ * Keep it in step with CACHE_VERSION in service-worker.js for a full refresh.
+ */
+define( 'ANANDIITAA_VER', '3' );
+
 function anandiitaa_enqueue_assets() {
     // Google Fonts: Montserrat (buttons + nav)
     wp_enqueue_style(
@@ -9,16 +17,14 @@ function anandiitaa_enqueue_assets() {
     );
 
     // Theme stylesheet (self-hosts AppetitePro + DM Sans via @font-face)
-    wp_enqueue_style( 'main-styles', get_stylesheet_uri(), array( 'google-fonts-montserrat' ), filemtime( get_stylesheet_directory() . '/style.css' ) );
-
-    $js_dir = get_template_directory() . '/assets/js';
+    wp_enqueue_style( 'main-styles', get_stylesheet_uri(), array( 'google-fonts-montserrat' ), ANANDIITAA_VER );
 
     // Hero carousel script
     wp_enqueue_script(
         'hero-carousel',
         get_template_directory_uri() . '/assets/js/hero-carousel.js',
         array(),
-        filemtime( $js_dir . '/hero-carousel.js' ),
+        ANANDIITAA_VER,
         true
     );
 
@@ -27,7 +33,7 @@ function anandiitaa_enqueue_assets() {
         'scroll-reveal',
         get_template_directory_uri() . '/assets/js/scroll-reveal.js',
         array(),
-        filemtime( $js_dir . '/scroll-reveal.js' ),
+        ANANDIITAA_VER,
         true
     );
 
@@ -36,20 +42,20 @@ function anandiitaa_enqueue_assets() {
         'benefits-accordion',
         get_template_directory_uri() . '/assets/js/benefits-accordion.js',
         array(),
-        filemtime( $js_dir . '/benefits-accordion.js' ),
+        ANANDIITAA_VER,
         true
     );
 }
 add_action( 'wp_enqueue_scripts', 'anandiitaa_enqueue_assets' );
 
 /**
- * Global asset cache-buster. Appends ?v=<mtime> so the SW + browser caches
- * refetch whenever an asset's bytes change, without bumping CACHE_VERSION
- * in service-worker.js manually.
+ * Global asset cache-buster. Appends ?v=ANANDIITAA_VER so the SW + browser
+ * caches refetch whenever you bump that single version constant (replaces the
+ * old per-file filemtime busting).
  *
  * Accepts either a full theme URL (e.g. get_template_directory_uri() . '/x.png')
  * or a theme-relative path (e.g. '/assets/images/x.png'). Returns the URL with
- * ?v=mtime appended if the file exists, otherwise the URL unchanged.
+ * ?v=<ver> appended if the file exists, otherwise the URL unchanged.
  */
 if ( ! function_exists( 'anandiitaa_bust' ) ) {
     function anandiitaa_bust( $url_or_rel ) {
@@ -61,7 +67,7 @@ if ( ! function_exists( 'anandiitaa_bust' ) ) {
         if ( $rel === '' || $rel[0] !== '/' ) $rel = '/' . $rel;
         $abs = $tpl_dir . $rel;
         $full = $tpl_uri . $rel;
-        return file_exists( $abs ) ? $full . '?v=' . filemtime( $abs ) : $full;
+        return file_exists( $abs ) ? $full . '?v=' . ANANDIITAA_VER : $full;
     }
 }
 
