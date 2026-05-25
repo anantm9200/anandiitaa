@@ -3451,6 +3451,21 @@ picture {
        in the strip above the packets. */
     .hero-slide__content--top-center { top: 8%; }
 
+    /* #1b EXPLORE MORE button — shrink + pull up so it stops overlapping packets. */
+    .hero-slide__content--top-center .btn {
+        padding: 8px 22px;
+        font-size: 0.7rem;
+        margin-top: 4px;
+    }
+
+    /* #3 Carousel hero — show the FULL packet image (no top crop). contain fits
+       the whole sticker; the gradient fills the sides ("borders"). Scoped to the
+       carousel only (.hero-track) so the standalone sections 6-11 keep cover. */
+    .hero-track .hero-slide__bg img {
+        object-fit: contain;
+        object-position: center bottom;
+    }
+
     /* #2/#3 Slide 6 standards — clear the header; the smaller heading also keeps
        it off the sugarcane image. */
     .standards-title { top: 10%; }
@@ -3469,7 +3484,7 @@ picture {
         gap: 24px;
         max-width: 900px;
     }
-    .review-card__image     { aspect-ratio: auto; height: 110px; }
-    .review-card__image img { height: 110px; }
-    .review-card__body      { padding: 10px 16px; gap: 8px; }
+    .review-card__image     { aspect-ratio: auto; height: 160px; }
+    .review-card__image img { height: 160px; }
+    .review-card__body      { padding: 14px 18px; gap: 11px; }
 }
