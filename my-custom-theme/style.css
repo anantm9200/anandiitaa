@@ -3458,12 +3458,28 @@ picture {
         margin-top: 4px;
     }
 
-    /* #3 Carousel hero — show the FULL packet image (no top crop). contain fits
-       the whole sticker; the gradient fills the sides ("borders"). Scoped to the
-       carousel only (.hero-track) so the standalone sections 6-11 keep cover. */
+    /* #3 Carousel hero — fit the full packet image WITHOUT stretch or packet-crop.
+       contain = no distortion + nothing important cut; scaling up ~20% from the
+       bottom grows the packets to fill the empty band (the image's top is
+       transparent, so the scale clips only empty space, never the packets).
+       Scoped to .hero-track so the standalone sections 6-11 keep cover. */
     .hero-track .hero-slide__bg img {
         object-fit: contain;
         object-position: center bottom;
+        transform: scale(1.2);
+        transform-origin: center bottom;
+        /* Soft-fade all four edges into the gradient so the contained image has
+           no hard side/top edges. Two gradients (H + V) composited with
+           intersect so every edge fades. Not a blur — clean mask, same idea as
+           the sticker top/bottom fade. */
+        -webkit-mask-image:
+            linear-gradient(90deg,  transparent 0, #000 10%, #000 90%, transparent 100%),
+            linear-gradient(180deg, transparent 0, #000 6%,  #000 94%, transparent 100%);
+        -webkit-mask-composite: source-in;
+                mask-image:
+            linear-gradient(90deg,  transparent 0, #000 10%, #000 90%, transparent 100%),
+            linear-gradient(180deg, transparent 0, #000 6%,  #000 94%, transparent 100%);
+                mask-composite: intersect;
     }
 
     /* #2/#3 Slide 6 standards — clear the header; the smaller heading also keeps
@@ -3484,7 +3500,7 @@ picture {
         gap: 24px;
         max-width: 900px;
     }
-    .review-card__image     { aspect-ratio: auto; height: 160px; }
-    .review-card__image img { height: 160px; }
-    .review-card__body      { padding: 14px 18px; gap: 11px; }
+    .review-card__image     { aspect-ratio: auto; height: 182px; }
+    .review-card__image img { height: 182px; }
+    .review-card__body      { padding: 16px 20px; gap: 12px; }
 }
