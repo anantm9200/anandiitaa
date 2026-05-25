@@ -3425,3 +3425,41 @@ picture {
     .review-card__image { aspect-ratio: 3 / 1; }
     .review-card__body  { padding: 16px 22px; gap: 12px; }
 }
+
+/* ========================================================================
+   SEAMLESS_BG_TEST: 1280 TIER (1101–1280px) device-specific layout.
+   Viewport is even shorter (~560px after browser chrome) than 1366, and the
+   fixed header (~58px) overlays the top of every section. Shrink the header,
+   push titles clear of it, lift benefits cards, shrink review cards hard.
+   Scoped to width so 1366 + mac are untouched. Placed last → wins cascade.
+   ======================================================================== */
+@media (min-width: 1101px) and (max-width: 1280px) {
+    /* #1 Header was eating the hero title — shrink it (and the logo to match). */
+    .site-header { padding: 8px clamp(16px, 3vw, 40px); }
+    .logo img    { height: 24px; }
+
+    /* #1 Hero "Choose Pure" — push below the now-shorter header. */
+    .hero-slide__content--top-center { top: 12%; }
+
+    /* #2 Slide 6 standards — base top:calc(14% - 100px) goes negative on this
+       short viewport and clips "The". Bring it down clear of the header. */
+    .standards-title { top: 10%; }
+
+    /* Benefits title was also tucked under the header — lift it clear. */
+    .benefits-title { top: 10%; }
+
+    /* #3 Slide 9 benefits — lift the 4 cards ~110px (8% → 28% of section). */
+    .benefits-grid { bottom: 28%; }
+
+    /* #4 Slide 10 reviews — shrink cards hard so they stop eating the title and
+       overflowing the bottom: very short image, tight body, grid recentered. */
+    .reviews-title { top: 10%; }
+    .reviews-grid {
+        top: 58%;
+        transform: translate(-50%, -50%);
+        margin-top: 0;
+        gap: 28px;
+    }
+    .review-card__image { aspect-ratio: 4 / 1; }
+    .review-card__body  { padding: 12px 18px; gap: 10px; }
+}
