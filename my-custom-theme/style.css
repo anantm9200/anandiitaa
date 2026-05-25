@@ -3408,18 +3408,17 @@ picture {
        edge. Bring it down to a safe positive offset. */
     .standards-title { top: 7%; }
 
-    /* Slide 9 — benefits. Lift the 4 pink cards ~60px (12% → 22% of section). */
-    .benefits-grid { bottom: 22%; }
+    /* Slide 9 — benefits. Lift the 4 pink cards further up (≈+90px more; 22% → 37%). */
+    .benefits-grid { bottom: 37%; }
 
-    /* Slide 10 — reviews. Cards were overflowing the bottom and overlapping the
-       "Words that matter" title. Shorten the image, tighten the body, and
-       recenter the grid lower so it clears the title. */
+    /* Slide 10 — reviews. Shrink the cards more (shorter image + tighter body),
+       kept readable. Grid recentered lower so it clears the title. */
     .reviews-grid {
         top: 56%;
         transform: translate(-50%, -50%);
         margin-top: 0;
         gap: 36px;
     }
-    .review-card__image { aspect-ratio: 5 / 2; }
-    .review-card__body  { padding: 20px 24px; gap: 14px; }
+    .review-card__image { aspect-ratio: 3 / 1; }
+    .review-card__body  { padding: 16px 22px; gap: 12px; }
 }
