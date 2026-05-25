@@ -3433,8 +3433,13 @@ picture {
     /* Slide 9 — benefits. Lift the 4 pink cards further up (≈+90px more; 22% → 37%). */
     .benefits-grid { bottom: 37%; }
 
-    /* Slide 10 — reviews. "Words that matter" title up ~50px. */
-    .reviews-title { top: calc(14% - 50px); }
+    /* Slide 10 — reviews. "Words that matter" title up more so it stops sticking
+       to the cards (plenty of empty band above it, so safe from the header). */
+    .reviews-title { top: calc(14% - 78px); }
+
+    /* Slide 7 — "Choose Pure, Choose Anandiitaa" (bottom-center caption). Drop it
+       ~20px so the i-dots stop overlapping the newspaper graphic above. */
+    .hero-slide__content--bottom-center { bottom: calc(12% - 70px); }
 
     /* Slide 10 — reviews. Shrink the cards more (shorter image + tighter body),
        kept readable. Grid recentered lower so it clears the title. */
