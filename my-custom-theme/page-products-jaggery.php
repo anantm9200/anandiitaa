@@ -44,6 +44,8 @@ $bust = 'anandiitaa_bust';
             <picture>
                 <?php // SEAMLESS_BG_TEST: mac hero swapped → jaggery-slide-1-new.png (transparent bg). Restore '/mac/jaggery-slide-1.png' to revert. ?>
                 <source media="(min-width: 1440px)" srcset="<?php echo esc_url( $bust( $tpl . '/assets/images/products/jaggery/mac/jaggery-slide-1-new.png' ) ); ?>">
+                <?php // SEAMLESS_BG_TEST: 1366 tier (1281–1439px) hero. ?>
+                <source media="(min-width: 1281px) and (max-width: 1439px)" srcset="<?php echo esc_url( $bust( $tpl . '/assets/images/products/jaggery/d1366/jaggery-slide-1.png' ) ); ?>">
                 <img
                     class="product-hero__image"
                     src="<?php echo esc_url( $bust( $tpl . '/assets/images/products/jaggery/jaggery-slide-1.png' ) ); ?>"

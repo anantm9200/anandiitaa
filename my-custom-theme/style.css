@@ -3352,3 +3352,43 @@ picture {
         top: 45%;
     }
 }
+
+/* ========================================================================
+   SEAMLESS_BG_TEST: SHORT-VIEWPORT (height-aware) fixes.
+   Real 1366×768 / 1280×720 Windows browsers have only ~600–700px USABLE
+   height after tabs+address bar+taskbar. Sections are height:100vh and the
+   titles are absolutely positioned near the top with the 57px --fs-heading,
+   so on a short viewport they collide with the content below (client bug:
+   hero title over products, news caption over headlines, benefits title
+   behind the cards). This block shrinks the heading scale and repositions
+   the three colliding titles. Keyed on HEIGHT (not device/width) because the
+   same overlap happens on any short viewport. Mac (~900px tall) is unaffected.
+   Placed last in the file so it wins the cascade.
+   ======================================================================== */
+@media (max-height: 800px) {
+    :root {
+        --fs-heading: 38px;
+        --fs-subtext: 20px;
+    }
+
+    /* Slide 1 hero — sit higher + smaller so the title clears the product sticker */
+    .hero-slide__content--top-center { top: 6%; }
+
+    /* Section 7 news — caption higher so it clears the clipping headlines */
+    .hero-slide__content--top-caption { top: 4%; }
+
+    /* Section 9 benefits — split title (up) and card grid (down) so they
+       can't collide in the shorter section. */
+    .benefits-title { top: 5%; }
+    .benefits-grid  { bottom: 12%; }
+}
+
+/* Extra squeeze for very short viewports (e.g. 1280×720 after chrome ≈ 560px). */
+@media (max-height: 620px) {
+    :root {
+        --fs-heading: 32px;
+        --fs-subtext: 18px;
+    }
+    .benefits-title { top: 3%; }
+    .benefits-grid  { bottom: 8%; }
+}
