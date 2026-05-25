@@ -3367,11 +3367,13 @@ picture {
    ======================================================================== */
 @media (max-height: 800px) {
     :root {
-        --fs-heading: 38px;
-        --fs-subtext: 20px;
+        /* Designer-specified small-screen scale. */
+        --fs-heading: 45px;
+        --fs-subtext: 24px;
+        --fs-body:    18px;
     }
 
-    /* Slide 1 hero — sit higher + smaller so the title clears the product sticker */
+    /* Slide 1 hero — sit higher so the title clears the product sticker */
     .hero-slide__content--top-center { top: 6%; }
 
     /* Section 7 news — caption higher so it clears the clipping headlines */
@@ -3383,11 +3385,12 @@ picture {
     .benefits-grid  { bottom: 12%; }
 }
 
-/* Extra squeeze for very short viewports (e.g. 1280×720 after chrome ≈ 560px). */
+/* Extra squeeze for very short viewports (e.g. 1280×720 after chrome ≈ 560px),
+   where the designer's full 45px would still overflow. */
 @media (max-height: 620px) {
     :root {
-        --fs-heading: 32px;
-        --fs-subtext: 18px;
+        --fs-heading: 38px;
+        --fs-subtext: 22px;
     }
     .benefits-title { top: 3%; }
     .benefits-grid  { bottom: 8%; }

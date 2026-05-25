@@ -5,7 +5,7 @@
  * BUMP this string whenever you want every client to refetch assets.
  * Keep it in step with CACHE_VERSION in service-worker.js for a full refresh.
  */
-define( 'ANANDIITAA_VER', '4' );
+define( 'ANANDIITAA_VER', '5' );
 
 function anandiitaa_enqueue_assets() {
     // Google Fonts: Montserrat (buttons + nav)
