@@ -3468,18 +3468,14 @@ picture {
         object-position: center bottom;
         transform: scale(1.2);
         transform-origin: center bottom;
-        /* Soft-fade all four edges into the gradient so the contained image has
-           no hard side/top edges. Two gradients (H + V) composited with
-           intersect so every edge fades. Not a blur — clean mask, same idea as
-           the sticker top/bottom fade. */
-        -webkit-mask-image:
-            linear-gradient(90deg,  transparent 0, #000 10%, #000 90%, transparent 100%),
-            linear-gradient(180deg, transparent 0, #000 6%,  #000 94%, transparent 100%);
-        -webkit-mask-composite: source-in;
-                mask-image:
-            linear-gradient(90deg,  transparent 0, #000 10%, #000 90%, transparent 100%),
-            linear-gradient(180deg, transparent 0, #000 6%,  #000 94%, transparent 100%);
-                mask-composite: intersect;
+        /* Soft-fade the LEFT/RIGHT edges into the gradient so the contained image
+           has no hard side border. Single horizontal gradient (no mask-composite,
+           so it's reliable cross-browser) with a WIDE fade band → dissolves
+           smoothly, never a hard "blur line" as slides scroll. Top is transparent
+           (contain) and bottom is the packet base at the viewport floor, so only
+           the sides need fading. */
+        -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 12%, #000 88%, transparent 100%);
+                mask-image: linear-gradient(90deg, transparent 0, #000 12%, #000 88%, transparent 100%);
     }
 
     /* #2/#3 Slide 6 standards — clear the header; the smaller heading also keeps
@@ -3489,6 +3485,12 @@ picture {
 
     /* #3 Slide 9 benefits — lift the 4 cards (kept from prior pass). */
     .benefits-grid { bottom: 28%; }
+
+    /* Slide 8 product grid — the packet images overflow the card top (max-height
+       135%); on this short viewport the hover lift pushes the top-row packets off
+       the slide edge. Shrink the cards a touch + soften the hover so they stay in. */
+    .products-grid { width: 84%; max-width: 1080px; }
+    .product-card:hover .product-card__image { transform: translateY(-6px) scale(1.03); }
 
     /* #4 Slide 10 reviews — force much smaller: explicit short image height
        (more forceful than aspect-ratio), narrower grid, tight body, recentered. */
