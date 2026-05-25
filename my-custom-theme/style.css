@@ -3410,6 +3410,15 @@ picture {
     .logo img    { height: 26px; }
     .hero-slide__content--top-center { top: 9%; }
 
+    /* EXPLORE MORE — smaller + raised ~24px (tighten title gap 24→8 and drop the
+       button's own 8px top margin) so it sits off the packets. */
+    .hero-slide__content--top-center h2  { margin-bottom: 8px; }
+    .hero-slide__content--top-center .btn {
+        padding: 9px 24px;
+        font-size: 0.74rem;
+        margin-top: 0;
+    }
+
     /* Slide 6 — standards title. Base rule is top:calc(14% - 100px) (mac tuning),
        which goes NEGATIVE on the short 1366 viewport and clips "The" at the top
        edge. Bring it down to a safe positive offset. */
