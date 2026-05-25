@@ -3395,3 +3395,31 @@ picture {
     .benefits-title { top: 3%; }
     .benefits-grid  { bottom: 8%; }
 }
+
+/* ========================================================================
+   SEAMLESS_BG_TEST: 1366 TIER (1281–1439px) device-specific layout fixes.
+   Sits on top of the height-aware font scaling. Scoped to width so the 1280
+   tier (handled separately) and mac (≥1440) are untouched. Placed last so it
+   wins the cascade for the properties it overrides.
+   ======================================================================== */
+@media (min-width: 1281px) and (max-width: 1439px) {
+    /* Slide 6 — standards title. Base rule is top:calc(14% - 100px) (mac tuning),
+       which goes NEGATIVE on the short 1366 viewport and clips "The" at the top
+       edge. Bring it down to a safe positive offset. */
+    .standards-title { top: 7%; }
+
+    /* Slide 9 — benefits. Lift the 4 pink cards ~60px (12% → 22% of section). */
+    .benefits-grid { bottom: 22%; }
+
+    /* Slide 10 — reviews. Cards were overflowing the bottom and overlapping the
+       "Words that matter" title. Shorten the image, tighten the body, and
+       recenter the grid lower so it clears the title. */
+    .reviews-grid {
+        top: 56%;
+        transform: translate(-50%, -50%);
+        margin-top: 0;
+        gap: 36px;
+    }
+    .review-card__image { aspect-ratio: 5 / 2; }
+    .review-card__body  { padding: 20px 24px; gap: 14px; }
+}
