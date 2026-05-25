@@ -3403,6 +3403,13 @@ picture {
    wins the cascade for the properties it overrides.
    ======================================================================== */
 @media (min-width: 1281px) and (max-width: 1439px) {
+    /* Slide 1 hero — the full-size header (~58px) was eating "Choose Pure" at the
+       old top:6%. Mirror the 1280 fix: shrink the header (+ logo) and drop the
+       title clear of it. ~610px viewport here leaves more room than 1280. */
+    .site-header { padding: 8px clamp(16px, 3vw, 44px); }
+    .logo img    { height: 26px; }
+    .hero-slide__content--top-center { top: 9%; }
+
     /* Slide 6 — standards title. Base rule is top:calc(14% - 100px) (mac tuning),
        which goes NEGATIVE on the short 1366 viewport and clips "The" at the top
        edge. Bring it down to a safe positive offset. */
