@@ -3408,11 +3408,17 @@ picture {
        title clear of it. ~610px viewport here leaves more room than 1280. */
     .site-header { padding: 8px clamp(16px, 3vw, 44px); }
     .logo img    { height: 26px; }
-    .hero-slide__content--top-center { top: 9%; }
+    .hero-slide__content--top-center { top: 10%; }
 
-    /* EXPLORE MORE — smaller + raised ~24px (tighten title gap 24→8 and drop the
-       button's own 8px top margin) so it sits off the packets. */
-    .hero-slide__content--top-center h2  { margin-bottom: 8px; }
+    /* Slide 1 title — shrink it (Option 1) so the 2-line headline fits cleanly
+       between the header and the packets instead of clipping under the header.
+       Scoped to top-center = slide 1 only; other slides keep the global scale. */
+    .hero-slide__content--top-center h2 {
+        font-size: 36px;
+        margin-bottom: 10px;
+    }
+
+    /* EXPLORE MORE — smaller + tight under the (now smaller) title, off the packets. */
     .hero-slide__content--top-center .btn {
         padding: 9px 24px;
         font-size: 0.74rem;
