@@ -3468,6 +3468,34 @@ picture {
     }
     .review-card__image { aspect-ratio: 3 / 1; }
     .review-card__body  { padding: 16px 22px; gap: 12px; }
+
+    /* ----------------------------------------------------------------------
+       SEAMLESS_BG_TEST: jaggery-page-only tweaks at 1366 tier (client req).
+       Scoped to .product-page--jaggery so home + sugar are untouched.
+       ---------------------------------------------------------------------- */
+
+    /* (1) Hero "100% Natural" seal — drop ~70px (base lift −200px → −130px).
+       Must override the reveal/is-visible transforms too (higher specificity),
+       or the seal snaps back to −200px once the scroll-reveal marks it visible. */
+    .product-page--jaggery .natural-seal {
+        transform: translateY(calc(-50% - 130px));
+    }
+    .product-page--jaggery [data-reveal] .natural-seal {
+        transform: translateY(calc(-50% - 130px)) scale(0.85) rotate(-8deg);
+    }
+    .product-page--jaggery [data-reveal].is-visible .natural-seal {
+        transform: translateY(calc(-50% - 130px)) scale(1) rotate(0deg);
+    }
+
+    /* (2) Variant cards (Jaggery Powder / Block) — packet overflows the section
+       top (overflow:hidden clips it). Card is 500px, centered (top ≈110px at
+       720); packet bottom:148px + height:520px overshoots the top. Shrink the
+       packet so it sits inside the slide. */
+    .product-page--jaggery .variant-card__image { height: 420px; }
+
+    /* (3) Reviews slide — shrink the two cards: narrower grid + shorter image. */
+    .product-page--jaggery .reviews-grid       { max-width: 760px; gap: 28px; }
+    .product-page--jaggery .review-card__image { aspect-ratio: 3.4 / 1; }
 }
 
 /* ========================================================================
