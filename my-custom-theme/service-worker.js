@@ -25,7 +25,7 @@
  * delete any caches whose name doesn't match the current version.
  */
 
-const CACHE_VERSION = 'v27';
+const CACHE_VERSION = 'v28';
 const HTML_CACHE    = `anandiitaa-html-${CACHE_VERSION}`;
 const ASSET_CACHE   = `anandiitaa-assets-${CACHE_VERSION}`;
 
