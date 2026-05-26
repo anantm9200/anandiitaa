@@ -3496,6 +3496,21 @@ picture {
     /* (3) Reviews slide — shrink the two cards: narrower grid + shorter image. */
     .product-page--jaggery .reviews-grid       { max-width: 760px; gap: 28px; }
     .product-page--jaggery .review-card__image { aspect-ratio: 3.4 / 1; }
+
+    /* ----------------------------------------------------------------------
+       SEAMLESS_BG_TEST: About-us slide 4 ("The Anandiitaa Standards") — the 4
+       cards inherit the oversized BASE values at this tier (max-width 780,
+       64×72 padding, 210px images, 160px title margin) → huge on the ~625–720
+       short 1366 viewport. Scale them down ~30% (still comfortably readable).
+       Selectors are about-page-only, so the media query is enough scoping.
+       ---------------------------------------------------------------------- */
+    .about-standards__title { margin-bottom: 56px; }
+    .about-standards__grid  { max-width: 980px; column-gap: 40px; row-gap: 24px; }
+    .standard-item          { grid-template-columns: 130px 1fr; max-width: 560px; }
+    .standard-item__image   { width: 150px; }
+    .standard-item__card    { padding: 28px 34px; margin-left: -24px; }
+    .standard-item__title   { font-size: 21px; }
+    .standard-item__body    { font-size: 14px; }
 }
 
 /* ========================================================================
