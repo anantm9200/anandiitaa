@@ -408,6 +408,16 @@ picture {
     margin-top: 10vh;
 }
 
+/* SEAMLESS_BG_TEST: B-selective — the news slide (7) has dense absolute-positioned
+   content (top caption + clipping + bottom caption) that crowds/clips on a short
+   ~620px viewport. Give it a taller frame floor so the %-positioned content has
+   room. max(100vh, 760px): on tall (mac) screens it stays 100vh; on short ones it
+   grows to 760px (the user scrolls a touch more, nothing clips). */
+.page-section--news {
+    height: auto;
+    min-height: max(100vh, 760px);
+}
+
 /* ========================================================================
    SCROLL-TRIGGERED CONTENT ANIMATIONS
    Section bgs do NOT animate — only the content layered on top eases in

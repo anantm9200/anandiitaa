@@ -96,6 +96,10 @@
         ),
         // Slide 7: News-clippings bg, caption near top + caption near bottom
         array(
+            // SEAMLESS_BG_TEST: type 'news' adds .page-section--news class for the B-selective
+            // taller-frame fix (content is absolute-positioned, so the frame needs an explicit
+            // floor on short viewports). 'news' isn't a special render type — captions still render.
+            'type'        => 'news',
             // SEAMLESS_BG_TEST: swapped 7.png → 7-sticker.png (transparent bg). Revert by restoring filename.
             'image'       => $tpl . '/images/home/laptop/sections/7-sticker.png',
             'alt'         => 'In the era of food adulteration',
