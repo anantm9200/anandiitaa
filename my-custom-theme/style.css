@@ -3485,25 +3485,9 @@ picture {
         margin-top: 4px;
     }
 
-    /* #3 Carousel hero — fit the full packet image WITHOUT stretch or packet-crop.
-       contain = no distortion + nothing important cut; scaling up ~20% from the
-       bottom grows the packets to fill the empty band (the image's top is
-       transparent, so the scale clips only empty space, never the packets).
-       Scoped to .hero-track so the standalone sections 6-11 keep cover. */
-    .hero-track .hero-slide__bg img {
-        object-fit: contain;
-        object-position: center bottom;
-        transform: scale(1.2);
-        transform-origin: center bottom;
-        /* Soft-fade the LEFT/RIGHT edges into the gradient so the contained image
-           has no hard side border. Single horizontal gradient (no mask-composite,
-           so it's reliable cross-browser) with a WIDE fade band → dissolves
-           smoothly, never a hard "blur line" as slides scroll. Top is transparent
-           (contain) and bottom is the packet base at the viewport floor, so only
-           the sides need fading. */
-        -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 12%, #000 88%, transparent 100%);
-                mask-image: linear-gradient(90deg, transparent 0, #000 12%, #000 88%, transparent 100%);
-    }
+    /* SEAMLESS_BG_TEST: carousel image-fit hacks (contain + scale(1.2) + side mask)
+       removed — new properly-sized 1280×720 assets fill correctly, so the carousel
+       returns to the default `cover` + center-bottom behavior. */
 
     /* #2/#3 Slide 6 standards — clear the header; the smaller heading also keeps
        it off the sugarcane image. */
