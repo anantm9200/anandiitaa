@@ -9,7 +9,9 @@
     $slides = array(
         array(
             // SEAMLESS_BG_TEST: swapped slide-1.png → slide-1-sticker.png (transparent bg). Revert by restoring filename.
-            'image'    => $tpl . '/images/home/laptop/slider/slide-1-sticker.png',
+            'image'     => $tpl . '/images/home/laptop/slider/slide-1-sticker.png',
+            // SEAMLESS_BG_TEST: desktop-only (≥1440px) hero = new 1920×1080 image. Smaller tiers keep their stickers. Remove this line to revert.
+            'mac_image' => $tpl . '/images/home/mac/home-hero-1920.png',
             'alt'      => 'Anandiitaa — Choose Pure',
             'heading'  => 'Choose Pure.<br>Choose Anandiitaa.',
             'cta'      => array( 'label' => 'Explore More', 'href' => '/about-us', 'class' => 'btn-primary' ),
