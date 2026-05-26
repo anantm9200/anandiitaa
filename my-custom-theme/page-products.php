@@ -12,14 +12,14 @@ $categories = array(
         'title'   => 'Jaggery',
         'tagline' => 'Slow-cooked. Mineral-rich. Pure tradition.',
         'href'    => home_url( '/products/jaggery' ),
-        'image'   => $tpl . '/assets/images/products/packets/desi-jaggery.png',
+        'image'   => $tpl . '/assets/images/products/packets/2.png', // SEAMLESS_BG_TEST jaggery card → 2.png (was desi-jaggery.png)
         'accent'  => '#6b0f1a',
     ),
     array(
         'title'   => 'Sugar',
         'tagline' => 'Bold or fine grain. Clean, hygienic, dependable.',
         'href'    => home_url( '/products/sugar' ),
-        'image'   => $tpl . '/assets/images/products/packets/bold-grain.png',
+        'image'   => $tpl . '/assets/images/products/packets/1.png', // SEAMLESS_BG_TEST sugar card → 1.png (was bold-grain.png)
         'accent'  => '#1d5e2e',
     ),
 );
