@@ -3433,6 +3433,13 @@ picture {
     /* Slide 9 — benefits. Lift the 4 pink cards further up (≈+90px more; 22% → 37%). */
     .benefits-grid { bottom: 37%; }
 
+    /* Slide 8 product grid — packets overflow the card top (max-height 135%); on the
+       short 1366 viewport the hover lift pushes the top-row packets (Desi Jaggery
+       Powder, Bold Grain Sugar) off the slide edge. Shrink the cards a touch +
+       soften the hover so they stay in. */
+    .products-grid { width: 86%; max-width: 1140px; }
+    .product-card:hover .product-card__image { transform: translateY(-6px) scale(1.03); }
+
     /* Slide 10 — reviews. "Words that matter" title up more so it stops sticking
        to the cards (plenty of empty band above it, so safe from the header). */
     .reviews-title { top: calc(14% - 78px); }
