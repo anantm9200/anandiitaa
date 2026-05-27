@@ -3653,32 +3653,35 @@ picture {
     .category-card__body    { padding: 20px 32px 28px; }
 
     /* ----------------------------------------------------------------------
-       SEAMLESS_BG_TEST: products/jaggery page tweaks at 1280 (client req).
-       Scoped to .product-page--jaggery.
+       SEAMLESS_BG_TEST: product pages (jaggery + sugar) tweaks at 1280.
+       UNSCOPED — .natural-seal / .process-step__* / .variant-card__image exist
+       only on the two product pages, so these hit both equally (client req:
+       same changes on jaggery + sugar).
        ---------------------------------------------------------------------- */
 
-    /* (1) Hero "100% Natural" seal — small drop (−200px → −160px, ~40px down;
-       less than the 1366 −130). Override reveal/is-visible too. */
-    .product-page--jaggery .natural-seal {
-        transform: translateY(calc(-50% - 160px));
+    /* (1) Hero "100% Natural" seal — drop −200px → −130px (~70px down; matches
+       jaggery 1366). Override reveal/is-visible too (later + equal specificity
+       than the global rules → wins at this width). */
+    .natural-seal {
+        transform: translateY(calc(-50% - 130px));
     }
-    .product-page--jaggery [data-reveal] .natural-seal {
-        transform: translateY(calc(-50% - 160px)) scale(0.85) rotate(-8deg);
+    [data-reveal] .natural-seal {
+        transform: translateY(calc(-50% - 130px)) scale(0.85) rotate(-8deg);
     }
-    .product-page--jaggery [data-reveal].is-visible .natural-seal {
-        transform: translateY(calc(-50% - 160px)) scale(1) rotate(0deg);
+    [data-reveal].is-visible .natural-seal {
+        transform: translateY(calc(-50% - 130px)) scale(1) rotate(0deg);
     }
 
     /* (2) Process timeline — shrink the pot "lid" (arc dome + number knob) so it
        stops clipping on the short 1280 viewport. Image circles untouched. */
-    .product-page--jaggery .process-step__arc { border-width: 14px; width: calc(100% + 20px); height: calc(100% + 20px); }
-    .product-page--jaggery .process-step--top    .process-step__arc { top: -10px; left: -10px; }
-    .product-page--jaggery .process-step--bottom .process-step__arc { bottom: -10px; left: -10px; }
-    .product-page--jaggery .process-step--top    .process-step__lid { top: -56px; }
-    .product-page--jaggery .process-step--bottom .process-step__lid { bottom: -56px; }
-    .product-page--jaggery .process-step__number { width: 84px; height: 54px; }
+    .process-step__arc { border-width: 14px; width: calc(100% + 20px); height: calc(100% + 20px); }
+    .process-step--top    .process-step__arc { top: -10px; left: -10px; }
+    .process-step--bottom .process-step__arc { bottom: -10px; left: -10px; }
+    .process-step--top    .process-step__lid { top: -56px; }
+    .process-step--bottom .process-step__lid { bottom: -56px; }
+    .process-step__number { width: 84px; height: 54px; }
 
-    /* (3) Variant packets (Jaggery Powder / Block) — smaller so they don't shoot
-       past the short 1280 slide top (420 clips here; 360 fits). */
-    .product-page--jaggery .variant-card__image { height: 360px; }
+    /* (3) Variant packets (powder/block, bold/fine grain) — smaller so they
+       don't shoot past the short 1280 slide top (420 clips here; 360 fits). */
+    .variant-card__image { height: 360px; }
 }
