@@ -3641,4 +3641,14 @@ picture {
     .about-slide--vision {
         background: url('images/about-us/d1280/vision-bg.png') center / cover no-repeat;
     }
+
+    /* Products landing — force the two choice cards (Jaggery / Sugar) side by
+       side instead of stacked, and shrink them so the pair fits the short
+       1280×720 viewport. Explicit 2-col (base is auto-fit). */
+    .products-landing       { padding: 56px 5% 48px; gap: 32px; }
+    .products-landing__grid { grid-template-columns: 1fr 1fr; gap: 32px; max-width: 940px; }
+    .category-card          { min-height: 340px; }
+    .category-card__media   { min-height: 180px; padding: 32px 32px 12px; }
+    .category-card__media img { max-height: 200px; }
+    .category-card__body    { padding: 20px 32px 28px; }
 }
