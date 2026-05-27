@@ -70,33 +70,33 @@ $bust = 'anandiitaa_bust';
         $process_steps = array(
             array(
                 'number'    => '01',
-                'bold'      => 'Fresh sugarcane juice extraction –',
-                'rest'      => 'Pure juice extraction to preserve natural minerals.',
-                'image'     => $tpl . '/assets/images/products/jaggery/process/step-1.png',
+                'bold'      => 'Fresh Cane Extraction',
+                'rest'      => 'Fresh sugarcane is crushed soon after harvest to retain its natural flavour and goodness.',
+                'image'     => $tpl . '/assets/images/products/jaggery/process/extraction.png',
             ),
             array(
                 'number'    => '02',
-                'bold'      => 'Clarification –',
-                'rest'      => 'Natural filteration. No Chemicals. No bleaching agent.',
-                'image'     => $tpl . '/assets/images/products/jaggery/process/step-2.png',
+                'bold'      => 'Slow Cooking',
+                'rest'      => 'The juice is slowly cooked in traditional pans to develop the rich taste, aroma, and natural colour of jaggery.',
+                'image'     => $tpl . '/assets/images/products/jaggery/process/slow-cooking.png',
             ),
             array(
                 'number'    => '03',
-                'bold'      => 'Slow Cooking –',
-                'rest'      => 'Cooked slow and slow using Traditional method',
-                'image'     => $tpl . '/assets/images/products/jaggery/process/step-3.png',
+                'bold'      => 'Natural Clarification',
+                'rest'      => 'The juice is carefully clarified using traditional methods without bleaching agents or harmful chemicals.',
+                'image'     => $tpl . '/assets/images/products/jaggery/process/clarification.png',
             ),
             array(
                 'number'    => '04',
-                'bold'      => 'Moulding &amp; Setting –',
-                'rest'      => 'Naturally cooled &amp; set. Shape &amp; Texture locked in',
-                'image'     => $tpl . '/assets/images/products/jaggery/process/step-4.png',
+                'bold'      => 'Hygienic Handling',
+                'rest'      => 'The jaggery is handled in clean, controlled environments with strict hygiene standards throughout the process.',
+                'image'     => $tpl . '/assets/images/products/jaggery/process/hygiene.png',
             ),
             array(
                 'number'    => '05',
-                'bold'      => 'Testing &amp; Packing –',
-                'rest'      => 'Each Batch tested by Professionals. Sealed. Clean. Ready',
-                'image'     => $tpl . '/assets/images/products/jaggery/process/step-5.png',
+                'bold'      => 'Tested &amp; Packed With Care',
+                'rest'      => 'Every batch is tested for quality before being hygienically packed and sealed to lock in freshness and purity.',
+                'image'     => $tpl . '/assets/images/products/jaggery/process/tested-packed.png',
             ),
         );
     ?>
