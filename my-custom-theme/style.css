@@ -3535,6 +3535,43 @@ picture {
     .about-purpose__band      { padding: 48px 64px 56px; }
     .about-purpose__title     { font-size: 36px; margin-bottom: 18px; }
     .about-purpose__body      { font-size: 19px; }
+
+    /* ----------------------------------------------------------------------
+       SEAMLESS_BG_TEST: products/sugar page tweaks at 1366 (client req).
+       Mirror the jaggery fixes; scoped to .product-page--sugar.
+       ---------------------------------------------------------------------- */
+
+    /* (1) Hero "100% Natural" seal — same drop as jaggery (−200px → −130px),
+       overriding the reveal/is-visible transforms too (else it snaps back). */
+    .product-page--sugar .natural-seal {
+        transform: translateY(calc(-50% - 130px));
+    }
+    .product-page--sugar [data-reveal] .natural-seal {
+        transform: translateY(calc(-50% - 130px)) scale(0.85) rotate(-8deg);
+    }
+    .product-page--sugar [data-reveal].is-visible .natural-seal {
+        transform: translateY(calc(-50% - 130px)) scale(1) rotate(0deg);
+    }
+
+    /* (3) Variant packets (Bold/Fine Grain) — match jaggery's 420px so they
+       stop clipping at the card top. */
+    .product-page--sugar .variant-card__image { height: 420px; }
+
+    /* (4) Reviews "Words that matter" title down +25 (base calc(14% - 78px)). */
+    .product-page--sugar .reviews-title { top: calc(14% - 53px); }
+
+    /* ----------------------------------------------------------------------
+       SEAMLESS_BG_TEST: Process timeline (slide 2) — BOTH product pages.
+       The pot "lid" (the .process-step__arc dome + the number knob) pokes past
+       the short 1366 slide edges (overflow:hidden clips it). Shrink the LID
+       only — the image circles keep their current (good) size. .process-step__*
+       lives only on product pages, so this hits jaggery + sugar, mac/1280 not. */
+    .process-step__arc { border-width: 16px; width: calc(100% + 24px); height: calc(100% + 24px); }
+    .process-step--top    .process-step__arc { top: -12px; left: -12px; }
+    .process-step--bottom .process-step__arc { bottom: -12px; left: -12px; }
+    .process-step--top    .process-step__lid { top: -64px; }
+    .process-step--bottom .process-step__lid { bottom: -64px; }
+    .process-step__number { width: 92px; height: 60px; }
 }
 
 /* ========================================================================
