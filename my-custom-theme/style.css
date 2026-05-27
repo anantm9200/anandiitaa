@@ -3512,7 +3512,10 @@ picture {
     .about-standards__grid  { max-width: 980px; column-gap: 40px; row-gap: 24px; }
     .standard-item          { grid-template-columns: 130px 1fr; max-width: 560px; }
     .standard-item__image   { width: 150px; }
-    .standard-item__card    { padding: 28px 34px; margin-left: -24px; }
+    /* padding-left bumped 34→70 so the title/body clear the overlapping photo
+       (card sits under the image via margin-left:-24). Right padding trimmed to
+       30 to keep text width. Left alignment unchanged. */
+    .standard-item__card    { padding: 28px 30px 28px 70px; margin-left: -24px; }
     .standard-item__title   { font-size: 21px; }
     .standard-item__body    { font-size: 14px; }
 
