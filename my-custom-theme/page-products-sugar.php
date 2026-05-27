@@ -73,32 +73,32 @@ $bust = 'anandiitaa_bust';
             array(
                 'number' => '01',
                 'bold'   => 'Sugarcane Selection',
-                'rest'   => 'Carefully sourced sugarcane, selected for quality and consistency.',
-                'image'  => $tpl . '/assets/images/products/sugar/process/step-1.png',
+                'rest'   => 'Carefully sourced sugarcane, selected for quality, maturity and consistency.',
+                'image'  => $tpl . '/assets/images/products/sugar/process/cane-selection.png',
             ),
             array(
                 'number' => '02',
                 'bold'   => 'Juice Extraction &amp; Filtration',
-                'rest'   => 'Clean extraction followed by controlled filtration removing impurities.',
-                'image'  => $tpl . '/assets/images/products/sugar/process/step-2.png',
+                'rest'   => 'Fresh cane juice is crushed and filtered to remove impurities for a cleaner process.',
+                'image'  => $tpl . '/assets/images/products/sugar/process/extraction.png',
             ),
             array(
                 'number' => '03',
                 'bold'   => 'Refinement Process',
-                'rest'   => 'Monitored processing ensures clarity, uniformity, and product safety.',
-                'image'  => $tpl . '/assets/images/products/jaggery/process/step-2.png',
+                'rest'   => 'The juice is gently clarified and evaporated to achieve purity, clarity and consistency.',
+                'image'  => $tpl . '/assets/images/products/sugar/process/refinement.png',
             ),
             array(
                 'number' => '04',
                 'bold'   => 'Crystallisation',
-                'rest'   => 'Precise crystallisation ensures consistent grain size and structure.',
-                'image'  => $tpl . '/assets/images/products/sugar/process/step-4.png',
+                'rest'   => 'Controlled crystallisation ensures uniform grain size, brightness and high purity in every batch.',
+                'image'  => $tpl . '/assets/images/products/sugar/process/crystallisation.png',
             ),
             array(
                 'number' => '05',
                 'bold'   => 'Testing &amp; Packing',
-                'rest'   => 'Each batch tested, sealed, &amp; packed under hygiene standards.',
-                'image'  => $tpl . '/assets/images/products/jaggery/process/step-5.png',
+                'rest'   => 'Every batch is tested for quality, then packed, sealed and stored under hygienic conditions.',
+                'image'  => $tpl . '/assets/images/products/sugar/process/packed.png',
             ),
         );
     ?>
