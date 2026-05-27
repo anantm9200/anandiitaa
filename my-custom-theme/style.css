@@ -3493,12 +3493,11 @@ picture {
        packet so it sits inside the slide. */
     .product-page--jaggery .variant-card__image { height: 420px; }
 
-    /* (3) Reviews slide — shrink the two cards: narrower grid + shorter image. */
-    .product-page--jaggery .reviews-grid       { max-width: 760px; gap: 28px; }
-    .product-page--jaggery .review-card__image { aspect-ratio: 3.4 / 1; }
-
-    /* (4) Reviews slide — "Words that matter" title down +40px
-       (1366 tier base is calc(14% - 78px) → calc(14% - 38px)). */
+    /* Reviews slide — "Words that matter" title down +40px
+       (1366 tier base is calc(14% - 78px) → calc(14% - 38px)).
+       NOTE: the card-size shrink (max-width:760 / aspect 3.4:1) was removed so
+       the product review cards match the homepage — they now use the same global
+       1366 rules (max-width:1100, gap:36, aspect 3/1) as home + sugar. */
     .product-page--jaggery .reviews-title { top: calc(14% - 38px); }
 
     /* ----------------------------------------------------------------------
