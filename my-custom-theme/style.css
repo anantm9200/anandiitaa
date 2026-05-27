@@ -3524,6 +3524,17 @@ picture {
     .about-slide--vision {
         background: url('images/about-us/d1366/vision-bg.png') center / cover no-repeat;
     }
+
+    /* About-us slide 5 (Purpose) — the rounded container is taller than the
+       short 1366 viewport, so the slide clips its top+bottom and the 36px
+       corners look sharp/chipped. Scale the container ~20% smaller (narrower +
+       lighter band/fonts) and trim the slide's 80px vertical padding so it sits
+       fully inside. Border-radius itself untouched. */
+    .about-slide--purpose     { padding: 48px 80px; }
+    .about-purpose__container { max-width: 960px; }
+    .about-purpose__band      { padding: 48px 64px 56px; }
+    .about-purpose__title     { font-size: 36px; margin-bottom: 18px; }
+    .about-purpose__body      { font-size: 19px; }
 }
 
 /* ========================================================================
