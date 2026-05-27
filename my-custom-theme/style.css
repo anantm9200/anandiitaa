@@ -3501,12 +3501,6 @@ picture {
        (1366 tier base is calc(14% - 78px) → calc(14% - 38px)). */
     .product-page--jaggery .reviews-title { top: calc(14% - 38px); }
 
-    /* (5) Process slide (slide 2) — client-supplied jaggery-bowl bg (1366-sized).
-       Mac process bg stays commented out; this is jaggery + 1366 tier only. */
-    .product-page--jaggery .product-slide--process {
-        background: url('assets/images/products/jaggery/d1366/process-bg.png') center / cover no-repeat;
-    }
-
     /* ----------------------------------------------------------------------
        SEAMLESS_BG_TEST: About-us slide 4 ("The Anandiitaa Standards") — the 4
        cards inherit the oversized BASE values at this tier (max-width 780,
@@ -3521,6 +3515,12 @@ picture {
     .standard-item__card    { padding: 28px 34px; margin-left: -24px; }
     .standard-item__title   { font-size: 21px; }
     .standard-item__body    { font-size: 14px; }
+
+    /* About-us slide 2 (Vision) — client-supplied bg image (1366-sized).
+       Mac (≥1440) keeps vision-new.png; this fills 1366 only. */
+    .about-slide--vision {
+        background: url('images/about-us/d1366/vision-bg.png') center / cover no-repeat;
+    }
 }
 
 /* ========================================================================
@@ -3587,9 +3587,8 @@ picture {
     .review-card__image img { height: 182px; }
     .review-card__body      { padding: 16px 20px; gap: 12px; }
 
-    /* SEAMLESS_BG_TEST: Process slide (slide 2) — client-supplied jaggery-bowl bg
-       (1280-sized). Jaggery + 1280 tier only; the single 1280 change requested. */
-    .product-page--jaggery .product-slide--process {
-        background: url('assets/images/products/jaggery/d1280/process-bg.png') center / cover no-repeat;
+    /* About-us slide 2 (Vision) — client-supplied bg image (1280-sized). */
+    .about-slide--vision {
+        background: url('images/about-us/d1280/vision-bg.png') center / cover no-repeat;
     }
 }
