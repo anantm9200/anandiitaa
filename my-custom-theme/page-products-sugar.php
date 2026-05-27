@@ -72,7 +72,7 @@ $bust = 'anandiitaa_bust';
         $process_steps = array(
             array(
                 'number' => '01',
-                'bold'   => 'Sugarcane Selection &ndash;',
+                'bold'   => 'Sugarcane Selection',
                 'rest'   => 'Carefully sourced sugarcane, selected for quality and consistency.',
                 'image'  => $tpl . '/assets/images/products/sugar/process/step-1.png',
             ),
@@ -84,19 +84,19 @@ $bust = 'anandiitaa_bust';
             ),
             array(
                 'number' => '03',
-                'bold'   => 'Refinement Process &ndash;',
+                'bold'   => 'Refinement Process',
                 'rest'   => 'Monitored processing ensures clarity, uniformity, and product safety.',
                 'image'  => $tpl . '/assets/images/products/jaggery/process/step-2.png',
             ),
             array(
                 'number' => '04',
-                'bold'   => 'Crystallisation &ndash;',
+                'bold'   => 'Crystallisation',
                 'rest'   => 'Precise crystallisation ensures consistent grain size and structure.',
                 'image'  => $tpl . '/assets/images/products/sugar/process/step-4.png',
             ),
             array(
                 'number' => '05',
-                'bold'   => 'Testing &amp; Packing &ndash;',
+                'bold'   => 'Testing &amp; Packing',
                 'rest'   => 'Each batch tested, sealed, &amp; packed under hygiene standards.',
                 'image'  => $tpl . '/assets/images/products/jaggery/process/step-5.png',
             ),

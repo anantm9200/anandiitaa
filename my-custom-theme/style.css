@@ -2000,20 +2000,23 @@ picture {
     left: 50%;
     transform: translateX(-50%);
     width: clamp(190px, 14vw, 240px);
-    height: 7em;
+    height: auto;                /* was 7em + overflow:hidden — clipped the longer copy */
     margin: 0;
     text-align: center;
     font-family: 'DM Sans', sans-serif;
     font-size: var(--fs-body);
     line-height: 1.45;
     color: var(--brand-text);
-    overflow: hidden;
+    overflow: visible;
 }
 .process-step--top    .process-step__text { top:    calc(20px + clamp(220px, 18vw, 280px) + 40px); }
 .process-step--bottom .process-step__text { bottom: calc(20px + clamp(220px, 18vw, 280px) + 40px); }
 
+/* Heading sits bold on its OWN line; body always wraps beneath it. */
 .process-step__text strong {
-    font-weight: var(--fw-heading);
+    display: block;
+    font-weight: 700;
+    margin-bottom: 4px;
     color: var(--brand-text);
 }
 
