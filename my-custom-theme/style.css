@@ -3205,23 +3205,6 @@ picture {
     }
 }
 
-/* ========================================================================
-   SEAMLESS_BG_TEST: MAC (≥1440) — additional client fixes.
-   ======================================================================== */
-@media (min-width: 1440px) {
-    /* Homepage slide 1 — "Choose Pure. Choose Anandiitaa." + EXPLORE MORE.
-       Base top:9% was clipping the heading under the fixed 58px header on
-       shorter mac windows. Drop the whole content block (h2 + button) by 40px.
-       Button shifts with it since margin-top is relative to the heading. */
-    .hero-slide__content--top-center { top: calc(9% + 40px); }
-
-    /* Product variant packets (jaggery + sugar) — hover lift (translateY −12px)
-       was pushing the packet top past the section edge on shorter mac viewports
-       → clipped on hover. Reduce base height so even with the hover lift the
-       packet stays inside the slide. Base clamp was (520, 60vh, 700). */
-    .variant-card__image { height: clamp(440px, 50vh, 560px); }
-}
-
 @media (max-width: 700px) {
     .about-slide--standards {
         padding: 60px 24px 80px;
@@ -3432,6 +3415,30 @@ picture {
     }
     .benefits-title { top: 3%; }
     .benefits-grid  { bottom: 8%; }
+}
+
+/* ========================================================================
+   SEAMLESS_BG_TEST: MAC (≥1440) — additional client fixes.
+   PLACED AFTER the (max-height:800) + (max-height:620) blocks so it wins
+   the cascade on mac laptops where chrome+dock reduce usable height ≤800.
+   Without this ordering, the height-based rules above would override mac.
+   ======================================================================== */
+@media (min-width: 1440px) {
+    /* Homepage slide 1 — "Choose Pure. Choose Anandiitaa." + EXPLORE MORE.
+       Drop the heading + button by 40px so they clear the fixed 58px header
+       on mac laptops. (Button moves with heading: its margin-top is relative.) */
+    .hero-slide__content--top-center { top: calc(9% + 40px); }
+
+    /* Product variant packets (jaggery + sugar) — shrink so the hover lift
+       (translateY −12px) doesn't push the packet top past the slide edge on
+       shorter mac viewports. Base clamp was (520, 60vh, 700). */
+    .variant-card__image { height: clamp(440px, 50vh, 560px); }
+
+    /* Homepage slide 9 — the 4 pink benefit cards were sinking to
+       bottom:12% (from the max-height:800 rule above) on mac laptops where
+       usable height ≤800. Lift them up: 22% base + 60px = consistently higher
+       across any mac height. */
+    .benefits-grid { bottom: calc(22% + 60px); }
 }
 
 /* ========================================================================
