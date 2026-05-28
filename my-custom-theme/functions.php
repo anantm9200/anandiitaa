@@ -1,11 +1,29 @@
 <?php
 /**
- * SEAMLESS_BG_TEST: single manual cache-busting version for ALL theme assets
- * (CSS / JS / images). Replaces per-file filemtime() busting site-wide.
- * BUMP this string whenever you want every client to refetch assets.
- * Keep it in step with CACHE_VERSION in service-worker.js for a full refresh.
+ * Cache-busting is now AUTOMATIC via filemtime() on each asset
+ * (see anandiitaa_asset_ver() + anandiitaa_bust() below). Edit a file →
+ * its mtime changes → ?v changes → caches bust. No human bump needed.
+ *
+ * This constant is kept only as:
+ *   1) a fallback ?v when filemtime() can't stat a file, AND
+ *   2) source of truth for the SW's CACHE_VERSION (service-worker.js).
+ *      Bumping it ships a new SW that purges ALL caches on activate —
+ *      use for emergency global flushes only.
  */
-define( 'ANANDIITAA_VER', '30' );
+define( 'ANANDIITAA_VER', '31' );
+
+/**
+ * Returns the cache-bust version string for a theme-relative asset path.
+ * Uses the file's mtime so each edit auto-busts; falls back to ANANDIITAA_VER
+ * if the file can't be statted.
+ */
+if ( ! function_exists( 'anandiitaa_asset_ver' ) ) {
+    function anandiitaa_asset_ver( $rel ) {
+        $abs = get_template_directory() . ( strlen( $rel ) && $rel[0] === '/' ? $rel : '/' . $rel );
+        $mt  = @filemtime( $abs );
+        return $mt ? (string) $mt : ANANDIITAA_VER;
+    }
+}
 
 function anandiitaa_enqueue_assets() {
     // Google Fonts: Montserrat (buttons + nav)
@@ -16,15 +34,16 @@ function anandiitaa_enqueue_assets() {
         null
     );
 
-    // Theme stylesheet (self-hosts AppetitePro + DM Sans via @font-face)
-    wp_enqueue_style( 'main-styles', get_stylesheet_uri(), array( 'google-fonts-montserrat' ), ANANDIITAA_VER );
+    // Theme stylesheet (self-hosts AppetitePro + DM Sans via @font-face).
+    // Version = filemtime → auto-busts every edit.
+    wp_enqueue_style( 'main-styles', get_stylesheet_uri(), array( 'google-fonts-montserrat' ), anandiitaa_asset_ver( '/style.css' ) );
 
     // Hero carousel script
     wp_enqueue_script(
         'hero-carousel',
         get_template_directory_uri() . '/assets/js/hero-carousel.js',
         array(),
-        ANANDIITAA_VER,
+        anandiitaa_asset_ver( '/assets/js/hero-carousel.js' ),
         true
     );
 
@@ -33,7 +52,7 @@ function anandiitaa_enqueue_assets() {
         'scroll-reveal',
         get_template_directory_uri() . '/assets/js/scroll-reveal.js',
         array(),
-        ANANDIITAA_VER,
+        anandiitaa_asset_ver( '/assets/js/scroll-reveal.js' ),
         true
     );
 
@@ -42,16 +61,16 @@ function anandiitaa_enqueue_assets() {
         'benefits-accordion',
         get_template_directory_uri() . '/assets/js/benefits-accordion.js',
         array(),
-        ANANDIITAA_VER,
+        anandiitaa_asset_ver( '/assets/js/benefits-accordion.js' ),
         true
     );
 }
 add_action( 'wp_enqueue_scripts', 'anandiitaa_enqueue_assets' );
 
 /**
- * Global asset cache-buster. Appends ?v=ANANDIITAA_VER so the SW + browser
- * caches refetch whenever you bump that single version constant (replaces the
- * old per-file filemtime busting).
+ * Global asset cache-buster. Appends ?v=<filemtime> so URLs auto-bust on every
+ * file change (no human bump needed). Falls back to ANANDIITAA_VER if mtime
+ * is unavailable.
  *
  * Accepts either a full theme URL (e.g. get_template_directory_uri() . '/x.png')
  * or a theme-relative path (e.g. '/assets/images/x.png'). Returns the URL with
@@ -65,9 +84,11 @@ if ( ! function_exists( 'anandiitaa_bust' ) ) {
                    ? substr( $url_or_rel, strlen( $tpl_uri ) )
                    : $url_or_rel;
         if ( $rel === '' || $rel[0] !== '/' ) $rel = '/' . $rel;
-        $abs = $tpl_dir . $rel;
+        $abs  = $tpl_dir . $rel;
         $full = $tpl_uri . $rel;
-        return file_exists( $abs ) ? $full . '?v=' . ANANDIITAA_VER : $full;
+        if ( ! file_exists( $abs ) ) return $full;
+        $mt = @filemtime( $abs );
+        return $mt ? $full . '?v=' . $mt : $full . '?v=' . ANANDIITAA_VER;
     }
 }
 

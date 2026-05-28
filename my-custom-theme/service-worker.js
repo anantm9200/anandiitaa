@@ -1,31 +1,27 @@
 /*
- * Anandiitaa demo Service Worker.
+ * Anandiitaa Service Worker.
  *
- * Why: Pantheon dev environments send `Cache-Control: no-cache, must-revalidate`
- * on every static asset. That kills repeat-visit speed — every reload forces
- * a revalidation round-trip per file. This SW sidesteps it entirely by
- * intercepting fetches in the browser and serving from a local cache once
- * a file has been seen.
+ * Strategy (post-redesign — was stale-while-revalidate, which served stale CSS
+ * on first request after a deploy and produced the "two versions floating
+ * around" symptom the client was hitting):
+ *   - HTML       → network-first, cache fallback only on offline.
+ *   - Theme + plugin + wp-includes static assets → ALSO network-first.
+ *     Combined with filemtime-based ?v URLs (see anandiitaa_bust in
+ *     functions.php), the URL changes whenever the file changes, so
+ *     network-first guarantees deployed CSS is what every visitor sees.
+ *   - Cross-origin (fonts) + wp-admin → passed through untouched.
  *
- * Strategy
- *   - HTML (`/`, `/about-us`, `/products/...`)  → network-first, fall back to
- *     cache if offline. Keeps content fresh during dev iteration.
- *   - Theme static assets (.png / .jpg / .css / .js / .woff2 under
- *     /wp-content/themes/) → stale-while-revalidate. Cached copy is served
- *     instantly (fast), and in the background the SW refetches and updates
- *     the cache. Second visit after any change picks up the new bytes
- *     automatically — no manual CACHE_VERSION bump, no ?v=mtime needed on
- *     every URL. (Critical assets like CSS/JS still get a filemtime ?ver via
- *     wp_enqueue, so first-visit-after-change is also fresh for those.)
- *   - Everything else (cross-origin fonts, wp-admin, etc.) is passed through
- *     to the network unchanged.
+ * Activate handler PURGES EVERY CACHE (current version included) so any SW
+ * update gives clients a clean slate. No stale entry can survive across SW
+ * versions. Filemtime ?v makes this a no-op cost (each asset refetches on
+ * its first request anyway).
  *
- * Versioning: bump CACHE_VERSION to force all clients to dump and rebuild
- * caches (e.g. after a major redesign or layout change). On activate, we
- * delete any caches whose name doesn't match the current version.
+ * CACHE_VERSION: bumping it ships a new SW → install → activate → purge.
+ * Use for emergency global flushes. Routine asset changes don't need it —
+ * filemtime in the URL handles those automatically.
  */
 
-const CACHE_VERSION = 'v30';
+const CACHE_VERSION = 'v31';
 const HTML_CACHE    = `anandiitaa-html-${CACHE_VERSION}`;
 const ASSET_CACHE   = `anandiitaa-assets-${CACHE_VERSION}`;
 
@@ -37,13 +33,12 @@ self.addEventListener('install', (event) => {
 
 self.addEventListener('activate', (event) => {
     event.waitUntil((async () => {
-        // Delete stale caches from prior versions.
+        // Purge EVERY cache (current namespace included) on each SW activation.
+        // Guarantees no stale entry from before this activation can be served.
+        // With filemtime ?v URLs + network-first below, the only "cost" is
+        // each asset's first request going to network (which is the goal).
         const names = await caches.keys();
-        await Promise.all(
-            names
-                .filter((n) => n !== HTML_CACHE && n !== ASSET_CACHE)
-                .map((n) => caches.delete(n))
-        );
+        await Promise.all(names.map((n) => caches.delete(n)));
         // Claim open clients so the SW starts handling fetches immediately.
         await self.clients.claim();
     })());
@@ -63,45 +58,30 @@ self.addEventListener('fetch', (event) => {
     // Skip wp-admin + wp-login — admin needs fresh data.
     if (url.pathname.startsWith('/wp-admin') || url.pathname.startsWith('/wp-login')) return;
 
-    // Theme assets: stale-while-revalidate.
+    // Theme/plugin/wp-includes assets: network-first (was stale-while-revalidate).
+    // Always tries network; cache is offline fallback only. Combined with the
+    // filemtime ?v URLs, this guarantees clients see the deployed bytes.
     if (
         url.pathname.startsWith('/wp-content/themes/') ||
         url.pathname.startsWith('/wp-content/plugins/') ||
         url.pathname.startsWith('/wp-includes/')
     ) {
-        event.respondWith(staleWhileRevalidate(req));
+        event.respondWith(networkFirst(req, ASSET_CACHE));
         return;
     }
 
     // HTML routes: network-first.
     if (req.mode === 'navigate' || req.headers.get('accept')?.includes('text/html')) {
-        event.respondWith(networkFirst(req));
+        event.respondWith(networkFirst(req, HTML_CACHE));
         return;
     }
 });
 
-async function staleWhileRevalidate(req) {
-    const cache = await caches.open(ASSET_CACHE);
-    const cached = await cache.match(req);
-
-    // Always kick off a background refetch to update the cache for next time.
-    const networkPromise = fetch(req).then((res) => {
-        if (res && res.status === 200 && res.type === 'basic') {
-            cache.put(req, res.clone());
-        }
-        return res;
-    }).catch(() => null);
-
-    // If we have a cached copy, serve it immediately (fast). Otherwise
-    // wait for the network response (cold cache).
-    return cached || networkPromise;
-}
-
-async function networkFirst(req) {
-    const cache = await caches.open(HTML_CACHE);
+async function networkFirst(req, cacheName) {
+    const cache = await caches.open(cacheName);
     try {
         const res = await fetch(req);
-        if (res && res.status === 200) {
+        if (res && res.status === 200 && res.type === 'basic') {
             cache.put(req, res.clone());
         }
         return res;

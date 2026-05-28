@@ -1,11 +1,11 @@
-# Graph Report - .  (2026-05-27)
+# Graph Report - .  (2026-05-28)
 
 ## Corpus Check
-- 331 files · ~21,784,623 words
+- 331 files · ~21,784,714 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1841 nodes · 1921 edges · 386 communities detected
+- 1841 nodes · 1922 edges · 386 communities detected
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 13 edges (avg confidence: 0.75)
 - Token cost: 0 input · 0 output
 
@@ -699,39 +699,39 @@ Nodes (8): ACF free installed but inactive, anandiitaa_get_carousel_slides() hel
 
 ### Community 66 - "Community 66"
 Cohesion: 0.33
-Nodes (1): Set_Field
+Nodes (2): anandiitaa_asset_ver(), anandiitaa_enqueue_assets()
 
 ### Community 67 - "Community 67"
+Cohesion: 0.33
+Nodes (1): Set_Field
+
+### Community 68 - "Community 68"
 Cohesion: 0.38
 Nodes (1): Color_Field
 
-### Community 68 - "Community 68"
+### Community 69 - "Community 69"
 Cohesion: 0.43
 Nodes (1): Network_Container
 
-### Community 69 - "Community 69"
+### Community 70 - "Community 70"
 Cohesion: 0.43
 Nodes (1): Term_Condition
 
-### Community 70 - "Community 70"
+### Community 71 - "Community 71"
 Cohesion: 0.48
 Nodes (1): Service
 
-### Community 71 - "Community 71"
+### Community 72 - "Community 72"
 Cohesion: 0.33
 Nodes (1): BlockEdit
 
-### Community 72 - "Community 72"
+### Community 73 - "Community 73"
 Cohesion: 0.38
 Nodes (1): ServerSideRender
 
-### Community 73 - "Community 73"
+### Community 74 - "Community 74"
 Cohesion: 0.52
 Nodes (5): getFieldsFromFieldsHolder(), input(), isComplexGroupIdentifier(), mapParentPrefix(), output()
-
-### Community 74 - "Community 74"
-Cohesion: 0.33
-Nodes (0): 
 
 ### Community 75 - "Community 75"
 Cohesion: 0.47
@@ -927,139 +927,139 @@ Nodes (2): findFieldByName(), hierarchyResolver()
 
 ### Community 123 - "Community 123"
 Cohesion: 0.67
-Nodes (0): 
+Nodes (1): ComposerStaticInit24e41bbaee1332276f826502c7093d78
 
 ### Community 124 - "Community 124"
 Cohesion: 0.67
-Nodes (1): ComposerStaticInit24e41bbaee1332276f826502c7093d78
+Nodes (1): Block
 
 ### Community 125 - "Community 125"
 Cohesion: 0.67
-Nodes (1): Block
+Nodes (1): Time_Field
 
 ### Community 126 - "Community 126"
 Cohesion: 0.67
-Nodes (1): Time_Field
+Nodes (1): Header_Scripts_Field
 
 ### Community 127 - "Community 127"
 Cohesion: 0.67
-Nodes (1): Header_Scripts_Field
+Nodes (1): Footer_Scripts_Field
 
 ### Community 128 - "Community 128"
 Cohesion: 0.67
-Nodes (1): Footer_Scripts_Field
+Nodes (1): Post_Level_Condition
 
 ### Community 129 - "Community 129"
 Cohesion: 0.67
-Nodes (1): Post_Level_Condition
+Nodes (1): Post_Template_Condition
 
 ### Community 130 - "Community 130"
 Cohesion: 0.67
-Nodes (1): Post_Template_Condition
+Nodes (1): Term_Parent_Condition
 
 ### Community 131 - "Community 131"
 Cohesion: 0.67
-Nodes (1): Term_Parent_Condition
+Nodes (1): Term_Level_Condition
 
 ### Community 132 - "Community 132"
 Cohesion: 0.67
-Nodes (1): Term_Level_Condition
+Nodes (1): Current_User_ID_Condition
 
 ### Community 133 - "Community 133"
 Cohesion: 0.67
-Nodes (1): Current_User_ID_Condition
+Nodes (1): Post_Format_Condition
 
 ### Community 134 - "Community 134"
 Cohesion: 0.67
-Nodes (1): Post_Format_Condition
+Nodes (1): Boolean_Condition
 
 ### Community 135 - "Community 135"
 Cohesion: 0.67
-Nodes (1): Boolean_Condition
+Nodes (1): Blog_ID_Condition
 
 ### Community 136 - "Community 136"
 Cohesion: 0.67
-Nodes (1): Blog_ID_Condition
+Nodes (1): Term_Taxonomy_Condition
 
 ### Community 137 - "Community 137"
 Cohesion: 0.67
-Nodes (1): Term_Taxonomy_Condition
+Nodes (1): Post_Ancestor_ID_Condition
 
 ### Community 138 - "Community 138"
 Cohesion: 0.67
-Nodes (1): Post_Ancestor_ID_Condition
+Nodes (1): Post_Parent_ID_Condition
 
 ### Community 139 - "Community 139"
 Cohesion: 0.67
-Nodes (1): Post_Parent_ID_Condition
+Nodes (1): Current_User_Capability_Condition
 
 ### Community 140 - "Community 140"
 Cohesion: 0.67
-Nodes (1): Current_User_Capability_Condition
+Nodes (1): Post_ID_Condition
 
 ### Community 141 - "Community 141"
 Cohesion: 0.67
-Nodes (1): Post_ID_Condition
+Nodes (1): Term_Ancestor_Condition
 
 ### Community 142 - "Community 142"
 Cohesion: 0.67
-Nodes (1): Term_Ancestor_Condition
+Nodes (1): Current_User_Role_Condition
 
 ### Community 143 - "Community 143"
 Cohesion: 0.67
-Nodes (1): Current_User_Role_Condition
+Nodes (1): Post_Type_Condition
 
 ### Community 144 - "Community 144"
 Cohesion: 0.67
-Nodes (1): Post_Type_Condition
+Nodes (1): User_ID_Condition
 
 ### Community 145 - "Community 145"
 Cohesion: 0.67
-Nodes (1): User_ID_Condition
+Nodes (1): Any_Contain_Comparer
 
 ### Community 146 - "Community 146"
 Cohesion: 0.67
-Nodes (1): Any_Contain_Comparer
+Nodes (1): Contain_Comparer
 
 ### Community 147 - "Community 147"
 Cohesion: 0.67
-Nodes (1): Contain_Comparer
+Nodes (1): Any_Equality_Comparer
 
 ### Community 148 - "Community 148"
 Cohesion: 0.67
-Nodes (1): Any_Equality_Comparer
+Nodes (1): Scalar_Comparer
 
 ### Community 149 - "Community 149"
 Cohesion: 0.67
-Nodes (1): Scalar_Comparer
+Nodes (1): Equality_Comparer
 
 ### Community 150 - "Community 150"
 Cohesion: 0.67
-Nodes (1): Equality_Comparer
+Nodes (1): Custom_Comparer
 
 ### Community 151 - "Community 151"
 Cohesion: 0.67
-Nodes (1): Custom_Comparer
+Nodes (1): FrozenServiceException
 
 ### Community 152 - "Community 152"
 Cohesion: 0.67
-Nodes (1): FrozenServiceException
+Nodes (1): UnknownIdentifierException
 
 ### Community 153 - "Community 153"
 Cohesion: 0.67
-Nodes (1): UnknownIdentifierException
+Nodes (1): InvalidServiceIdentifierException
 
 ### Community 154 - "Community 154"
 Cohesion: 0.67
-Nodes (1): InvalidServiceIdentifierException
+Nodes (1): Color
 
 ### Community 155 - "Community 155"
 Cohesion: 0.67
-Nodes (1): Color
+Nodes (1): Nav_Menu_Item_Edit_Walker
 
 ### Community 156 - "Community 156"
 Cohesion: 0.67
-Nodes (1): Nav_Menu_Item_Edit_Walker
+Nodes (0): 
 
 ### Community 157 - "Community 157"
 Cohesion: 0.67
@@ -1071,51 +1071,51 @@ Nodes (0):
 
 ### Community 159 - "Community 159"
 Cohesion: 0.67
-Nodes (0): 
+Nodes (1): SearchInput
 
 ### Community 160 - "Community 160"
 Cohesion: 0.67
-Nodes (1): SearchInput
+Nodes (1): HiddenField
 
 ### Community 161 - "Community 161"
 Cohesion: 0.67
-Nodes (1): HiddenField
+Nodes (1): ComplexInserter
 
 ### Community 162 - "Community 162"
 Cohesion: 0.67
-Nodes (1): ComplexInserter
+Nodes (1): ComplexGroup
 
 ### Community 163 - "Community 163"
 Cohesion: 0.67
-Nodes (1): ComplexGroup
+Nodes (1): SeparatorField
 
 ### Community 164 - "Community 164"
 Cohesion: 0.67
-Nodes (1): SeparatorField
+Nodes (1): Picker
 
 ### Community 165 - "Community 165"
 Cohesion: 0.67
-Nodes (1): Picker
+Nodes (1): ColorField
 
 ### Community 166 - "Community 166"
 Cohesion: 0.67
-Nodes (1): ColorField
+Nodes (1): CheckboxField
 
 ### Community 167 - "Community 167"
 Cohesion: 0.67
-Nodes (1): CheckboxField
+Nodes (1): TextareaField
 
 ### Community 168 - "Community 168"
 Cohesion: 0.67
-Nodes (1): TextareaField
+Nodes (1): TextField
 
 ### Community 169 - "Community 169"
 Cohesion: 0.67
-Nodes (1): TextField
+Nodes (1): MultiselectField
 
 ### Community 170 - "Community 170"
 Cohesion: 0.67
-Nodes (1): MultiselectField
+Nodes (0): 
 
 ### Community 171 - "Community 171"
 Cohesion: 0.67
@@ -1126,16 +1126,16 @@ Cohesion: 0.67
 Nodes (0): 
 
 ### Community 173 - "Community 173"
-Cohesion: 0.67
-Nodes (0): 
+Cohesion: 1.0
+Nodes (2): getEnvironmentValue(), isFulfiled()
 
 ### Community 174 - "Community 174"
 Cohesion: 1.0
 Nodes (2): getEnvironmentValue(), isFulfiled()
 
 ### Community 175 - "Community 175"
-Cohesion: 1.0
-Nodes (2): getEnvironmentValue(), isFulfiled()
+Cohesion: 0.67
+Nodes (0): 
 
 ### Community 176 - "Community 176"
 Cohesion: 0.67
@@ -1146,7 +1146,7 @@ Cohesion: 0.67
 Nodes (0): 
 
 ### Community 178 - "Community 178"
-Cohesion: 0.67
+Cohesion: 1.0
 Nodes (0): 
 
 ### Community 179 - "Community 179"
@@ -1980,6 +1980,8 @@ Nodes (1): Accent palette #76112D #9D2745 #BA3656 #CD3F60 #2a1810
 ## Knowledge Gaps
 - **104 isolated node(s):** `Date_Time_Field`, `Text_Field`, `Image_Field`, `Radio_Image_Field`, `Radio_Field` (+99 more)
   These have ≤1 connection - possible missing edges or undocumented components.
+- **Thin community `Community 178`** (2 nodes): `service-worker.js`, `networkFirst()`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
 - **Thin community `Community 179`** (2 nodes): `closeOther()`, `benefits-accordion.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
 - **Thin community `Community 180`** (2 nodes): `Date_Time_Field`, `Date_Time_Field.php`
