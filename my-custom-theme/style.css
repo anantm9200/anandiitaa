@@ -3512,8 +3512,13 @@ picture {
         margin-top: 0;
         gap: 36px;
     }
-    .review-card__image { aspect-ratio: 4 / 1; }
-    .review-card__body  { padding: 16px 22px; gap: 12px; }
+    /* EXPLICIT height (not aspect-ratio) — the flex layout was overriding
+       aspect-ratio and stretching the image to fill the row. Mirror the 1280
+       tier pattern: aspect-ratio:auto + explicit px on BOTH the div and the
+       inner img. 135px chosen so grid height stays below the title clearance. */
+    .review-card__image     { aspect-ratio: auto; height: 135px; }
+    .review-card__image img { height: 135px; }
+    .review-card__body      { padding: 16px 22px; gap: 12px; }
 
     /* ----------------------------------------------------------------------
        SEAMLESS_BG_TEST: jaggery-page-only tweaks at 1366 tier (client req).
