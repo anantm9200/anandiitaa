@@ -327,30 +327,26 @@ add_action( 'wp_head', function () {
 }, 4 );
 
 /**
- * Aggressive HTML cache-control — Pantheon's default sends
- * `Cache-Control: public, max-age=604800` (7 days!) on anonymous HTML, which
- * traps returning visitors in their own browser HTTP cache for up to a week
- * after every deploy: their browser thinks the cached HTML (with old asset
- * URLs) is still "fresh" and never re-fetches → they see stale content even
- * though the new bytes are on Pantheon. Override to `no-cache, must-revalidate`
- * so the browser MAY store the HTML but MUST revalidate with the server on
- * every visit. Saves bandwidth via 304s when the page hasn't changed;
- * guarantees freshness when it has.
+ * NUCLEAR HTML cache-control — client requirement: visitors must see fresh
+ * content even if they visited 2 seconds ago, left, and came back.
+ *
+ * `no-store` instructs the browser NOT to store the HTML at all. Every visit
+ * is a full network fetch from origin. Combined with the SW's `cache:'reload'`
+ * fetch mode (service-worker.js), this guarantees zero stale HTML on any
+ * subsequent visit, regardless of prior cache state.
+ *
+ * Tradeoff: every visit re-downloads the HTML (~60KB). Negligible cost for a
+ * marketing site; eliminates the entire class of "stale browser cache" bugs.
  *
  * Scoped to anonymous front-end HTML — skip admin / AJAX / CRON / REST so
  * those keep WordPress' own cache semantics.
- *
- * Note: this affects FUTURE responses. Visitors who already have stale HTML
- * cached from before this filter ships will stay stuck until their existing
- * cache entry expires (or they hard-refresh). After that single transition,
- * every subsequent deploy auto-propagates within seconds.
  */
 add_action( 'send_headers', function () {
     if ( is_admin() ) return;
     if ( defined( 'DOING_AJAX' )  && DOING_AJAX )  return;
     if ( defined( 'DOING_CRON' )  && DOING_CRON )  return;
     if ( defined( 'REST_REQUEST' ) && REST_REQUEST ) return;
-    header( 'Cache-Control: no-cache, must-revalidate', true );
+    header( 'Cache-Control: no-store, must-revalidate, max-age=0', true );
 }, 100 );
 
 /**

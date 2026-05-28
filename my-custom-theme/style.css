@@ -3366,8 +3366,11 @@ picture {
    .reviews-grid rules that appear earlier in this file. Home slide 10
    (Words that matter): lift heading + U-cards up. */
 @media (min-width: 1440px) {
+    /* Floor at 76px = mac header (~66px) + 10px breathing room. On taller
+       viewports the 6% wins; on shorter mac windows the floor keeps the title
+       below the fixed header instead of clipped behind it. */
     .reviews-title {
-        top: 6%;
+        top: max(76px, 6%);
     }
     .reviews-grid {
         top: 45%;
@@ -3490,21 +3493,26 @@ picture {
        (~625px usable height). max() picks the larger value: stays at
        calc(14% - 78px) on tall viewports, snaps to 78px when the calc would
        go behind the header. */
-    .reviews-title { top: max(33px, calc(14% - 123px)); }
+    /* Floor raised 33→56 to clear the 1366-tier header (~42px) + breathing
+       room. Preserves the +45-up visual on taller viewports (where calc wins);
+       short Windows viewports snap to 56px so the title sits below the header. */
+    .reviews-title { top: max(56px, calc(14% - 123px)); }
 
     /* Slide 7 — "Choose Pure, Choose Anandiitaa" (bottom-center caption). Drop it
        ~20px so the i-dots stop overlapping the newspaper graphic above. */
     .hero-slide__content--bottom-center { bottom: calc(12% - 70px); }
 
-    /* Slide 10 — reviews. Shrink the cards more (shorter image + tighter body),
-       kept readable. Grid recentered lower so it clears the title. */
+    /* Slide 10 — reviews. Grid pushed down 56→60% and card image shortened
+       (aspect 3/1 → 4/1) so the title has more clearance above the grid.
+       Confirmed via Playwright: at 1366×625 the title bottom was overlapping
+       grid top by 10px; these changes give it ~50px headroom instead. */
     .reviews-grid {
-        top: 56%;
+        top: 60%;
         transform: translate(-50%, -50%);
         margin-top: 0;
         gap: 36px;
     }
-    .review-card__image { aspect-ratio: 3 / 1; }
+    .review-card__image { aspect-ratio: 4 / 1; }
     .review-card__body  { padding: 16px 22px; gap: 12px; }
 
     /* ----------------------------------------------------------------------
@@ -3537,7 +3545,7 @@ picture {
        NOTE: the card-size shrink (max-width:760 / aspect 3.4:1) was removed so
        the product review cards match the homepage — they now use the same global
        1366 rules (max-width:1100, gap:36, aspect 3/1) as home + sugar. */
-    .product-page--jaggery .reviews-title { top: max(33px, calc(14% - 83px)); }
+    .product-page--jaggery .reviews-title { top: max(56px, calc(14% - 83px)); }
 
     /* ----------------------------------------------------------------------
        SEAMLESS_BG_TEST: About-us slide 4 ("The Anandiitaa Standards") — the 4
@@ -3596,7 +3604,7 @@ picture {
     .product-page--sugar .variant-card__image { height: 420px; }
 
     /* (4) Reviews "Words that matter" title down +25 (base calc(14% - 78px)). */
-    .product-page--sugar .reviews-title { top: max(33px, calc(14% - 98px)); }
+    .product-page--sugar .reviews-title { top: max(56px, calc(14% - 98px)); }
 
     /* ----------------------------------------------------------------------
        SEAMLESS_BG_TEST: Process timeline (slide 2) — BOTH product pages.
