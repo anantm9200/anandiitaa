@@ -178,7 +178,7 @@
       "label": "anandiitaa_route_templates()",
       "file_type": "code",
       "source_file": "my-custom-theme/functions.php",
-      "source_location": "L333",
+      "source_location": "L360",
       "id": "functions_anandiitaa_route_templates",
       "community": 66
     },
@@ -15664,7 +15664,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "my-custom-theme/functions.php",
-      "source_location": "L333",
+      "source_location": "L360",
       "weight": 1.0,
       "_src": "my_custom_theme_functions_php",
       "_tgt": "functions_anandiitaa_route_templates",

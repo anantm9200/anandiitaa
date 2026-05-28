@@ -3453,9 +3453,12 @@ picture {
     .products-grid { width: 86%; max-width: 1140px; }
     .product-card:hover .product-card__image { transform: translateY(-6px) scale(1.03); }
 
-    /* Slide 10 — reviews. "Words that matter" title up more so it stops sticking
-       to the cards (plenty of empty band above it, so safe from the header). */
-    .reviews-title { top: calc(14% - 78px); }
+    /* Slide 10 — reviews. "Words that matter" title up but with a hard floor
+       so it clears the fixed 58px header on REAL Windows short viewports
+       (~625px usable height). max() picks the larger value: stays at
+       calc(14% - 78px) on tall viewports, snaps to 78px when the calc would
+       go behind the header. */
+    .reviews-title { top: max(78px, calc(14% - 78px)); }
 
     /* Slide 7 — "Choose Pure, Choose Anandiitaa" (bottom-center caption). Drop it
        ~20px so the i-dots stop overlapping the newspaper graphic above. */
@@ -3496,12 +3499,13 @@ picture {
        packet so it sits inside the slide. */
     .product-page--jaggery .variant-card__image { height: 420px; }
 
-    /* Reviews slide — "Words that matter" title down +40px
-       (1366 tier base is calc(14% - 78px) → calc(14% - 38px)).
+    /* Reviews slide — "Words that matter" title down +40px (calc(14% - 38px)),
+       FLOORED at 78px so it always clears the fixed header on short Windows
+       viewports (~625px usable). max() picks the larger of the two.
        NOTE: the card-size shrink (max-width:760 / aspect 3.4:1) was removed so
        the product review cards match the homepage — they now use the same global
        1366 rules (max-width:1100, gap:36, aspect 3/1) as home + sugar. */
-    .product-page--jaggery .reviews-title { top: calc(14% - 38px); }
+    .product-page--jaggery .reviews-title { top: max(78px, calc(14% - 38px)); }
 
     /* ----------------------------------------------------------------------
        SEAMLESS_BG_TEST: About-us slide 4 ("The Anandiitaa Standards") — the 4
@@ -3560,7 +3564,7 @@ picture {
     .product-page--sugar .variant-card__image { height: 420px; }
 
     /* (4) Reviews "Words that matter" title down +25 (base calc(14% - 78px)). */
-    .product-page--sugar .reviews-title { top: calc(14% - 53px); }
+    .product-page--sugar .reviews-title { top: max(78px, calc(14% - 53px)); }
 
     /* ----------------------------------------------------------------------
        SEAMLESS_BG_TEST: Process timeline (slide 2) — BOTH product pages.

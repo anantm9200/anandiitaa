@@ -21,7 +21,7 @@
  * filemtime in the URL handles those automatically.
  */
 
-const CACHE_VERSION = 'v31';
+const CACHE_VERSION = 'v32';
 const HTML_CACHE    = `anandiitaa-html-${CACHE_VERSION}`;
 const ASSET_CACHE   = `anandiitaa-assets-${CACHE_VERSION}`;
 
@@ -80,7 +80,12 @@ self.addEventListener('fetch', (event) => {
 async function networkFirst(req, cacheName) {
     const cache = await caches.open(cacheName);
     try {
-        const res = await fetch(req);
+        // cache: 'reload' bypasses the BROWSER HTTP cache and forces a real
+        // network fetch. Combined with Fix A (server-side no-cache), this gets
+        // currently-trapped visitors unstuck immediately — their browser's
+        // stale HTML cache entry is ignored on the very next request instead
+        // of waiting up to 7 days for it to expire.
+        const res = await fetch(req, { cache: 'reload' });
         if (res && res.status === 200 && res.type === 'basic') {
             cache.put(req, res.clone());
         }
