@@ -3438,7 +3438,7 @@ picture {
        bottom:12% (from the max-height:800 rule above) on mac laptops where
        usable height ≤800. Lift them up: 22% base + 60px = consistently higher
        across any mac height. */
-    .benefits-grid { bottom: calc(22% + 60px); }
+    .benefits-grid { bottom: calc(22% + 120px); }
 }
 
 /* ========================================================================
