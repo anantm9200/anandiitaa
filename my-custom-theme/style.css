@@ -2804,8 +2804,8 @@ picture {
     z-index: 1;
     margin: 10px 0 0;
     font-family: 'Appetite Pro', 'Georgia', serif;
-    /* SEAMLESS_BG_TEST: title/body font sizes interchanged (was --fs-heading). */
-    font-size: var(--fs-subtext);
+    /* Matches mission title size for visual consistency. */
+    font-size: var(--fs-heading);
     font-weight: var(--fw-heading);
     color: var(--brand-maroon);
     line-height: 1;
