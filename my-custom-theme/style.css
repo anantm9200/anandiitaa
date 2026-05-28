@@ -3177,8 +3177,14 @@ picture {
    Transforms re-declare translateX (brick) since transform isn't additive;
    hover keeps the lift + an extra -8px raise. */
 @media (min-width: 1440px) {
+    /* Section padding trimmed at bottom so the lifted row 2 doesn't get
+       clipped on smaller mac viewports (1440×900 with chrome/dock ≈ 700vh). */
+    .about-slide--standards {
+        padding-bottom: 60px;
+    }
     .about-standards__grid {
-        row-gap: 96px;
+        /* row-gap reduced 96→48 so row 2 sits higher and clears the section. */
+        row-gap: 48px;
     }
     .standard-item__card {
         padding-left: 104px;
@@ -3186,15 +3192,34 @@ picture {
     .standard-item:nth-child(-n+2) {
         transform: translateX(-6%) translateY(-40px);
     }
+    /* Bottom row lifted further (was −60 → −80) to give clearance from
+       the section's bottom edge. */
     .standard-item:nth-child(n+3) {
-        transform: translateX(6%) translateY(-60px);
+        transform: translateX(6%) translateY(-80px);
     }
     .standard-item:nth-child(-n+2):hover {
         transform: translateX(-6%) translateY(-48px);
     }
     .standard-item:nth-child(n+3):hover {
-        transform: translateX(6%) translateY(-68px);
+        transform: translateX(6%) translateY(-88px);
     }
+}
+
+/* ========================================================================
+   SEAMLESS_BG_TEST: MAC (≥1440) — additional client fixes.
+   ======================================================================== */
+@media (min-width: 1440px) {
+    /* Homepage slide 1 — "Choose Pure. Choose Anandiitaa." + EXPLORE MORE.
+       Base top:9% was clipping the heading under the fixed 58px header on
+       shorter mac windows. Drop the whole content block (h2 + button) by 40px.
+       Button shifts with it since margin-top is relative to the heading. */
+    .hero-slide__content--top-center { top: calc(9% + 40px); }
+
+    /* Product variant packets (jaggery + sugar) — hover lift (translateY −12px)
+       was pushing the packet top past the section edge on shorter mac viewports
+       → clipped on hover. Reduce base height so even with the hover lift the
+       packet stays inside the slide. Base clamp was (520, 60vh, 700). */
+    .variant-card__image { height: clamp(440px, 50vh, 560px); }
 }
 
 @media (max-width: 700px) {
@@ -3458,7 +3483,7 @@ picture {
        (~625px usable height). max() picks the larger value: stays at
        calc(14% - 78px) on tall viewports, snaps to 78px when the calc would
        go behind the header. */
-    .reviews-title { top: max(78px, calc(14% - 78px)); }
+    .reviews-title { top: max(33px, calc(14% - 123px)); }
 
     /* Slide 7 — "Choose Pure, Choose Anandiitaa" (bottom-center caption). Drop it
        ~20px so the i-dots stop overlapping the newspaper graphic above. */
@@ -3505,7 +3530,7 @@ picture {
        NOTE: the card-size shrink (max-width:760 / aspect 3.4:1) was removed so
        the product review cards match the homepage — they now use the same global
        1366 rules (max-width:1100, gap:36, aspect 3/1) as home + sugar. */
-    .product-page--jaggery .reviews-title { top: max(78px, calc(14% - 38px)); }
+    .product-page--jaggery .reviews-title { top: max(33px, calc(14% - 83px)); }
 
     /* ----------------------------------------------------------------------
        SEAMLESS_BG_TEST: About-us slide 4 ("The Anandiitaa Standards") — the 4
@@ -3564,7 +3589,7 @@ picture {
     .product-page--sugar .variant-card__image { height: 420px; }
 
     /* (4) Reviews "Words that matter" title down +25 (base calc(14% - 78px)). */
-    .product-page--sugar .reviews-title { top: max(78px, calc(14% - 53px)); }
+    .product-page--sugar .reviews-title { top: max(33px, calc(14% - 98px)); }
 
     /* ----------------------------------------------------------------------
        SEAMLESS_BG_TEST: Process timeline (slide 2) — BOTH product pages.
