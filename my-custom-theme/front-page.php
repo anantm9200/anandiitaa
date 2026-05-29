@@ -31,11 +31,13 @@
         ),
         array(
             // SEAMLESS_BG_TEST: swapped 3.png → 3-sticker.png (transparent bg). Revert by restoring filename.
-            'image'    => $tpl . '/images/home/laptop/3-sticker.png',
-            'alt'      => 'Choose Pure. Choose Anandiitaa.',
-            'heading'  => 'Choose Pure.<br>Choose Anandiitaa.',
-            'cta'      => array( 'label' => 'Explore More', 'href' => '/about-us', 'class' => 'btn-primary' ),
-            'features' => array(
+            'image'     => $tpl . '/images/home/laptop/3-sticker.png',
+            // Mac-only (≥1440px) hero override per client request. Smaller tiers keep 3-sticker.
+            'mac_image' => $tpl . '/images/home/mac/home-hero-3.png',
+            'alt'       => 'Choose Pure. Choose Anandiitaa.',
+            'heading'   => 'Choose Pure.<br>Choose Anandiitaa.',
+            'cta'       => array( 'label' => 'Explore More', 'href' => '/about-us', 'class' => 'btn-primary' ),
+            'features'  => array(
                 array( 'icon' => 'shield', 'text' => 'Sulphur Less' ),
                 array( 'icon' => 'clipboard', 'text' => 'Zero Adulteration' ),
                 array( 'icon' => 'spoon', 'text' => 'Pure and Hygienic' ),

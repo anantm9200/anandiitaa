@@ -26,30 +26,38 @@ $ingredients = array(
     '2 tbsp chocolate chips or chopped nuts (optional)',
 );
 
+// Per-step images. Leave '' to render a styled placeholder; populate with a
+// real URL (under /assets/images/products/sugar/recipes/cookies/) when ready.
 $method = array(
     array(
         'title' => 'Cream the butter and Anandiitaa Sugar',
         'body'  => 'In a bowl, add softened butter and powdered Anandiitaa Sugar. Beat until the mixture becomes light and creamy.',
+        'image' => '',
     ),
     array(
         'title' => 'Prepare the dry mix',
         'body'  => 'Sieve maida, baking powder, and baking soda together. Add this dry mixture to the butter and Anandiitaa Sugar mixture.',
+        'image' => '',
     ),
     array(
         'title' => 'Make the dough',
         'body'  => 'Add vanilla essence and mix gently. Add milk little by little to form a soft cookie dough. Do not over-knead.',
+        'image' => '',
     ),
     array(
         'title' => 'Shape the cookies',
         'body'  => 'Take small portions of dough and shape them into round cookies. Place them on a baking tray lined with parchment paper.',
+        'image' => '',
     ),
     array(
         'title' => 'Bake',
         'body'  => 'Bake in a preheated oven at 170°C for 12–15 minutes or until the edges turn light golden.',
+        'image' => '',
     ),
     array(
         'title' => 'Cool and serve',
         'body'  => 'Let the cookies cool completely before serving. They will become firmer and crispier as they cool.',
+        'image' => '',
     ),
 );
 
@@ -88,18 +96,30 @@ $tip = 'For better texture, chill the cookie dough for 15–20 minutes before ba
         </ul>
     </section>
 
-    <!-- Slides 3–8: Method (one per step) -->
+    <!-- Slides 3–8: Method (one per step). Layout alternates: odd steps (1,3,5)
+         render content-left/image-right; even steps (2,4,6) render image-left/
+         content-right via the --reverse modifier. -->
     <?php foreach ( $method as $i => $step ) :
-        $num = str_pad( (string) ( $i + 1 ), 2, '0', STR_PAD_LEFT );
+        $num     = str_pad( (string) ( $i + 1 ), 2, '0', STR_PAD_LEFT );
+        $reverse = ( $i % 2 === 1 ); // step 2, 4, 6 → image on left
     ?>
-        <section class="recipe-detail-slide recipe-detail-slide--step" data-reveal>
+        <section class="recipe-detail-slide recipe-detail-slide--step<?php echo $reverse ? ' recipe-detail-slide--reverse' : ''; ?>" data-reveal>
             <div class="recipe-step">
-                <div class="recipe-step__head">
+                <div class="recipe-step__copy">
                     <span class="recipe-step__number"><?php echo esc_html( $num ); ?></span>
-                    <span class="recipe-step__label">Step <?php echo (int) ( $i + 1 ); ?> of <?php echo count( $method ); ?></span>
+                    <h2 class="recipe-step__title"><?php echo esc_html( $step['title'] ); ?></h2>
+                    <p class="recipe-step__body"><?php echo esc_html( $step['body'] ); ?></p>
                 </div>
-                <h2 class="recipe-step__title"><?php echo esc_html( $step['title'] ); ?></h2>
-                <p class="recipe-step__body"><?php echo esc_html( $step['body'] ); ?></p>
+                <div class="recipe-step__media">
+                    <?php if ( ! empty( $step['image'] ) ) : ?>
+                        <img src="<?php echo esc_url( $bust( $step['image'] ) ); ?>" alt="<?php echo esc_attr( $step['title'] ); ?>" loading="lazy">
+                    <?php else : ?>
+                        <div class="recipe-step__placeholder" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"></rect><circle cx="9" cy="11" r="1.6"></circle><path d="M21 16l-5-5-7 7"></path></svg>
+                            <span>Step <?php echo (int) ( $i + 1 ); ?> photo</span>
+                        </div>
+                    <?php endif; ?>
+                </div>
             </div>
         </section>
     <?php endforeach; ?>
