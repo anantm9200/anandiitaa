@@ -144,7 +144,42 @@ $bust = 'anandiitaa_bust';
 
     </section>
 
-    <!-- Slide 3: Home Delicacies Recipes — 2x2 grid of recipe cards.
+    <!-- Slide 3 (was slide 4): Variants — duplicate of jaggery slide 4. Two product
+         cards (Bold Grain green pack + Fine Grain blue pack) using existing
+         .product-slide--variants / .variants-grid / .variant-card styles.
+         Swapped above Recipes per client (variants come first, recipes after). -->
+    <?php
+        $variants = array(
+            array(
+                'image'     => $tpl . '/assets/images/products/packets/bold-grain.png',
+                'available' => '1kg | 5kg | 20kg',
+                'title'     => 'Bold Grain Sugar',
+            ),
+            array(
+                'image'     => $tpl . '/assets/images/products/packets/fine-grain.png',
+                'available' => '1kg | 5kg | 20kg',
+                'title'     => 'Fine Grain Sugar',
+            ),
+        );
+    ?>
+    <section class="product-slide product-slide--variants" data-reveal>
+        <div class="variants-grid">
+            <?php foreach ( $variants as $v ) : ?>
+                <article class="variant-card">
+                    <img class="variant-card__image" src="<?php echo esc_url( $bust( $v['image'] ) ); ?>" alt="<?php echo esc_attr( $v['title'] ); ?>" loading="lazy">
+                    <div class="variant-card__body">
+                        <p class="variant-card__avail">
+                            <span class="variant-card__avail-label">AVAILABLE IN:</span>
+                            <span class="variant-card__avail-value"><?php echo esc_html( $v['available'] ); ?></span>
+                        </p>
+                        <h3 class="variant-card__title"><?php echo esc_html( $v['title'] ); ?></h3>
+                    </div>
+                </article>
+            <?php endforeach; ?>
+        </div>
+    </section>
+
+    <!-- Slide 4 (was slide 3): Home Delicacies Recipes — 2x2 grid of recipe cards.
          Each card: square photo on the left, copy + meta on the right, recipe
          title under the photo. Horizontal rules separate rows. -->
     <?php
@@ -237,40 +272,6 @@ $bust = 'anandiitaa_bust';
             <?php endforeach; ?>
         </ul>
 
-    </section>
-
-    <!-- Slide 4: Variants — duplicate of jaggery slide 4. Two product cards
-         (Bold Grain green pack + Fine Grain blue pack) using existing
-         .product-slide--variants / .variants-grid / .variant-card styles. -->
-    <?php
-        $variants = array(
-            array(
-                'image'     => $tpl . '/assets/images/products/packets/bold-grain.png',
-                'available' => '1kg | 5kg | 25kg',
-                'title'     => 'Bold Grain Sugar',
-            ),
-            array(
-                'image'     => $tpl . '/assets/images/products/packets/fine-grain.png',
-                'available' => '1kg | 5kg | 25kg',
-                'title'     => 'Fine Grain Sugar',
-            ),
-        );
-    ?>
-    <section class="product-slide product-slide--variants" data-reveal>
-        <div class="variants-grid">
-            <?php foreach ( $variants as $v ) : ?>
-                <article class="variant-card">
-                    <img class="variant-card__image" src="<?php echo esc_url( $bust( $v['image'] ) ); ?>" alt="<?php echo esc_attr( $v['title'] ); ?>" loading="lazy">
-                    <div class="variant-card__body">
-                        <p class="variant-card__avail">
-                            <span class="variant-card__avail-label">AVAILABLE IN:</span>
-                            <span class="variant-card__avail-value"><?php echo esc_html( $v['available'] ); ?></span>
-                        </p>
-                        <h3 class="variant-card__title"><?php echo esc_html( $v['title'] ); ?></h3>
-                    </div>
-                </article>
-            <?php endforeach; ?>
-        </div>
     </section>
 
     <!-- Slide 5 (last): "Words that matter" — exact duplicate of jaggery slide 5.

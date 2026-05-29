@@ -171,13 +171,13 @@ $bust = 'anandiitaa_bust';
                 'number' => '02',
                 'title'  => 'Rich in Vital Minerals',
                 'image'  => $tpl . '/assets/images/products/jaggery/benefits/minerals.png',
-                'body'   => 'Naturally rich in calcium, magnesium, potassium and phosphorus — minerals that support bone strength, steady energy, and overall wellness.',
+                'body'   => 'Naturally rich in calcium, potassium and phosphorus — minerals that support bone strength, steady energy, and overall wellness.',
             ),
             array(
                 'number' => '03',
                 'title'  => 'Boosts Immunity',
                 'image'  => $tpl . '/assets/images/products/jaggery/benefits/immunity.png',
-                'body'   => 'Loaded with antioxidants and zinc, jaggery helps strengthen the body&rsquo;s natural defenses and combat oxidative stress.',
+                'body'   => 'Jaggery helps strengthen the body&rsquo;s natural defenses and combat oxidative stress.',
             ),
             array(
                 'number' => '04',

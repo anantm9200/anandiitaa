@@ -129,7 +129,7 @@
                 array(
                     'title' => 'Bold Grain Sugar',
                     'desc'  => 'Sweetness that stands out based on purity.',
-                    'sizes' => '1 KG | 5 KG | 25 KG',
+                    'sizes' => '1 KG | 5 KG | 20 KG',
                     'href'  => '/products/sugar',
                     'image' => $tpl . '/assets/images/products/packets/bold-grain.png',
                     'color' => '#1d5e2e',
@@ -137,7 +137,7 @@
                 array(
                     'title' => 'Fine Grain Sugar',
                     'desc'  => 'It dissolves smoothly, leaving a balanced sweetness behind.',
-                    'sizes' => '1 KG | 5 KG | 25 KG',
+                    'sizes' => '1 KG | 5 KG | 20 KG',
                     'href'  => '/products/sugar',
                     'image' => $tpl . '/assets/images/products/packets/fine-grain.png',
                     'color' => '#1f3a8e',
@@ -163,7 +163,7 @@
                 array(
                     'icon'  => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2.5"></circle><circle cx="4" cy="6" r="1.5"></circle><circle cx="20" cy="6" r="1.5"></circle><circle cx="4" cy="18" r="1.5"></circle><circle cx="20" cy="18" r="1.5"></circle><path d="M5.3 6.8 L9.6 10.7"></path><path d="M18.7 6.8 L14.4 10.7"></path><path d="M5.3 17.2 L9.6 13.3"></path><path d="M18.7 17.2 L14.4 13.3"></path></svg>',
                     'title' => 'Rich in<br>Iron',
-                    'body'  => '100g of jaggery provides 61% of your daily iron needs.',
+                    'body'  => '100g of jaggery provides 50% of your daily iron needs.',
                 ),
                 array(
                     'icon'  => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4v3.5C7 8 5.5 9.5 5.5 12c0 3.5 2.8 6.5 6 6.5 2.6 0 4.5-1.5 5-4 0.4-2-1-3.5-2.5-3.5-1 0-1.8 0.6-2 1.5"></path><path d="M9 4h6v3.5"></path><circle cx="14" cy="13" r="0.5"></circle></svg>',

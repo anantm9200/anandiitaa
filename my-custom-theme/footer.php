@@ -32,7 +32,6 @@
                 <a href="<?php echo esc_url( home_url( '/products' ) ); ?>">Products</a>
                 <a href="<?php echo esc_url( home_url( '/recipes' ) ); ?>">Recipes</a>
                 <a href="<?php echo esc_url( home_url( '/blogs' ) ); ?>">Blogs</a>
-                <a href="<?php echo esc_url( home_url( '/processing' ) ); ?>">Processing</a>
                 <a href="<?php echo esc_url( home_url( '/community' ) ); ?>">Community</a>
                 <a href="<?php echo esc_url( home_url( '/contact' ) ); ?>">Contact</a>
             </nav>
@@ -40,13 +39,13 @@
             <div class="site-footer__col site-footer__col--info">
                 <div class="site-footer__info-block">
                     <h4>Corporate Office</h4>
-                    <p>Pune, MH.</p>
+                    <p>Baramati Agro Ltd, 4th Floor, Farena Corporate Park, Magarpatta Road, Hadapsar, Pune &ndash; 411013, Maharashtra.</p>
                 </div>
                 <div class="site-footer__info-block">
                     <h4>Contact</h4>
                     <p>
-                        <a href="mailto:info@anandiitaa.com">info@anandiitaa.com</a><br>
-                        <a href="tel:+919876543210">+91 9876543210</a>
+                        <a href="mailto:care@baramatiagro.com">care@baramatiagro.com</a><br>
+                        <a href="tel:+912067482800">020-67482800</a>
                     </p>
                 </div>
             </div>

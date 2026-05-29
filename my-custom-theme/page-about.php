@@ -231,7 +231,7 @@ $bust = 'anandiitaa_bust';
             <div class="about-purpose__band">
                 <h2 class="about-purpose__title">Our Purpose</h2>
                 <p class="about-purpose__body">
-                    It is to deliver sweetness in its truest form, unadulterated, safe, &amp; transparent, enriching lives with products that you can trust, from source to shelf, because purity shouldn&rsquo;t be optional.
+                    To deliver sweetness in its truest form, unadulterated, safe, &amp; transparent, enriching lives with products that you can trust, from source to shelf, because purity shouldn&rsquo;t be optional.
                 </p>
             </div>
         </div>

@@ -418,6 +418,17 @@ picture {
     min-height: max(100vh, 760px);
 }
 
+/* Slide 7 — pin the bottom "Choose Pure, Choose Anandiitaa" caption to the
+   first-viewport zone (100svh), NOT to the section bottom. With the 760px
+   min-height above, anchoring via `bottom` placed the heading below the user's
+   visible viewport on short screens (client flagged: "appearing outside the
+   frame"). Anchoring to `top: calc(100svh - 110px)` keeps it ~110px above the
+   visible fold regardless of how tall the section grows. */
+.page-section--news .hero-slide__content--bottom-center {
+    top: calc(100svh - 110px);
+    bottom: auto;
+}
+
 /* ========================================================================
    SCROLL-TRIGGERED CONTENT ANIMATIONS
    Section bgs do NOT animate — only the content layered on top eases in
@@ -734,9 +745,12 @@ picture {
     letter-spacing: 0.08em;
 }
 
-/* Slide 1 only: pull the CTA up so it sits closer to the heading. */
+/* Slide 1 only: pull the CTA up so it sits tight under the heading and clears
+   the packet tops below. Earlier value (-100px) left a visible gap that placed
+   the maroon button on top of the maroon Jaggery Powder pack — client flagged
+   it as overlap. -135px snugs it close to "Anandiitaa." line. */
 .hero-slide:first-child .hero-slide__content--top-center .btn {
-    margin-top: -100px;
+    margin-top: -135px;
 }
 
 /* Bottom-center variant: caption sits a bit above the bottom edge */
@@ -1171,7 +1185,10 @@ picture {
     object-fit: contain;
     pointer-events: none;
     z-index: 0;
-    mix-blend-mode: multiply;
+    /* mix-blend-mode: multiply was tinting the white sugar inside the green/
+       blue packs reddish/yellowish (the cream card gradient bled through the
+       packet PNG). Removed per client feedback. Maroon jaggery packs look
+       essentially identical without it. */
     transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .product-card:hover .product-card__image {
@@ -1767,10 +1784,14 @@ picture {
 }
 
 /* Green "100% Natural" badge — bigger, inside viewport, no rotation */
+/* Client-requested L/R swap (jaggery + sugar hero): "100% Natural" seal moves
+   to the LEFT rail, the 3 feature RTBs move to the RIGHT rail. The original
+   layout had seal on right, features on left. */
 .natural-seal {
     position: absolute;
     top: 50%;
-    right: 4%;
+    left: 4%;
+    right: auto;
     transform: translateY(calc(-50% - 200px));
     width: clamp(220px, 22vw, 340px);
     height: auto;
@@ -1779,11 +1800,12 @@ picture {
     filter: drop-shadow(0 8px 22px rgba(29, 94, 46, 0.18));
 }
 
-/* Left-rail feature list — bright pink pill cards, larger text, more breathing room */
+/* Right-rail feature list — bright pink pill cards, larger text, more breathing room */
 .product-features {
     position: absolute;
     top: 50%;
-    left: 5%;
+    right: 5%;
+    left: auto;
     transform: translateY(-50%);
     z-index: 2;
     list-style: none;
