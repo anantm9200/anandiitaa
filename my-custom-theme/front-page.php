@@ -30,14 +30,16 @@
             ),
         ),
         array(
-            // SEAMLESS_BG_TEST: swapped 3.png → 3-sticker.png (transparent bg). Revert by restoring filename.
-            'image'     => $tpl . '/images/home/laptop/3-sticker.png',
-            // Mac-only (≥1440px) hero override per client request. Smaller tiers keep 3-sticker.
-            'mac_image' => $tpl . '/images/home/mac/home-hero-3.png',
-            'alt'       => 'Choose Pure. Choose Anandiitaa.',
-            'heading'   => 'Choose Pure.<br>Choose Anandiitaa.',
-            'cta'       => array( 'label' => 'Explore More', 'href' => '/about-us', 'class' => 'btn-primary' ),
-            'features'  => array(
+            // Slide 3 hero — multi-resolution sugar image. Each viewport tier gets
+            // its own variant supplied by the client. <picture> picks via media query.
+            'image'        => $tpl . '/images/home/laptop/home-hero-3-1920.png', // base / fallback (1920×1080)
+            'mac_image'    => $tpl . '/images/home/mac/home-hero-3.png',           // ≥1440px (2560×1664)
+            'tablet_image' => $tpl . '/images/home/laptop/home-hero-3-1024.png',   // 701–1100px (1024×1366 portrait)
+            'phone_image'  => $tpl . '/images/home/phone/home-hero-3-375.png',     // ≤700px (375×667)
+            'alt'          => 'Choose Pure. Choose Anandiitaa.',
+            'heading'      => 'Choose Pure.<br>Choose Anandiitaa.',
+            'cta'          => array( 'label' => 'Explore More', 'href' => '/about-us', 'class' => 'btn-primary' ),
+            'features'     => array(
                 array( 'icon' => 'shield', 'text' => 'Sulphur Less' ),
                 array( 'icon' => 'clipboard', 'text' => 'Zero Adulteration' ),
                 array( 'icon' => 'spoon', 'text' => 'Pure and Hygienic' ),
@@ -273,6 +275,12 @@
         // SEAMLESS_BG_TEST: 1280-tier variant (served 1101–1280px) when the file exists.
         $d1280_url = $laptop_url ? $d1280_url_for( $laptop_url ) : '';
         $has_d1280 = $d1280_url && $mac_exists( $d1280_url );
+        // Explicit tablet variant (701–1100px) — opt-in per slide via `tablet_image`.
+        $tablet_url = $slide['tablet_image'] ?? '';
+        $has_tablet = ! empty( $tablet_url );
+        // Explicit phone variant (≤700px) — opt-in per slide via `phone_image`.
+        $phone_url  = $slide['phone_image'] ?? '';
+        $has_phone  = ! empty( $phone_url );
         ?>
         <?php if ( $laptop_url ) : ?>
         <div class="hero-slide__bg">
@@ -285,6 +293,12 @@
                 <?php endif; ?>
                 <?php if ( $has_d1280 ) : ?>
                     <source media="(min-width: 1101px) and (max-width: 1280px)" srcset="<?php echo esc_url( $bust( $d1280_url ) ); ?>">
+                <?php endif; ?>
+                <?php if ( $has_tablet ) : ?>
+                    <source media="(min-width: 701px) and (max-width: 1100px)" srcset="<?php echo esc_url( $bust( $tablet_url ) ); ?>">
+                <?php endif; ?>
+                <?php if ( $has_phone ) : ?>
+                    <source media="(max-width: 700px)" srcset="<?php echo esc_url( $bust( $phone_url ) ); ?>">
                 <?php endif; ?>
                 <img src="<?php echo esc_url( $bust( $laptop_url ) ); ?>" alt="<?php echo esc_attr( $slide['alt'] ); ?>" <?php echo $is_priority ? 'fetchpriority="high"' : 'loading="lazy"'; ?>>
             </picture>
