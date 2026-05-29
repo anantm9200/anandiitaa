@@ -429,17 +429,22 @@ picture {
     bottom: auto;
 }
 
-/* Slide 7 — shrink the news-clipping background image so it ends ~150px above
-   the visible viewport bottom, leaving a clean cream gap for the "Choose Pure"
-   caption to sit in. Without this, the bg image (full slide height) crowds
-   the caption — client flagged the bottom clipping overlapping the heading
-   text. We anchor the bg to top of section and cap its height to
-   `100svh - 150px` so the bottom strip is empty. The caption is at
-   100svh - 110px → 40px gap between bg bottom and caption top. */
+/* Slide 7 — confine the news-clipping background image to a centered band so it
+   doesn't crowd either caption. Without these limits the bg fills the full
+   slide and the clippings collide with both "Not all jaggery..." (top) and
+   "Choose Pure..." (bottom). We reserve a responsive top buffer for the top
+   caption and a fixed 150px tail for the bottom caption. CSS var so the same
+   clamp value drives both the `top` anchor and the height subtraction.
+   NOTE: this is fixed-% / fixed-px positional tuning — the right long-term
+   fix lives in Plan B (context.md §3) where this whole slide moves to a
+   flex/grid layout that self-arranges instead of being absolute-positioned. */
+.page-section--news {
+    --news-bg-top: clamp(80px, 12%, 130px);
+}
 .page-section--news .hero-slide__bg {
-    top: 0;
+    top: var(--news-bg-top);
     bottom: auto;
-    height: calc(100svh - 150px);
+    height: calc(100svh - var(--news-bg-top) - 150px);
 }
 
 /* ========================================================================
