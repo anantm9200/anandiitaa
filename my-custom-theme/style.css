@@ -3519,8 +3519,8 @@ picture {
        properly), 35vh in the middle, 320px ceiling for big monitors.
        Math-verified: 1366×625 gives 220px image → card 403 → grid_top 174,
        title_bottom 105 → 69px clearance. No overlap at any realistic height. */
-    .review-card__image     { aspect-ratio: auto; height: clamp(220px, 35vh, 320px); }
-    .review-card__image img { height: clamp(220px, 35vh, 320px); }
+    .review-card__image     { aspect-ratio: auto; height: clamp(250px, 37vh, 340px); }
+    .review-card__image img { height: clamp(250px, 37vh, 340px); }
     .review-card__body      { padding: 16px 22px; gap: 12px; }
 
     /* ----------------------------------------------------------------------
