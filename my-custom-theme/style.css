@@ -764,11 +764,19 @@ picture {
 }
 
 /* Slide 1 only: pull the CTA up so it sits tight under the heading and clears
-   the packet tops below. Earlier value (-100px) left a visible gap that placed
-   the maroon button on top of the maroon Jaggery Powder pack — client flagged
-   it as overlap. -135px snugs it close to "Anandiitaa." line. */
+   the packet tops below. Iteration: -100px → -135px → -160px. At each step
+   the maroon button still overlapped the maroon Desi Jaggery Powder pack
+   (same color = visual merge). -160px puts it clearly in the cream zone
+   above the packet line on the typical 1366×768 / 1440×900 viewports. */
 .hero-slide:first-child .hero-slide__content--top-center .btn {
-    margin-top: -135px;
+    margin-top: -160px;
+}
+/* Slide 1 only: tighten the heading→button vertical breathing room so the
+   -160px pull above doesn't risk clipping into the heading text on the
+   shorter tier headings (1366: 36px h2). Scoped to :first-child so other
+   carousel slides keep the default. */
+.hero-slide:first-child .hero-slide__content--top-center h2 {
+    margin-bottom: 6px;
 }
 
 /* Bottom-center variant: caption sits a bit above the bottom edge */
@@ -3568,18 +3576,27 @@ picture {
        Scoped to .product-page--jaggery so home + sugar are untouched.
        ---------------------------------------------------------------------- */
 
-    /* (1) Hero "100% Natural" seal — drop ~70px (base lift −200px → −130px).
-       Must override the reveal/is-visible transforms too (higher specificity),
-       or the seal snaps back to −200px once the scroll-reveal marks it visible. */
+    /* (1) Hero "100% Natural" seal — drop further (−130 → −90, ~40px lower)
+       per client feedback "place a lil below". Must override the reveal/is-
+       visible transforms too (higher specificity), or the seal snaps back to
+       the base −200px once the scroll-reveal marks it visible. */
     .product-page--jaggery .natural-seal {
-        transform: translateY(calc(-50% - 130px));
+        transform: translateY(calc(-50% - 90px));
     }
     .product-page--jaggery [data-reveal] .natural-seal {
-        transform: translateY(calc(-50% - 130px)) scale(0.85) rotate(-8deg);
+        transform: translateY(calc(-50% - 90px)) scale(0.85) rotate(-8deg);
     }
     .product-page--jaggery [data-reveal].is-visible .natural-seal {
-        transform: translateY(calc(-50% - 130px)) scale(1) rotate(0deg);
+        transform: translateY(calc(-50% - 90px)) scale(1) rotate(0deg);
     }
+
+    /* Jaggery hero title — at 1366 tier the packet composite extends up into
+       the top: 96px zone, partially covering the "ANANDIITAA Jaggery"
+       wordmark + serif word. Push title up to top:50 so it sits cleanly in
+       the cream zone above the packets. Header at this tier is ~42px tall
+       (the `.site-header` padding is shrunk at line 3457), so a 50px top
+       leaves an 8px gap below header bottom. */
+    .product-page--jaggery .product-hero__title { top: 50px; }
 
     /* (2) Variant cards (Jaggery Powder / Block) — packet overflows the section
        top (overflow:hidden clips it). Card is 500px, centered (top ≈110px at
@@ -4126,4 +4143,123 @@ picture {
     .recipe-detail-slide--reverse .recipe-step__media,
     .recipe-step__media { order: 1; max-height: clamp(220px, 38svh, 360px); }
 }
+
+/* ========================================================================
+   PLAN B — TABLET PORTRAIT (701px–1100px)
+   First responsive-pass for tablet portrait (e.g. iPad 1024×1366). Pairs with
+   the new tablet bg images under /images/home/tablet/. Scoped to homepage
+   sections that have multi-column layouts tuned for landscape desktop and
+   collapse poorly at this narrower width.
+   Per context.md §3: this is partial Plan B. Full plan replaces all absolute
+   positioning with flex/grid flow. For now, targeted overrides to make tablet
+   portrait usable without breaking landscape desktop tiers.
+   ======================================================================== */
+@media (min-width: 701px) and (max-width: 1100px) {
+
+    /* ------------------------------------------------------------------
+       Homepage carousel slides 1–5 — fluid type so headings don't oversize
+       on the narrower portrait viewport. Heading position stays at top-center;
+       only the size shrinks. Button uses inherited margin (the slide 1 -135px
+       pull stays — it's scoped to :first-child and works at this size too). */
+    .hero-slide__content--top-center {
+        max-width: 86%;
+    }
+    .hero-slide__content--top-center h2 {
+        font-size: clamp(32px, 5.4vw, 52px);
+    }
+    .hero-slide__content--top-center .btn {
+        padding: 12px 28px;
+        font-size: 0.78rem;
+    }
+    /* Features list (slides 2–5) — tighter so it doesn't run past the packets
+       on portrait. Margin-top reduced from the 110px desktop base. */
+    .hero-features {
+        margin-top: clamp(48px, 8vh, 88px);
+        gap: 16px;
+    }
+    .hero-features li {
+        font-size: clamp(14px, 1.5vw, 17px);
+    }
+
+    /* ------------------------------------------------------------------
+       Slide 6 — Standards. 4-col grid → 2x2. Vertical dashed dividers need
+       to be re-scoped: in 4-col, only the last col had no right border. In
+       2-col, the 2nd col of each row (nth-child(2n)) has no right border. */
+    .standards-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 32px 0;
+        bottom: 8%;
+    }
+    .standards-col {
+        padding: 0 22px;
+        border-right: 2px dashed var(--brand-maroon);
+    }
+    .standards-col:nth-child(2n) {
+        border-right: none;
+        padding-right: 0;
+    }
+    .standards-col:nth-child(2n+1) {
+        padding-left: 0;
+    }
+    .standards-title {
+        top: 6%;
+    }
+
+    /* ------------------------------------------------------------------
+       Slide 8 — Products grid. Already 2x2, but the cards are tight at this
+       width — slight padding + image trim so the packet doesn't overflow. */
+    .products-grid {
+        width: 88%;
+        max-width: 940px;
+        gap: 24px;
+    }
+    .product-card {
+        padding: 28px 24px 20px;
+        border-radius: 40px;
+    }
+    .product-card__title {
+        font-size: clamp(20px, 2.4vw, 26px);
+    }
+    .product-card__image {
+        max-width: 42%;
+    }
+
+    /* ------------------------------------------------------------------
+       Slide 9 — Benefits. 4-col → 2x2 grid. */
+    .benefits-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+        bottom: 18%;
+        width: 86%;
+        max-width: 720px;
+    }
+    .benefits-title {
+        top: 12%;
+        font-size: clamp(32px, 4.2vw, 48px);
+    }
+
+    /* ------------------------------------------------------------------
+       Slide 10 — Reviews. 2-col stays but tightened for portrait. */
+    .reviews-grid {
+        max-width: 760px;
+        gap: 28px;
+    }
+    .reviews-title {
+        font-size: clamp(32px, 4.2vw, 48px);
+    }
+
+    /* ------------------------------------------------------------------
+       Slide 11 — Social. Pills wrap naturally; just tighten title. */
+    .social-slide__heading {
+        font-size: clamp(36px, 5vw, 56px);
+    }
+    .social-slide__subtitle {
+        font-size: clamp(15px, 1.6vw, 18px);
+    }
+
+    /* ------------------------------------------------------------------
+       News slide (7) — already responsive via 100svh-based rules. No change
+       needed; the bg confine + clamp top buffer adapts on tablet too. */
+}
+
 

@@ -9,21 +9,25 @@
     $slides = array(
         array(
             // SEAMLESS_BG_TEST: swapped slide-1.png → slide-1-sticker.png (transparent bg). Revert by restoring filename.
-            'image'     => $tpl . '/images/home/laptop/slider/slide-1-sticker.png',
+            'image'        => $tpl . '/images/home/laptop/slider/slide-1-sticker.png',
             // SEAMLESS_BG_TEST: desktop-only (≥1440px) hero = new 1920×1080 image. Smaller tiers keep their stickers. Remove this line to revert.
-            'mac_image' => $tpl . '/images/home/mac/home-hero-1920.png',
-            'alt'      => 'Anandiitaa — Choose Pure',
-            'heading'  => 'Choose Pure.<br>Choose Anandiitaa.',
-            'cta'      => array( 'label' => 'Explore More', 'href' => '/about-us', 'class' => 'btn-primary' ),
-            'position' => 'top-center',
+            'mac_image'    => $tpl . '/images/home/mac/home-hero-1920.png',
+            // Tablet portrait variant (701–1100px). Laptop path doesn't auto-derive
+            // to /tablet/ here because the filename pattern differs — explicit.
+            'tablet_image' => $tpl . '/images/home/tablet/1.png',
+            'alt'          => 'Anandiitaa — Choose Pure',
+            'heading'      => 'Choose Pure.<br>Choose Anandiitaa.',
+            'cta'          => array( 'label' => 'Explore More', 'href' => '/about-us', 'class' => 'btn-primary' ),
+            'position'     => 'top-center',
         ),
         array(
             // SEAMLESS_BG_TEST: swapped 2.png → 2-sticker.png (transparent bg). Revert by restoring filename.
-            'image'    => $tpl . '/images/home/laptop/2-sticker.png',
-            'alt'      => 'Choose Pure. Choose Anandiitaa.',
-            'heading'  => 'Choose Pure.<br>Choose Anandiitaa.',
-            'cta'      => array( 'label' => 'Explore More', 'href' => '/about-us', 'class' => 'btn-primary' ),
-            'features' => array(
+            'image'        => $tpl . '/images/home/laptop/2-sticker.png',
+            'tablet_image' => $tpl . '/images/home/tablet/2.png',
+            'alt'          => 'Choose Pure. Choose Anandiitaa.',
+            'heading'      => 'Choose Pure.<br>Choose Anandiitaa.',
+            'cta'          => array( 'label' => 'Explore More', 'href' => '/about-us', 'class' => 'btn-primary' ),
+            'features'     => array(
                 array( 'icon' => 'shield', 'text' => '100% Natural Taste and Aroma' ),
                 array( 'icon' => 'clipboard', 'text' => 'Contains Vital Minerals' ),
                 array( 'icon' => 'spoon', 'text' => 'Easy to Use' ),
@@ -34,7 +38,7 @@
             // its own variant supplied by the client. <picture> picks via media query.
             'image'        => $tpl . '/images/home/laptop/home-hero-3-1920.png', // base / fallback (1920×1080)
             'mac_image'    => $tpl . '/images/home/mac/home-hero-3.png',           // ≥1440px (2560×1664)
-            'tablet_image' => $tpl . '/images/home/laptop/home-hero-3-1024.png',   // 701–1100px (1024×1366 portrait)
+            'tablet_image' => $tpl . '/images/home/tablet/3.png',                  // 701–1100px (1024×1366 portrait)
             'phone_image'  => $tpl . '/images/home/phone/home-hero-3-375.png',     // ≤700px (375×667)
             'alt'          => 'Choose Pure. Choose Anandiitaa.',
             'heading'      => 'Choose Pure.<br>Choose Anandiitaa.',
@@ -47,11 +51,12 @@
         ),
         array(
             // SEAMLESS_BG_TEST: swapped 4.png → 4-sticker.png (transparent bg). Revert by restoring filename.
-            'image'    => $tpl . '/images/home/laptop/4-sticker.png',
-            'alt'      => 'Choose Pure. Choose Anandiitaa.',
-            'heading'  => 'Choose Pure.<br>Choose Anandiitaa.',
-            'cta'      => array( 'label' => 'Explore More', 'href' => '/about-us', 'class' => 'btn-primary' ),
-            'features' => array(
+            'image'        => $tpl . '/images/home/laptop/4-sticker.png',
+            'tablet_image' => $tpl . '/images/home/tablet/4.png',
+            'alt'          => 'Choose Pure. Choose Anandiitaa.',
+            'heading'      => 'Choose Pure.<br>Choose Anandiitaa.',
+            'cta'          => array( 'label' => 'Explore More', 'href' => '/about-us', 'class' => 'btn-primary' ),
+            'features'     => array(
                 array( 'icon' => 'shield', 'text' => '100% Natural Taste and Aroma' ),
                 array( 'icon' => 'clipboard', 'text' => 'Contains Vital Minerals' ),
                 array( 'icon' => 'spoon', 'text' => 'Traditionally Made' ),
@@ -59,11 +64,12 @@
         ),
         array(
             // SEAMLESS_BG_TEST: swapped 5.png → 5-sticker.png (transparent bg). Revert by restoring filename.
-            'image'    => $tpl . '/images/home/laptop/5-sticker.png',
-            'alt'      => 'Choose Pure. Choose Anandiitaa.',
-            'heading'  => 'Choose Pure.<br>Choose Anandiitaa.',
-            'cta'      => array( 'label' => 'Explore More', 'href' => '/about-us', 'class' => 'btn-primary' ),
-            'features' => array(
+            'image'        => $tpl . '/images/home/laptop/5-sticker.png',
+            'tablet_image' => $tpl . '/images/home/tablet/5.png',
+            'alt'          => 'Choose Pure. Choose Anandiitaa.',
+            'heading'      => 'Choose Pure.<br>Choose Anandiitaa.',
+            'cta'          => array( 'label' => 'Explore More', 'href' => '/about-us', 'class' => 'btn-primary' ),
+            'features'     => array(
                 array( 'icon' => 'shield', 'text' => 'Sulphur Less' ),
                 array( 'icon' => 'clipboard', 'text' => 'Zero Adulteration' ),
                 array( 'icon' => 'spoon', 'text' => 'Dissolves Easily' ),
@@ -71,10 +77,11 @@
         ),
         // Slide 6: The Anandiitaa Standards (custom 4-column layout)
         array(
-            'type'      => 'standards',
+            'type'         => 'standards',
             // SEAMLESS_BG_TEST: swapped 6.png → 6-sticker.png (transparent bg). Revert by restoring filename.
-            'image'     => $tpl . '/images/home/laptop/sections/6-sticker.png',
-            'alt'       => 'The Anandiitaa Standards',
+            'image'        => $tpl . '/images/home/laptop/sections/6-sticker.png',
+            'tablet_image' => $tpl . '/images/home/tablet/sections/6.png',
+            'alt'          => 'The Anandiitaa Standards',
             'standards' => array(
                 array(
                     'icon'  => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5C12 2.5 6 9 6 14a6 6 0 0 0 12 0c0-5-6-11.5-6-11.5z"></path><path d="M9.5 13.5l1.8 1.8 3.5-3.5"></path></svg>',
@@ -103,13 +110,14 @@
             // SEAMLESS_BG_TEST: type 'news' adds .page-section--news class for the B-selective
             // taller-frame fix (content is absolute-positioned, so the frame needs an explicit
             // floor on short viewports). 'news' isn't a special render type — captions still render.
-            'type'        => 'news',
+            'type'         => 'news',
             // SEAMLESS_BG_TEST: swapped 7.png → 7-sticker.png (transparent bg). Revert by restoring filename.
-            'image'       => $tpl . '/images/home/laptop/sections/7-sticker.png',
-            'alt'         => 'In the era of food adulteration',
-            'caption_top' => 'Not all jaggery is made the same.',
-            'heading'     => 'Choose Pure, Choose Anandiitaa',
-            'position'    => 'bottom-center',
+            'image'        => $tpl . '/images/home/laptop/sections/7-sticker.png',
+            'tablet_image' => $tpl . '/images/home/tablet/sections/7.png',
+            'alt'          => 'In the era of food adulteration',
+            'caption_top'  => 'Not all jaggery is made the same.',
+            'heading'      => 'Choose Pure, Choose Anandiitaa',
+            'position'     => 'bottom-center',
         ),
         // Slide 8: Product grid (2x2 cards on cream bg)
         array(
@@ -154,11 +162,12 @@
         ),
         // Slide 9: The Benefits of Jaggery (4 benefit cards on dark wood bg)
         array(
-            'type'     => 'benefits',
+            'type'         => 'benefits',
             // SEAMLESS_BG_TEST: swapped 9.png → 9-sticker.png (transparent bg). Revert by restoring filename.
-            'image'    => $tpl . '/images/home/laptop/sections/9-sticker.png',
-            'alt'      => 'The Benefits of Jaggery',
-            'title'    => 'The Benefits of Jaggery',
+            'image'        => $tpl . '/images/home/laptop/sections/9-sticker.png',
+            'tablet_image' => $tpl . '/images/home/tablet/sections/9.png',
+            'alt'          => 'The Benefits of Jaggery',
+            'title'        => 'The Benefits of Jaggery',
             'benefits' => array(
                 array(
                     'icon'  => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2.5"></circle><circle cx="4" cy="6" r="1.5"></circle><circle cx="20" cy="6" r="1.5"></circle><circle cx="4" cy="18" r="1.5"></circle><circle cx="20" cy="18" r="1.5"></circle><path d="M5.3 6.8 L9.6 10.7"></path><path d="M18.7 6.8 L14.4 10.7"></path><path d="M5.3 17.2 L9.6 13.3"></path><path d="M18.7 17.2 L14.4 13.3"></path></svg>',
@@ -248,6 +257,14 @@
     $d1280_url_for = function ( $laptop_url ) use ( $tpl ) {
         return str_replace( '/images/home/laptop/', '/images/home/d1280/', $laptop_url );
     };
+    // Tablet portrait (701–1100px) variant. Mirrors laptop path under /tablet/.
+    $tablet_url_for = function ( $laptop_url ) use ( $tpl ) {
+        return str_replace( '/images/home/laptop/', '/images/home/tablet/', $laptop_url );
+    };
+    // Phone (≤700px) variant. Mirrors laptop path under /phone/.
+    $phone_url_for = function ( $laptop_url ) use ( $tpl ) {
+        return str_replace( '/images/home/laptop/', '/images/home/phone/', $laptop_url );
+    };
     // Use the global cache-buster (defined in functions.php).
     $bust = 'anandiitaa_bust';
     // Renders a slide's bg + inner content. Used by carousel AND standalone sections.
@@ -255,7 +272,7 @@
     // mac variant on screens >=1440px and the laptop variant otherwise. This is
     // CDN/Pantheon-cache safe (no UA-dependent HTML), unlike server-side UA
     // detection which Varnish strips at the cache key.
-    $render_slide = function ( $slide, $is_priority = false ) use ( $tpl, $icons, $mac_url_for, $mac_exists, $d1366_url_for, $d1280_url_for, $bust ) {
+    $render_slide = function ( $slide, $is_priority = false ) use ( $tpl, $icons, $mac_url_for, $mac_exists, $d1366_url_for, $d1280_url_for, $tablet_url_for, $phone_url_for, $bust ) {
         $laptop_url = $slide['image'] ?? '';
         // ACF-driven slides may supply an explicit mac variant (uploaded to Media Library);
         // otherwise we derive a mac URL from the laptop path and verify the file exists in-theme.
@@ -275,12 +292,29 @@
         // SEAMLESS_BG_TEST: 1280-tier variant (served 1101–1280px) when the file exists.
         $d1280_url = $laptop_url ? $d1280_url_for( $laptop_url ) : '';
         $has_d1280 = $d1280_url && $mac_exists( $d1280_url );
-        // Explicit tablet variant (701–1100px) — opt-in per slide via `tablet_image`.
-        $tablet_url = $slide['tablet_image'] ?? '';
-        $has_tablet = ! empty( $tablet_url );
-        // Explicit phone variant (≤700px) — opt-in per slide via `phone_image`.
-        $phone_url  = $slide['phone_image'] ?? '';
-        $has_phone  = ! empty( $phone_url );
+        // Tablet portrait (701–1100px) — explicit `tablet_image` wins, else
+        // auto-derive from laptop path under /images/home/tablet/.
+        if ( ! empty( $slide['tablet_image'] ) ) {
+            $tablet_url = $slide['tablet_image'];
+            $has_tablet = true;
+        } elseif ( $laptop_url ) {
+            $tablet_url = $tablet_url_for( $laptop_url );
+            $has_tablet = $mac_exists( $tablet_url );
+        } else {
+            $tablet_url = '';
+            $has_tablet = false;
+        }
+        // Phone (≤700px) — same opt-in + auto-derive pattern.
+        if ( ! empty( $slide['phone_image'] ) ) {
+            $phone_url = $slide['phone_image'];
+            $has_phone = true;
+        } elseif ( $laptop_url ) {
+            $phone_url = $phone_url_for( $laptop_url );
+            $has_phone = $mac_exists( $phone_url );
+        } else {
+            $phone_url = '';
+            $has_phone = false;
+        }
         ?>
         <?php if ( $laptop_url ) : ?>
         <div class="hero-slide__bg">
