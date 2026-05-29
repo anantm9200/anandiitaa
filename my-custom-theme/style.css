@@ -429,6 +429,19 @@ picture {
     bottom: auto;
 }
 
+/* Slide 7 — shrink the news-clipping background image so it ends ~150px above
+   the visible viewport bottom, leaving a clean cream gap for the "Choose Pure"
+   caption to sit in. Without this, the bg image (full slide height) crowds
+   the caption — client flagged the bottom clipping overlapping the heading
+   text. We anchor the bg to top of section and cap its height to
+   `100svh - 150px` so the bottom strip is empty. The caption is at
+   100svh - 110px → 40px gap between bg bottom and caption top. */
+.page-section--news .hero-slide__bg {
+    top: 0;
+    bottom: auto;
+    height: calc(100svh - 150px);
+}
+
 /* ========================================================================
    SCROLL-TRIGGERED CONTENT ANIMATIONS
    Section bgs do NOT animate — only the content layered on top eases in
