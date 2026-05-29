@@ -152,10 +152,11 @@ $bust = 'anandiitaa_bust';
             array(
                 'title' => 'Home Made Cookies',
                 'image' => $tpl . '/assets/images/products/sugar/recipes/cookies.png',
-                'body'  => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsu industry&rsquo;s standard dummy text ever since the 1500s&hellip;&hellip;',
+                'body'  => 'Home Made Cookies are simple, comforting, and perfect for tea-time snacking. Their buttery aroma, crisp edges, and soft centre make them a favourite for both children and adults&hellip;',
                 'time'  => '30-40mins',
                 'level' => 'Easy',
                 'serves'=> '3-4 people',
+                'url'   => home_url( '/recipes/home-made-cookies' ),
             ),
             array(
                 'title' => 'Indian Battasa',
@@ -164,6 +165,7 @@ $bust = 'anandiitaa_bust';
                 'time'  => '30-40mins',
                 'level' => 'Easy',
                 'serves'=> '3-4 people',
+                'url'   => '',
             ),
             array(
                 'title' => 'Gulab Jamun',
@@ -172,6 +174,7 @@ $bust = 'anandiitaa_bust';
                 'time'  => '30-40mins',
                 'level' => 'Easy',
                 'serves'=> '3-4 people',
+                'url'   => '',
             ),
             array(
                 'title' => 'Chocolate Dessert',
@@ -180,6 +183,7 @@ $bust = 'anandiitaa_bust';
                 'time'  => '30-40mins',
                 'level' => 'Easy',
                 'serves'=> '3-4 people',
+                'url'   => '',
             ),
         );
     ?>
@@ -188,14 +192,24 @@ $bust = 'anandiitaa_bust';
         <h2 class="recipes-title">Home Delicacies Recipes</h2>
 
         <ul class="recipes-grid">
-            <?php foreach ( $recipes as $r ) : ?>
-                <li class="recipe-card">
+            <?php foreach ( $recipes as $r ) :
+                $has_url = ! empty( $r['url'] );
+            ?>
+                <li class="recipe-card<?php echo $has_url ? ' recipe-card--linked' : ''; ?>">
+                    <?php if ( $has_url ) : ?>
+                        <a class="recipe-card__overlay" href="<?php echo esc_url( $r['url'] ); ?>" aria-label="Read recipe: <?php echo esc_attr( $r['title'] ); ?>"></a>
+                    <?php endif; ?>
                     <div class="recipe-card__media">
                         <img src="<?php echo esc_url( $bust( $r['image'] ) ); ?>" alt="<?php echo esc_attr( $r['title'] ); ?>" loading="lazy">
                     </div>
 
                     <div class="recipe-card__content">
-                        <p class="recipe-card__body"><?php echo wp_kses_post( $r['body'] ); ?></p>
+                        <p class="recipe-card__body">
+                            <?php echo wp_kses_post( $r['body'] ); ?>
+                            <?php if ( $has_url ) : ?>
+                                <span class="recipe-card__cta">Read recipe &rarr;</span>
+                            <?php endif; ?>
+                        </p>
                         <ul class="recipe-meta">
                             <li class="recipe-meta__item">
                                 <span class="recipe-meta__icon" aria-hidden="true">

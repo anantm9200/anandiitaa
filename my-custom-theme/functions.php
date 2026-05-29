@@ -355,10 +355,11 @@ add_action( 'send_headers', function () {
  */
 function anandiitaa_route_templates( $template ) {
     $routes = array(
-        'products'         => 'page-products.php',
-        'products/jaggery' => 'page-products-jaggery.php',
-        'products/sugar'   => 'page-products-sugar.php',
-        'about-us'         => 'page-about.php',
+        'products'                   => 'page-products.php',
+        'products/jaggery'           => 'page-products-jaggery.php',
+        'products/sugar'             => 'page-products-sugar.php',
+        'about-us'                   => 'page-about.php',
+        'recipes/home-made-cookies'  => 'page-recipes-cookies.php',
     );
 
     $request = trim( parse_url( $_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH ) ?? '', '/' );
