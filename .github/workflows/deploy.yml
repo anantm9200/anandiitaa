@@ -78,8 +78,11 @@ jobs:
           PASS: ${{ secrets.HOSTINGER_SFTP_PASS }}
         run: |
           lftp -c "
-          set net:max-retries 2;
-          set net:timeout 15;
+          set net:max-retries 10;
+          set net:timeout 30;
+          set net:reconnect-interval-base 5;
+          set net:reconnect-interval-multiplier 1.5;
+          set net:reconnect-interval-max 60;
           set sftp:auto-confirm yes;
           open sftp://$USER:$PASS@$HOST:$PORT;
 

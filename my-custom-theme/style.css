@@ -178,7 +178,11 @@ picture {
     top: 0;
     left: 0;
     right: 0;
-    z-index: 100;
+    /* z-index above .nav-backdrop (150) so the mobile hamburger drawer
+       (which lives inside .site-header in markup) renders ABOVE the blur.
+       Without this, the backdrop's stacking context blurred the entire
+       header including the drawer's own contents. */
+    z-index: 220;
     padding: 14px clamp(20px, 4vw, 48px); /* desktop default: edge gutters spread logo & nav to viewport edges */
     background: var(--brand-cream);      /* solid cream — same surface at every scroll position */
 }
@@ -228,8 +232,39 @@ picture {
    Mobile media query (@media max-width: 700px below) flips them on and
    converts .main-navigation into a slide-in drawer.
    ======================================================================== */
-.nav-toggle,
-.nav-close {
+/* Kill the iOS / mobile-Chrome blue tap-highlight on EVERY interactive
+   element, globally. Future buttons/links inherit automatically — no
+   per-element patches needed. Keyboard users still get :focus-visible. */
+a,
+button,
+[role="button"],
+input[type="submit"],
+input[type="button"],
+input[type="reset"],
+summary,
+label {
+    -webkit-tap-highlight-color: transparent;
+}
+/* Default focus outline is killed via :focus (mouse/touch); :focus-visible
+   restores it for keyboard users — accessibility kept. */
+a:focus,
+button:focus,
+[role="button"]:focus,
+input:focus,
+summary:focus {
+    outline: none;
+}
+a:focus-visible,
+button:focus-visible,
+[role="button"]:focus-visible,
+input:focus-visible,
+summary:focus-visible {
+    outline: 2px solid var(--brand-maroon);
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+.nav-toggle {
     display: none;
     background: transparent;
     border: none;
@@ -246,7 +281,6 @@ picture {
     transition: transform 0.3s ease, opacity 0.2s ease;
 }
 .nav-toggle__bar + .nav-toggle__bar { margin-top: 6px; }
-.nav-close svg { width: 26px; height: 26px; display: block; }
 
 /* Backdrop — covers viewport behind the drawer with a blur. */
 .nav-backdrop {
@@ -1516,9 +1550,11 @@ picture {
 }
 
 .site-footer__socials {
-    display: flex;
-    gap: 14px;
-    align-items: center;
+    /* Hidden per client request — Instagram + YouTube icons. Markup stays
+       in footer.php for SEO/structure, just visually removed.
+       (Was `display: flex; gap: 14px; align-items: center;` — restore if
+       client ever wants them back.) */
+    display: none;
 }
 .site-footer__socials a {
     color: var(--footer-fg);
@@ -4380,14 +4416,6 @@ picture {
         color: var(--brand-maroon-dark);
     }
 
-    /* Close (X) button inside the drawer, top-right. */
-    .nav-close {
-        display: inline-flex;
-        position: absolute;
-        top: clamp(12px, 2vh, 18px);
-        right: clamp(12px, 4vw, 18px);
-    }
-
     /* Body scroll lock while drawer is open. */
     body.nav-locked {
         overflow: hidden;
@@ -4455,10 +4483,21 @@ picture {
         flex-shrink: 0;
     }
 
-    /* Carousel arrows + dots — smaller, tucked. */
+    /* Carousel arrows + dots — smaller, tucked. Display:flex overrides the
+       legacy `@media (max-width: 767px)` block above which set `display: none`
+       on the arrows for old-style mobile (we want them visible now). */
     .hero-carousel__arrow {
-        width: clamp(28px, 8vw, 38px);
-        height: clamp(28px, 8vw, 38px);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: clamp(32px, 9vw, 42px);
+        height: clamp(32px, 9vw, 42px);
+    }
+    .hero-carousel__arrow--prev { left: clamp(8px, 3vw, 16px); }
+    .hero-carousel__arrow--next { right: clamp(8px, 3vw, 16px); }
+    .hero-carousel__arrow svg {
+        width: clamp(16px, 4.5vw, 22px);
+        height: clamp(16px, 4.5vw, 22px);
     }
     .hero-carousel__dots {
         bottom: clamp(10px, 3svh, 20px);
@@ -4683,18 +4722,39 @@ picture {
     }
 
     /* ------------------------------------------------------------------
-       Slide 9 — Benefits. Same restructure as Standards: drop absolute
-       positioning, flex column anchored at top. 4-col → 2x2 grid for
-       parity with Standards. */
+       Slide 9 — Benefits. Same flex flow as Standards but pushed UP so
+       the new jaggery bg photo at the bottom is fully visible. Cards
+       shrunk significantly so they don't dominate the viewport.
+       Bg image forced edge-to-edge with explicit overrides (overflow
+       hidden on section so absolute bg can't be clipped by anything else,
+       inset: 0 + 100% width/height on bg img). */
     .page-section--benefits,
     section:has(> .benefits-grid) {
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
-        gap: clamp(16px, 3vh, 28px);
-        padding: clamp(28px, 6svh, 60px) 6% clamp(40px, 8svh, 80px);
+        gap: clamp(10px, 2vh, 18px);
+        padding: clamp(20px, 4svh, 40px) 6% clamp(28px, 6svh, 50px);
         min-height: 100svh;
         height: auto;
+        overflow: hidden;
+    }
+    .page-section--benefits .hero-slide__bg,
+    .page-section--benefits .hero-slide__bg img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center bottom;
+    }
+    /* The source 9-jaggery.jpg has near-white edges baked into the image
+       (cream space around the dish). At mobile viewport widths cover-fit
+       still shows those white edges as side gaps. Zoom the image so the
+       white edges push off-screen, leaving only the dish visible. */
+    .page-section--benefits .hero-slide__bg img {
+        transform: scale(1.5);
+        transform-origin: center center;
     }
     .benefits-title {
         position: static;
@@ -4703,7 +4763,8 @@ picture {
         top: auto;
         text-align: center;
         width: auto;
-        font-size: clamp(26px, 7vw, 36px);
+        font-size: clamp(22px, 6vw, 30px);
+        margin: 0;
     }
     .benefits-grid {
         position: static;
@@ -4714,54 +4775,115 @@ picture {
         width: auto;
         max-width: none;
         grid-template-columns: repeat(2, 1fr);
-        gap: clamp(12px, 2.6vh, 20px) clamp(10px, 3vw, 18px);
+        gap: clamp(8px, 1.8vh, 14px) clamp(8px, 2.4vw, 14px);
     }
     .benefit-card {
-        padding: clamp(16px, 4vw, 22px) clamp(14px, 4vw, 18px);
-        border-radius: clamp(14px, 4vw, 20px);
+        padding: clamp(12px, 3.2vw, 16px) clamp(10px, 3vw, 14px);
+        border-radius: clamp(12px, 3.5vw, 16px);
+        min-height: 0;
     }
+    /* Icon: take it OUT of absolute positioning on mobile (desktop has
+       `position: absolute; top: -32px` to float above the card edge —
+       on a 2x2 mobile grid this reaches into the card above). Static
+       flow at top of card body, no overflow, no negative space wasted. */
     .benefit-card__icon {
-        width: clamp(36px, 9vw, 48px);
-        height: clamp(36px, 9vw, 48px);
+        position: static;
+        top: auto;
+        left: auto;
+        width: clamp(28px, 7vw, 38px);
+        height: clamp(28px, 7vw, 38px);
+        margin: 0 0 clamp(6px, 1.4vh, 12px);
+        box-shadow: none; /* desktop has 8px cream "fried-egg" ring — noisy on the smaller mobile card */
     }
-    .benefit-card__title { font-size: clamp(14px, 4vw, 18px); }
-    .benefit-card__body  { font-size: clamp(12px, 3.4vw, 14px); }
+    /* Drop the hover-scale on mobile too (touch devices don't hover). */
+    .benefit-card:hover .benefit-card__icon {
+        transform: none;
+        box-shadow: none;
+    }
+    .benefit-card__icon svg {
+        width: clamp(16px, 4vw, 22px);
+        height: clamp(16px, 4vw, 22px);
+    }
+    .benefit-card__title {
+        font-size: clamp(12px, 3.4vw, 15px);
+        line-height: 1.15;
+        margin-bottom: clamp(4px, 0.8vh, 8px);
+    }
+    .benefit-card__body  {
+        font-size: clamp(10px, 2.8vw, 12px);
+        line-height: 1.3;
+    }
 
     /* ------------------------------------------------------------------
-       Slide 10 — Reviews. 2-col → 1-col stack. U-shape card collapses. */
+       Slide 10 — Reviews. Same flex-flow restructure as Standards/Benefits:
+       drop absolute positioning, let section grow to fit content, anchor
+       title at top, 1-col card stack. Cards shrunk so both fit cleanly. */
+    .page-section--reviews,
+    section:has(> .reviews-grid) {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: clamp(16px, 3vh, 28px);
+        padding: clamp(28px, 6svh, 60px) 6% clamp(40px, 8svh, 80px);
+        min-height: 100svh;
+        height: auto;
+    }
     .reviews-title {
-        font-size: clamp(26px, 7vw, 36px);
+        position: static;
+        transform: none;
+        left: auto;
+        top: auto;
         text-align: center;
-        width: 90%;
-        left: 50%;
-        transform: translateX(-50%);
+        width: auto;
+        white-space: normal;
+        font-size: clamp(22px, 6vw, 32px);
+        margin: 0;
     }
     .reviews-grid {
-        grid-template-columns: 1fr;
-        gap: clamp(20px, 4vh, 32px);
-        width: 90%;
+        position: static;
+        transform: none;
+        top: auto;
+        left: auto;
+        right: auto;
+        width: auto;
         max-width: none;
+        margin: 0;
+        grid-template-columns: 1fr;
+        gap: clamp(16px, 3vh, 24px);
     }
     .review-card {
         flex-direction: column;
     }
-    .review-card__image,
-    .review-card__image img {
+    .review-card__image {
+        width: 100%;
         aspect-ratio: 16 / 10;
         height: auto;
-        max-height: 40svh;
+        max-height: clamp(160px, 28svh, 240px);
+    }
+    .review-card__image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
     .review-card__body {
-        padding: clamp(14px, 4vw, 20px);
-        gap: clamp(8px, 2vh, 12px);
+        padding: clamp(12px, 3.4vw, 18px);
+        gap: clamp(6px, 1.5vh, 10px);
     }
-    .review-card__name  { font-size: clamp(14px, 4vw, 17px); }
-    .review-card__role  { font-size: clamp(12px, 3.4vw, 14px); }
-    .review-card__quote { font-size: clamp(13px, 3.6vw, 15px); }
+    .review-card__name  { font-size: clamp(13px, 3.6vw, 16px); }
+    .review-card__role  { font-size: clamp(11px, 3vw, 13px); }
+    .review-card__quote { font-size: clamp(12px, 3.4vw, 14px); }
 
     /* ------------------------------------------------------------------
-       Slide 11 — Social CTA. Wordmark + heading + pills, all centered. */
-    .social-slide__wordmark { height: clamp(28px, 7vw, 40px); }
+       Slide 11 — Social CTA. Wordmark + heading + pills, all centered.
+       Wordmark sizes by WIDTH with height:auto so the natural aspect
+       ratio is preserved (the desktop base rule fixes width AND my old
+       mobile override also forced height, which stretched the letters
+       vertically — letters looked compressed). */
+    .social-slide__wordmark {
+        width: clamp(180px, 55vw, 260px);
+        height: auto;
+        margin: 0 0 clamp(16px, 3vh, 24px);
+    }
     .social-slide__heading {
         font-size: clamp(26px, 7vw, 38px);
         line-height: 1.1;
@@ -4781,19 +4903,90 @@ picture {
     }
 
     /* ------------------------------------------------------------------
-       Footer. Stack columns vertically. */
+       Footer. Stack columns vertically.
+       Switch from grid → flex column so the base `.site-footer__col--nav
+       { grid-column: 3 }` and `--info { grid-column: 4 }` rules can't
+       push children into off-screen auto-generated columns. */
+    .site-footer {
+        padding: clamp(28px, 6vh, 48px) 6% clamp(20px, 4vh, 32px);
+    }
     .site-footer__inner {
-        grid-template-columns: 1fr;
-        gap: clamp(20px, 4vh, 36px);
-        padding: clamp(28px, 6vh, 48px) 6%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: clamp(18px, 3.5vh, 30px);
+        max-width: 100%;
     }
     .site-footer__col {
+        grid-column: auto;
+        width: 100%;
         text-align: center;
+        margin: 0;
+    }
+    .site-footer__col--brand {
+        align-items: center;
+    }
+    /* Logo is an empty <a> with -webkit-mask: url(wordmark) — needs BOTH
+       width AND height explicitly (no <img> to derive proportions from).
+       Mask uses `contain` so the wordmark scales inside whatever box we
+       give it. Center the mask horizontally on mobile. */
+    .site-footer__logo {
+        display: block;
+        margin: 0 auto;
+        width: clamp(160px, 50vw, 240px);
+        height: clamp(28px, 8vw, 40px);
+        -webkit-mask-position: center;
+                mask-position: center;
+    }
+    .site-footer__brand-base {
+        align-items: center;
+        text-align: center;
+        margin-top: clamp(12px, 2vh, 20px);
+    }
+    .site-footer__legal {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 6px 8px;
+        font-size: clamp(11px, 3vw, 13px);
     }
     .site-footer__col--nav {
         display: flex;
         flex-direction: column;
+        align-items: center;
         gap: clamp(6px, 1.5vh, 12px);
+    }
+    .site-footer__col--nav a {
+        font-size: clamp(13px, 3.4vw, 15px);
+    }
+    .site-footer__col--info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: clamp(12px, 2vh, 18px);
+    }
+    .site-footer__info-block h4 {
+        font-size: clamp(12px, 3vw, 14px);
+        margin-bottom: 4px;
+    }
+    .site-footer__info-block p {
+        font-size: clamp(11px, 3vw, 13px);
+        line-height: 1.4;
+    }
+    .site-footer__copy {
+        /* Base CSS has position: absolute; right: 6%; bottom: 28px (sticks
+           copyright to bottom-right on desktop). Reset to static so it
+           flows naturally at the END of the flex column on mobile. */
+        position: static;
+        right: auto;
+        bottom: auto;
+        font-size: clamp(10px, 2.8vw, 12px);
+        text-align: center;
+        margin-top: clamp(14px, 2.5vh, 22px);
+    }
+    /* Brand-base has desktop margin-top: 90px which leaves huge gap on
+       mobile. Override to a sensible mobile spacing. */
+    .site-footer__brand-base {
+        margin-top: clamp(8px, 1.5vh, 16px);
     }
 
     /* ------------------------------------------------------------------

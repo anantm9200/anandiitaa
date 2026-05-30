@@ -280,6 +280,10 @@ What this means for your CSS:
 
 If you find yourself writing a 2nd breakpoint inside the mobile block, you're doing it wrong.
 
+### Tap highlight + focus ring (global, already in place)
+
+A global rule near the top of style.css kills `-webkit-tap-highlight-color` on every interactive element (`a`, `button`, `[role="button"]`, inputs, summary, label). Restores `:focus-visible` outline (2px maroon) for keyboard users only. Don't add per-element tap-highlight overrides — the global rule already covers any new button/link/etc.
+
 ---
 
 **Last updated**: 2026-05-29 (end of multi-week responsiveness + cache iteration session). Next chat starts on Recipes page build.
