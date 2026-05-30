@@ -169,8 +169,10 @@
         // Slide 9: The Benefits of Jaggery (4 benefit cards on dark wood bg)
         array(
             'type'         => 'benefits',
-            // SEAMLESS_BG_TEST: swapped 9.png → 9-sticker.png (transparent bg). Revert by restoring filename.
-            'image'        => $tpl . '/images/home/laptop/sections/9-sticker.png',
+            // Bg image replaced with new client-supplied jaggery photo (1600×533 JPEG).
+            // Drops the `-sticker` suffix → no fade mask applied. Tablet/phone tiers
+            // keep their portrait-specific bg images.
+            'image'        => $tpl . '/images/home/laptop/sections/9-jaggery.jpg',
             'tablet_image' => $tpl . '/images/home/tablet/sections/9.png',
             'phone_image'  => $tpl . '/images/home/phone/sections/9.png',
             'alt'          => 'The Benefits of Jaggery',
