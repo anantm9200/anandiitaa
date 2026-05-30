@@ -4284,12 +4284,20 @@ picture {
     }
 
     /* ------------------------------------------------------------------
-       Carousel hero slides 1–5. Content centered, fluid type.
-       Slide 1 uses --top-center (heading + button). Slides 2–5 also have
-       a vertical features list below. Stack everything in a single column,
-       sized by viewport width. */
+       Carousel hero slides 1–5. KEY: turn .hero-slide__content--top-center
+       into a flex column anchored to BOTH top and bottom of slide.
+       - Heading + button sit at top (natural flow).
+       - Features list (slides 2–5) gets `margin-top: auto` → pushed to bottom.
+       - Empty space in between = bg packet illustration shows through.
+       This keeps content out of the packet's visual zone.
+       Slide 1 (no features) leaves the bottom empty — packet fills it. */
     .hero-slide__content--top-center {
-        top: clamp(56px, 14svh, 110px);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        top: clamp(56px, 13svh, 110px);
+        bottom: clamp(60px, 10svh, 100px);
+        height: auto;
         max-width: 92%;
         text-align: center;
     }
@@ -4303,27 +4311,31 @@ picture {
         font-size: clamp(11px, 3vw, 14px);
         letter-spacing: 0.08em;
     }
-    /* Slide 1 first-child btn pull — reset to 0 on mobile (the desktop -160
-       pull would shove the button above the heading at this scale). */
+    /* Slide 1 first-child btn pull — reset to 0 on mobile (desktop -160
+       would shove the button above the heading at this scale). */
     .hero-slide:first-child .hero-slide__content--top-center .btn {
         margin-top: clamp(4px, 1.5vh, 12px);
     }
     .hero-slide:first-child .hero-slide__content--top-center h2 {
         margin-bottom: clamp(8px, 2vh, 16px);
     }
-    /* Features list (slides 2–5) — already a vertical column flex.
-       Tighten gap + sizes for phone. */
+    /* Features list (slides 2–5) — push to bottom of the flex column. */
     .hero-features {
-        margin-top: clamp(24px, 6svh, 56px);
+        margin-top: auto;
         gap: clamp(8px, 2vh, 16px);
+        align-items: stretch;
+        width: 100%;
     }
     .hero-features li {
         font-size: clamp(12px, 3.4vw, 16px);
         gap: clamp(8px, 3vw, 14px);
+        flex-direction: row;
+        justify-content: center;
     }
     .hero-features .icon {
         width: clamp(28px, 7vw, 36px);
         height: clamp(28px, 7vw, 36px);
+        flex-shrink: 0;
     }
 
     /* Carousel arrows + dots — smaller, tucked. */
