@@ -4425,24 +4425,38 @@ picture {
     }
 
     /* ------------------------------------------------------------------
-       Slide 7 — News. Already responsive via the prior 100svh-based rules.
-       Tighten captions for phone width. */
+       Slide 7 — News. Force both captions centered horizontally with
+       constrained width (mobile-only) — the base h2 font (--fs-heading
+       at 45–57px) made the text overflow both edges, looked as if it was
+       anchored to the left. .page-section--news scope wins specificity. */
     .page-section--news {
-        --news-bg-top: clamp(60px, 14svh, 110px);
+        --news-bg-top: clamp(110px, 18svh, 160px);
     }
     .page-section--news .hero-slide__bg {
-        height: calc(100svh - var(--news-bg-top) - clamp(70px, 12svh, 130px));
+        height: calc(100svh - var(--news-bg-top) - clamp(90px, 14svh, 140px));
     }
-    .hero-slide__content--top-caption h2 {
-        font-size: clamp(20px, 5.5vw, 30px);
-        padding: 0 clamp(12px, 4vw, 24px);
+    .page-section--news .hero-slide__content--top-caption,
+    .page-section--news .hero-slide__content--bottom-center {
+        width: 86%;
+        max-width: 86%;
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+        text-align: center;
+    }
+    .page-section--news .hero-slide__content--top-caption {
+        top: clamp(60px, 11svh, 110px);
     }
     .page-section--news .hero-slide__content--bottom-center {
-        top: calc(100svh - clamp(60px, 11svh, 110px));
-        width: 92%;
+        top: calc(100svh - clamp(80px, 13svh, 130px));
     }
+    .page-section--news .hero-slide__content--top-caption h2,
     .page-section--news .hero-slide__content--bottom-center h2 {
         font-size: clamp(18px, 5vw, 26px);
+        line-height: 1.2;
+        margin: 0;
+        padding: 0;
+        word-wrap: break-word;
     }
 
     /* ------------------------------------------------------------------
