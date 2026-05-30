@@ -15,6 +15,7 @@
             // Tablet portrait variant (701–1100px). Laptop path doesn't auto-derive
             // to /tablet/ here because the filename pattern differs — explicit.
             'tablet_image' => $tpl . '/images/home/tablet/1.png',
+            'phone_image'  => $tpl . '/images/home/phone/1.png',
             'alt'          => 'Anandiitaa — Choose Pure',
             'heading'      => 'Choose Pure.<br>Choose Anandiitaa.',
             'cta'          => array( 'label' => 'Explore More', 'href' => '/about-us', 'class' => 'btn-primary' ),
@@ -24,6 +25,7 @@
             // SEAMLESS_BG_TEST: swapped 2.png → 2-sticker.png (transparent bg). Revert by restoring filename.
             'image'        => $tpl . '/images/home/laptop/2-sticker.png',
             'tablet_image' => $tpl . '/images/home/tablet/2.png',
+            'phone_image'  => $tpl . '/images/home/phone/2.png',
             'alt'          => 'Choose Pure. Choose Anandiitaa.',
             'heading'      => 'Choose Pure.<br>Choose Anandiitaa.',
             'cta'          => array( 'label' => 'Explore More', 'href' => '/about-us', 'class' => 'btn-primary' ),
@@ -39,7 +41,7 @@
             'image'        => $tpl . '/images/home/laptop/home-hero-3-1920.png', // base / fallback (1920×1080)
             'mac_image'    => $tpl . '/images/home/mac/home-hero-3.png',           // ≥1440px (2560×1664)
             'tablet_image' => $tpl . '/images/home/tablet/3.png',                  // 701–1100px (1024×1366 portrait)
-            'phone_image'  => $tpl . '/images/home/phone/home-hero-3-375.png',     // ≤700px (375×667)
+            'phone_image'  => $tpl . '/images/home/phone/3.png',                   // ≤700px (375×667 portrait)
             'alt'          => 'Choose Pure. Choose Anandiitaa.',
             'heading'      => 'Choose Pure.<br>Choose Anandiitaa.',
             'cta'          => array( 'label' => 'Explore More', 'href' => '/about-us', 'class' => 'btn-primary' ),
@@ -53,6 +55,7 @@
             // SEAMLESS_BG_TEST: swapped 4.png → 4-sticker.png (transparent bg). Revert by restoring filename.
             'image'        => $tpl . '/images/home/laptop/4-sticker.png',
             'tablet_image' => $tpl . '/images/home/tablet/4.png',
+            'phone_image'  => $tpl . '/images/home/phone/4.png',
             'alt'          => 'Choose Pure. Choose Anandiitaa.',
             'heading'      => 'Choose Pure.<br>Choose Anandiitaa.',
             'cta'          => array( 'label' => 'Explore More', 'href' => '/about-us', 'class' => 'btn-primary' ),
@@ -66,6 +69,7 @@
             // SEAMLESS_BG_TEST: swapped 5.png → 5-sticker.png (transparent bg). Revert by restoring filename.
             'image'        => $tpl . '/images/home/laptop/5-sticker.png',
             'tablet_image' => $tpl . '/images/home/tablet/5.png',
+            'phone_image'  => $tpl . '/images/home/phone/5.png',
             'alt'          => 'Choose Pure. Choose Anandiitaa.',
             'heading'      => 'Choose Pure.<br>Choose Anandiitaa.',
             'cta'          => array( 'label' => 'Explore More', 'href' => '/about-us', 'class' => 'btn-primary' ),
@@ -81,6 +85,7 @@
             // SEAMLESS_BG_TEST: swapped 6.png → 6-sticker.png (transparent bg). Revert by restoring filename.
             'image'        => $tpl . '/images/home/laptop/sections/6-sticker.png',
             'tablet_image' => $tpl . '/images/home/tablet/sections/6.png',
+            'phone_image'  => $tpl . '/images/home/phone/sections/6.png',
             'alt'          => 'The Anandiitaa Standards',
             'standards' => array(
                 array(
@@ -114,6 +119,7 @@
             // SEAMLESS_BG_TEST: swapped 7.png → 7-sticker.png (transparent bg). Revert by restoring filename.
             'image'        => $tpl . '/images/home/laptop/sections/7-sticker.png',
             'tablet_image' => $tpl . '/images/home/tablet/sections/7.png',
+            'phone_image'  => $tpl . '/images/home/phone/sections/7.png',
             'alt'          => 'In the era of food adulteration',
             'caption_top'  => 'Not all jaggery is made the same.',
             'heading'      => 'Choose Pure, Choose Anandiitaa',
@@ -166,6 +172,7 @@
             // SEAMLESS_BG_TEST: swapped 9.png → 9-sticker.png (transparent bg). Revert by restoring filename.
             'image'        => $tpl . '/images/home/laptop/sections/9-sticker.png',
             'tablet_image' => $tpl . '/images/home/tablet/sections/9.png',
+            'phone_image'  => $tpl . '/images/home/phone/sections/9.png',
             'alt'          => 'The Benefits of Jaggery',
             'title'        => 'The Benefits of Jaggery',
             'benefits' => array(

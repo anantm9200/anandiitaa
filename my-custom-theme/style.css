@@ -4262,4 +4262,290 @@ picture {
        needed; the bg confine + clamp top buffer adapts on tablet too. */
 }
 
+/* ========================================================================
+   PLAN B — MOBILE (≤700px, fluid, no fixed widths)
+   FLUID by design: every size uses clamp() against svw/vw so it scales for
+   ANY phone width — iPhone SE (375) through Pixel Pro / iPhone Pro Max (430+)
+   continuously, not stepwise. NO fixed px widths inside this block.
+   Phone bg images live under /images/home/phone/ and /phone/sections/.
+   ======================================================================== */
+@media (max-width: 700px) {
+
+    /* ------------------------------------------------------------------
+       Global header — shrink so it doesn't eat the hero content. */
+    .site-header { padding: 8px clamp(12px, 4vw, 18px); }
+    .logo img    { height: clamp(22px, 5vw, 28px); }
+
+    /* ------------------------------------------------------------------
+       Carousel hero slides 1–5. Content centered, fluid type.
+       Slide 1 uses --top-center (heading + button). Slides 2–5 also have
+       a vertical features list below. Stack everything in a single column,
+       sized by viewport width. */
+    .hero-slide__content--top-center {
+        top: clamp(56px, 14svh, 110px);
+        max-width: 92%;
+        text-align: center;
+    }
+    .hero-slide__content--top-center h2 {
+        font-size: clamp(22px, 6.5vw, 36px);
+        line-height: 1.15;
+        margin-bottom: clamp(8px, 2vh, 16px);
+    }
+    .hero-slide__content--top-center .btn {
+        padding: clamp(8px, 2.5vw, 12px) clamp(18px, 5vw, 28px);
+        font-size: clamp(11px, 3vw, 14px);
+        letter-spacing: 0.08em;
+    }
+    /* Slide 1 first-child btn pull — reset to 0 on mobile (the desktop -160
+       pull would shove the button above the heading at this scale). */
+    .hero-slide:first-child .hero-slide__content--top-center .btn {
+        margin-top: clamp(4px, 1.5vh, 12px);
+    }
+    .hero-slide:first-child .hero-slide__content--top-center h2 {
+        margin-bottom: clamp(8px, 2vh, 16px);
+    }
+    /* Features list (slides 2–5) — already a vertical column flex.
+       Tighten gap + sizes for phone. */
+    .hero-features {
+        margin-top: clamp(24px, 6svh, 56px);
+        gap: clamp(8px, 2vh, 16px);
+    }
+    .hero-features li {
+        font-size: clamp(12px, 3.4vw, 16px);
+        gap: clamp(8px, 3vw, 14px);
+    }
+    .hero-features .icon {
+        width: clamp(28px, 7vw, 36px);
+        height: clamp(28px, 7vw, 36px);
+    }
+
+    /* Carousel arrows + dots — smaller, tucked. */
+    .hero-carousel__arrow {
+        width: clamp(28px, 8vw, 38px);
+        height: clamp(28px, 8vw, 38px);
+    }
+    .hero-carousel__dots {
+        bottom: clamp(10px, 3svh, 20px);
+        gap: clamp(6px, 2vw, 10px);
+    }
+    .hero-carousel__dot {
+        width: clamp(8px, 2vw, 10px);
+        height: clamp(8px, 2vw, 10px);
+    }
+
+    /* ------------------------------------------------------------------
+       Slide 6 — Standards. 4-col → 1-col stack. Drop vertical dashed
+       dividers (they read as ugly on a single column). */
+    .standards-title {
+        position: absolute;
+        top: clamp(48px, 10svh, 88px);
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+        width: 90%;
+        font-size: clamp(28px, 7vw, 40px);
+    }
+    .standards-title__small { font-size: clamp(18px, 5vw, 26px); }
+    .standards-title__wordmark { height: clamp(22px, 6vw, 32px); }
+    .standards-grid {
+        grid-template-columns: 1fr;
+        gap: clamp(18px, 4vh, 28px);
+        bottom: clamp(40px, 8svh, 80px);
+        left: 6%;
+        right: 6%;
+        width: auto;
+        max-height: 60svh;
+        overflow-y: auto;
+        scrollbar-width: thin;
+    }
+    .standards-col {
+        padding: 0;
+        border-right: none;
+        text-align: center;
+    }
+    .standards-col__icon {
+        width: clamp(40px, 10vw, 56px);
+        height: clamp(40px, 10vw, 56px);
+        margin: 0 auto clamp(8px, 1.5vh, 12px);
+    }
+    .standards-col__title { font-size: clamp(15px, 4vw, 19px); }
+    .standards-col__body  { font-size: clamp(13px, 3.4vw, 16px); }
+
+    /* ------------------------------------------------------------------
+       Slide 7 — News. Already responsive via the prior 100svh-based rules.
+       Tighten captions for phone width. */
+    .page-section--news {
+        --news-bg-top: clamp(60px, 14svh, 110px);
+    }
+    .page-section--news .hero-slide__bg {
+        height: calc(100svh - var(--news-bg-top) - clamp(70px, 12svh, 130px));
+    }
+    .hero-slide__content--top-caption h2 {
+        font-size: clamp(20px, 5.5vw, 30px);
+        padding: 0 clamp(12px, 4vw, 24px);
+    }
+    .page-section--news .hero-slide__content--bottom-center {
+        top: calc(100svh - clamp(60px, 11svh, 110px));
+        width: 92%;
+    }
+    .page-section--news .hero-slide__content--bottom-center h2 {
+        font-size: clamp(18px, 5vw, 26px);
+    }
+
+    /* ------------------------------------------------------------------
+       Slide 8 — Products grid. 2x2 → 1-col stack. Card padding & packet
+       shrink for phone width. Cards become tall stacks (image right, copy left
+       was tight at this width; full-width card with packet floating right is
+       more readable). */
+    .product-slide--products,
+    .page-section--products {
+        padding: clamp(40px, 10svh, 80px) 0;
+    }
+    .products-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        gap: clamp(16px, 3vh, 24px);
+        width: 92%;
+        margin: 0 auto;
+    }
+    .product-card {
+        aspect-ratio: 2 / 1.05;
+        border-radius: clamp(28px, 8vw, 44px);
+        padding: clamp(20px, 5vw, 28px) clamp(18px, 5vw, 24px) clamp(16px, 4vw, 20px);
+    }
+    .product-card__title {
+        font-size: clamp(17px, 5vw, 22px);
+        margin-bottom: clamp(8px, 2vh, 14px);
+    }
+    .product-card__desc { font-size: clamp(12px, 3.4vw, 15px); }
+    .product-card__sizes-label { font-size: clamp(9px, 2.6vw, 11px); }
+    .product-card__sizes-value { font-size: clamp(12px, 3.4vw, 15px); }
+    .product-card__arrow {
+        width: clamp(38px, 10vw, 48px);
+        height: clamp(38px, 10vw, 48px);
+    }
+    .product-card__arrow svg {
+        width: clamp(16px, 4.5vw, 20px);
+        height: clamp(16px, 4.5vw, 20px);
+    }
+    .product-card__image {
+        max-width: 44%;
+        max-height: 125%;
+        right: 4%;
+    }
+
+    /* ------------------------------------------------------------------
+       Slide 9 — Benefits. 4-col → 1-col stack. Title centered on top. */
+    .benefits-title {
+        top: clamp(40px, 9svh, 80px);
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+        width: 90%;
+        font-size: clamp(26px, 7vw, 36px);
+    }
+    .benefits-grid {
+        grid-template-columns: 1fr;
+        gap: clamp(14px, 3vh, 22px);
+        bottom: clamp(40px, 8svh, 80px);
+        left: 6%;
+        right: 6%;
+        width: auto;
+        transform: none;
+        max-height: 64svh;
+        overflow-y: auto;
+        scrollbar-width: thin;
+    }
+    .benefit-card {
+        padding: clamp(16px, 4vw, 22px) clamp(14px, 4vw, 18px);
+        border-radius: clamp(14px, 4vw, 20px);
+    }
+    .benefit-card__icon {
+        width: clamp(36px, 9vw, 48px);
+        height: clamp(36px, 9vw, 48px);
+    }
+    .benefit-card__title { font-size: clamp(14px, 4vw, 18px); }
+    .benefit-card__body  { font-size: clamp(12px, 3.4vw, 14px); }
+
+    /* ------------------------------------------------------------------
+       Slide 10 — Reviews. 2-col → 1-col stack. U-shape card collapses. */
+    .reviews-title {
+        font-size: clamp(26px, 7vw, 36px);
+        text-align: center;
+        width: 90%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .reviews-grid {
+        grid-template-columns: 1fr;
+        gap: clamp(20px, 4vh, 32px);
+        width: 90%;
+        max-width: none;
+    }
+    .review-card {
+        flex-direction: column;
+    }
+    .review-card__image,
+    .review-card__image img {
+        aspect-ratio: 16 / 10;
+        height: auto;
+        max-height: 40svh;
+    }
+    .review-card__body {
+        padding: clamp(14px, 4vw, 20px);
+        gap: clamp(8px, 2vh, 12px);
+    }
+    .review-card__name  { font-size: clamp(14px, 4vw, 17px); }
+    .review-card__role  { font-size: clamp(12px, 3.4vw, 14px); }
+    .review-card__quote { font-size: clamp(13px, 3.6vw, 15px); }
+
+    /* ------------------------------------------------------------------
+       Slide 11 — Social CTA. Wordmark + heading + pills, all centered. */
+    .social-slide__wordmark { height: clamp(28px, 7vw, 40px); }
+    .social-slide__heading {
+        font-size: clamp(26px, 7vw, 38px);
+        line-height: 1.1;
+    }
+    .social-slide__subtitle {
+        font-size: clamp(13px, 3.6vw, 16px);
+        padding: 0 clamp(12px, 4vw, 24px);
+    }
+    .social-slide__pills {
+        flex-wrap: wrap;
+        gap: clamp(8px, 2vw, 14px);
+        justify-content: center;
+    }
+    .social-pill {
+        padding: clamp(8px, 2.5vw, 12px) clamp(14px, 4vw, 20px);
+        font-size: clamp(12px, 3.4vw, 15px);
+    }
+
+    /* ------------------------------------------------------------------
+       Footer. Stack columns vertically. */
+    .site-footer__inner {
+        grid-template-columns: 1fr;
+        gap: clamp(20px, 4vh, 36px);
+        padding: clamp(28px, 6vh, 48px) 6%;
+    }
+    .site-footer__col {
+        text-align: center;
+    }
+    .site-footer__col--nav {
+        display: flex;
+        flex-direction: column;
+        gap: clamp(6px, 1.5vh, 12px);
+    }
+
+    /* ------------------------------------------------------------------
+       Bg image fit override: on portrait phone viewports, force the hero
+       bg images (now phone-tier 375x667 portrait) to anchor center-center
+       and cover. The desktop `object-position: center bottom` would crop
+       the top off our portrait phone composites. */
+    .hero-track .hero-slide__bg img,
+    .page-section .hero-slide__bg img {
+        object-position: center center;
+    }
+}
+
+
 

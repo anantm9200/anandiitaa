@@ -26,38 +26,37 @@ $ingredients = array(
     '2 tbsp chocolate chips or chopped nuts (optional)',
 );
 
-// Per-step images. Leave '' to render a styled placeholder; populate with a
-// real URL (under /assets/images/products/sugar/recipes/cookies/) when ready.
+$cookie_steps_dir = $tpl . '/assets/images/products/sugar/recipes/cookies';
 $method = array(
     array(
         'title' => 'Cream the butter and Anandiitaa Sugar',
         'body'  => 'In a bowl, add softened butter and powdered Anandiitaa Sugar. Beat until the mixture becomes light and creamy.',
-        'image' => '',
+        'image' => $cookie_steps_dir . '/step-1.png',
     ),
     array(
         'title' => 'Prepare the dry mix',
         'body'  => 'Sieve maida, baking powder, and baking soda together. Add this dry mixture to the butter and Anandiitaa Sugar mixture.',
-        'image' => '',
+        'image' => $cookie_steps_dir . '/step-2.png',
     ),
     array(
         'title' => 'Make the dough',
         'body'  => 'Add vanilla essence and mix gently. Add milk little by little to form a soft cookie dough. Do not over-knead.',
-        'image' => '',
+        'image' => $cookie_steps_dir . '/step-3.png',
     ),
     array(
         'title' => 'Shape the cookies',
         'body'  => 'Take small portions of dough and shape them into round cookies. Place them on a baking tray lined with parchment paper.',
-        'image' => '',
+        'image' => $cookie_steps_dir . '/step-4.png',
     ),
     array(
         'title' => 'Bake',
         'body'  => 'Bake in a preheated oven at 170°C for 12–15 minutes or until the edges turn light golden.',
-        'image' => '',
+        'image' => $cookie_steps_dir . '/step-5.png',
     ),
     array(
         'title' => 'Cool and serve',
         'body'  => 'Let the cookies cool completely before serving. They will become firmer and crispier as they cool.',
-        'image' => '',
+        'image' => $cookie_steps_dir . '/step-6.png',
     ),
 );
 
