@@ -790,6 +790,20 @@ summary:focus-visible {
             mask-image: linear-gradient(180deg, transparent 0%, #000 6%, #000 100%);
 }
 
+/* Slide 9 — Benefits — DESKTOP/TABLET layout (≥701px):
+   The new 9-jaggery.jpg replaces the old sticker. To restore the
+   sectioned look (title + cards on cream upper area, photo strip
+   at bottom), constrain the bg image to a bottom strip and let the
+   slide's cream body show through above. Mobile (<700px) is excluded
+   — it uses the explicit full-fill override in the mobile block. */
+@media (min-width: 701px) {
+    .page-section--benefits .hero-slide__bg {
+        top: auto;
+        bottom: 0;
+        height: 35%;
+    }
+}
+
 .hero-slide__content {
     position: absolute;
     top: 50%;
@@ -4428,33 +4442,55 @@ summary:focus-visible {
         min-height: 100svh;
     }
 
+    /* CRITICAL: legacy `@media (max-width: 767px)` block sets
+       `.hero-carousel { height: 70vh; min-height: 480px }` which makes
+       the carousel container SHORTER than the slide inside it. Slide is
+       100svh but carousel is 70vh → bottom 30vh of slide (and the bg
+       packet image) gets clipped by carousel's overflow:hidden. Force
+       carousel to match slide height. */
+    .hero-carousel {
+        height: 100svh !important;
+        min-height: 100svh !important;
+    }
+
     /* ------------------------------------------------------------------
-       Carousel hero slides 1–5. KEY: turn .hero-slide__content--top-center
-       into a flex column anchored to BOTH top and bottom of slide.
-       - Heading + button sit at top (natural flow).
-       - Features list (slides 2–5) gets `margin-top: auto` → pushed to bottom.
-       - Empty space in between = bg packet illustration shows through.
-       This keeps content out of the packet's visual zone.
-       Slide 1 (no features) leaves the bottom empty — packet fills it. */
-    .hero-slide__content--top-center {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        top: clamp(56px, 13svh, 110px);
-        bottom: clamp(60px, 10svh, 100px);
-        height: auto;
-        max-width: 92%;
-        text-align: center;
+       Carousel hero slides 1–5 content block. CRITICAL: only slide 1 has
+       `position: 'top-center'` in front-page.php data → only it gets the
+       `--top-center` modifier class. Slides 2–5 get the BARE
+       `.hero-slide__content` which inherits `top: 50%; translateY(-50%)`
+       (vertically-centered) from base. Mobile rule MUST target BOTH so
+       slides 2–5 also anchor to the TOP. !important defeats the multiple
+       tier blocks (max-height:800/620, max-width:767 legacy) that fight
+       for the same property. */
+    .hero-slide .hero-slide__content,
+    .hero-slide .hero-slide__content--top-center {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        top: clamp(50px, 9svh, 80px) !important;
+        bottom: auto !important;
+        right: auto !important;
+        height: auto !important;
+        max-width: 92% !important;
+        width: 92% !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;  /* override base translateY(-50%) */
+        text-align: center !important;
     }
-    .hero-slide__content--top-center h2 {
-        font-size: clamp(22px, 6.5vw, 36px);
-        line-height: 1.15;
-        margin-bottom: clamp(8px, 2vh, 16px);
+    .hero-slide .hero-slide__content h2,
+    .hero-slide .hero-slide__content--top-center h2 {
+        font-size: clamp(22px, 6.5vw, 36px) !important;
+        line-height: 1.15 !important;
+        margin-bottom: clamp(8px, 2vh, 16px) !important;
+        text-align: center !important;
     }
-    .hero-slide__content--top-center .btn {
-        padding: clamp(8px, 2.5vw, 12px) clamp(18px, 5vw, 28px);
-        font-size: clamp(11px, 3vw, 14px);
+    /* Smaller button for mobile. */
+    .hero-slide .hero-slide__content .btn,
+    .hero-slide .hero-slide__content--top-center .btn {
+        padding: clamp(7px, 2.2vw, 10px) clamp(16px, 4.5vw, 24px) !important;
+        font-size: clamp(10px, 2.6vw, 13px) !important;
         letter-spacing: 0.08em;
+        margin-top: clamp(2px, 0.8vh, 8px) !important;
     }
     /* Slide 1 first-child btn pull — reset to 0 on mobile (desktop -160
        would shove the button above the heading at this scale). */
@@ -4464,22 +4500,34 @@ summary:focus-visible {
     .hero-slide:first-child .hero-slide__content--top-center h2 {
         margin-bottom: clamp(8px, 2vh, 16px);
     }
-    /* Features list (slides 2–5) — push to bottom of the flex column. */
+    /* Features list (slides 2–5) — LEFT-aligned. All icons line up on
+       same x position regardless of text width. Previously each li was
+       `width: max-content` + parent `align-items: center` → each item
+       centered individually, causing the staggered look the user flagged.
+       Now: align-items flex-start, each li full width, icon+text both
+       left-anchored at a fixed indent from the column edge. */
     .hero-features {
-        margin-top: auto;
-        gap: clamp(8px, 2vh, 16px);
-        align-items: stretch;
+        margin-top: clamp(12px, 2.5svh, 22px) !important;
+        gap: clamp(6px, 1.6vh, 12px);
+        align-items: flex-start !important;
         width: 100%;
+        padding: 0 0 0 clamp(20px, 8vw, 50px);
+        list-style: none;
     }
     .hero-features li {
-        font-size: clamp(12px, 3.4vw, 16px);
-        gap: clamp(8px, 3vw, 14px);
+        display: flex !important;
         flex-direction: row;
-        justify-content: center;
+        align-items: center;
+        justify-content: flex-start;
+        gap: clamp(8px, 3vw, 14px);
+        font-size: clamp(12px, 3.2vw, 15px);
+        width: 100%;
+        max-width: 100%;
+        text-align: left;
     }
     .hero-features .icon {
-        width: clamp(28px, 7vw, 36px);
-        height: clamp(28px, 7vw, 36px);
+        width: clamp(24px, 6vw, 32px);
+        height: clamp(24px, 6vw, 32px);
         flex-shrink: 0;
     }
 
