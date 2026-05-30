@@ -4276,6 +4276,13 @@ picture {
     .site-header { padding: 8px clamp(12px, 4vw, 18px); }
     .logo img    { height: clamp(22px, 5vw, 28px); }
 
+    /* Use svh (small viewport — always visible area) instead of vh so iOS
+       Safari's URL bar doesn't push hero content below the visible fold. */
+    .hero-slide,
+    .page-section {
+        min-height: 100svh;
+    }
+
     /* ------------------------------------------------------------------
        Carousel hero slides 1–5. Content centered, fluid type.
        Slide 1 uses --top-center (heading + button). Slides 2–5 also have
@@ -4334,29 +4341,53 @@ picture {
     }
 
     /* ------------------------------------------------------------------
-       Slide 6 — Standards. 4-col → 1-col stack. Drop vertical dashed
-       dividers (they read as ugly on a single column). */
-    .standards-title {
-        position: absolute;
-        top: clamp(48px, 10svh, 88px);
-        left: 50%;
-        transform: translateX(-50%);
-        text-align: center;
-        width: 90%;
-        font-size: clamp(28px, 7vw, 40px);
+       Slide 6 — Standards. KEY: drop absolute positioning entirely on
+       mobile. Section becomes a flex column; title + grid flow naturally.
+       Without this, the desktop's `position: absolute; top: 14%` (title)
+       and `bottom: 10%` (grid) overlap on a short phone viewport.
+       4-col grid → 1-col stack. No vertical dashed dividers (ugly stacked). */
+    .page-section--standards,
+    .hero-slide[data-type="standards"],
+    section:has(> .standards-grid) {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: clamp(20px, 4vh, 40px);
+        padding: clamp(60px, 12svh, 100px) 6% clamp(40px, 8svh, 80px);
+        min-height: 100svh;
+        height: auto;
     }
-    .standards-title__small { font-size: clamp(18px, 5vw, 26px); }
-    .standards-title__wordmark { height: clamp(22px, 6vw, 32px); }
-    .standards-grid {
-        grid-template-columns: 1fr;
-        gap: clamp(18px, 4vh, 28px);
-        bottom: clamp(40px, 8svh, 80px);
-        left: 6%;
-        right: 6%;
+    .standards-title {
+        position: static;
+        transform: none;
+        left: auto;
+        top: auto;
+        text-align: center;
         width: auto;
-        max-height: 60svh;
-        overflow-y: auto;
-        scrollbar-width: thin;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: clamp(2px, 0.6vh, 6px);
+    }
+    .standards-title__small {
+        font-size: clamp(20px, 6vw, 30px);
+        line-height: 1;
+    }
+    .standards-title__wordmark {
+        width: clamp(150px, 52vw, 240px);
+        height: auto;
+        margin: 0;
+    }
+    .standards-grid {
+        position: static;
+        transform: none;
+        left: auto;
+        right: auto;
+        bottom: auto;
+        width: auto;
+        max-width: none;
+        grid-template-columns: 1fr;
+        gap: clamp(18px, 3.5vh, 28px);
     }
     .standards-col {
         padding: 0;
@@ -4368,7 +4399,7 @@ picture {
         height: clamp(40px, 10vw, 56px);
         margin: 0 auto clamp(8px, 1.5vh, 12px);
     }
-    .standards-col__title { font-size: clamp(15px, 4vw, 19px); }
+    .standards-col__title { font-size: clamp(15px, 4vw, 19px); margin-bottom: clamp(6px, 1.2vh, 10px); }
     .standards-col__body  { font-size: clamp(13px, 3.4vw, 16px); }
 
     /* ------------------------------------------------------------------
@@ -4435,26 +4466,37 @@ picture {
     }
 
     /* ------------------------------------------------------------------
-       Slide 9 — Benefits. 4-col → 1-col stack. Title centered on top. */
+       Slide 9 — Benefits. Same restructure as Standards: drop absolute
+       positioning, become a flex column. 4-col grid → 1-col stack. */
+    .page-section--benefits,
+    section:has(> .benefits-grid) {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: clamp(20px, 4vh, 40px);
+        padding: clamp(60px, 12svh, 100px) 6% clamp(40px, 8svh, 80px);
+        min-height: 100svh;
+        height: auto;
+    }
     .benefits-title {
-        top: clamp(40px, 9svh, 80px);
-        left: 50%;
-        transform: translateX(-50%);
+        position: static;
+        transform: none;
+        left: auto;
+        top: auto;
         text-align: center;
-        width: 90%;
+        width: auto;
         font-size: clamp(26px, 7vw, 36px);
     }
     .benefits-grid {
+        position: static;
+        transform: none;
+        left: auto;
+        right: auto;
+        bottom: auto;
+        width: auto;
+        max-width: none;
         grid-template-columns: 1fr;
         gap: clamp(14px, 3vh, 22px);
-        bottom: clamp(40px, 8svh, 80px);
-        left: 6%;
-        right: 6%;
-        width: auto;
-        transform: none;
-        max-height: 64svh;
-        overflow-y: auto;
-        scrollbar-width: thin;
     }
     .benefit-card {
         padding: clamp(16px, 4vw, 22px) clamp(14px, 4vw, 18px);
