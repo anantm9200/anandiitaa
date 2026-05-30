@@ -4454,16 +4454,16 @@ summary:focus-visible {
     }
 
     /* ------------------------------------------------------------------
-       Carousel hero slides 1–5 content block. CRITICAL: only slide 1 has
-       `position: 'top-center'` in front-page.php data → only it gets the
-       `--top-center` modifier class. Slides 2–5 get the BARE
-       `.hero-slide__content` which inherits `top: 50%; translateY(-50%)`
-       (vertically-centered) from base. Mobile rule MUST target BOTH so
-       slides 2–5 also anchor to the TOP. !important defeats the multiple
-       tier blocks (max-height:800/620, max-width:767 legacy) that fight
-       for the same property. */
-    .hero-slide .hero-slide__content,
-    .hero-slide .hero-slide__content--top-center {
+       Carousel hero slides 1–5 content block. SCOPED TO .hero-track ONLY
+       so this doesn't match standalone .page-section.hero-slide elements
+       (which have their own --top-caption / --bottom-center captions that
+       should NOT be forced to top:60px).
+       Slide 1 has `position: 'top-center'` (gets --top-center modifier).
+       Slides 2–5 get the BARE .hero-slide__content (no modifier) which
+       inherits `top: 50%; translateY(-50%)` from base. This rule targets
+       BOTH so all carousel slides anchor to the TOP. */
+    .hero-track .hero-slide .hero-slide__content,
+    .hero-track .hero-slide .hero-slide__content--top-center {
         display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
@@ -4474,19 +4474,18 @@ summary:focus-visible {
         max-width: 92% !important;
         width: 92% !important;
         left: 50% !important;
-        transform: translateX(-50%) !important;  /* override base translateY(-50%) */
+        transform: translateX(-50%) !important;
         text-align: center !important;
     }
-    .hero-slide .hero-slide__content h2,
-    .hero-slide .hero-slide__content--top-center h2 {
+    .hero-track .hero-slide .hero-slide__content h2,
+    .hero-track .hero-slide .hero-slide__content--top-center h2 {
         font-size: clamp(22px, 6.5vw, 36px) !important;
         line-height: 1.15 !important;
         margin-bottom: clamp(8px, 2vh, 16px) !important;
         text-align: center !important;
     }
-    /* Smaller button for mobile. */
-    .hero-slide .hero-slide__content .btn,
-    .hero-slide .hero-slide__content--top-center .btn {
+    .hero-track .hero-slide .hero-slide__content .btn,
+    .hero-track .hero-slide .hero-slide__content--top-center .btn {
         padding: clamp(7px, 2.2vw, 10px) clamp(16px, 4.5vw, 24px) !important;
         font-size: clamp(10px, 2.6vw, 13px) !important;
         letter-spacing: 0.08em;
