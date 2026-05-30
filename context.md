@@ -267,6 +267,21 @@ The goal: a brand-new Claude session reading context.md + HANDOFF.md should have
 
 ---
 
+## Mobile responsiveness — how the user describes work
+
+When the user describes a mobile (or tablet) change, they're giving you the **LAYOUT only** ("2x2 grid instead of stack", "feature pills wrap", "title above content"). They are NOT giving you px values for fonts, gaps, padding, breakpoints. Their expectation: the change scales automatically across all phone sizes (iPhone SE 375 → iPhone Pro Max 430+ → Android phablets 480+) without per-device tuning.
+
+What this means for your CSS:
+- Single `@media (max-width: 700px)` block. NO sub-breakpoints inside.
+- Every size value uses `clamp(min, vw-or-svh-based-fluid, max)`.
+- Every grid uses `grid-template-columns` with `1fr`, `repeat(N, 1fr)`, or `auto-fit`/`minmax`.
+- NO fixed widths like `width: 375px`. Use `%`, `svw`, `clamp()`.
+- Heights via `svh` (not `vh`) so iOS Safari's URL bar doesn't push content off-screen.
+
+If you find yourself writing a 2nd breakpoint inside the mobile block, you're doing it wrong.
+
+---
+
 **Last updated**: 2026-05-29 (end of multi-week responsiveness + cache iteration session). Next chat starts on Recipes page build.
 
 ---
