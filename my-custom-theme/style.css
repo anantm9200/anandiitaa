@@ -1363,9 +1363,12 @@ picture {
     margin: 0 0 36px;
 }
 
-.social-slide__pills {
-    /* Hidden per client request — social CTA pills (Instagram, YouTube,
-       Facebook) on the homepage "For Those Who Choose Better" slide.
+.social-slide__pills,
+.site-footer__socials {
+    /* Hidden per client request:
+       - .social-slide__pills: social CTA pills on the homepage "For Those Who
+         Choose Better" slide (Instagram, YouTube, Facebook).
+       - .site-footer__socials: Instagram + YouTube icons in the footer brand col.
        Markup stays for SEO/structure; just visually removed. */
     display: none;
 }
