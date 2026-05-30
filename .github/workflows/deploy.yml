@@ -84,7 +84,9 @@ jobs:
           open sftp://$USER:$PASS@$HOST:$PORT;
 
           # Hostinger's anandiitaa.com theme directory.
-          cd /domains/anandiitaa.com/public_html/wp-content/themes/my-custom-theme;
+          # Full path needed — SFTP lands at user home (/home/u605618459/),
+          # not filesystem root. The /domains/ leading slash was failing.
+          cd /home/u605618459/domains/anandiitaa.com/public_html/wp-content/themes/my-custom-theme;
 
           # Step into the local theme folder inside the GitHub runner workspace.
           lcd my-custom-theme;

@@ -325,6 +325,7 @@ wp cache flush
 - `.github/workflows/deploy.yml` now has TWO jobs: `pantheon` + `hostinger`. Both run on push to `main`.
 - Hostinger uses SFTP password auth on port 65002.
 - GitHub secrets: `HOSTINGER_SFTP_HOST` (IP only, no `ftp://` prefix), `HOSTINGER_SFTP_USER` (just `u605618459`, no domain suffix), `HOSTINGER_SFTP_PASS`, `HOSTINGER_SFTP_PORT` (`65002`).
+- SFTP path gotcha: lftp lands at `/home/u605618459/` (user home), NOT filesystem root. Use the FULL path `/home/u605618459/domains/anandiitaa.com/public_html/wp-content/themes/my-custom-theme` in workflow `cd` commands — `/domains/...` will throw "No such file".
 - Pantheon job: REMOVE this after 2 weeks (target 2026-06-13).
 
 ### What didn't travel in the migration
