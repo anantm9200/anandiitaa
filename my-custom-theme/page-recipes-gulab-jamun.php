@@ -43,32 +43,32 @@ $method = array(
     array(
         'title' => 'Prepare the syrup',
         'body'  => 'In a pan, add Anandiitaa Sugar and water. Heat until the Anandiitaa Sugar dissolves completely. Add cardamom, saffron, and lemon juice. Simmer for 6–8 minutes until the syrup becomes slightly sticky. Switch off the flame and add rose water.',
-        'image' => '',
+        'image' => $gj_steps_dir . '/gj1.png',
     ),
     array(
         'title' => 'Make the dough',
         'body'  => 'In a bowl, crumble the khoya until smooth. Add maida, baking soda, and rava. Mix gently. Add milk little by little and knead into a soft, smooth dough. Do not over-knead.',
-        'image' => '',
+        'image' => $gj_steps_dir . '/gj2.png',
     ),
     array(
         'title' => 'Shape the jamuns',
         'body'  => 'Grease your palms and make small, smooth balls without cracks. Keep them slightly small because they will expand after frying and soaking.',
-        'image' => '',
+        'image' => $gj_steps_dir . '/gj3.png',
     ),
     array(
         'title' => 'Fry slowly',
         'body'  => 'Heat ghee or oil on low to medium flame. Fry the balls slowly until they turn golden brown from all sides. Keep stirring gently for even colour.',
-        'image' => '',
+        'image' => $gj_steps_dir . '/gj4.png',
     ),
     array(
         'title' => 'Soak in syrup',
         'body'  => 'Add the warm fried gulab jamuns into the warm Anandiitaa Sugar syrup. Let them soak for at least 1–2 hours.',
-        'image' => '',
+        'image' => $gj_steps_dir . '/gj5.png',
     ),
     array(
         'title' => 'Serve',
         'body'  => 'Serve warm or at room temperature. Garnish with chopped pistachios or almonds.',
-        'image' => '',
+        'image' => $gj_steps_dir . '/gj6.png',
     ),
 );
 

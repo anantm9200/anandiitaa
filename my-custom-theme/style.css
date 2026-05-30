@@ -4200,6 +4200,35 @@ summary:focus-visible {
 }
 .recipe-step__placeholder svg { width: 56px; height: 56px; opacity: 0.75; }
 
+/* Photo-backed recipes (Gulab Jamun / Gajar Ka Halwa / Choco Lava Cake) have
+   real step photos that vary in aspect (~5:4 to 4:3). Drop the base fixed
+   4/3 + object-fit:cover crop AND the tablet/mobile max-height cap so each
+   media box takes its image's own natural shape — the whole photo shows,
+   responsive per image, on every device (mac / desktop / tablet / mobile).
+
+   The `--reverse` variant is listed explicitly: the tablet block
+   (701–1100px) has a 2-class `.recipe-detail-slide--reverse .recipe-step__media`
+   max-height rule, so we need the 3-class form here to win on reverse steps. */
+.recipe-detail--gulab-jamun    .recipe-step__media,
+.recipe-detail--gulab-jamun    .recipe-detail-slide--reverse .recipe-step__media,
+.recipe-detail--gajar-ka-halwa .recipe-step__media,
+.recipe-detail--gajar-ka-halwa .recipe-detail-slide--reverse .recipe-step__media,
+.recipe-detail--choco-lava-cake .recipe-step__media,
+.recipe-detail--choco-lava-cake .recipe-detail-slide--reverse .recipe-step__media {
+    aspect-ratio: auto;
+    max-height: none;
+    height: auto;
+}
+.recipe-detail--gulab-jamun    .recipe-step__media img,
+.recipe-detail--gulab-jamun    .recipe-detail-slide--reverse .recipe-step__media img,
+.recipe-detail--gajar-ka-halwa .recipe-step__media img,
+.recipe-detail--gajar-ka-halwa .recipe-detail-slide--reverse .recipe-step__media img,
+.recipe-detail--choco-lava-cake .recipe-step__media img,
+.recipe-detail--choco-lava-cake .recipe-detail-slide--reverse .recipe-step__media img {
+    height: auto;
+    object-fit: contain;
+}
+
 /* ---- Slide 9: tip ---- */
 .recipe-tip { max-width: 720px; }
 .recipe-tip__badge {

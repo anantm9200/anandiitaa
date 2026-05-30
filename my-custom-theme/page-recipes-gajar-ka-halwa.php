@@ -31,32 +31,32 @@ $method = array(
     array(
         'title' => 'Prepare the carrots',
         'body'  => 'Wash, peel, and grate the carrots. Keep them aside.',
-        'image' => '',
+        'image' => $gkh_steps_dir . '/gkh1.png',
     ),
     array(
         'title' => 'Cook the carrots and milk',
         'body'  => 'In a heavy-bottomed pan, add the grated carrots and milk. Cook on medium flame, stirring occasionally until the milk reduces significantly and the carrots become soft.',
-        'image' => '',
+        'image' => $gkh_steps_dir . '/gkh2.png',
     ),
     array(
         'title' => 'Add Anandiitaa Sugar',
         'body'  => 'Add Anandiitaa Sugar and mix well. Continue cooking until the mixture thickens and the moisture evaporates.',
-        'image' => '',
+        'image' => $gkh_steps_dir . '/gkh3.png',
     ),
     array(
         'title' => 'Add ghee and flavouring',
         'body'  => 'Add ghee, cardamom powder, and saffron strands. Stir continuously and cook until the halwa becomes rich, glossy, and starts leaving the sides of the pan.',
-        'image' => '',
+        'image' => $gkh_steps_dir . '/gkh4.png',
     ),
     array(
         'title' => 'Add dry fruits',
         'body'  => 'Add chopped almonds, cashews, and raisins. Mix well and cook for another 2–3 minutes.',
-        'image' => '',
+        'image' => $gkh_steps_dir . '/gkh5.png',
     ),
     array(
         'title' => 'Serve',
         'body'  => 'Serve warm and garnish with additional chopped nuts if desired.',
-        'image' => '',
+        'image' => $gkh_steps_dir . '/gkh6.png',
     ),
 );
 

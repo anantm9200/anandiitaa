@@ -33,37 +33,37 @@ $method = array(
     array(
         'title' => 'Prepare the moulds',
         'body'  => 'Grease small ramekins or cupcake moulds with butter and dust them lightly with cocoa powder or flour. Keep aside.',
-        'image' => '',
+        'image' => $clc_steps_dir . '/clc1.png',
     ),
     array(
         'title' => 'Melt chocolate and butter',
         'body'  => 'In a bowl, add chopped dark chocolate and butter. Melt using a double boiler or microwave until smooth. Let it cool slightly.',
-        'image' => '',
+        'image' => $clc_steps_dir . '/clc2.png',
     ),
     array(
         'title' => 'Add Anandiitaa Sugar',
         'body'  => 'Add powdered Anandiitaa Sugar to the melted chocolate mixture and mix until smooth.',
-        'image' => '',
+        'image' => $clc_steps_dir . '/clc3.png',
     ),
     array(
         'title' => 'Prepare the batter',
         'body'  => 'Add maida, cocoa powder, baking powder, and salt. Mix gently. Add milk and vanilla essence to make a smooth, thick batter.',
-        'image' => '',
+        'image' => $clc_steps_dir . '/clc4.png',
     ),
     array(
         'title' => 'Fill the moulds',
         'body'  => 'Pour the batter into the prepared moulds, filling them about ¾ full.',
-        'image' => '',
+        'image' => $clc_steps_dir . '/clc5.png',
     ),
     array(
         'title' => 'Bake',
         'body'  => 'Bake in a preheated oven at 200°C for 8–10 minutes. The edges should be set, while the centre should remain soft.',
-        'image' => '',
+        'image' => $clc_steps_dir . '/clc6.png',
     ),
     array(
         'title' => 'Serve immediately',
         'body'  => 'Let the cakes rest for 1 minute, then gently unmould and serve warm. The centre should flow out like molten chocolate when cut.',
-        'image' => '',
+        'image' => $clc_steps_dir . '/clc7.png',
     ),
 );
 
