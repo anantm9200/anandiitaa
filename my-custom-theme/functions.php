@@ -9,6 +9,9 @@
  *   2) source of truth for the SW's CACHE_VERSION (service-worker.js).
  *      Bumping it ships a new SW that purges ALL caches on activate —
  *      use for emergency global flushes only.
+ *
+ * Deploy: Hostinger SFTP (primary) + Pantheon SFTP (2-week parallel).
+ *         See .github/workflows/deploy.yml. Cache flush recipe in context.md §11.
  */
 define( 'ANANDIITAA_VER', '31' );
 

@@ -268,3 +268,73 @@ The goal: a brand-new Claude session reading context.md + HANDOFF.md should have
 ---
 
 **Last updated**: 2026-05-29 (end of multi-week responsiveness + cache iteration session). Next chat starts on Recipes page build.
+
+---
+
+## 11. Hostinger migration — done 2026-05-30
+
+Site moved from Pantheon Dev → **Hostinger Cloud (anandiitaa.com)**. Pantheon kept alive 2 weeks as fallback. Migration was manual (theme zip + DB .sql via SFTP / phpMyAdmin) because AIOM 7.x paywalled the >100MB import and we declined the v6.77 downgrade.
+
+### Server paths (Hostinger)
+- WP root: `/home/u605618459/domains/anandiitaa.com/public_html/`
+- Theme: `…/wp-content/themes/my-custom-theme/`
+- DB name: `u605618459_by3yR` (find via `grep DB_NAME wp-config.php`)
+- `~/public_html` symlinks to `domains/liaisonit.in/public_html` — DON'T use the symlink. Use the explicit `domains/anandiitaa.com/public_html/` path.
+
+### SSH access
+```bash
+ssh -p 65002 u605618459@148.135.140.158
+```
+Then `cd /home/u605618459/domains/anandiitaa.com/public_html`.
+
+### Theme naming gotcha (will trip you up again)
+- Folder name: `my-custom-theme`
+- `style.css` declares: `Theme Name: Anandiitaa Custom Theme!`
+- wp-admin shows the HUMAN name, wp-cli + DB use the FOLDER name. They're THE SAME theme — not two themes.
+
+### Cache layers on Hostinger (and how to flush each)
+Hostinger has its own `hcdn` edge cache. Symptom: mobile/desktop show different versions or stale render after deploy.
+
+```bash
+# Full server-side cache flush after deploy or content change:
+cd /home/u605618459/domains/anandiitaa.com/public_html && wp cache flush && wp transient delete --all
+
+# Then in hPanel → Performance / Caching → Purge All  (if button exists)
+```
+
+Verify edge isn't caching HTML:
+```bash
+curl -sI https://anandiitaa.com/ | grep -i "cache"
+# Want to see:
+#   cache-control: no-store, must-revalidate, max-age=0   ← our PHP header
+#   x-hcdn-cache-status: DYNAMIC                          ← Hostinger correctly NOT caching
+```
+
+If `x-hcdn-cache-status: HIT` shows up → edge IS caching. Purge in hPanel and check again.
+
+### Theme activation pattern
+WP-admin "Activate" click was silently failing post-migration (kept reverting to Twenty Twenty-Five). Force-activate via wp-cli is reliable:
+```bash
+cd /home/u605618459/domains/anandiitaa.com/public_html
+wp theme activate my-custom-theme
+wp rewrite flush --hard
+wp cache flush
+```
+
+### Deploy pipeline (post-migration)
+- `.github/workflows/deploy.yml` now has TWO jobs: `pantheon` + `hostinger`. Both run on push to `main`.
+- Hostinger uses SFTP password auth on port 65002.
+- GitHub secrets: `HOSTINGER_SFTP_HOST` (IP only, no `ftp://` prefix), `HOSTINGER_SFTP_USER` (just `u605618459`, no domain suffix), `HOSTINGER_SFTP_PASS`, `HOSTINGER_SFTP_PORT` (`65002`).
+- Pantheon job: REMOVE this after 2 weeks (target 2026-06-13).
+
+### What didn't travel in the migration
+- `complete.anant@hotmail.com` admin user — wiped, recreated manually.
+- Media Library (we skipped uploads — theme doesn't reference `wp-content/uploads/`). Re-add via wp-admin if needed.
+- Wordfence — must reinstall + reconfigure post-migration.
+- Hostinger's default plugins (Hostinger AI / Easy Onboarding / Reach / Tools) — wiped; Hostinger may auto-reinstall.
+
+### Migration artifacts to clean
+- `wp-content/themes/my-custom-theme.zip` (595MB) — keep till you're sure migration sticks, then `rm`.
+- `public_html/anandiitaa-local.sql` (1.5MB) — same.
+- `wp-content/ai1wm-backups/*.wpress` (866MB orphan) — keep as backup or `rm`.
+- Drop `max_execution_time` back to 300 in hPanel PHP config (5000 was for the import).
