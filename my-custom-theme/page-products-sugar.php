@@ -195,7 +195,7 @@ $bust = 'anandiitaa_bust';
             ),
             array(
                 'title' => 'Gajar Ka Halwa',
-                'image' => $tpl . '/assets/images/products/sugar/recipes/gulab-jamun.png',
+                'image' => $tpl . '/assets/images/products/sugar/recipes/gajar-ka-halwa.png',
                 'body'  => 'Gajar Ka Halwa is a classic North Indian dessert that brings warmth, richness, and festive flavour to every celebration. Made with fresh carrots, milk, and pure Anandiitaa Sugar&hellip;',
                 'time'  => '45-60mins',
                 'level' => 'Easy',
