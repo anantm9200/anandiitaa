@@ -4673,7 +4673,10 @@ summary:focus-visible {
          (viewport - padding - gaps)/4 of height. Cards auto-shrink to fit.
        - Card uses 2-col grid (copy left, packet right). Packet image with
          object-fit: contain scales to card height naturally. */
-    .page-section--products {
+    /* IMPORTANT: section's actual class is `.page-section--products-grid`
+       (from front-page.php `type: 'products-grid'`), NOT --products.
+       Selector mismatch was making all my products mobile rules NO-OP. */
+    .page-section--products-grid {
         height: 100svh;
         min-height: 100svh;
         display: flex;
