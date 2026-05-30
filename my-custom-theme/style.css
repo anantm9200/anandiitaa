@@ -4460,11 +4460,14 @@ picture {
     }
 
     /* ------------------------------------------------------------------
-       Slide 8 — Products grid. 2x2 → 1-col stack. Card padding & packet
-       shrink for phone width. Cards become tall stacks (image right, copy left
-       was tight at this width; full-width card with packet floating right is
-       more readable). */
-    .product-slide--products,
+       Slide 8 — Products grid. Mobile restructure:
+       - 2x2 desktop grid → 1-col stack.
+       - Drop card aspect-ratio + image absolute-positioning (those were
+         breaking the card box and pushing arrow outside it).
+       - Each card becomes a 2-col grid: copy left, packet right.
+       - Packet sized to card height naturally — no overflow.
+       - Arrow lives inside body's bottom row, beside sizes. Grouped with
+         the card it belongs to, not a separate floating element. */
     .page-section--products {
         padding: clamp(40px, 10svh, 80px) 0;
     }
@@ -4476,29 +4479,77 @@ picture {
         margin: 0 auto;
     }
     .product-card {
-        aspect-ratio: 2 / 1.05;
-        border-radius: clamp(28px, 8vw, 44px);
-        padding: clamp(20px, 5vw, 28px) clamp(18px, 5vw, 24px) clamp(16px, 4vw, 20px);
+        aspect-ratio: auto;
+        height: auto;
+        min-height: clamp(170px, 22svh, 220px);
+        border-radius: clamp(24px, 7vw, 40px);
+        padding: clamp(16px, 4.5vw, 22px) clamp(14px, 4vw, 20px);
+        display: grid;
+        grid-template-columns: 1.15fr 1fr;
+        column-gap: clamp(8px, 2vw, 14px);
+        align-items: stretch;
+        overflow: hidden;
+    }
+    .product-card__body {
+        max-width: none;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: clamp(8px, 2vh, 12px);
+    }
+    .product-card__top {
+        display: flex;
+        flex-direction: column;
+        gap: clamp(4px, 1vh, 8px);
+    }
+    .product-card__bottom {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: clamp(6px, 2vw, 12px);
     }
     .product-card__title {
-        font-size: clamp(17px, 5vw, 22px);
-        margin-bottom: clamp(8px, 2vh, 14px);
+        font-size: clamp(16px, 4.6vw, 20px);
+        margin-bottom: 0;
+        line-height: 1.1;
     }
-    .product-card__desc { font-size: clamp(12px, 3.4vw, 15px); }
-    .product-card__sizes-label { font-size: clamp(9px, 2.6vw, 11px); }
-    .product-card__sizes-value { font-size: clamp(12px, 3.4vw, 15px); }
+    .product-card__desc {
+        font-size: clamp(11px, 3vw, 13px);
+        line-height: 1.3;
+    }
+    .product-card__sizes {
+        margin-bottom: 0;
+        gap: clamp(2px, 0.5vh, 4px);
+    }
+    .product-card__sizes-label { font-size: clamp(8px, 2.4vw, 10px); }
+    .product-card__sizes-value { font-size: clamp(11px, 3vw, 13px); }
     .product-card__arrow {
-        width: clamp(38px, 10vw, 48px);
-        height: clamp(38px, 10vw, 48px);
+        width: clamp(32px, 8.5vw, 42px);
+        height: clamp(32px, 8.5vw, 42px);
+        flex-shrink: 0;
     }
     .product-card__arrow svg {
-        width: clamp(16px, 4.5vw, 20px);
-        height: clamp(16px, 4.5vw, 20px);
+        width: clamp(14px, 4vw, 18px);
+        height: clamp(14px, 4vw, 18px);
     }
+    /* Image: drop the absolute floating-packet behavior on mobile. Inline
+       it into the card's grid right column so it sits inside the card. */
     .product-card__image {
-        max-width: 44%;
-        max-height: 125%;
-        right: 4%;
+        position: static;
+        right: auto;
+        bottom: auto;
+        width: 100%;
+        height: 100%;
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        object-position: center;
+    }
+    /* Hover lift is desktop-feel; nuke transform/scale on mobile. */
+    .product-card:hover .product-card__image,
+    .product-card:hover .product-card__arrow {
+        transform: none;
     }
 
     /* ------------------------------------------------------------------
