@@ -358,3 +358,101 @@ wp cache flush
 - `public_html/anandiitaa-local.sql` (1.5MB) — same.
 - `wp-content/ai1wm-backups/*.wpress` (866MB orphan) — keep as backup or `rm`.
 - Drop `max_execution_time` back to 300 in hPanel PHP config (5000 was for the import).
+
+---
+
+## 12. Mobile responsiveness pass — May 30 session
+
+### What's done
+- **Single mobile breakpoint**: `@media (max-width: 700px)` covers everything mobile. No sub-breakpoints inside. All sizes are `clamp(min, vw/svh-based, max)` so they scale fluidly iPhone SE 375 → Pro Max 430+ → small Android 360.
+- **Hamburger menu**: `assets/js/mobile-menu.js` toggles a slide-in drawer from the right with backdrop blur. Markup in [header.php](my-custom-theme/header.php) — `.nav-toggle` button + `.nav-backdrop` div outside the header. Drawer is `.main-navigation` repositioned via mobile-only CSS. Hamburger morphs to X via `[aria-expanded="true"]` bar transforms.
+- **Phone tier images**: 1-12.png mobile portrait images (375x667) at `images/home/phone/` + `images/home/phone/sections/` for homepage. New jaggery hero phone image at `assets/images/products/jaggery/phone/jaggery-slide-1.png`.
+- **Per-slide mobile layout**:
+  - Carousel slides 1-5: flex column anchored top
+  - Slide 6 (Standards): 2x2 grid + flex flow (drop absolute positioning)
+  - Slide 7 (News): captions pinned via `top: calc(100svh - ...)` so they always sit at top + bottom edges of viewport regardless of section's 760px min-height
+  - Slide 8 (Products): grid template `repeat(4, minmax(0, 1fr))` — 4 cards share the viewport height
+  - Slide 9 (Benefits): 2x2 grid + flex flow + bg image scale 1.5x to hide baked-in white edges
+  - Slide 10 (Reviews): 1-col card stack
+  - Slide 11 (Social): pills wrap
+  - Footer: flex column (was grid with orphan `grid-column: 3/4` rules pushing children off-screen)
+
+### Playwright is your best friend for cascade-debugging
+
+When a mobile rule "doesn't seem to apply", stop guessing — run Playwright. The patterns that bit us this session:
+
+1. **Selector mismatch**: I wrote `.page-section--products` but the actual class from `type: 'products-grid'` was `.page-section--products-grid`. Rules silently did nothing. Always verify the actual rendered class with Playwright.
+2. **Selector collision**: I added `.hero-slide .hero-slide__content` with `!important` for carousel slides 2-5. That ALSO matched the news slide's bottom caption (which has both `.hero-slide__content` and `.hero-slide__content--bottom-center` AND lives inside `.hero-slide`). Fix: scope to `.hero-track .hero-slide ...` instead.
+3. **Tier override fights**: `@media (max-height: 800px)`, `(max-height: 620px)`, legacy `(max-width: 767px)` blocks all override `top` on the same element. Source-order wins, but it's confusing to trace. Use `!important` when defending a mobile rule from these.
+
+Playwright recipe:
+```python
+from playwright.sync_api import sync_playwright
+with sync_playwright() as p:
+    b = p.chromium.launch(headless=True)
+    ctx = b.new_context(viewport={"width":375,"height":667},
+                        user_agent="Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) Mobile/15E148 Safari/604.1",
+                        service_workers="block")
+    page = ctx.new_page()
+    page.goto("https://anandiitaa.com/", wait_until="networkidle")
+    page.wait_for_timeout(2000)  # let fonts + reveal anims settle
+    # ... evaluate JS to get getComputedStyle on the element
+```
+Always check the **deployed** CSS via `curl https://anandiitaa.com/wp-content/themes/my-custom-theme/style.css` to confirm what's actually live (not what's in your local edit).
+
+### Two `@media (max-width: 700px)` blocks exist
+
+There are TWO mobile blocks in `style.css`:
+1. **Line ~3339**: legacy `(max-width: 700px)` (older mobile stub).
+2. **Line ~4355**: NEW Plan-B mobile block — this is where you add things.
+
+Always add new mobile rules to the SECOND block (line ~4355). The first block is small + mostly empty; don't duplicate.
+
+### Carousel container height bug (legacy 70vh)
+
+The base CSS sets `.hero-carousel { height: 100vh; min-height: 560px }`. The legacy `@media (max-width: 767px)` block at line ~2730 overrides to `height: 70vh; min-height: 480px` — making the carousel SHORTER than the slides inside it, clipping the bottom 30vh of the bg image. Fix in mobile block: `.hero-carousel { height: 100svh !important; min-height: 100svh !important }`.
+
+### Slides 2-5 use BARE .hero-slide__content (no modifier)
+
+Only slide 1 has `'position' => 'top-center'` in front-page.php data → only slide 1 gets `.hero-slide__content--top-center`. Slides 2-5 get bare `.hero-slide__content` which inherits `top: 50%; transform: translateY(-50%)` from base. **Mobile rules must target BOTH classes**:
+```css
+.hero-track .hero-slide .hero-slide__content,
+.hero-track .hero-slide .hero-slide__content--top-center { ... }
+```
+And **scope to .hero-track** so the rule doesn't bleed onto standalone .page-section.hero-slide captions.
+
+### Tap highlight + focus ring (global)
+
+Global rule near top of style.css kills `-webkit-tap-highlight-color` on all interactive elements (`a`, `button`, `[role="button"]`, inputs, `summary`, `label`). Restores `:focus-visible` outline (2px maroon) for keyboard users only. Don't add per-element tap-highlight overrides — global covers any new interactive.
+
+### Footer logo is an empty `<a>` with `-webkit-mask`
+
+`.site-footer__logo` is `<a class="site-footer__logo">` with NO `<img>` inside. Background-color + `-webkit-mask: url(wordmark.png)` paints the logo. **Requires explicit width AND height** on mobile — `height: auto` collapses to 0 (no content). Use `height: clamp(28px, 8vw, 40px)` + `mask-position: center`.
+
+### Slide 9 (Benefits) bg image — desktop sectioned vs mobile full-bleed
+
+The new `9-jaggery.jpg` is a 1600×533 photo with near-white baked-in edges. Treatment differs by viewport:
+- **Mobile** (`@media max-width: 700px`): explicit override sets bg `inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center bottom` + `transform: scale(1.5)` to push the baked-in white edges off-screen.
+- **Desktop / tablet** (`@media min-width: 701px`): bg constrained to bottom 35% strip via `top: auto; bottom: 0; height: 35%`. Cards + title float in upper 65% cream area.
+
+### Image file naming swap (battasa.png ↔ gulab-jamun.png)
+
+In `assets/images/products/sugar/recipes/`, the files `battasa.png` and `gulab-jamun.png` got their content swapped. `battasa.png` actually shows a Gulab Jamun photo; `gulab-jamun.png` shows a Battasa photo. When wiring new recipe pages, use the file that has the correct visual content, not the one with the matching filename. The Gulab Jamun recipe page uses `battasa.png` (correct gulab jamun visual).
+
+### Hostinger CDN gotchas
+
+- `x-hcdn-cache-status: DYNAMIC` in response headers = good, our `no-store` is respected.
+- `HIT` would mean edge is caching — purge in hPanel.
+- After every meaningful change run: `cd ANANDIITAA_PUBLIC_HTML && wp cache flush && wp transient delete --all`.
+- Mobile browser has its OWN cache — hard refresh via DevTools Application → Clear site data.
+
+### GitHub Action SFTP gotchas
+
+- Hostinger blocks repeated failed auth attempts by IP. Failed deploys can leave the runner IP banned 15-30 min. Just wait + re-run.
+- `lftp` retries bumped to 10 with exponential backoff (5s → 60s) — handles transient flakiness but not hard IP bans.
+- SFTP from Mac confirms creds are fine: `sftp -P 65002 u605618459@148.135.140.158`.
+- If repeated failures, switch to Hostinger native Git Integration (hPanel → Advanced → Git) instead of GitHub Action SFTP. Pull-based, avoids IP issues.
+
+---
+
+**Last updated**: 2026-05-30 (end of mobile responsiveness pass). Migration complete on Hostinger. Next chat continues mobile polish + still-pending: WP_DEBUG off, Wordfence reinstall, max_execution_time → 300, delete migration .zip/.sql/.wpress artifacts, possibly remove Pantheon deploy job after 2026-06-13.

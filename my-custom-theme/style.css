@@ -4525,16 +4525,15 @@ summary:focus-visible {
         transform: none !important;
     }
     /* Features rail — RIGHT side, vertical column, shrunk text + icons.
-       Moved UP (top reduced ~15px) and RIGHTWARD (right reduced from 3%
-       → 1%) so the bottom feature "Contains Vital Minerals" sits above
-       the packet image's top edge instead of overlapping it. Gap tightened
-       too so the column packs more vertically. */
+       Top pulled further up (clamp(95, 15svh, 140) — was 115/18svh/165)
+       and right pushed flush against edge (right: 0). Tightens the column
+       so the third feature clears the packet image entirely. */
     .product-features {
         display: flex !important;
         flex-direction: column;
         position: absolute;
-        top: clamp(115px, 18svh, 165px) !important;
-        right: 1% !important;
+        top: clamp(95px, 15svh, 140px) !important;
+        right: 0 !important;
         left: auto !important;
         transform: none !important;
         width: clamp(120px, 38vw, 170px) !important;
@@ -4542,7 +4541,7 @@ summary:focus-visible {
         gap: clamp(8px, 2vh, 14px) !important;
         z-index: 6;
         margin: 0;
-        padding: 0;
+        padding: 0 clamp(2px, 1vw, 6px) 0 0;
         list-style: none;
     }
     .product-features li {
