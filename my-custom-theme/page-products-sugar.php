@@ -157,7 +157,7 @@ $bust = 'anandiitaa_bust';
             ),
             array(
                 'image'     => $tpl . '/assets/images/products/packets/fine-grain.png',
-                'available' => '1kg | 5kg | 20kg',
+                'available' => '1kg | 5kg | 25kg',
                 'title'     => 'Fine Grain Sugar',
             ),
         );

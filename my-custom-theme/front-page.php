@@ -151,7 +151,7 @@
                 array(
                     'title' => 'Fine Grain Sugar',
                     'desc'  => 'It dissolves smoothly, leaving a balanced sweetness behind.',
-                    'sizes' => '1 KG | 5 KG | 20 KG',
+                    'sizes' => '1 KG | 5 KG | 25 KG',
                     'href'  => '/products/sugar',
                     'image' => $tpl . '/assets/images/products/packets/fine-grain.png',
                     'color' => '#1f3a8e',

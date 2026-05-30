@@ -1364,9 +1364,10 @@ picture {
 }
 
 .social-slide__pills {
-    display: flex;
-    flex-wrap: nowrap;
-    gap: 14px;
+    /* Hidden per client request — social CTA pills (Instagram, YouTube,
+       Facebook) on the homepage "For Those Who Choose Better" slide.
+       Markup stays for SEO/structure; just visually removed. */
+    display: none;
 }
 
 .social-pill {
@@ -4474,7 +4475,10 @@ picture {
         min-height: 100svh;
         display: flex;
         flex-direction: column;
-        padding: clamp(20px, 4svh, 40px) 0;
+        /* Top padding covers the fixed header (~46–60px) + breathing room.
+           Without it, top of section sits BEHIND the fixed header and the
+           first card's top edge clips. */
+        padding: clamp(64px, 11svh, 90px) 0 clamp(20px, 4svh, 40px);
     }
     .products-grid {
         grid-template-columns: 1fr;
