@@ -4354,18 +4354,17 @@ picture {
 
     /* ------------------------------------------------------------------
        Slide 6 — Standards. KEY: drop absolute positioning entirely on
-       mobile. Section becomes a flex column; title + grid flow naturally.
-       Without this, the desktop's `position: absolute; top: 14%` (title)
-       and `bottom: 10%` (grid) overlap on a short phone viewport.
-       4-col grid → 1-col stack. No vertical dashed dividers (ugly stacked). */
+       mobile. Section becomes a flex column; title + grid flow naturally
+       anchored at TOP (justify-content: flex-start). The bg sticker's
+       busy bottom (sugar bowl + cane) lives in the empty space below. */
     .page-section--standards,
     .hero-slide[data-type="standards"],
     section:has(> .standards-grid) {
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        gap: clamp(20px, 4vh, 40px);
-        padding: clamp(60px, 12svh, 100px) 6% clamp(40px, 8svh, 80px);
+        justify-content: flex-start;
+        gap: clamp(16px, 3vh, 28px);
+        padding: clamp(28px, 6svh, 60px) 6% clamp(40px, 8svh, 80px);
         min-height: 100svh;
         height: auto;
     }
@@ -4490,14 +4489,15 @@ picture {
 
     /* ------------------------------------------------------------------
        Slide 9 — Benefits. Same restructure as Standards: drop absolute
-       positioning, become a flex column. 4-col grid → 1-col stack. */
+       positioning, flex column anchored at top. 4-col → 2x2 grid for
+       parity with Standards. */
     .page-section--benefits,
     section:has(> .benefits-grid) {
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        gap: clamp(20px, 4vh, 40px);
-        padding: clamp(60px, 12svh, 100px) 6% clamp(40px, 8svh, 80px);
+        justify-content: flex-start;
+        gap: clamp(16px, 3vh, 28px);
+        padding: clamp(28px, 6svh, 60px) 6% clamp(40px, 8svh, 80px);
         min-height: 100svh;
         height: auto;
     }
@@ -4518,8 +4518,8 @@ picture {
         bottom: auto;
         width: auto;
         max-width: none;
-        grid-template-columns: 1fr;
-        gap: clamp(14px, 3vh, 22px);
+        grid-template-columns: repeat(2, 1fr);
+        gap: clamp(12px, 2.6vh, 20px) clamp(10px, 3vw, 18px);
     }
     .benefit-card {
         padding: clamp(16px, 4vw, 22px) clamp(14px, 4vw, 18px);
