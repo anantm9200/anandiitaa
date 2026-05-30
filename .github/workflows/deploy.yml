@@ -1,4 +1,4 @@
-name: Deploy Theme to Pantheon!
+name: Deploy Theme (Pantheon + Hostinger)
 
 on:
   push:
@@ -9,7 +9,11 @@ on:
       - '.gitignore'
 
 jobs:
-  deploy:
+  # =====================================================================
+  # PANTHEON DEPLOY — keep alive for 2-week parallel period post-migration.
+  # Remove this job once Hostinger is fully validated.
+  # =====================================================================
+  pantheon:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -30,7 +34,7 @@ jobs:
           # Install lftp on the runner
           sudo apt-get update
           sudo apt-get install lftp -y
-          
+
           # Execute the mirror command with legacy RSA support
           lftp -c "
           set net:max-retries 1;
@@ -38,13 +42,62 @@ jobs:
           set sftp:auto-confirm yes;
           set sftp:connect-program 'ssh -a -x -i ~/.ssh/id_rsa -o BatchMode=yes -o StrictHostKeyChecking=no -o PubkeyAcceptedKeyTypes=+ssh-rsa';
           open sftp://${{ secrets.PANTHEON_USERNAME }}:x@${{ secrets.PANTHEON_HOST }}:2222;
-          
+
           # Explicitly target the remote themes folder
           cd /code/wp-content/themes/my-custom-theme;
-          
+
           # Locally step into the nested theme folder inside the GitHub runner
           lcd my-custom-theme;
-          
+
           # Mirror the contents of that inner folder directly to Pantheon
           mirror -R --parallel=5 --exclude-glob .git/ --exclude-glob .github/ --exclude .gitignore --exclude docker-compose.yml ./ ./;
+          "
+
+  # =====================================================================
+  # HOSTINGER DEPLOY — primary production target post-migration.
+  # Uses password auth over SFTP (Hostinger's standard). Port is typically
+  # 65002 (set as repo secret). Path points directly at the theme folder
+  # under the anandiitaa.com domain.
+  # =====================================================================
+  hostinger:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install lftp
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y lftp
+
+      - name: Deploy theme via SFTP
+        env:
+          HOST: ${{ secrets.HOSTINGER_SFTP_HOST }}
+          PORT: ${{ secrets.HOSTINGER_SFTP_PORT }}
+          USER: ${{ secrets.HOSTINGER_SFTP_USER }}
+          PASS: ${{ secrets.HOSTINGER_SFTP_PASS }}
+        run: |
+          lftp -c "
+          set net:max-retries 2;
+          set net:timeout 15;
+          set sftp:auto-confirm yes;
+          open sftp://$USER:$PASS@$HOST:$PORT;
+
+          # Hostinger's anandiitaa.com theme directory.
+          cd /domains/anandiitaa.com/public_html/wp-content/themes/my-custom-theme;
+
+          # Step into the local theme folder inside the GitHub runner workspace.
+          lcd my-custom-theme;
+
+          # Mirror only the theme. Exclude design-refs/source (cruft we kept
+          # out of the migration export) and dev files that don't belong in prod.
+          mirror -R --parallel=5 \\
+            --exclude-glob .git/ \\
+            --exclude-glob .github/ \\
+            --exclude-glob .DS_Store \\
+            --exclude-glob assets/design-refs/ \\
+            --exclude-glob assets/images/source/ \\
+            --exclude .gitignore \\
+            --exclude docker-compose.yml \\
+            ./ ./;
           "
