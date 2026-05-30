@@ -5226,6 +5226,105 @@ summary:focus-visible {
         font-size: clamp(13px, 3.6vw, 15px);
         line-height: 1.42;
     }
+
+    /* ------------------------------------------------------------------
+       BENEFITS ACCORDION (jaggery/sugar slide 3 — "Health Benefits")
+
+       Desktop .benefit-content is a 2-col grid: image minmax(280px,360px)
+       + body 1fr, with 94px left padding to clear the number column. On a
+       375px phone the image column alone (≥280px + 94px pad) overflows the
+       row → image shoved right, body squeezed to ~0 width (invisible).
+
+       Mobile: single column. Image on top, body below. Drop the number-
+       column padding so content uses the full width. */
+    .product-slide--benefits {
+        min-height: 100svh;
+        padding: clamp(70px, 14svh, 96px) clamp(16px, 5vw, 24px) clamp(40px, 8svh, 60px);
+    }
+    .benefits-title {
+        margin-bottom: clamp(20px, 5vw, 32px);
+        padding-bottom: clamp(14px, 4vw, 22px);
+    }
+
+    /* Tighter summary row: number / title / caret. auto-width number column
+       so it doesn't reserve a fat 72px gutter on a narrow screen. */
+    .benefit-summary {
+        grid-template-columns: auto 1fr auto;
+        gap: clamp(12px, 4vw, 20px);
+        padding: clamp(16px, 4.5vw, 24px) 4px;
+    }
+
+    .benefit-content {
+        grid-template-columns: 1fr;
+        gap: clamp(12px, 4vw, 18px);
+        align-items: stretch;
+        padding: 0 4px clamp(20px, 6vw, 28px);
+    }
+    .benefit-content__body {
+        max-width: none;
+        font-size: clamp(13px, 3.7vw, 15px);
+        line-height: 1.5;
+    }
+
+    /* ------------------------------------------------------------------
+       VARIANTS SLIDE (jaggery/sugar slide 4 — Powder + Block cards)
+
+       Desktop: 2-col grid (120px gap) where each card has an ABSOLUTE packet
+       image overhanging (height clamp(520px,60vh,700px)) + ABSOLUTE body
+       anchored bottom-left (right:38%, title white-space:nowrap). On a 375px
+       phone both cards + their oversized images cram and overflow — image
+       spills sideways, "AVAILABLE IN" + title get clipped.
+
+       Mobile: single column. Each card flows top→bottom: packet image (static,
+       shrunk, centered) then body (static, centered). Title may wrap. */
+    .product-slide--variants {
+        min-height: 100svh;
+        align-items: stretch;
+        padding: clamp(70px, 14svh, 96px) clamp(16px, 5vw, 24px) clamp(40px, 8svh, 60px);
+    }
+    .variants-grid {
+        grid-template-columns: 1fr;
+        gap: clamp(28px, 8vw, 44px);
+        max-width: 420px;
+        margin: 0 auto;
+    }
+    .variant-card {
+        min-height: 0;
+        padding: clamp(22px, 6vw, 34px);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    /* Image: out of absolute flow, scaled to the card, centered on top. */
+    .variant-card__image {
+        position: static;
+        right: auto;
+        bottom: auto;
+        height: clamp(220px, 54vw, 300px);
+        max-width: 82%;
+        margin: 0 auto clamp(12px, 4vw, 20px);
+    }
+    .variant-card:hover .variant-card__image { transform: translateY(-6px); }
+
+    /* Body: static, full width, centered. */
+    .variant-card__body {
+        position: static;
+        bottom: auto;
+        left: auto;
+        right: auto;
+        width: 100%;
+    }
+    .variant-card__avail {
+        align-items: center;
+        margin-bottom: clamp(10px, 3vw, 16px);
+    }
+    .variant-card__avail-label { font-size: clamp(11px, 3vw, 13px); }
+    .variant-card__avail-value { font-size: clamp(18px, 5.5vw, 24px); }
+    .variant-card__title {
+        white-space: normal;          /* allow wrap; desktop forces single line */
+        font-size: clamp(22px, 7vw, 30px);
+    }
 }
 
 
