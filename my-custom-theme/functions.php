@@ -67,6 +67,16 @@ function anandiitaa_enqueue_assets() {
         anandiitaa_asset_ver( '/assets/js/benefits-accordion.js' ),
         true
     );
+
+    // Mobile hamburger menu — slide-in drawer + backdrop. Tiny script;
+    // loads everywhere but only takes visual effect via CSS at ≤700px.
+    wp_enqueue_script(
+        'mobile-menu',
+        get_template_directory_uri() . '/assets/js/mobile-menu.js',
+        array(),
+        anandiitaa_asset_ver( '/assets/js/mobile-menu.js' ),
+        true
+    );
 }
 add_action( 'wp_enqueue_scripts', 'anandiitaa_enqueue_assets' );
 
