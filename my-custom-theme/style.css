@@ -5114,6 +5114,118 @@ summary:focus-visible {
     .page-section .hero-slide__bg img {
         object-position: center center;
     }
+
+    /* ------------------------------------------------------------------
+       PROCESS SLIDE (jaggery/sugar slide 2 — "Process Defines Purity")
+
+       Desktop is a 5-column horizontal timeline with absolute-positioned
+       circles (alternating up/down), absolute text, and a diagonal dashed
+       SVG connector tuned for that horizontal geometry. Cramming 5 columns
+       of 220px+ circles into a 375px phone makes everything overlap.
+
+       Mobile: drop ALL absolute positioning. Vertical flow — each step is
+       one row (circle + text side-by-side), alternating side for rhythm.
+       Content-driven height, no fixed grid height. SVG connector hidden
+       (its % coords only make sense across a horizontal row). */
+    .product-slide--process {
+        height: auto;
+        min-height: 100svh;
+        justify-content: flex-start;
+        padding: clamp(70px, 14svh, 96px) clamp(16px, 5vw, 26px) clamp(40px, 8svh, 60px);
+    }
+
+    .process-title {
+        margin-bottom: clamp(22px, 6vw, 40px);
+    }
+
+    /* Grid → single vertical column of rows. Kill the fixed height so the
+       slide grows with its content. */
+    .process-timeline {
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        gap: clamp(24px, 7vw, 40px);
+        max-width: 460px;
+        margin: 0 auto;
+    }
+
+    /* Connector lines were drawn for the horizontal alternating layout. */
+    .process-connectors { display: none; }
+
+    /* Each step: circle + text in a row. Alternate side per up/down variant
+       so it reads as a zig-zag down the page instead of a flat list. */
+    .process-step {
+        height: auto;
+        display: flex;
+        align-items: center;
+        gap: clamp(14px, 4.5vw, 24px);
+    }
+    .process-step--bottom { flex-direction: row-reverse; }
+
+    /* Circle: static, shrunk, no longer h-centered. flex-shrink:0 so text
+       can't squeeze it. */
+    .process-step__circle,
+    .process-step--top    .process-step__circle,
+    .process-step--bottom .process-step__circle {
+        position: relative;
+        top: auto;
+        bottom: auto;
+        left: auto;
+        transform: none;
+        width: clamp(104px, 30vw, 150px);
+        flex: 0 0 auto;
+        border-width: 4px;
+    }
+    /* Base hover used translateX(-50%) scale() — no longer centered, so a
+       bare scale keeps the lift without yanking the circle sideways. */
+    .process-step__circle:hover { transform: scale(1.04); }
+
+    /* Coffee-ring arc: scale border + overflow to the smaller circle. Offset
+       must be half the size growth so the ring stays concentric. */
+    .process-step__arc {
+        border-width: clamp(7px, 2.4vw, 11px);
+        width:  calc(100% + clamp(12px, 4vw, 18px));
+        height: calc(100% + clamp(12px, 4vw, 18px));
+    }
+    .process-step--top .process-step__arc {
+        top:  calc(-1 * clamp(6px, 2vw, 9px));
+        left: calc(-1 * clamp(6px, 2vw, 9px));
+    }
+    .process-step--bottom .process-step__arc {
+        bottom: calc(-1 * clamp(6px, 2vw, 9px));
+        left:   calc(-1 * clamp(6px, 2vw, 9px));
+    }
+
+    /* Number knob: park it over the TOP edge of every circle (uniform), not
+       the desktop ±90px float. Positioned relative to the now-relative circle. */
+    .process-step__lid,
+    .process-step--top    .process-step__lid,
+    .process-step--bottom .process-step__lid {
+        top:    calc(-1 * clamp(13px, 4vw, 19px));
+        bottom: auto;
+    }
+    .process-step__number {
+        width:  clamp(48px, 14vw, 64px);
+        height: clamp(30px, 9vw, 40px);
+        border-radius: 14px;
+        font-size: clamp(16px, 5vw, 22px);
+    }
+
+    /* Text: static, fills remaining row width, left-aligned. */
+    .process-step__text,
+    .process-step--top    .process-step__text,
+    .process-step--bottom .process-step__text {
+        position: static;
+        top: auto;
+        bottom: auto;
+        left: auto;
+        transform: none;
+        width: auto;
+        flex: 1 1 auto;
+        text-align: left;
+        font-size: clamp(13px, 3.6vw, 15px);
+        line-height: 1.42;
+    }
 }
 
 
