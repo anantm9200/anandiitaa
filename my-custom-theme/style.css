@@ -4461,29 +4461,30 @@ picture {
 
     /* ------------------------------------------------------------------
        Slide 8 — Products grid. Mobile restructure:
+       - Section min-height removed → grows to fit all 4 cards, user scrolls
+         naturally. No cards clipped at top/bottom edges.
        - 2x2 desktop grid → 1-col stack.
-       - Drop card aspect-ratio + image absolute-positioning (those were
-         breaking the card box and pushing arrow outside it).
-       - Each card becomes a 2-col grid: copy left, packet right.
-       - Packet sized to card height naturally — no overflow.
-       - Arrow lives inside body's bottom row, beside sizes. Grouped with
-         the card it belongs to, not a separate floating element. */
+       - Drop card aspect-ratio + image absolute-positioning.
+       - Each card: 2-col grid (copy left, packet right). Body inside copy
+         is a flex column: title → desc → sizes → arrow stacked. Arrow sits
+         bottom-left of card, grouped with its own card. */
     .page-section--products {
-        padding: clamp(40px, 10svh, 80px) 0;
+        min-height: auto;
+        padding: clamp(28px, 6svh, 56px) 0;
     }
     .products-grid {
         grid-template-columns: 1fr;
         grid-template-rows: auto;
-        gap: clamp(16px, 3vh, 24px);
+        gap: clamp(14px, 3vh, 22px);
         width: 92%;
         margin: 0 auto;
     }
     .product-card {
         aspect-ratio: auto;
         height: auto;
-        min-height: clamp(170px, 22svh, 220px);
+        min-height: 0;
         border-radius: clamp(24px, 7vw, 40px);
-        padding: clamp(16px, 4.5vw, 22px) clamp(14px, 4vw, 20px);
+        padding: clamp(14px, 4vw, 20px) clamp(14px, 4vw, 20px);
         display: grid;
         grid-template-columns: 1.15fr 1fr;
         column-gap: clamp(8px, 2vw, 14px);
@@ -4495,19 +4496,22 @@ picture {
         height: auto;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
-        gap: clamp(8px, 2vh, 12px);
+        justify-content: flex-start;
+        gap: clamp(6px, 1.5vh, 12px);
     }
     .product-card__top {
         display: flex;
         flex-direction: column;
         gap: clamp(4px, 1vh, 8px);
     }
+    /* Bottom of card: sizes stack above the arrow. User-requested grouping
+       — AVAILABLE IN block sits up, arrow circle directly below it. */
     .product-card__bottom {
         display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: clamp(6px, 2vw, 12px);
+        flex-direction: column;
+        align-items: flex-start;
+        gap: clamp(6px, 1.5vh, 10px);
+        margin-top: auto;
     }
     .product-card__title {
         font-size: clamp(16px, 4.6vw, 20px);
