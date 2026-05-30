@@ -12,7 +12,10 @@ get_header();
 $tpl  = get_template_directory_uri();
 $bust = 'anandiitaa_bust';
 
-$dish_image = $tpl . '/assets/images/products/sugar/recipes/gulab-jamun.png';
+// NOTE: files in /recipes/ got mis-named at some point — `battasa.png`
+// actually contains the Gulab Jamun photo, and `gulab-jamun.png` contains
+// the Battasa photo. Pointing at the file that has the correct visual.
+$dish_image = $tpl . '/assets/images/products/sugar/recipes/battasa.png';
 
 $intro = 'Gulab Jamun is one of India\'s most loved festive desserts, known for its soft, melt-in-the-mouth texture and rich, aromatic syrup. Whether it is a celebration, family gathering, wedding, or festive meal, Gulab Jamun instantly adds sweetness to the occasion. In this recipe, the syrup is prepared using hygienically manufactured Anandiitaa Sugar, giving the dessert a rich sweetness and perfect festive flavour.';
 

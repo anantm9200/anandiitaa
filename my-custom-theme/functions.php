@@ -365,6 +365,7 @@ function anandiitaa_route_templates( $template ) {
         'recipes/home-made-cookies'  => 'page-recipes-cookies.php',
         'recipes/gulab-jamun'        => 'page-recipes-gulab-jamun.php',
         'recipes/choco-lava-cake'    => 'page-recipes-choco-lava-cake.php',
+        'recipes/gajar-ka-halwa'     => 'page-recipes-gajar-ka-halwa.php',
     );
 
     $request = trim( parse_url( $_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH ) ?? '', '/' );

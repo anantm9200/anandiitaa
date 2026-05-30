@@ -194,13 +194,13 @@ $bust = 'anandiitaa_bust';
                 'url'   => home_url( '/recipes/home-made-cookies' ),
             ),
             array(
-                'title' => 'Indian Battasa',
+                'title' => 'Gajar Ka Halwa',
                 'image' => $tpl . '/assets/images/products/sugar/recipes/gulab-jamun.png',
-                'body'  => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsu industry&rsquo;s standard dummy text ever since the 1500s&hellip;&hellip;',
-                'time'  => '30-40mins',
+                'body'  => 'Gajar Ka Halwa is a classic North Indian dessert that brings warmth, richness, and festive flavour to every celebration. Made with fresh carrots, milk, and pure Anandiitaa Sugar&hellip;',
+                'time'  => '45-60mins',
                 'level' => 'Easy',
-                'serves'=> '3-4 people',
-                'url'   => '',
+                'serves'=> '4-5 people',
+                'url'   => home_url( '/recipes/gajar-ka-halwa' ),
             ),
             array(
                 'title' => 'Gulab Jamun',
