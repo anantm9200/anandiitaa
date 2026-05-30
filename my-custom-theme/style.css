@@ -3352,28 +3352,52 @@ summary:focus-visible {
 
 @media (max-width: 700px) {
     .about-slide--standards {
-        padding: 60px 24px 80px;
+        /* Base .about-slide is height:100vh + overflow:hidden — fine for the
+           single-screen slides, but 4 stacked standard cards exceed one screen
+           on mobile, so the 4th got clipped. Let this slide grow with content
+           and scroll instead. */
+        height: auto;
+        min-height: 100svh;
+        overflow: visible;
+        padding: clamp(70px, 14svh, 96px) clamp(16px, 5vw, 24px) clamp(40px, 8svh, 60px);
     }
     .about-standards__title {
-        font-size: 36px;
-        margin-bottom: 40px;
+        font-size: clamp(30px, 9vw, 42px);
+        margin-bottom: clamp(28px, 8vw, 44px);
         gap: 8px;
     }
+
+    /* Kill the desktop brick-stagger offset. Base CSS shifts cards 1-2 by
+       translateX(-6%) and cards 3-4 by translateX(+6%) for the wide 2-col
+       layout. In the stacked 1-col mobile layout (set at ≤1100px) that +6%
+       pushed cards 3 & 4 off the right edge — card 3 spilled, card 4 hidden. */
+    .standard-item,
+    .standard-item:nth-child(-n+2),
+    .standard-item:nth-child(n+3),
+    .standard-item:hover,
+    .standard-item:nth-child(-n+2):hover,
+    .standard-item:nth-child(n+3):hover {
+        transform: none;
+    }
+
     .standard-item {
-        grid-template-columns: 120px 1fr;
+        grid-template-columns: clamp(96px, 28vw, 128px) 1fr;
+        max-width: none;
     }
     .standard-item__image {
-        width: 120px;
+        width: clamp(96px, 28vw, 128px);
     }
     .standard-item__card {
-        padding: 20px 22px 20px 32px;
-        margin-left: -20px;
+        padding: clamp(14px, 4vw, 22px) clamp(16px, 4.5vw, 24px)
+                 clamp(14px, 4vw, 22px) clamp(26px, 7vw, 36px);
+        margin-left: clamp(-22px, -5vw, -16px);
+        gap: clamp(6px, 2vw, 12px);
     }
     .standard-item__title {
-        font-size: 20px;
+        font-size: clamp(18px, 5.2vw, 22px);
     }
     .standard-item__body {
-        font-size: 14px;
+        font-size: clamp(13px, 3.6vw, 15px);
     }
 }
 
@@ -4742,8 +4766,14 @@ summary:focus-visible {
        (from front-page.php `type: 'products-grid'`), NOT --products.
        Selector mismatch was making all my products mobile rules NO-OP. */
     .page-section--products-grid {
-        height: 100svh;
+        /* Was height:100svh forcing all 4 cards to split one screen → each
+           card got ~163px but its content needs ~178px, so the AVAILABLE
+           value + arrow and the packet bottoms were clipped by overflow:hidden.
+           Cramming 4 content-rich cards into one phone screen can't scale to
+           small phones, so let the section grow with content and scroll. */
+        height: auto;
         min-height: 100svh;
+        overflow: visible;
         display: flex;
         flex-direction: column;
         /* Top padding covers the fixed header (~46–60px) + breathing room.
@@ -4752,18 +4782,29 @@ summary:focus-visible {
         padding: clamp(64px, 11svh, 90px) 0 clamp(20px, 4svh, 40px);
     }
     .products-grid {
+        /* Base CSS floats this absolute + centered (top/left:50% + translate),
+           which takes it OUT of flex flow → flex:1 was ignored, the grid kept
+           its auto (content) height, and the centered overflow clipped card 1
+           (top) and card 4 (bottom). Reset to a normal in-flow flex child so
+           flex:1 bounds it and minmax(0,1fr) shrinks the 4 rows to fit. */
+        position: static;
+        top: auto;
+        left: auto;
+        transform: none;
         grid-template-columns: 1fr;
-        grid-template-rows: repeat(4, minmax(0, 1fr));
-        gap: clamp(8px, 1.6vh, 16px);
+        /* Content-height rows (was repeat(4, minmax(0,1fr)) which forced each
+           card too short). Section grows + scrolls instead of clipping. */
+        grid-template-rows: repeat(4, auto);
+        gap: clamp(12px, 2vh, 20px);
         width: 92%;
         margin: 0 auto;
-        flex: 1;
+        flex: 0 0 auto;
         min-height: 0;
     }
     .product-card {
         aspect-ratio: auto;
         height: auto;
-        min-height: 0;
+        min-height: clamp(150px, 22vh, 190px);
         border-radius: clamp(20px, 6vw, 34px);
         padding: clamp(10px, 3vw, 16px) clamp(12px, 3.5vw, 18px);
         display: grid;
@@ -5324,6 +5365,17 @@ summary:focus-visible {
     .variant-card__title {
         white-space: normal;          /* allow wrap; desktop forces single line */
         font-size: clamp(22px, 7vw, 30px);
+    }
+
+    /* ------------------------------------------------------------------
+       ABOUT US — Vision slide bg (mobile only).
+
+       Desktop sets the vision photo as a section background per tier
+       (mac vision-new.png / 1366 + 1280 vision-bg.png). Below 1440px there
+       was no image — just cream. Add the 1.png composite as the phone bg.
+       (Mission slide gets 2.png via a phone <source> in page-about.php.) */
+    .about-slide--vision {
+        background: url('images/about-us/phone/vision.png') center / cover no-repeat;
     }
 }
 

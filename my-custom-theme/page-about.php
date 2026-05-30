@@ -139,10 +139,14 @@ $bust = 'anandiitaa_bust';
          maroon wood) with copy in the right half over the dark area. -->
     <section class="about-slide about-slide--mission" data-reveal>
         <div class="about-slide__bg">
-            <img
-                src="<?php echo esc_url( $bust( $tpl . '/images/about-us/mac/about-slide-3.png' ) ); ?>"
-                alt="Sugarcane stalks and a bowl of sugar on a maroon wooden surface"
-                loading="lazy">
+            <picture>
+                <?php // Phone tier (≤700px) — mission bg swapped to 2.png composite. Desktop unchanged. ?>
+                <source media="(max-width: 700px)" srcset="<?php echo esc_url( $bust( $tpl . '/images/about-us/phone/mission.png' ) ); ?>">
+                <img
+                    src="<?php echo esc_url( $bust( $tpl . '/images/about-us/mac/about-slide-3.png' ) ); ?>"
+                    alt="Sugarcane stalks and a bowl of sugar on a maroon wooden surface"
+                    loading="lazy">
+            </picture>
         </div>
 
         <div class="about-mission__copy">
