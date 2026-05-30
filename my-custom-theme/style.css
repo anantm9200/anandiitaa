@@ -4491,6 +4491,73 @@ summary:focus-visible {
         letter-spacing: 0.08em;
         margin-top: clamp(2px, 0.8vh, 8px) !important;
     }
+
+    /* ------------------------------------------------------------------
+       PRODUCT PAGES — hero (products/jaggery + products/sugar).
+       Layout: title top-center, 100% Natural seal on LEFT (sized prominent
+       but mobile-fluid), features rail on RIGHT (shrunk for phone width).
+       All sizes via clamp so they scale across iPhone SE → Pro Max. */
+    .product-hero__title {
+        top: clamp(60px, 11svh, 95px) !important;
+        /* Nudged left from 50% → 45% so the title doesn't sit dead-center
+           over the seal/features axis. Translation still -50% of element. */
+        left: 45% !important;
+        font-size: clamp(20px, 5.2vw, 28px) !important;
+        gap: clamp(6px, 2vw, 12px) !important;
+        z-index: 10 !important;
+    }
+    .product-hero__title img {
+        height: clamp(20px, 5vw, 28px) !important;
+    }
+    /* 100% Natural seal — LEFT side, bigger than my previous tiny version.
+       Desktop pulled it via transform translateY — reset that for mobile
+       and pin it left-side with a fluid clamp size. */
+    .natural-seal {
+        width: clamp(95px, 26vw, 140px) !important;
+        top: clamp(130px, 22svh, 200px) !important;
+        left: 3% !important;
+        right: auto !important;
+        transform: none !important;
+        z-index: 6 !important;
+    }
+    [data-reveal] .natural-seal,
+    [data-reveal].is-visible .natural-seal {
+        transform: none !important;
+    }
+    /* Features rail — RIGHT side, vertical column, shrunk text + icons.
+       Moved UP (top reduced ~15px) and RIGHTWARD (right reduced from 3%
+       → 1%) so the bottom feature "Contains Vital Minerals" sits above
+       the packet image's top edge instead of overlapping it. Gap tightened
+       too so the column packs more vertically. */
+    .product-features {
+        display: flex !important;
+        flex-direction: column;
+        position: absolute;
+        top: clamp(115px, 18svh, 165px) !important;
+        right: 1% !important;
+        left: auto !important;
+        transform: none !important;
+        width: clamp(120px, 38vw, 170px) !important;
+        max-width: 38vw;
+        gap: clamp(8px, 2vh, 14px) !important;
+        z-index: 6;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    .product-features li {
+        font-size: clamp(10px, 2.6vw, 12px) !important;
+        gap: clamp(4px, 1vh, 8px) !important;
+        line-height: 1.2;
+    }
+    .product-features__icon {
+        width: clamp(34px, 9vw, 44px) !important;
+        height: clamp(34px, 9vw, 44px) !important;
+    }
+    .product-features__icon svg {
+        width: clamp(18px, 5vw, 24px) !important;
+        height: clamp(18px, 5vw, 24px) !important;
+    }
     /* Slide 1 first-child btn pull — reset to 0 on mobile (desktop -160
        would shove the button above the heading at this scale). */
     .hero-slide:first-child .hero-slide__content--top-center .btn {
