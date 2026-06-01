@@ -2868,6 +2868,31 @@ summary:focus-visible {
     pointer-events: none;     /* don't block clicks on anything below */
 }
 
+/* About hero (slide 1) — responsive height instead of fixed 100vh + cover.
+   The base .about-slide forces height:100vh + overflow:hidden, and the bg img
+   is object-fit:cover, so on wide/short screens the composite's packets got
+   cropped off the bottom. Let the bg image flow (width:100%, height:auto) and
+   DEFINE the section height — the full composite always shows at any
+   resolution, nothing cut. Because the section box then matches the image's
+   exact aspect, the callouts SVG (viewBox 2560×1664, inset:0) maps 1:1 onto
+   the packets at every width, so the labels stay locked on. Title still
+   overlays absolutely. Scoped to --products so other about slides are
+   untouched. */
+.about-slide--products {
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+}
+.about-slide--products .about-slide__bg {
+    position: relative;
+    inset: auto;
+}
+.about-slide--products .about-slide__bg img {
+    position: relative;
+    width: 100%;
+    height: auto;
+}
+
 /* Reveal stagger — title in first, callouts fade together. */
 [data-reveal] .about-slide__title  { --anim-delay: 0ms; }
 [data-reveal] .about-callouts      { --anim-delay: 200ms; }
