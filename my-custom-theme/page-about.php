@@ -26,10 +26,16 @@ $bust = 'anandiitaa_bust';
     <section class="about-slide about-slide--products" data-reveal>
 
         <div class="about-slide__bg">
-            <img
-                src="<?php echo esc_url( $bust( $tpl . '/images/about-us/mac/about-slide-1.png' ) ); ?>"
-                alt="Anandiitaa product range — Desi Jaggery, Jaggery Powder, Bold Grain Sugar, Fine Grain Sugar"
-                fetchpriority="high">
+            <picture>
+                <?php /* Phone tier (≤700px) — mobile composite with callout labels baked in.
+                         Desktop unchanged. The SVG .about-callouts overlay is hidden on
+                         mobile (see mobile block) since this image already has the labels. */ ?>
+                <source media="(max-width: 700px)" srcset="<?php echo esc_url( $bust( $tpl . '/images/about-us/phone/about-hero.png' ) ); ?>">
+                <img
+                    src="<?php echo esc_url( $bust( $tpl . '/images/about-us/mac/about-slide-1.png' ) ); ?>"
+                    alt="Anandiitaa product range — Desi Jaggery, Jaggery Powder, Bold Grain Sugar, Fine Grain Sugar"
+                    fetchpriority="high">
+            </picture>
         </div>
 
         <h1 class="about-slide__title">About us</h1>

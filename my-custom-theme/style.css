@@ -4562,6 +4562,15 @@ summary:focus-visible {
     .product-hero__title img {
         height: clamp(20px, 5vw, 28px) !important;
     }
+    /* Hero art is a 375×450 mobile composite (packets sit at the bottom). The
+       base object-fit:cover crops it on the tall full-screen stage — packet
+       bottoms got cut. Use contain so the WHOLE composite shows, anchored low;
+       the title/seal/features overlay the cream space above it. Scales with
+       the viewport, nothing fixed. */
+    .product-hero__image {
+        object-fit: contain !important;
+        object-position: center bottom !important;
+    }
     /* 100% Natural seal — LEFT side, bigger than my previous tiny version.
        Desktop pulled it via transform translateY — reset that for mobile
        and pin it left-side with a fluid clamp size. */
@@ -5405,6 +5414,43 @@ summary:focus-visible {
        (Mission slide gets 2.png via a phone <source> in page-about.php.) */
     .about-slide--vision {
         background: url('images/about-us/phone/vision.png') center / cover no-repeat;
+    }
+
+    /* About hero (slide 1): the mobile composite has its callout labels baked
+       in, so hide the desktop SVG overlay (its 2560×1664 coords don't map to
+       the portrait phone image). Keep the "About us" title. */
+    .about-slide--products .about-callouts {
+        display: none;
+    }
+
+    /* Our Mission (slide 3): desktop pins the copy absolute (top:50% + a +50px
+       nudge) inside a fixed height:100vh + overflow:hidden slide. On a short
+       phone the long body ran past the bottom and got clipped. Convert to
+       flow and anchor the copy to the TOP of the slide so it always fits the
+       single screen — no scrim, no absolute, scales with the viewport. */
+    .about-slide--mission {
+        height: auto;
+        min-height: 100svh;
+        overflow: visible;
+        display: flex;
+        align-items: flex-start;
+        padding: clamp(84px, 16svh, 130px) clamp(20px, 6vw, 32px) clamp(40px, 9svh, 70px);
+    }
+    .about-mission__copy {
+        position: static;
+        transform: none;
+        right: auto;
+        left: auto;
+        max-width: none;
+        width: 100%;
+    }
+    .about-mission__title {
+        margin-bottom: clamp(12px, 3.5vw, 22px);
+        font-size: clamp(30px, 9vw, 44px);
+    }
+    .about-mission__body {
+        font-size: clamp(14px, 4vw, 18px);
+        line-height: 1.5;
     }
 }
 
