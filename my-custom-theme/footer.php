@@ -30,10 +30,13 @@
             <nav class="site-footer__col site-footer__col--nav" aria-label="Footer">
                 <a href="<?php echo esc_url( home_url( '/' ) ); ?>">Home</a>
                 <a href="<?php echo esc_url( home_url( '/products' ) ); ?>">Products</a>
-                <a href="<?php echo esc_url( home_url( '/recipes' ) ); ?>">Recipes</a>
+                <a href="<?php echo esc_url( home_url( '/products/sugar' ) . '#recipes' ); ?>">Recipes</a>
+                <?php // Hidden per client — pages not live yet. Restore to re-enable. ?>
+                <?php /*
                 <a href="<?php echo esc_url( home_url( '/blogs' ) ); ?>">Blogs</a>
                 <a href="<?php echo esc_url( home_url( '/community' ) ); ?>">Community</a>
                 <a href="<?php echo esc_url( home_url( '/contact' ) ); ?>">Contact</a>
+                */ ?>
             </nav>
 
             <div class="site-footer__col site-footer__col--info">

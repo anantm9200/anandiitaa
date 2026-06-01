@@ -224,7 +224,7 @@ $bust = 'anandiitaa_bust';
             ),
         );
     ?>
-    <section class="product-slide product-slide--recipes" data-reveal>
+    <section id="recipes" class="product-slide product-slide--recipes" data-reveal>
 
         <h2 class="recipes-title">Home Delicacies Recipes</h2>
 
