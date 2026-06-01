@@ -3384,7 +3384,9 @@ summary:focus-visible {
         height: auto;
         min-height: 100svh;
         overflow: visible;
-        padding: clamp(70px, 14svh, 96px) clamp(16px, 5vw, 24px) clamp(40px, 8svh, 60px);
+        /* Top padding trimmed (was 70–96) so the gap to the Mission slide
+           above isn't huge; still clears the fixed 52px header. */
+        padding: clamp(52px, 9svh, 72px) clamp(16px, 5vw, 24px) clamp(36px, 7svh, 56px);
     }
     .about-standards__title {
         font-size: clamp(30px, 9vw, 42px);
@@ -4780,31 +4782,55 @@ summary:focus-visible {
         line-height: 1.35;
     }
 
+    /* Inter-section breathing room: base .page-section has margin-top:10vh
+       (≈81px on a phone) — way too big between mobile sections. Trim to a
+       fluid ~24-32px so sections sit close without touching. */
+    .page-section {
+        margin-top: clamp(18px, 3.5svh, 36px);
+    }
+
     /* ------------------------------------------------------------------
-       Slide 7 — News. Force both captions centered horizontally with
-       constrained width (mobile-only) — the base h2 font (--fs-heading
-       at 45–57px) made the text overflow both edges, looked as if it was
-       anchored to the left. .page-section--news scope wins specificity. */
+       Slide 7 — News. Was fully absolute: bg "article frame" sized via
+       calc against 100svh, both captions pinned with top:/transform. That
+       left HUGE empty bands above + below the frame (client flagged) and a
+       big gap to the sections on either side. Convert to a flow column:
+       top caption → article frame → bottom caption, content-driven height,
+       nothing absolute. Gaps become the clamp() flex gap, not dead space. */
     .page-section--news {
-        --news-bg-top: clamp(110px, 18svh, 160px);
+        height: auto;
+        min-height: 0;
+        overflow: visible;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: clamp(14px, 3vh, 24px);
+        padding: clamp(28px, 5svh, 48px) clamp(16px, 5vw, 24px) clamp(32px, 6svh, 52px);
     }
-    .page-section--news .hero-slide__bg {
-        height: calc(100svh - var(--news-bg-top) - clamp(90px, 14svh, 140px));
-    }
+    /* Un-pin all three children → normal flow, full width. */
     .page-section--news .hero-slide__content--top-caption,
+    .page-section--news .hero-slide__bg,
     .page-section--news .hero-slide__content--bottom-center {
-        width: 86%;
-        max-width: 86%;
-        left: 50%;
+        position: static;
+        inset: auto;
+        top: auto;
+        bottom: auto;
+        left: auto;
         right: auto;
-        transform: translateX(-50%);
-        text-align: center;
+        transform: none;
+        width: 100%;
+        max-width: 100%;
+        height: auto;
     }
-    .page-section--news .hero-slide__content--top-caption {
-        top: clamp(60px, 11svh, 110px);
-    }
-    .page-section--news .hero-slide__content--bottom-center {
-        top: calc(100svh - clamp(80px, 13svh, 130px));
+    /* DOM order is bg, top-caption, bottom-caption → reorder for reading flow. */
+    .page-section--news .hero-slide__content--top-caption    { order: 1; text-align: center; }
+    .page-section--news .hero-slide__bg                        { order: 2; }
+    .page-section--news .hero-slide__content--bottom-center   { order: 3; text-align: center; }
+    /* Article frame shows whole, scaled to width (no crop). */
+    .page-section--news .hero-slide__bg img {
+        position: static;
+        width: 100%;
+        height: auto;
+        object-fit: contain;
     }
     .page-section--news .hero-slide__content--top-caption h2,
     .page-section--news .hero-slide__content--bottom-center h2 {
@@ -4839,10 +4865,10 @@ summary:focus-visible {
         overflow: visible;
         display: flex;
         flex-direction: column;
-        /* Top padding covers the fixed header (~46–60px) + breathing room.
-           Without it, top of section sits BEHIND the fixed header and the
-           first card's top edge clips. */
-        padding: clamp(64px, 11svh, 90px) 0 clamp(20px, 4svh, 40px);
+        /* Top padding clears the fixed header (~52px) + a little breathing
+           room — trimmed from 64–90 so the gap to the news section above
+           isn't huge. */
+        padding: clamp(56px, 8svh, 72px) 0 clamp(20px, 4svh, 36px);
     }
     .products-grid {
         /* Base CSS floats this absolute + centered (top/left:50% + translate),
@@ -5448,18 +5474,22 @@ summary:focus-visible {
         display: none;
     }
 
-    /* Our Mission (slide 3): desktop pins the copy absolute (top:50% + a +50px
-       nudge) inside a fixed height:100vh + overflow:hidden slide. On a short
-       phone the long body ran past the bottom and got clipped. Convert to
-       flow and anchor the copy to the TOP of the slide so it always fits the
-       single screen — no scrim, no absolute, scales with the viewport. */
+    /* Our Mission (slide 3): desktop pins the copy absolute inside a fixed
+       height:100vh slide. On mobile the portrait image has a cream lower half,
+       so a full 100svh slide left a huge cream gap before the Standards slide.
+       Flow + a content-fit height that crops the cream tail (object-position
+       top + overflow hidden), copy anchored to the top over the photo. No
+       absolute, scales with the viewport, no dead gap. */
     .about-slide--mission {
         height: auto;
-        min-height: 100svh;
-        overflow: visible;
+        min-height: clamp(460px, 70svh, 620px);
+        overflow: hidden;
         display: flex;
         align-items: flex-start;
-        padding: clamp(84px, 16svh, 130px) clamp(20px, 6vw, 32px) clamp(40px, 9svh, 70px);
+        padding: clamp(80px, 15svh, 120px) clamp(20px, 6vw, 32px) clamp(32px, 7svh, 56px);
+    }
+    .about-slide--mission .about-slide__bg img {
+        object-position: center top;   /* show sugarcane/bowl, crop the cream foot */
     }
     .about-mission__copy {
         position: static;

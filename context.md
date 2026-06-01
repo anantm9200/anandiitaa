@@ -455,4 +455,67 @@ In `assets/images/products/sugar/recipes/`, the files `battasa.png` and `gulab-j
 
 ---
 
-**Last updated**: 2026-05-30 (end of mobile responsiveness pass). Migration complete on Hostinger. Next chat continues mobile polish + still-pending: WP_DEBUG off, Wordfence reinstall, max_execution_time → 300, delete migration .zip/.sql/.wpress artifacts, possibly remove Pantheon deploy job after 2026-06-13.
+## 13. IDLE TOPIC — wp-admin pages look empty (content lives in code)
+
+> **Raise this with the user when there's nothing else queued.** It's an open
+> decision, not a bug.
+
+### The situation
+Client/user opened wp-admin → Pages → a page (e.g. Home, post=6) and saw an
+EMPTY block editor ("Type / to choose a block"). Worried AIOM migration failed.
+
+### Why it's empty (by design, nothing broken)
+Site is **template-driven, not content-driven**. Page content is hardcoded in
+theme PHP templates, NOT in WP pages/blocks. Routing is `anandiitaa_route_templates()`
+(`functions.php`, `template_include` filter, priority 99): it matches the URL
+path (`REQUEST_URI`) → swaps in the template. Matches by URL, so the WP Page's
+block content is never read.
+- `/about-us` → `page-about.php`, `/products/sugar` → `page-products-sugar.php`,
+  homepage → `front-page.php` (WP front-page override), etc.
+- AIOM migrated DB (pages/slugs/settings/options) + files correctly. Empty
+  editor ≠ missing data — there was never block data.
+- Exception: homepage hero carousel slides ARE admin-editable via Carbon Fields.
+
+### The user's real concern
+"What do I show the client when they open WP pages?" + wants pages to exist AND
+ideally be editable from BOTH admin and code. Caveat told to them: front-end
+reads ONE source of truth, so true "both sides → both go live" isn't possible;
+the real choice is which source drives the site + how to make admin not look empty.
+
+### Options presented (user said they'd "check all and revert" — DECISION PENDING)
+- **A — Keep code-driven, tidy admin**: pages exist; add a notice block per page
+  ("managed by theme template — edit in code"). ~30 min, zero risk. Edit = code only.
+- **B — Field-driven (ACF/Carbon Fields) + keep templates** ⭐ recommended: wire
+  editable text/images in templates to admin fields (current values as defaults),
+  layout stays in code. Client edits text+images from admin. ~1–3 days. Already
+  partially done (hero carousel = Carbon Fields). Closest safe "both sides".
+- **C — Full Gutenberg rebuild**: weeks, loses custom layouts. Not for launch.
+- **D — Placeholder content in editors (demo only)**: admin looks full but blocks
+  are ignored on front-end → misleading. Avoid.
+
+Recommendation given: **B** for what they want; **A** if client just needs to see
+pages exist. Possible phase: A now, B for high-edit pages later. Offer to estimate
+B per-page when they're ready.
+
+---
+
+## 14. Mobile gaps fix (this session)
+
+Client + user reported huge empty gaps between sections on MOBILE (no overlap,
+must stay fluid/responsive, no absolute):
+- Client: "huge gaps above and below the new article frame" (the news/article
+  section = homepage slide 7, `type:'news'`).
+- Homepage sections 6↔7, 7↔8.
+- About us sections 3↔4 (mission ↔ standards).
+
+Root pattern (same family as the standards/products-grid fixes): sections carry
+a desktop `min-height`/`height:100vh` (e.g. news `min-height:760px`) with
+absolutely-pinned content, so on a short phone the fixed min-height leaves a big
+empty band. Fix = mobile flow: `height:auto; min-height:100svh` (or content-driven),
+drop absolute pins, clamp the vertical padding/gaps. See git log this session.
+
+NEXT after this: make the whole site **responsive for TABLETS** (701–1100px tier).
+
+---
+
+**Last updated**: 2026-06-01 (footer link cleanup, about-hero responsive height, mobile hero object-fit:contain, mission slide mobile flow, recipe step images for all 4 recipes). Open decision: §13 wp-admin editing model (A/B/C/D — user reviewing). In progress: §14 mobile section gaps. Next: tablet (701–1100px) responsive pass.
