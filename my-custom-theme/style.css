@@ -2964,21 +2964,6 @@ summary:focus-visible {
     transform: translateY(-50px);
 }
 
-/* Readability scrim (client): the heading + body sit on the jaggery photo and
-   lost contrast on its lighter areas. A soft radial dark gradient behind the
-   copy + cream text gives reliable contrast over any part of the image without
-   hiding the photo (it fades to transparent toward the edges). */
-.about-vision__copy::before {
-    content: "";
-    position: absolute;
-    inset: -24px -48px;
-    z-index: 0;
-    pointer-events: none;
-    background: radial-gradient(ellipse 92% 58% at 48% 50%,
-        rgba(38, 14, 7, 0.62) 0%,
-        rgba(38, 14, 7, 0.30) 52%,
-        transparent 78%);
-}
 
 /* Giant pale quote glyph behind the title (decorative). Uses a tan/cream
    fill on the cream bg for the soft watermark look in the reference. */
@@ -3003,7 +2988,7 @@ summary:focus-visible {
     /* Matches mission title size for visual consistency. */
     font-size: var(--fs-heading);
     font-weight: var(--fw-heading);
-    color: #f7ecd6;                 /* cream — readable over the scrim/photo */
+    color: var(--brand-maroon);
     line-height: 1;
     /* SEAMLESS_BG_TEST: uppercase "Our Vision". */
     text-transform: uppercase;
@@ -3017,7 +3002,7 @@ summary:focus-visible {
     /* SEAMLESS_BG_TEST: title/body font sizes interchanged (was --fs-subtext). */
     font-size: var(--fs-heading);
     font-weight: 700;
-    color: #f7ecd6;                 /* cream — readable over the scrim/photo */
+    color: var(--brand-maroon);
     line-height: 1.45;
 }
 
@@ -5758,6 +5743,29 @@ summary:focus-visible {
        (Mission slide gets 2.png via a phone <source> in page-about.php.) */
     .about-slide--vision {
         background: url('images/about-us/phone/vision.png') center / cover no-repeat;
+    }
+
+    /* Readability (client) — MOBILE ONLY. Client prefers MAROON text, so blur +
+       lighten the photo behind the copy (frosted backdrop) instead of darkening
+       it: a light cream tint + backdrop blur, soft-masked at the edges so it's
+       not a hard box. Maroon copy then reads on the calmer, lighter backdrop.
+       Desktop/tablet keep maroon on their built-in cream zone. */
+    .about-vision__copy::before {
+        content: "";
+        position: absolute;
+        inset: -18px -26px;
+        z-index: 0;
+        pointer-events: none;
+        background: rgba(245, 236, 214, 0.28);
+        -webkit-backdrop-filter: blur(1.5px);
+        backdrop-filter: blur(1.5px);
+        border-radius: 20px;
+        -webkit-mask-image: radial-gradient(ellipse 96% 62% at 48% 50%, #000 56%, transparent 84%);
+                mask-image: radial-gradient(ellipse 96% 62% at 48% 50%, #000 56%, transparent 84%);
+    }
+    .about-vision__title,
+    .about-vision__body {
+        color: var(--brand-maroon);
     }
 
     /* About hero (slide 1): the mobile composite has its callout labels baked
