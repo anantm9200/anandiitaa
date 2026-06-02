@@ -169,14 +169,11 @@
         // Slide 9: The Benefits of Jaggery (4 benefit cards on dark wood bg)
         array(
             'type'         => 'benefits',
-            // Bg image swapped to "new jaggery" photo on desktop + tablet.
-            // mac/d1366/d1280 have no derived file so they fall back to this
-            // default img; tablet points here explicitly. Phone REVERTED to its
-            // portrait 9.png — the wide landscape didn't section right at phone
-            // scale (awaiting a phone-specific asset).
+            // Bg image swapped to "new jaggery" photo across ALL tiers
+            // (desktop / tablet / phone all use the same image per client).
             'image'        => $tpl . '/images/home/laptop/sections/9-jaggery-new.jpeg',
             'tablet_image' => $tpl . '/images/home/laptop/sections/9-jaggery-new.jpeg',
-            'phone_image'  => $tpl . '/images/home/phone/sections/9.png',
+            'phone_image'  => $tpl . '/images/home/laptop/sections/9-jaggery-new.jpeg',
             'alt'          => 'The Benefits of Jaggery',
             'title'        => 'The Benefits of Jaggery',
             'benefits' => array(

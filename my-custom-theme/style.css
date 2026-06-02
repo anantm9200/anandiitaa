@@ -1841,6 +1841,16 @@ summary:focus-visible {
 
 @media (max-width: 800px) {
     .products-landing__grid { grid-template-columns: 1fr; }
+    /* Packet images were small in the stacked mobile cards — bump them up.
+       Fluid so they scale across phone widths. */
+    .category-card__media {
+        min-height: clamp(220px, 40vh, 320px);
+        padding: clamp(28px, 8vw, 48px) clamp(18px, 5vw, 32px) clamp(6px, 2vw, 14px);
+    }
+    .category-card__media img {
+        max-width: 90%;
+        max-height: clamp(220px, 40vh, 300px);
+    }
 }
 
 /* ========================================================================
@@ -2954,6 +2964,22 @@ summary:focus-visible {
     transform: translateY(-50px);
 }
 
+/* Readability scrim (client): the heading + body sit on the jaggery photo and
+   lost contrast on its lighter areas. A soft radial dark gradient behind the
+   copy + cream text gives reliable contrast over any part of the image without
+   hiding the photo (it fades to transparent toward the edges). */
+.about-vision__copy::before {
+    content: "";
+    position: absolute;
+    inset: -24px -48px;
+    z-index: 0;
+    pointer-events: none;
+    background: radial-gradient(ellipse 92% 58% at 48% 50%,
+        rgba(38, 14, 7, 0.62) 0%,
+        rgba(38, 14, 7, 0.30) 52%,
+        transparent 78%);
+}
+
 /* Giant pale quote glyph behind the title (decorative). Uses a tan/cream
    fill on the cream bg for the soft watermark look in the reference. */
 .about-vision__quotemark {
@@ -2977,7 +3003,7 @@ summary:focus-visible {
     /* Matches mission title size for visual consistency. */
     font-size: var(--fs-heading);
     font-weight: var(--fw-heading);
-    color: var(--brand-maroon);
+    color: #f7ecd6;                 /* cream — readable over the scrim/photo */
     line-height: 1;
     /* SEAMLESS_BG_TEST: uppercase "Our Vision". */
     text-transform: uppercase;
@@ -2991,7 +3017,7 @@ summary:focus-visible {
     /* SEAMLESS_BG_TEST: title/body font sizes interchanged (was --fs-subtext). */
     font-size: var(--fs-heading);
     font-weight: 700;
-    color: var(--brand-maroon);
+    color: #f7ecd6;                 /* cream — readable over the scrim/photo */
     line-height: 1.45;
 }
 
@@ -4339,7 +4365,15 @@ summary:focus-visible {
        only the size shrinks. Button uses inherited margin (the slide 1 -135px
        pull stays — it's scoped to :first-child and works at this size too). */
     .hero-slide__content--top-center {
+        /* Re-center: the legacy @media(max-width:1024px) rule sets the base
+           .hero-slide__content { left:6% } which (same specificity, later
+           source) beat the base top-center left:50%, leaving translateX(-50%)
+           to drag the heading + CTA off the left edge. Restore true centering. */
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
         max-width: 86%;
+        text-align: center;
     }
     .hero-slide__content--top-center h2 {
         font-size: clamp(32px, 5.4vw, 52px);
@@ -4348,10 +4382,20 @@ summary:focus-visible {
         padding: 12px 28px;
         font-size: 0.78rem;
     }
+    /* Slides 2–5 (bare .hero-slide__content) — base centers them vertically
+       (top:50% + translateY(-50%)), which on the tall tablet portrait pushed
+       the heading/CTA/features down to the middle. Anchor the whole stack to
+       the top-left instead. Scoped to .hero-track so news/other captions are
+       untouched; :not(--top-center) leaves slide 1 alone. */
+    .hero-track .hero-slide__content:not(.hero-slide__content--top-center) {
+        top: clamp(80px, 12svh, 150px);
+        transform: none;
+        left: clamp(24px, 6%, 56px);
+    }
     /* Features list (slides 2–5) — tighter so it doesn't run past the packets
        on portrait. Margin-top reduced from the 110px desktop base. */
     .hero-features {
-        margin-top: clamp(48px, 8vh, 88px);
+        margin-top: clamp(20px, 4vh, 44px);
         gap: 16px;
     }
     .hero-features li {
@@ -4359,13 +4403,35 @@ summary:focus-visible {
     }
 
     /* ------------------------------------------------------------------
-       Slide 6 — Standards. 4-col grid → 2x2. Vertical dashed dividers need
-       to be re-scoped: in 4-col, only the last col had no right border. In
-       2-col, the 2nd col of each row (nth-child(2n)) has no right border. */
+       Slide 6 — Standards. Was absolute (title top:6%, grid bottom:8%) so the
+       2x2 grid floated low and overlapped the bowl bg. Convert to flow: stack
+       title → 2x2 grid anchored at the top; the bg sticker's bowl/cane fills
+       the space below. Fluid, nothing absolute, no overlap. */
+    .page-section--standards {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: clamp(16px, 2.6vh, 30px);
+        padding: clamp(40px, 6svh, 68px) 6% clamp(36px, 6svh, 64px);
+        min-height: 100svh;
+        height: auto;
+    }
+    .standards-title {
+        position: static;
+        top: auto;
+        left: auto;
+        transform: none;
+    }
     .standards-grid {
+        position: static;
+        top: auto;
+        bottom: auto;
+        left: auto;
+        right: auto;
+        transform: none;
+        width: 100%;
         grid-template-columns: repeat(2, 1fr);
-        gap: 32px 0;
-        bottom: 8%;
+        gap: clamp(24px, 3.5vh, 40px) 0;
     }
     .standards-col {
         padding: 0 22px;
@@ -4378,41 +4444,258 @@ summary:focus-visible {
     .standards-col:nth-child(2n+1) {
         padding-left: 0;
     }
-    .standards-title {
-        top: 6%;
+    /* Shrink title + cells so the whole block stays compact in the upper area
+       and the bottom row clears the bowl bg below (was overlapping it). */
+    .standards-title__small {
+        font-size: clamp(30px, 4.4vw, 42px);
+        line-height: 1.04;
+    }
+    .standards-title__wordmark {
+        width: clamp(200px, 32vw, 290px);
+        height: auto;
+    }
+    .standards-col__icon {
+        width: clamp(40px, 5.5vw, 50px);
+        height: clamp(40px, 5.5vw, 50px);
+    }
+    .standards-col__title {
+        font-size: clamp(18px, 2.3vw, 23px);
+    }
+    .standards-col__body {
+        font-size: clamp(13px, 1.7vw, 15px);
+        line-height: 1.4;
     }
 
     /* ------------------------------------------------------------------
-       Slide 8 — Products grid. Already 2x2, but the cards are tight at this
-       width — slight padding + image trim so the packet doesn't overflow. */
+       Slide 7 — News. Was absolute (captions pinned; the legacy max-width:1024
+       rule's left:6% stuck them to the far-left edge). Convert to a centered
+       flow column: caption → article frame → caption. Not absolute, fluid. */
+    .page-section--news {
+        height: auto;
+        min-height: 0;
+        overflow: visible;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: clamp(20px, 3.5vh, 40px);
+        padding: clamp(44px, 6svh, 76px) 6% clamp(40px, 6svh, 64px);
+    }
+    .page-section--news .hero-slide__content--top-caption,
+    .page-section--news .hero-slide__bg,
+    .page-section--news .hero-slide__content--bottom-center {
+        position: static;
+        inset: auto;
+        top: auto;
+        bottom: auto;
+        left: auto;
+        right: auto;
+        transform: none;
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        text-align: center;
+    }
+    .page-section--news .hero-slide__content--top-caption  { order: 1; }
+    .page-section--news .hero-slide__bg                     { order: 2; width: min(100%, 600px); margin: 0 auto; }
+    .page-section--news .hero-slide__content--bottom-center { order: 3; }
+    .page-section--news .hero-slide__bg img {
+        position: static;
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+    }
+
+    /* ------------------------------------------------------------------
+       Slide 8 — Products grid. Desktop floats the grid absolute + each card is
+       a wide aspect-ratio box with an absolutely-floated packet → at tablet the
+       cards overlapped and the arrows floated loose over the text. Rebuild as a
+       2-col flow grid of content-height cards: packet overlaid top-right, copy
+       full-width, AVAILABLE-IN + arrow on one row at the lower edge (arrow
+       right). Fluid, nothing absolute, no overlap. */
+    .page-section--products-grid {
+        height: auto;
+        min-height: 100svh;
+        overflow: visible;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: clamp(56px, 8svh, 84px) 0 clamp(36px, 6svh, 60px);
+    }
     .products-grid {
-        width: 88%;
-        max-width: 940px;
-        gap: 24px;
+        position: static;
+        top: auto;
+        left: auto;
+        transform: none;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto auto;
+        gap: clamp(20px, 3vw, 32px);
+        width: 90%;
+        max-width: 880px;
+        margin: 0 auto;
+        flex: 0 0 auto;
     }
     .product-card {
-        padding: 28px 24px 20px;
-        border-radius: 40px;
+        aspect-ratio: auto;
+        height: auto;
+        min-height: clamp(250px, 33vh, 320px);
+        padding: clamp(22px, 3vw, 32px);
+        border-radius: clamp(30px, 4vw, 46px);
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+        overflow: hidden;
+    }
+    /* Copy layer fills the card; image overlays in the same grid cell. */
+    .product-card__body {
+        grid-area: 1 / 1;
+        z-index: 1;
+        max-width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: clamp(10px, 1.6vh, 16px);
+    }
+    .product-card__body {
+        justify-content: flex-start;
+    }
+    /* Title + desc kept to the left ~54% so they don't run under the packet. */
+    .product-card__top {
+        display: flex;
+        flex-direction: column;
+        gap: clamp(6px, 1vh, 10px);
+        max-width: 54%;
+    }
+    /* AVAILABLE IN + quantities + arrow grouped at the card's BOTTOM-LEFT
+       (pushed down via margin-top:auto): sizes on top, arrow directly below.
+       Kept narrow so they clear the packet on the right. */
+    .product-card__bottom {
+        margin-top: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: clamp(10px, 1.8vh, 18px);
+        max-width: 54%;
     }
     .product-card__title {
-        font-size: clamp(20px, 2.4vw, 26px);
+        font-size: clamp(18px, 2.6vw, 25px);
+        line-height: 1.08;
+        margin-bottom: 0;
     }
+    .product-card__desc {
+        font-size: clamp(15px, 2.1vw, 18px);
+        line-height: 1.4;
+        max-width: none;
+    }
+    .product-card__sizes {
+        margin-bottom: 0;
+        gap: clamp(3px, 0.7vh, 6px);
+    }
+    .product-card__sizes-label { font-size: clamp(11px, 1.6vw, 13px); }
+    .product-card__sizes-value { font-size: clamp(15px, 2vw, 18px); }
+    .product-card__arrow {
+        width: clamp(44px, 6vw, 54px);
+        height: clamp(44px, 6vw, 54px);
+        flex-shrink: 0;
+        align-self: flex-start;
+    }
+    .product-card__arrow svg {
+        width: clamp(18px, 2.5vw, 22px);
+        height: clamp(18px, 2.5vw, 22px);
+    }
+    /* Packet: out of absolute float, overlaid top-right of the card. Bigger
+       than before; stays in the right ~44% so it never overlaps the left copy. */
     .product-card__image {
-        max-width: 42%;
+        grid-area: 1 / 1;
+        position: static;
+        justify-self: end;
+        align-self: start;
+        right: auto;
+        bottom: auto;
+        width: clamp(128px, 44%, 190px);
+        height: auto;
+        max-width: 44%;
+        max-height: 82%;
+        object-fit: contain;
+        object-position: top right;
+        z-index: 0;
     }
+    .product-card:hover .product-card__image,
+    .product-card:hover .product-card__arrow { transform: none; }
 
     /* ------------------------------------------------------------------
-       Slide 9 — Benefits. 4-col → 2x2 grid. */
-    .benefits-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 24px;
-        bottom: 18%;
-        width: 86%;
-        max-width: 720px;
+       Slide 9 — Benefits. Was absolute (title top:12%, grid bottom:18%) so the
+       big 2x2 cards covered the title. Flow column: title at top → 2x2 grid →
+       jaggery bg photo fills the bottom. Fluid, nothing absolute, no overlap. */
+    .page-section--benefits,
+    section:has(> .benefits-grid) {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: clamp(18px, 3vh, 36px);
+        padding: clamp(40px, 6svh, 72px) 6% clamp(32px, 6svh, 56px);
+        min-height: 100svh;
+        height: auto;
+        overflow: hidden;
     }
+    /* NOTE: don't override .hero-slide__bg here — the @media(min-width:701px)
+       rule keeps it as a bottom 35% strip so the title + cards sit on the cream
+       upper area. Forcing it full-cover put the dark photo behind the maroon
+       title and made it invisible. */
     .benefits-title {
-        top: 12%;
-        font-size: clamp(32px, 4.2vw, 48px);
+        position: static;
+        transform: none;
+        left: auto;
+        top: auto;
+        width: auto;
+        margin: 0;
+        font-size: clamp(32px, 4.4vw, 48px);
+    }
+    .benefits-grid {
+        position: static;
+        transform: none;
+        left: auto;
+        right: auto;
+        bottom: auto;
+        width: 100%;
+        max-width: 700px;
+        margin: 0;
+        grid-template-columns: repeat(2, 1fr);
+        gap: clamp(18px, 2.8vh, 32px) clamp(18px, 3vw, 30px);
+    }
+    .benefit-card {
+        aspect-ratio: auto;
+        min-height: clamp(260px, 33vh, 350px);
+        padding: clamp(22px, 3vw, 30px) clamp(18px, 2.6vw, 24px) clamp(22px, 2.6vh, 28px);
+        border-radius: clamp(18px, 2.8vw, 24px);
+        justify-content: flex-start;
+    }
+    /* Icon: out of absolute float (desktop top:-32px) → static at the top of
+       the card so it never reaches into the title or the card above. */
+    .benefit-card__icon {
+        position: static;
+        top: auto;
+        left: auto;
+        width: clamp(40px, 5.5vw, 52px);
+        height: clamp(40px, 5.5vw, 52px);
+        margin: 0 0 clamp(10px, 1.6vh, 16px);
+        box-shadow: none;
+    }
+    .benefit-card:hover .benefit-card__icon {
+        transform: none;
+        box-shadow: none;
+    }
+    .benefit-card__icon svg {
+        width: clamp(20px, 2.8vw, 26px);
+        height: clamp(20px, 2.8vw, 26px);
+    }
+    .benefit-card__title {
+        font-size: clamp(23px, 3.3vw, 30px);
+        line-height: 1.12;
+        margin-bottom: clamp(8px, 1.4vh, 14px);
+    }
+    .benefit-card__body {
+        font-size: clamp(15px, 2.2vw, 19px);
+        line-height: 1.4;
     }
 
     /* ------------------------------------------------------------------
@@ -4601,11 +4884,12 @@ summary:focus-visible {
     /* 100% Natural seal — LEFT side, bigger than my previous tiny version.
        Desktop pulled it via transform translateY — reset that for mobile
        and pin it left-side with a fluid clamp size. */
+    /* Swapped sides (client): 100% Natural badge now on the RIGHT. */
     .natural-seal {
-        width: clamp(95px, 26vw, 140px) !important;
-        top: clamp(130px, 22svh, 200px) !important;
-        left: 3% !important;
-        right: auto !important;
+        width: clamp(122px, 33vw, 178px) !important;
+        top: clamp(150px, 24svh, 220px) !important;
+        left: auto !important;
+        right: 3% !important;
         transform: none !important;
         z-index: 6 !important;
     }
@@ -4617,20 +4901,23 @@ summary:focus-visible {
        Top pulled further up (clamp(95, 15svh, 140) — was 115/18svh/165)
        and right pushed flush against edge (right: 0). Tightens the column
        so the third feature clears the packet image entirely. */
+    /* Swapped sides (client): the 3 RTB features now on the LEFT. */
     .product-features {
         display: flex !important;
         flex-direction: column;
         position: absolute;
-        top: clamp(95px, 15svh, 140px) !important;
-        right: 0 !important;
-        left: auto !important;
+        /* Shifted down (was 15svh) to fill the negative space between the
+           title row and the packets, sitting opposite the bigger seal. */
+        top: clamp(150px, 24svh, 220px) !important;
+        left: 0 !important;
+        right: auto !important;
         transform: none !important;
-        width: clamp(120px, 38vw, 170px) !important;
-        max-width: 38vw;
-        gap: clamp(8px, 2vh, 14px) !important;
+        width: clamp(124px, 40vw, 180px) !important;
+        max-width: 40vw;
+        gap: clamp(12px, 2.6vh, 20px) !important;
         z-index: 6;
         margin: 0;
-        padding: 0 clamp(2px, 1vw, 6px) 0 0;
+        padding: 0 0 0 clamp(2px, 1vw, 6px);
         list-style: none;
     }
     .product-features li {
@@ -4803,8 +5090,8 @@ summary:focus-visible {
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: clamp(14px, 3vh, 24px);
-        padding: clamp(28px, 5svh, 48px) clamp(16px, 5vw, 24px) clamp(32px, 6svh, 52px);
+        gap: clamp(6px, 1.5vh, 14px);
+        padding: clamp(20px, 4svh, 36px) clamp(16px, 5vw, 24px) clamp(24px, 4svh, 40px);
     }
     /* Un-pin all three children → normal flow, full width. */
     .page-section--news .hero-slide__content--top-caption,
@@ -4825,7 +5112,13 @@ summary:focus-visible {
     .page-section--news .hero-slide__content--top-caption    { order: 1; text-align: center; }
     .page-section--news .hero-slide__bg                        { order: 2; }
     .page-section--news .hero-slide__content--bottom-center   { order: 3; text-align: center; }
-    /* Article frame shows whole, scaled to width (no crop). */
+    /* Article frame shown whole (contain). Negative top/bottom margins pull the
+       two captions inward onto the image's faint newspaper-trace border (empty
+       edges) so the titles sit neatly close without covering the clippings. */
+    .page-section--news .hero-slide__bg {
+        margin-top: clamp(-96px, -13vh, -56px);
+        margin-bottom: clamp(-96px, -13vh, -56px);
+    }
     .page-section--news .hero-slide__bg img {
         position: static;
         width: 100%;
@@ -4834,7 +5127,7 @@ summary:focus-visible {
     }
     .page-section--news .hero-slide__content--top-caption h2,
     .page-section--news .hero-slide__content--bottom-center h2 {
-        font-size: clamp(18px, 5vw, 26px);
+        font-size: clamp(23px, 6.6vw, 34px);
         line-height: 1.2;
         margin: 0;
         padding: 0;
@@ -4985,22 +5278,22 @@ summary:focus-visible {
         height: auto;
         overflow: hidden;
     }
-    .page-section--benefits .hero-slide__bg,
-    .page-section--benefits .hero-slide__bg img {
+    /* Bg photo lives ONLY in the lower section (a bottom strip), not the full
+       slide — cards float in the cream upper area, photo band at the bottom. */
+    .page-section--benefits .hero-slide__bg {
         position: absolute;
-        inset: 0;
+        inset: auto 0 0 0;
+        top: auto;
+        bottom: 0;
+        width: 100%;
+        height: clamp(200px, 34svh, 320px);
+    }
+    .page-section--benefits .hero-slide__bg img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        object-position: center bottom;
-    }
-    /* The source 9-jaggery.jpg has near-white edges baked into the image
-       (cream space around the dish). At mobile viewport widths cover-fit
-       still shows those white edges as side gaps. Zoom the image so the
-       white edges push off-screen, leaving only the dish visible. */
-    .page-section--benefits .hero-slide__bg img {
-        transform: scale(1.5);
-        transform-origin: center center;
+        object-position: center;
+        transform: none;
     }
     .benefits-title {
         position: static;
