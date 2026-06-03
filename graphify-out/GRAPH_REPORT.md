@@ -1,4 +1,4 @@
-# Graph Report - /Users/gauravshinde/Desktop/wp-local-dev  (2026-06-02)
+# Graph Report - /Users/gauravshinde/Desktop/wp-local-dev  (2026-06-03)
 
 ## Corpus Check
 - 336 files · ~25,020,331 words
@@ -1817,11 +1817,11 @@ Nodes (1): Accent palette #76112D #9D2745 #BA3656 #CD3F60 #2a1810
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `Helper` connect `Community 2` to `Community 0`, `Community 1`, `Community 3`, `Community 4`, `Community 6`, `Community 7`, `Community 8`, `Community 9`, `Community 12`, `Community 14`, `Community 15`, `Community 16`, `Community 17`?**
-  _High betweenness centrality (0.134) - this node is a cross-community bridge._
+  _High betweenness centrality (0.140) - this node is a cross-community bridge._
+- **Why does `handler()` connect `Community 10` to `Community 5`, `Community 8`, `Community 11`, `Community 18`, `Community 20`?**
+  _High betweenness centrality (0.104) - this node is a cross-community bridge._
 - **Why does `Incorrect_Syntax_Exception` connect `Community 9` to `Community 0`, `Community 1`, `Community 3`, `Community 5`, `Community 6`, `Community 7`, `Community 8`, `Community 12`, `Community 14`, `Community 17`, `Community 19`?**
   _High betweenness centrality (0.082) - this node is a cross-community bridge._
-- **Why does `handler()` connect `Community 10` to `Community 5`, `Community 8`, `Community 11`, `Community 18`, `Community 20`?**
-  _High betweenness centrality (0.078) - this node is a cross-community bridge._
 - **Are the 62 inferred relationships involving `Helper` (e.g. with `carbon_field_exists()` and `carbon_get()`) actually correct?**
   _`Helper` has 62 INFERRED edges - model-reasoned connections that need verification._
 - **Are the 48 inferred relationships involving `Incorrect_Syntax_Exception` (e.g. with `.extend()` and `.verify_fields_registered()`) actually correct?**

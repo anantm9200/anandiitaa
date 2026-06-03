@@ -4933,8 +4933,9 @@ summary:focus-visible {
        Now: align-items flex-start, each li full width, icon+text both
        left-anchored at a fixed indent from the column edge. */
     .hero-features {
-        margin-top: clamp(12px, 2.5svh, 22px) !important;
-        gap: clamp(6px, 1.6vh, 12px);
+        /* Nudged down (was 12–22) — there's room now that the packet sits low. */
+        margin-top: clamp(24px, 6svh, 48px) !important;
+        gap: clamp(8px, 1.8vh, 14px);
         align-items: flex-start !important;
         width: 100%;
         padding: 0 0 0 clamp(20px, 8vw, 50px);
@@ -4945,15 +4946,17 @@ summary:focus-visible {
         flex-direction: row;
         align-items: center;
         justify-content: flex-start;
-        gap: clamp(8px, 3vw, 14px);
-        font-size: clamp(12px, 3.2vw, 15px);
+        gap: clamp(10px, 3.4vw, 16px);
+        /* Bumped up (was 12–15px, looked amateurish) per client. */
+        font-size: clamp(15px, 4.3vw, 19px);
+        font-weight: 400;            /* unbolded — bold read as bigger/heavier */
         width: 100%;
         max-width: 100%;
         text-align: left;
     }
     .hero-features .icon {
-        width: clamp(24px, 6vw, 32px);
-        height: clamp(24px, 6vw, 32px);
+        width: clamp(30px, 7.5vw, 40px);
+        height: clamp(30px, 7.5vw, 40px);
         flex-shrink: 0;
     }
 
@@ -5522,6 +5525,22 @@ summary:focus-visible {
     .page-section .hero-slide__bg img {
         object-position: center center;
     }
+    /* Carousel slides 2–5: the phone composites have the packet in the lower
+       MIDDLE with an empty strip beneath it, so cover-fit left the packet
+       floating above the slide bottom. Scale the bg from the top so that empty
+       bottom strip is cropped (clipped by the slide's overflow:hidden) and the
+       packet drops to the bottom — freeing cleaner space up top for the copy.
+       Slide 1 (:first-child) keeps its own composition. */
+    .hero-track .hero-slide:not(:first-child) .hero-slide__bg img {
+        transform: scale(1.16);
+        transform-origin: center top;
+    }
+    /* Slide 5 (Fine Grain): its composite already sits low (packet + bowl near
+       the bottom), so the 1.16 scale above cropped the packet off. Use a much
+       smaller scale here so it anchors at the bottom WITHOUT cropping. */
+    .hero-track .hero-slide:nth-child(5) .hero-slide__bg img {
+        transform: scale(1.03);
+    }
 
     /* ------------------------------------------------------------------
        PROCESS SLIDE (jaggery/sugar slide 2 — "Process Defines Purity")
@@ -5766,6 +5785,20 @@ summary:focus-visible {
     .about-vision__title,
     .about-vision__body {
         color: var(--brand-maroon);
+    }
+    /* Client: anchor the copy to the TOP-LEFT (was vertically centered), which
+       also lifts the frosted blur off the central bowl area of the photo. */
+    .about-vision__grid {
+        align-items: start;
+        /* Pulled up so the title sits just below the fixed ~52px header. */
+        padding: clamp(60px, 9svh, 78px) clamp(20px, 6vw, 30px) clamp(40px, 8svh, 60px);
+    }
+    .about-vision__copy {
+        justify-content: flex-start;
+        align-items: flex-start;
+        min-height: 0;
+        transform: none;
+        padding: 0;
     }
 
     /* About hero (slide 1): the mobile composite has its callout labels baked
