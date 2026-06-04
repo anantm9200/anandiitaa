@@ -77,6 +77,7 @@ graphify-out/.graphify_python
 *.dump
 *.bak
 *~
+*.wpress
 
 # Temp / cache
 *.tmp

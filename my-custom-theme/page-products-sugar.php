@@ -49,6 +49,8 @@ $bust = 'anandiitaa_bust';
                 <source media="(min-width: 1281px) and (max-width: 1439px)" srcset="<?php echo esc_url( $bust( $tpl . '/assets/images/products/sugar/d1366/sugar-slide-1.png' ) ); ?>">
                 <?php // SEAMLESS_BG_TEST: 1280 tier (1101–1280px) hero. ?>
                 <source media="(min-width: 1101px) and (max-width: 1280px)" srcset="<?php echo esc_url( $bust( $tpl . '/assets/images/products/sugar/d1280/sugar-slide-1.png' ) ); ?>">
+                <?php // Tablet tier (701–1100px) — portrait composite. ?>
+                <source media="(min-width: 701px) and (max-width: 1100px)" srcset="<?php echo esc_url( $bust( $tpl . '/assets/images/products/sugar/tab/sugar-slide-1.png' ) ); ?>">
                 <?php // Phone tier (≤700px) — swapped to 4.png composite. ?>
                 <source media="(max-width: 700px)" srcset="<?php echo esc_url( $bust( $tpl . '/assets/images/products/sugar/sugar-slide-1-4.png' ) ); ?>">
                 <img

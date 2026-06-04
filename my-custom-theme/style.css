@@ -1659,21 +1659,40 @@ summary:focus-visible {
 
 /* ---- Responsive ---- */
 @media (max-width: 960px) {
-    .site-footer { padding: 64px 6% 96px; }
+    .site-footer { padding: clamp(48px, 7vw, 72px) 6% clamp(28px, 4vw, 40px); }
     .site-footer__inner {
         grid-template-columns: 1fr 1fr;
-        gap: 48px;
+        gap: clamp(28px, 5vw, 48px);
+        align-items: start;
     }
+    /* Brand spans the full first row; nav + info share the second row. */
     .site-footer__col--brand {
         grid-column: 1 / -1;
         min-height: auto;
     }
-    .site-footer__brand-base { margin-top: 36px; }
+    /* CRITICAL: reset desktop explicit placement. In a 2-col grid the
+       `grid-column: 3 / 4` rules spawn phantom columns and overlap. */
+    .site-footer__col--nav  { grid-column: 1; }
+    .site-footer__col--info { grid-column: 2; }
+    .site-footer__logo {
+        width: clamp(220px, 40vw, 320px);
+        height: clamp(40px, 7vw, 58px);
+    }
+    .site-footer__brand-base { margin-top: clamp(24px, 4vw, 40px); }
+    .site-footer__legal {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px 4px;
+        align-items: center;
+    }
+    /* Copyright: drop absolute positioning so it flows under the grid
+       instead of floating/overlapping. Sits full-width, left-aligned. */
     .site-footer__copy {
-        right: 0;
-        left: 0;
-        text-align: center;
-        bottom: 24px;
+        position: static;
+        right: auto;
+        bottom: auto;
+        margin-top: clamp(28px, 5vw, 44px);
+        text-align: left;
     }
 }
 
@@ -2175,6 +2194,106 @@ summary:focus-visible {
     color: var(--brand-text);
 }
 
+/* ------------------------------------------------------------------------
+   PROCESS TIMELINE — TABLET tier (701–1100px).
+   The desktop 5-column horizontal grid squeezes each step to ~150px wide, so
+   the absolutely-positioned text columns overlap their neighbours (cluttered).
+   Same fix as the phone block: drop the absolute layout, flow the steps as a
+   vertical zig-zag (circle + text row, alternating side), hide the connector
+   SVG (its % coords only map to the horizontal row). Tablet-sized.
+   ------------------------------------------------------------------------ */
+@media (min-width: 701px) and (max-width: 1100px) {
+    .product-slide--process {
+        padding: clamp(72px, 11svh, 110px) clamp(28px, 6vw, 56px) clamp(48px, 8svh, 72px);
+    }
+    .process-timeline {
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        gap: clamp(40px, 6vw, 80px);
+        /* Was a flat max-width:640px → content froze at 640 and floated in the
+           middle with huge side margins from ~900px up. Grow with the viewport
+           (≈92% width) so it scales across the whole tablet range, capped only
+           for line-length readability. */
+        width: min(92vw, 900px);
+        max-width: 100%;
+        margin: 0 auto;
+    }
+    /* Connector lines drawn for the horizontal layout — meaningless stacked. */
+    .process-connectors { display: none; }
+
+    /* Each step: circle + text in a row; alternate side for zig-zag rhythm. */
+    .process-step {
+        height: auto;
+        display: flex;
+        align-items: center;
+        gap: clamp(28px, 4.5vw, 64px);
+    }
+    .process-step--bottom { flex-direction: row-reverse; }
+
+    /* Circle: static (drop the absolute top/bottom + h-centering), fluid size,
+       flex-shrink:0 so the text can't crush it. Higher ceiling so it keeps
+       growing up to the top of the tablet range. */
+    .process-step__circle,
+    .process-step--top    .process-step__circle,
+    .process-step--bottom .process-step__circle {
+        position: relative;
+        top: auto;
+        bottom: auto;
+        left: auto;
+        transform: none;
+        width: clamp(160px, 25vw, 280px);
+        flex: 0 0 auto;
+        border-width: 5px;
+    }
+    .process-step__circle:hover { transform: scale(1.04); }
+
+    /* Coffee-ring arc: keep concentric — offset = half the size growth. */
+    .process-step__arc {
+        border-width: clamp(11px, 1.7vw, 16px);
+        width:  calc(100% + clamp(18px, 2.8vw, 26px));
+        height: calc(100% + clamp(18px, 2.8vw, 26px));
+    }
+    .process-step--top .process-step__arc {
+        top:  calc(-1 * clamp(9px, 1.4vw, 13px));
+        left: calc(-1 * clamp(9px, 1.4vw, 13px));
+    }
+    .process-step--bottom .process-step__arc {
+        bottom: calc(-1 * clamp(9px, 1.4vw, 13px));
+        left:   calc(-1 * clamp(9px, 1.4vw, 13px));
+    }
+
+    /* Number knob: park over the TOP edge of every circle (uniform). */
+    .process-step__lid,
+    .process-step--top    .process-step__lid,
+    .process-step--bottom .process-step__lid {
+        top:    calc(-1 * clamp(20px, 2.8vw, 28px));
+        bottom: auto;
+    }
+    .process-step__number {
+        width:  clamp(68px, 9.5vw, 96px);
+        height: clamp(44px, 6vw, 60px);
+        border-radius: 16px;
+        font-size: clamp(22px, 3vw, 30px);
+    }
+
+    /* Text: static, fills the remaining row width, left-aligned. Scales up too. */
+    .process-step__text,
+    .process-step--top    .process-step__text,
+    .process-step--bottom .process-step__text {
+        position: static;
+        top: auto;
+        bottom: auto;
+        left: auto;
+        transform: none;
+        width: auto;
+        flex: 1 1 auto;
+        text-align: left;
+        font-size: clamp(15px, 2vw, 20px);
+        line-height: 1.55;
+    }
+}
+
 /* ========================================================================
    RECIPES SLIDE (sugar slide 3 — "Home Delicacies Recipes")
    2x2 grid of recipe cards. Each card: photo (left) + body+meta (right) +
@@ -2452,6 +2571,29 @@ summary:focus-visible {
     opacity: 0.85;
 }
 
+/* ------------------------------------------------------------------------
+   HEALTH BENEFITS accordion — TABLET tier (701–1100px).
+   Base layout is image (minmax 280–360px) + body 1fr with a 94px left indent.
+   On a tablet that fixed image min + big indent starves the text column down
+   to ~160px → heavy wrapping. Keep image LEFT, but make the image column
+   fluid (vw-based, smaller min) and trim the indent so the body (1fr) flows
+   beside it and auto-adjusts with the viewport. Applies to all 5 dropdowns. */
+@media (min-width: 701px) and (max-width: 1100px) {
+    .benefit-content {
+        grid-template-columns: clamp(200px, 34vw, 300px) 1fr;
+        gap: clamp(20px, 3vw, 32px);
+        align-items: start;
+        /* Indent trimmed from 94px → roughly clears the number column without
+           crushing the body. */
+        padding: 4px clamp(8px, 2vw, 16px) clamp(22px, 4vw, 30px) clamp(32px, 5.5vw, 56px);
+    }
+    .benefit-content__body {
+        font-size: clamp(14px, 1.9vw, 16px);
+        line-height: 1.55;
+        max-width: none;
+    }
+}
+
 /* ========================================================================
    PRODUCT VARIANTS SLIDE (jaggery slide 4 — Powder + Block side by side)
    Each card has a packet image overhanging the top, inside content below.
@@ -2558,6 +2700,63 @@ summary:focus-visible {
 /* Sugar page: variant card text in black instead of maroon */
 .product-page--sugar .variant-card__avail,
 .product-page--sugar .variant-card__title { color: #000; }
+
+/* ------------------------------------------------------------------------
+   PRODUCT VARIANTS — TABLET tier (701–1100px).
+   Desktop pins the packet image absolute (clamp 520–700px) + body bottom-left
+   (right:38%) + title white-space:nowrap. Two cards side-by-side on a tablet
+   are too narrow: the oversized images spill and the nowrap titles clip
+   ("Jaggery Powder" → "Jaggery Powd"). Flow each card as a centered column
+   (image on top, body below, title wraps) — same internals as the phone
+   block, kept 2-up. Fluid, no absolute positioning. */
+@media (min-width: 701px) and (max-width: 1100px) {
+    .product-slide--variants {
+        padding: clamp(60px, 10svh, 90px) clamp(24px, 5vw, 48px) clamp(48px, 8svh, 72px);
+    }
+    .variants-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(24px, 4vw, 56px);
+        /* Grow with the viewport instead of freezing at a flat 760px. */
+        width: min(94vw, 960px);
+        max-width: 100%;
+    }
+    .variant-card {
+        min-height: 0;
+        padding: clamp(28px, 4vw, 44px) clamp(22px, 3.5vw, 38px);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    /* Image out of absolute flow → sits centered on top, scaled to the card. */
+    .variant-card__image {
+        position: static;
+        right: auto;
+        bottom: auto;
+        height: clamp(240px, 32vw, 440px);
+        max-width: 90%;
+        margin: 0 auto clamp(16px, 3vw, 24px);
+    }
+    .variant-card:hover .variant-card__image { transform: translateY(-6px); }
+    /* Body static, full width, centered. */
+    .variant-card__body {
+        position: static;
+        bottom: auto;
+        left: auto;
+        right: auto;
+        width: 100%;
+    }
+    .variant-card__avail {
+        align-items: center;
+        margin-bottom: clamp(10px, 2vw, 16px);
+    }
+    .variant-card__avail-label { font-size: clamp(12px, 1.6vw, 14px); }
+    .variant-card__avail-value { font-size: clamp(20px, 2.6vw, 30px); }
+    .variant-card__title {
+        white-space: normal;            /* allow wrap; desktop forces single line */
+        font-size: clamp(24px, 3.4vw, 40px);
+    }
+}
 
 /* ========================================================================
    PRODUCT PAGES — legacy basic grid (kept for any non-slide product pages)
@@ -2903,6 +3102,16 @@ summary:focus-visible {
     height: auto;
 }
 
+/* Tablet hero (701–1100px) uses the portrait composite that already has its
+   callout labels baked in — hide the SVG overlay (its 2560×1664 coords only
+   map to the wide mac image). The ≤700 phone block hides it too; this covers
+   the tablet gap between. Title stays. */
+@media (max-width: 1100px) {
+    .about-slide--products .about-callouts {
+        display: none;
+    }
+}
+
 /* Reveal stagger — title in first, callouts fade together. */
 [data-reveal] .about-slide__title  { --anim-delay: 0ms; }
 [data-reveal] .about-callouts      { --anim-delay: 200ms; }
@@ -3136,6 +3345,65 @@ summary:focus-visible {
     }
 }
 
+/* ------------------------------------------------------------------------
+   ABOUT US — TABLET tier (701–1100px) for Vision + Mission.
+   This range previously had NO vision background (cream gap) and the mission
+   used the wide mac composite cover-cropped into a portrait box. Swap both to
+   the portrait tab composites and anchor the copy where it stays legible.
+   ------------------------------------------------------------------------ */
+@media (min-width: 701px) and (max-width: 1100px) {
+    /* --- Vision: 1.png (bowl on wood). Maroon copy over the light top-left
+       corner of the photo — reads clean, no backdrop needed. --- */
+    .about-slide--vision {
+        background: url('images/about-us/tab/vision.png') center / cover no-repeat;
+    }
+    .about-vision__grid {
+        align-items: start;
+        padding: clamp(64px, 9svh, 96px) clamp(28px, 6vw, 56px) clamp(40px, 7svh, 64px);
+    }
+    .about-vision__copy {
+        justify-content: flex-start;
+        align-items: flex-start;
+        min-height: 0;
+        transform: none;
+        padding: 0;
+    }
+    .about-vision__title,
+    .about-vision__body {
+        color: var(--brand-maroon);
+    }
+
+    /* --- Mission: 2.png (sugarcane + sugar bowl). Show the image top (dark
+       sugarcane band) and anchor the cream copy there for contrast; let the
+       slide grow with the portrait image instead of locking to 100vh. --- */
+    .about-slide--mission {
+        height: auto;
+        min-height: 100svh;
+        overflow: hidden;
+        display: flex;
+        align-items: flex-start;
+        padding: clamp(72px, 12svh, 110px) clamp(28px, 6vw, 56px) clamp(40px, 7svh, 64px);
+    }
+    .about-slide--mission .about-slide__bg img {
+        object-position: center top;
+    }
+    .about-mission__copy {
+        position: static;
+        transform: none;
+        right: auto;
+        left: auto;
+        max-width: 560px;
+        width: 100%;
+    }
+    .about-mission__title {
+        font-size: clamp(34px, 6vw, 48px);
+        margin-bottom: clamp(16px, 3vw, 26px);
+    }
+    .about-mission__body {
+        font-size: clamp(15px, 2.4vw, 19px);
+    }
+}
+
 /* ========================================================================
    ABOUT US — Slide 4 (The Anandiitaa Standards)
    Centered header with inline wordmark + 2x2 grid of image/card pairs.
@@ -3345,9 +3613,57 @@ summary:focus-visible {
 }
 
 @media (max-width: 1100px) {
+    /* Single-column stack. The base .about-slide forces height:100vh +
+       overflow:hidden and .about-slide--standards only overrides min-height,
+       so the slide stayed locked at 100vh and clipped cards 3 & 4 once the
+       stacked layout grew past one screen. Let it grow with content + scroll. */
+    .about-slide--standards {
+        height: auto;
+        min-height: 100svh;
+        overflow: visible;
+        padding: clamp(64px, 9vw, 100px) clamp(24px, 5vw, 80px) clamp(48px, 7vw, 96px);
+    }
+    .about-standards__title {
+        /* Desktop margin-bottom:160px ate the vertical room cards needed. */
+        margin-bottom: clamp(40px, 7vw, 96px);
+        font-size: clamp(34px, 6vw, 52px);
+    }
     .about-standards__grid {
         grid-template-columns: 1fr;
-        gap: 40px;
+        gap: clamp(28px, 4vw, 44px);
+        /* Grow with the viewport instead of freezing at a flat 760px (which
+           stranded the cards mid-slide with big side margins above ~900px). */
+        width: min(92vw, 920px);
+        max-width: 100%;
+        margin: 0 auto;
+    }
+    /* Kill the brick-stagger. translateX(+6%) on cards 3-4 pushed them off the
+       right edge in the single-column layout (card 3 spilled, card 4 hidden). */
+    .standard-item,
+    .standard-item:nth-child(-n+2),
+    .standard-item:nth-child(n+3),
+    .standard-item:hover,
+    .standard-item:nth-child(-n+2):hover,
+    .standard-item:nth-child(n+3):hover {
+        transform: none;
+    }
+    .standard-item {
+        grid-template-columns: clamp(130px, 22vw, 260px) 1fr;
+        max-width: none;
+    }
+    .standard-item__image {
+        width: 100%;
+    }
+    .standard-item__card {
+        padding: clamp(24px, 4vw, 48px) clamp(24px, 4.5vw, 56px);
+        margin-left: clamp(-28px, -3vw, -20px);
+        gap: clamp(8px, 1.5vw, 14px);
+    }
+    .standard-item__title {
+        font-size: clamp(20px, 3vw, 30px);
+    }
+    .standard-item__body {
+        font-size: clamp(14px, 2vw, 18px);
     }
 }
 
@@ -4067,8 +4383,10 @@ summary:focus-visible {
     text-align: left;
 }
 .recipe-intro__media {
-    aspect-ratio: 4 / 3;
-    max-height: clamp(280px, 62svh, 560px);
+    /* No forced aspect-ratio. The dish photos are 5:3; the old `aspect-ratio:
+       4/3 + object-fit: cover` cropped the sides and cut the sugar-packet
+       branding (client issue). Let the image set its own height so the full
+       frame — branding included — always shows. Fluid, never cropped. */
     border-radius: 24px;
     overflow: hidden;
     background: #e9d9b8;
@@ -4076,8 +4394,7 @@ summary:focus-visible {
 }
 .recipe-intro__media img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
     display: block;
 }
 .recipe-intro__copy .recipe-detail__eyebrow,
@@ -4252,7 +4569,9 @@ summary:focus-visible {
 .recipe-detail--gajar-ka-halwa .recipe-step__media,
 .recipe-detail--gajar-ka-halwa .recipe-detail-slide--reverse .recipe-step__media,
 .recipe-detail--choco-lava-cake .recipe-step__media,
-.recipe-detail--choco-lava-cake .recipe-detail-slide--reverse .recipe-step__media {
+.recipe-detail--choco-lava-cake .recipe-detail-slide--reverse .recipe-step__media,
+.recipe-detail--cookies        .recipe-step__media,
+.recipe-detail--cookies        .recipe-detail-slide--reverse .recipe-step__media {
     aspect-ratio: auto;
     max-height: none;
     height: auto;
@@ -4262,7 +4581,9 @@ summary:focus-visible {
 .recipe-detail--gajar-ka-halwa .recipe-step__media img,
 .recipe-detail--gajar-ka-halwa .recipe-detail-slide--reverse .recipe-step__media img,
 .recipe-detail--choco-lava-cake .recipe-step__media img,
-.recipe-detail--choco-lava-cake .recipe-detail-slide--reverse .recipe-step__media img {
+.recipe-detail--choco-lava-cake .recipe-detail-slide--reverse .recipe-step__media img,
+.recipe-detail--cookies        .recipe-step__media img,
+.recipe-detail--cookies        .recipe-detail-slide--reverse .recipe-step__media img {
     height: auto;
     object-fit: contain;
 }

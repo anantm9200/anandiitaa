@@ -31,6 +31,9 @@ $bust = 'anandiitaa_bust';
                          Desktop unchanged. The SVG .about-callouts overlay is hidden on
                          mobile (see mobile block) since this image already has the labels. */ ?>
                 <source media="(max-width: 700px)" srcset="<?php echo esc_url( $bust( $tpl . '/images/about-us/phone/about-hero.png' ) ); ?>">
+                <?php /* Tablet tier (701–1100px) — portrait composite with callout labels baked in,
+                         same as phone. SVG .about-callouts overlay hidden on tablet (see CSS). */ ?>
+                <source media="(max-width: 1100px)" srcset="<?php echo esc_url( $bust( $tpl . '/images/about-us/tab/about-hero.png' ) ); ?>">
                 <img
                     src="<?php echo esc_url( $bust( $tpl . '/images/about-us/mac/about-slide-1.png' ) ); ?>"
                     alt="Anandiitaa product range — Desi Jaggery, Jaggery Powder, Bold Grain Sugar, Fine Grain Sugar"
@@ -148,6 +151,8 @@ $bust = 'anandiitaa_bust';
             <picture>
                 <?php // Phone tier (≤700px) — mission bg swapped to 2.png composite. Desktop unchanged. ?>
                 <source media="(max-width: 700px)" srcset="<?php echo esc_url( $bust( $tpl . '/images/about-us/phone/mission.png' ) ); ?>">
+                <?php // Tablet tier (701–1100px) — portrait composite. ?>
+                <source media="(max-width: 1100px)" srcset="<?php echo esc_url( $bust( $tpl . '/images/about-us/tab/mission.png' ) ); ?>">
                 <img
                     src="<?php echo esc_url( $bust( $tpl . '/images/about-us/mac/about-slide-3.png' ) ); ?>"
                     alt="Sugarcane stalks and a bowl of sugar on a maroon wooden surface"
@@ -253,6 +258,8 @@ $bust = 'anandiitaa_bust';
         <div class="hero-slide__bg">
             <picture>
                 <source media="(min-width: 1440px)" srcset="<?php echo esc_url( $bust( $tpl . '/images/home/mac/sections/11.png' ) ); ?>">
+                <?php // Tablet (701–1100px) — mirror the homepage social slide's portrait tablet image (laptop crop was wrong here). ?>
+                <source media="(min-width: 701px) and (max-width: 1100px)" srcset="<?php echo esc_url( $bust( $tpl . '/images/home/tablet/sections/11.png' ) ); ?>">
                 <img src="<?php echo esc_url( $bust( $tpl . '/images/home/laptop/sections/11.png' ) ); ?>" alt="For Those Who Choose Better — Anandiitaa Community" loading="lazy">
             </picture>
         </div>
