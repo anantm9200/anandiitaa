@@ -6165,4 +6165,399 @@ summary:focus-visible {
 }
 
 
+/* ========================================================================
+   MANUFACTURING DETAILS PAGE  (/manufacturing-details)
+   Static info page — no images. Brand gradient surface (inherited from body),
+   page title, two address cards (Marketed / Manufactured) + a contact card.
+   Greenfield like the recipe pages: flex/grid centred, fluid clamp() sizing,
+   tokens for every type tier. Top padding clears the fixed .site-header.
+   ======================================================================== */
+
+.mfg-page {
+    min-height: 100svh;
+    display: flex;
+    justify-content: center;
+}
+
+.mfg-section {
+    width: 100%;
+    max-width: 920px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: clamp(96px, 14vh, 160px) clamp(24px, 6vw, 64px) clamp(64px, 9vh, 110px);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.mfg-head {
+    text-align: center;
+    margin-bottom: clamp(32px, 5vh, 56px);
+}
+
+.mfg-title {
+    margin: 0;
+    font-family: 'Appetite Pro', 'Georgia', serif;
+    font-size: var(--fs-heading);
+    font-weight: var(--fw-heading);
+    line-height: 1.05;
+    color: var(--brand-maroon);
+}
+
+/* Two address cards side-by-side on desktop, stacked on small screens. */
+.mfg-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(18px, 2.4vw, 28px);
+    margin-bottom: clamp(20px, 2.8vw, 28px);
+}
+
+.mfg-card,
+.mfg-contact {
+    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid rgba(107, 15, 26, 0.16);
+    border-radius: 18px;
+    padding: clamp(24px, 3.4vw, 40px);
+    backdrop-filter: blur(2px);
+}
+
+.mfg-card__label,
+.mfg-contact__label {
+    margin: 0 0 14px;
+    font-family: 'Appetite Pro', 'Georgia', serif;
+    font-size: var(--fs-subtext);
+    font-weight: var(--fw-heading);
+    line-height: 1.1;
+    color: var(--brand-maroon);
+}
+
+.mfg-card__body,
+.mfg-contact__lead,
+.mfg-contact__address {
+    margin: 0;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: var(--fs-body);
+    font-weight: var(--fw-body);
+    line-height: 1.6;
+    color: var(--brand-text);
+}
+
+.mfg-contact__lead {
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+.mfg-contact__address {
+    margin-bottom: clamp(18px, 2.4vw, 26px);
+}
+
+/* Label / value rows — label fixed column, value flows beside it. */
+.mfg-contact__rows {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.mfg-contact__row {
+    display: grid;
+    grid-template-columns: minmax(110px, max-content) 1fr;
+    gap: clamp(10px, 2vw, 22px);
+    align-items: baseline;
+}
+
+.mfg-contact__row dt {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: var(--fs-body);
+    font-weight: 600;
+    color: var(--brand-maroon);
+}
+
+.mfg-contact__row dd {
+    margin: 0;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: var(--fs-body);
+    font-weight: var(--fw-body);
+    color: var(--brand-text);
+    word-break: break-word;
+}
+
+.mfg-contact__row a {
+    color: var(--brand-maroon);
+    text-decoration: none;
+    transition: color 0.2s, text-decoration-color 0.2s;
+}
+
+.mfg-contact__row a:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+/* Tablet (701–1100px): keep two cards but tighten gutters. */
+@media (min-width: 701px) and (max-width: 1100px) {
+    .mfg-section {
+        max-width: 760px;
+        padding-top: clamp(88px, 12vh, 130px);
+    }
+}
+
+/* Phone (≤700px): stack cards, smaller title, label/value rows stack too. */
+@media (max-width: 700px) {
+    .mfg-section {
+        padding-top: clamp(84px, 14vh, 110px);
+    }
+    .mfg-title {
+        font-size: clamp(34px, 9vw, 45px);
+    }
+    .mfg-card__label,
+    .mfg-contact__label {
+        font-size: clamp(20px, 6vw, 24px);
+    }
+    .mfg-cards {
+        grid-template-columns: 1fr;
+    }
+    .mfg-contact__row {
+        grid-template-columns: 1fr;
+        gap: 2px;
+    }
+}
+
+
+/* ========================================================================
+   JAGGERY NUTRITION TABLE PAGE  (/jaggery-nutrition-table)
+   Two product blocks (Desi Jaggery, Jaggery Powder). Each = local packet
+   image + a 3-col nutrition table. Image | table side-by-side on desktop,
+   stacked on phone. Brand gradient surface (body), design-system tokens.
+   ======================================================================== */
+
+.nut-page {
+    max-width: 1180px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding: clamp(96px, 13vh, 150px) clamp(20px, 5vw, 56px) clamp(64px, 9vh, 110px);
+}
+
+.nut-head {
+    text-align: center;
+    margin-bottom: clamp(36px, 6vh, 64px);
+}
+
+.nut-title {
+    margin: 0;
+    font-family: 'Appetite Pro', 'Georgia', serif;
+    font-size: var(--fs-heading);
+    font-weight: var(--fw-heading);
+    line-height: 1.05;
+    color: var(--brand-maroon);
+}
+
+.nut-subtitle {
+    margin: 10px 0 0;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: var(--fs-subtext);
+    font-weight: var(--fw-heading);
+    color: var(--brand-text);
+}
+
+.nut-section {
+    margin-top: clamp(40px, 7vh, 80px);
+}
+
+.nut-section:first-of-type {
+    margin-top: 0;
+}
+
+.nut-section__name {
+    margin: 0 0 clamp(18px, 2.6vw, 28px);
+    text-align: center;
+    font-family: 'Appetite Pro', 'Georgia', serif;
+    font-size: var(--fs-subtext);
+    font-weight: var(--fw-heading);
+    color: var(--brand-maroon);
+}
+
+/* Image | table. Image column sized to the packet; table takes the rest. */
+.nut-block {
+    display: grid;
+    grid-template-columns: minmax(220px, 0.8fr) 1.6fr;
+    gap: clamp(24px, 4vw, 56px);
+    align-items: center;
+}
+
+.nut-figure {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.nut-figure img {
+    width: 100%;
+    max-width: 360px;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 18px 34px rgba(74, 10, 18, 0.18));
+}
+
+/* Wrapper allows horizontal scroll on very narrow screens without breaking layout. */
+.nut-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.nut-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: var(--fs-body);
+    color: var(--brand-text);
+    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid rgba(107, 15, 26, 0.16);
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.nut-table thead th {
+    background: var(--brand-maroon);
+    color: #fff;
+    font-weight: var(--fw-heading);
+    text-align: center;
+    padding: clamp(12px, 1.6vw, 18px) clamp(12px, 1.8vw, 22px);
+    line-height: 1.25;
+    vertical-align: middle;
+}
+
+.nut-table thead th:first-child {
+    text-align: left;
+}
+
+/* Second header line — small caption under "Per Serve". */
+.nut-table__sub {
+    display: block;
+    margin-top: 3px;
+    font-size: clamp(11px, 1vw, 13px);
+    font-weight: var(--fw-body);
+    letter-spacing: 0.01em;
+    opacity: 0.92;
+}
+
+.nut-table tbody th {
+    text-align: left;
+    font-weight: 600;
+    color: var(--brand-maroon);
+}
+
+.nut-table tbody th,
+.nut-table tbody td {
+    padding: clamp(11px, 1.4vw, 16px) clamp(12px, 1.8vw, 22px);
+    border-top: 1px solid rgba(107, 15, 26, 0.12);
+}
+
+.nut-table tbody td {
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+}
+
+/* Zebra striping for scan-ability. */
+.nut-table tbody tr:nth-child(even) th,
+.nut-table tbody tr:nth-child(even) td {
+    background: rgba(107, 15, 26, 0.04);
+}
+
+/* Alternate the 2nd block (Jaggery Powder): table left, image right.
+   Desktop/tablet only — mobile keeps image-on-top for both (see phone block). */
+@media (min-width: 701px) {
+    .nut-section:nth-of-type(even) .nut-block {
+        grid-template-columns: 1.6fr minmax(220px, 0.8fr);
+    }
+    .nut-section:nth-of-type(even) .nut-table-wrap { order: 1; }
+    .nut-section:nth-of-type(even) .nut-figure     { order: 2; }
+
+    /* Hug the OUTER edge so packet edge lines up with the table edge below/above:
+       image-left blocks pin left, image-right blocks pin right. */
+    .nut-figure                                { justify-content: flex-start; }
+    .nut-section:nth-of-type(even) .nut-figure { justify-content: flex-end; }
+}
+
+/* Tablet (701–1100px): shrink image column a touch. */
+@media (min-width: 701px) and (max-width: 1100px) {
+    .nut-block {
+        grid-template-columns: minmax(180px, 0.7fr) 1.8fr;
+        gap: clamp(20px, 3vw, 36px);
+    }
+    .nut-section:nth-of-type(even) .nut-block {
+        grid-template-columns: 1.8fr minmax(180px, 0.7fr);
+    }
+    .nut-figure img { max-width: 300px; }
+}
+
+/* ---- Paired-packet pages (Sugar): figure holds two packets side by side ----
+   Order + composition per approved design: green (Bold Grain) first, blue
+   (Fine Grain) second. SAME size — only a vertical offset (green up, blue
+   sits lower). No overlap, no size difference. */
+.nut-figure--pair {
+    gap: clamp(8px, 1.4vw, 18px);
+    flex-wrap: nowrap;
+    align-items: flex-start;        /* tops align, then blue is dropped down */
+}
+.nut-figure--pair img {
+    flex: 0 0 auto;
+    /* Size by HEIGHT so every packet has the same visual height regardless of
+       its source aspect ratio (1Kg is tall, 5Kg is nearly square, etc.). */
+    height: clamp(210px, 25vw, 340px);
+    width: auto;
+    max-width: none;
+}
+.nut-figure--pair img:last-child {   /* blue — same size, nudged down */
+    transform: translateY(13%);
+}
+/* Wider image column so two bigger packets breathe; keep the alternation. */
+@media (min-width: 1101px) {
+    .nut-page--pair .nut-block {
+        grid-template-columns: minmax(540px, 1.65fr) 1.2fr;
+    }
+    .nut-page--pair .nut-section:nth-of-type(even) .nut-block {
+        grid-template-columns: 1.2fr minmax(540px, 1.65fr);
+    }
+    /* 25 Kg (3rd section) packets are tall — make them noticeably bigger. */
+    .nut-page--pair .nut-section:nth-of-type(3) .nut-figure--pair img {
+        height: clamp(330px, 34vw, 430px);
+    }
+}
+@media (min-width: 701px) and (max-width: 1100px) {
+    .nut-page--pair .nut-block {
+        grid-template-columns: minmax(360px, 1.35fr) 1.4fr;
+    }
+    .nut-page--pair .nut-section:nth-of-type(even) .nut-block {
+        grid-template-columns: 1.4fr minmax(360px, 1.35fr);
+    }
+}
+
+/* Phone (≤700px): stack image above table; both full width. */
+@media (max-width: 700px) {
+    .nut-title {
+        font-size: clamp(34px, 9vw, 45px);
+    }
+    .nut-subtitle,
+    .nut-section__name {
+        font-size: clamp(20px, 6vw, 24px);
+    }
+    .nut-block {
+        grid-template-columns: 1fr;
+        gap: clamp(18px, 5vw, 28px);
+    }
+    .nut-figure img { max-width: 240px; }
+    /* Two packets side by side on phone too — same size, green up / blue down.
+       Height-based (matches base rule); vw term keeps them within the viewport. */
+    .nut-figure--pair img { height: clamp(160px, 34vw, 240px); }
+    .nut-table {
+        font-size: clamp(14px, 3.6vw, 16px);
+    }
+    .nut-table thead th,
+    .nut-table tbody th,
+    .nut-table tbody td {
+        padding: 10px 12px;
+    }
+}
 

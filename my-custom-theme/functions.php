@@ -186,6 +186,9 @@ add_filter( 'pre_get_document_title', function ( $title ) {
         'products/jaggery' => 'Desi Jaggery | ' . $site,
         'products/sugar'   => 'Premium Refined Sugar | ' . $site,
         'about-us'         => 'About Us | ' . $site,
+        'manufacturing-details' => 'Manufacturing Details | ' . $site,
+        'jaggery-nutrition-table' => 'Jaggery Nutrition Facts | ' . $site,
+        'nutrition-table-sugar'   => 'Sugar Nutrition Facts | ' . $site,
     );
 
     if ( isset( $titles[ $req ] ) ) {
@@ -376,6 +379,9 @@ function anandiitaa_route_templates( $template ) {
         'recipes/gulab-jamun'        => 'page-recipes-gulab-jamun.php',
         'recipes/choco-lava-cake'    => 'page-recipes-choco-lava-cake.php',
         'recipes/gajar-ka-halwa'     => 'page-recipes-gajar-ka-halwa.php',
+        'manufacturing-details'      => 'page-manufacturing-details.php',
+        'jaggery-nutrition-table'    => 'page-jaggery-nutrition.php',
+        'nutrition-table-sugar'      => 'page-sugar-nutrition.php',
     );
 
     $request = trim( parse_url( $_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH ) ?? '', '/' );
