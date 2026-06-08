@@ -293,7 +293,7 @@ $bust = 'anandiitaa_bust';
                 'image' => $tpl . '/assets/images/reviews/review2.png',
                 'name'  => 'Kavya Bhosle, 34',
                 'role'  => '(Mumbai)',
-                'quote' => 'I switched to Anandiittaa jaggery powder for my morning chai. The taste is richer, and I don\'t need to worry about my Jaggery\'s Purity.',
+                'quote' => 'I switched to Anandiitaa jaggery powder for my morning chai. The taste is richer, and I don\'t need to worry about my Jaggery\'s Purity.',
             ),
         );
     ?>
