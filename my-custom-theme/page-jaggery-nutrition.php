@@ -16,6 +16,7 @@ $bust = 'anandiitaa_bust';
 $products = array(
     array(
         'name'  => 'Desi Jaggery',
+        'serve' => 'Serve size 5 g  |  No. of serves – 180',
         'image' => $tpl . '/assets/images/products/packets/desi-jaggery.png',
         'alt'   => 'Anandiitaa Desi Jaggery packet',
         'rows'  => array(
@@ -28,10 +29,12 @@ $products = array(
             array( 'Calcium (mg)',      '72.61',  '3.63' ),
             array( 'Potassium (mg)',    '579.32', '28.97' ),
             array( 'Sodium (mg)',       '12.35',  '0.62' ),
+            array( 'Phosphorus (mg)',   '90.04',  '4.50' ),
         ),
     ),
     array(
         'name'  => 'Jaggery Powder',
+        'serve' => 'Serve size 5 g  |  No. of serves – 100',
         'image' => $tpl . '/assets/images/products/packets/jaggery-powder.png',
         'alt'   => 'Anandiitaa Jaggery Powder packet',
         'rows'  => array(
@@ -44,6 +47,7 @@ $products = array(
             array( 'Calcium (mg)',      '75.16',  '3.76' ),
             array( 'Potassium (mg)',    '583.26', '29.16' ),
             array( 'Sodium (mg)',       '16.52',  '0.83' ),
+            array( 'Phosphorus (mg)',   '84.98',  '4.25' ),
         ),
     ),
 );
@@ -60,6 +64,9 @@ $products = array(
         <section class="nut-section">
 
             <h2 class="nut-section__name"><?php echo esc_html( $p['name'] ); ?></h2>
+            <?php if ( ! empty( $p['serve'] ) ) : ?>
+                <p class="nut-section__serve"><?php echo esc_html( $p['serve'] ); ?></p>
+            <?php endif; ?>
 
             <div class="nut-block">
 

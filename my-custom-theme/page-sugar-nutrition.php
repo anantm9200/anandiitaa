@@ -17,6 +17,7 @@ $pk   = $tpl . '/assets/images/products/packets';
 $products = array(
     array(
         'name'    => 'Sugar 1 Kg',
+        'serve'   => 'Serving size 5 g  |  No. of serves – 200',
         'packets' => array(
             array( 'src' => $pk . '/sugar-1kg-green.png', 'alt' => 'Anandiitaa Sugar 1 Kg — Bold Grain (green pack)' ),
             array( 'src' => $pk . '/sugar-1kg-blue.png',  'alt' => 'Anandiitaa Sugar 1 Kg — Fine Grain (blue pack)' ),
@@ -29,10 +30,12 @@ $products = array(
             array( 'Protein (g)',       '0.00', '0.00' ),
             array( 'Total Fat (g)',     '0.00', '0.00' ),
             array( 'Cholesterol (mg)',  '0.00', '0.00' ),
+            array( 'Sodium (mg)',       '0.00', '0.00' ),
         ),
     ),
     array(
         'name'    => 'Sugar 5 Kg',
+        'serve'   => 'Serving size 5 g  |  No. of serves – 1000',
         'packets' => array(
             array( 'src' => $pk . '/sugar-5kg-green.png', 'alt' => 'Anandiitaa Sugar 5 Kg — Bold Grain (green pack)' ),
             array( 'src' => $pk . '/sugar-5kg-blue.png',  'alt' => 'Anandiitaa Sugar 5 Kg — Fine Grain (blue pack)' ),
@@ -45,10 +48,12 @@ $products = array(
             array( 'Protein (g)',       '0.00', '0.00' ),
             array( 'Total Fat (g)',     '0.00', '0.00' ),
             array( 'Cholesterol (mg)',  '0.00', '0.00' ),
+            array( 'Sodium (mg)',       '0.00', '0.00' ),
         ),
     ),
     array(
         'name'    => 'Sugar 25 Kg',
+        'serve'   => 'Serving size 5 g  |  No. of serves – 5000',
         'packets' => array(
             array( 'src' => $pk . '/sugar-25kg-green.png', 'alt' => 'Anandiitaa Sugar 25 Kg — Bold Grain (green pack)' ),
             array( 'src' => $pk . '/sugar-25kg-blue.png',  'alt' => 'Anandiitaa Sugar 25 Kg — Fine Grain (blue pack)' ),
@@ -61,6 +66,7 @@ $products = array(
             array( 'Protein (g)',       '0.00', '0.00' ),
             array( 'Total Fat (g)',     '0.00', '0.00' ),
             array( 'Cholesterol (mg)',  '0.00', '0.00' ),
+            array( 'Sodium (mg)',       '0.00', '0.00' ),
         ),
     ),
 );
@@ -77,6 +83,9 @@ $products = array(
         <section class="nut-section">
 
             <h2 class="nut-section__name"><?php echo esc_html( $p['name'] ); ?></h2>
+            <?php if ( ! empty( $p['serve'] ) ) : ?>
+                <p class="nut-section__serve"><?php echo esc_html( $p['serve'] ); ?></p>
+            <?php endif; ?>
 
             <div class="nut-block">
 
@@ -113,6 +122,8 @@ $products = array(
                 </div>
 
             </div>
+
+            <p class="nut-section__note">Per serve % contribution to RDA based on a 2000 Kcal energy diet for an average adult per day.</p>
 
         </section>
     <?php endforeach; ?>

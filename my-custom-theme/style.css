@@ -6376,6 +6376,30 @@ summary:focus-visible {
     color: var(--brand-maroon);
 }
 
+/* Serve size / no. of serves line — sits just under the section name. */
+.nut-section__serve {
+    margin: clamp(-16px, -1.8vw, -10px) 0 clamp(18px, 2.6vw, 26px);
+    text-align: center;
+    font-family: 'Montserrat', system-ui, sans-serif;
+    font-size: clamp(13px, 1.5vw, 15px);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--brand-maroon);
+    opacity: 0.85;
+}
+
+/* RDA footnote under a table (sugar tables). */
+.nut-section__note {
+    margin: clamp(14px, 2vw, 20px) auto 0;
+    max-width: 760px;
+    text-align: center;
+    font-family: 'Montserrat', system-ui, sans-serif;
+    font-size: clamp(11px, 1.3vw, 13px);
+    font-style: italic;
+    color: var(--brand-maroon);
+    opacity: 0.7;
+}
+
 /* Image | table. Image column sized to the packet; table takes the rest. */
 .nut-block {
     display: grid;
