@@ -26,9 +26,7 @@
                         <span class="site-footer__sep">|</span>
                         <a href="<?php echo esc_url( home_url( '/manufacturing-details' ) ); ?>">Manufacturing Details</a>
                         <span class="site-footer__sep">|</span>
-                        <a href="<?php echo esc_url( home_url( '/jaggery-nutrition-table' ) ); ?>">Nutritional Facts &ndash; Jaggery</a>
-                        <span class="site-footer__sep">|</span>
-                        <a href="<?php echo esc_url( home_url( '/nutrition-table-sugar' ) ); ?>">Nutritional Facts &ndash; Sugar</a>
+                        <a href="<?php echo esc_url( home_url( '/nutritional-facts' ) ); ?>">Nutritional Facts</a>
                     </p>
                 </div>
             </div>

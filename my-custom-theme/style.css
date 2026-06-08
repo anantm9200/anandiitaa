@@ -6359,6 +6359,35 @@ summary:focus-visible {
     color: var(--brand-text);
 }
 
+/* Group divider (Jaggery / Sugar) on the combined nutrition page. */
+.nut-group-title {
+    margin: clamp(56px, 9vh, 96px) 0 clamp(26px, 4vh, 42px);
+    text-align: center;
+    font-family: 'Appetite Pro', 'Georgia', serif;
+    font-size: var(--fs-heading);
+    font-weight: var(--fw-heading);
+    line-height: 1.05;
+    color: var(--brand-maroon);
+    position: relative;
+    padding-bottom: clamp(14px, 2vh, 20px);
+}
+.nut-group-title::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 72px;
+    height: 3px;
+    border-radius: 2px;
+    background: var(--brand-maroon);
+    opacity: 0.45;
+}
+/* First divider sits right under the page header — trim its top gap. */
+.nut-page--combined .nut-group-title:first-of-type {
+    margin-top: clamp(8px, 2vh, 20px);
+}
+
 .nut-section {
     margin-top: clamp(40px, 7vh, 80px);
 }
