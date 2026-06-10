@@ -1,0 +1,8 @@
+/* Editor-only: show slides stacked with a subtle divider so they're easy to
+   edit (the slider only kicks in on the front end). */
+.anandiitaa-hero-carousel.is-editing {
+	.block-editor-block-list__layout > * + * {
+		margin-top: 8px;
+		border-top: 2px dashed rgba(107, 15, 26, 0.25);
+	}
+}

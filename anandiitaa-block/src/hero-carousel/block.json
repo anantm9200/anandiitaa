@@ -1,0 +1,25 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "anandiitaa/hero-carousel",
+  "version": "0.1.0",
+  "title": "Hero Carousel",
+  "category": "media",
+  "icon": "images-alt2",
+  "description": "Full-width homepage hero slider. Each slide is a Cover block (image + heading + CTA). Slider behavior added on the front end.",
+  "keywords": ["carousel", "slider", "hero", "anandiitaa"],
+  "textdomain": "anandiitaa-block",
+  "supports": {
+    "align": ["full"],
+    "html": false,
+    "anchor": true
+  },
+  "attributes": {
+    "autoplay": { "type": "boolean", "default": true },
+    "interval": { "type": "number", "default": 5000 }
+  },
+  "editorScript": "file:./index.js",
+  "style": "file:./style-index.css",
+  "editorStyle": "file:./index.css",
+  "viewScript": "file:./view.js"
+}

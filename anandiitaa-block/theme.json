@@ -1,0 +1,87 @@
+{
+	"$schema": "https://schemas.wp.org/wp/6.9/theme.json",
+	"version": 3,
+	"settings": {
+		"appearanceTools": true,
+		"color": {
+			"defaultPalette": false,
+			"palette": [
+				{
+					"color": "#6b0f1a",
+					"name": "Maroon",
+					"slug": "maroon"
+				},
+				{
+					"color": "#4a0a12",
+					"name": "Maroon Dark",
+					"slug": "maroon-dark"
+				},
+				{
+					"color": "#ece1cb",
+					"name": "Cream",
+					"slug": "cream"
+				},
+				{
+					"color": "#ffffff",
+					"name": "White",
+					"slug": "white"
+				}
+			]
+		},
+		"layout": {
+			"contentSize": "780px",
+			"wideSize": "1200px"
+		},
+		"typography": {
+			"fluid": true,
+			"fontFamilies": [
+				{
+					"fontFamily": "Georgia, 'Times New Roman', serif",
+					"name": "Display",
+					"slug": "display"
+				},
+				{
+					"fontFamily": "system-ui, -apple-system, 'Segoe UI', sans-serif",
+					"name": "Body",
+					"slug": "body"
+				}
+			]
+		}
+	},
+	"styles": {
+		"color": {
+			"background": "var(--wp--preset--color--cream)",
+			"text": "var(--wp--preset--color--maroon)"
+		},
+		"elements": {
+			"heading": {
+				"typography": {
+					"fontFamily": "var(--wp--preset--font-family--display)",
+					"fontWeight": "700"
+				}
+			},
+			"link": {
+				"color": {
+					"text": "var(--wp--preset--color--maroon)"
+				}
+			}
+		},
+		"typography": {
+			"fontFamily": "var(--wp--preset--font-family--body)",
+			"fontSize": "18px",
+			"lineHeight": "1.6"
+		}
+	},
+	"templateParts": [
+		{
+			"area": "header",
+			"name": "header",
+			"title": "Header"
+		},
+		{
+			"area": "footer",
+			"name": "footer",
+			"title": "Footer"
+		}
+	]
+}

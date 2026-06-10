@@ -1,0 +1,13 @@
+{
+  "name": "anandiitaa-block",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Anandiitaa block theme — custom blocks built with @wordpress/scripts.",
+  "scripts": {
+    "build": "wp-scripts build",
+    "start": "wp-scripts start"
+  },
+  "devDependencies": {
+    "@wordpress/scripts": "^30.0.0"
+  }
+}

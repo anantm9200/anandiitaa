@@ -1,0 +1,3 @@
+node_modules/
+.DS_Store
+# build/ IS committed (deployed via SFTP; CI can rebuild later)
