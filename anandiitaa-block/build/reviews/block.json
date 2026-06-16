@@ -1,0 +1,44 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "anandiitaa/reviews",
+  "version": "0.1.0",
+  "title": "Anandiitaa Reviews",
+  "category": "anandiitaa",
+  "icon": "format-status",
+  "description": "Words that matter — review cards. Layout locked; edit the section title and each review's photo, name, location and quote.",
+  "textdomain": "anandiitaa-block",
+  "supports": {
+    "html": false,
+    "multiple": false,
+    "reusable": false,
+    "customClassName": false,
+    "className": false
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "Words that matter"
+    },
+    "reviews": {
+      "type": "array",
+      "default": [
+        {
+          "image": "/assets/images/reviews/review1.png",
+          "name": "Aditi Parekh, 28",
+          "role": "(Ahmedabad)",
+          "quote": "In a busy life, convenience matters, but so does quality. Anandiitaa jaggery powder gives me both."
+        },
+        {
+          "image": "/assets/images/reviews/review2.png",
+          "name": "Kavya Bhosle, 34",
+          "role": "(Mumbai)",
+          "quote": "I switched to Anandiitaa jaggery powder for my morning chai. The taste is richer, and I don't need to worry about my Jaggery's Purity."
+        }
+      ]
+    }
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "render": "file:./render.php"
+}

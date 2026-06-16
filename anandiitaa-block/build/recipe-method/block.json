@@ -1,0 +1,58 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "anandiitaa/recipe-method",
+  "version": "0.1.0",
+  "title": "Anandiitaa Recipe Method",
+  "category": "anandiitaa",
+  "icon": "editor-ol",
+  "description": "Recipe method steps (alternating left/right). Numbers & positions locked; edit each step's heading, text and image.",
+  "textdomain": "anandiitaa-block",
+  "supports": {
+    "html": false,
+    "multiple": false,
+    "reusable": false,
+    "customClassName": false,
+    "className": false
+  },
+  "attributes": {
+    "steps": {
+      "type": "array",
+      "default": [
+        {
+          "title": "Cream the butter and Anandiitaa Sugar",
+          "body": "In a bowl, add softened butter and powdered Anandiitaa Sugar. Beat until the mixture becomes light and creamy.",
+          "image": "/assets/images/products/sugar/recipes/cookies/step-1.png"
+        },
+        {
+          "title": "Prepare the dry mix",
+          "body": "Sieve maida, baking powder, and baking soda together. Add this dry mixture to the butter and Anandiitaa Sugar mixture.",
+          "image": "/assets/images/products/sugar/recipes/cookies/step-2.png"
+        },
+        {
+          "title": "Make the dough",
+          "body": "Add vanilla essence and mix gently. Add milk little by little to form a soft cookie dough. Do not over-knead.",
+          "image": "/assets/images/products/sugar/recipes/cookies/step-3.png"
+        },
+        {
+          "title": "Shape the cookies",
+          "body": "Take small portions of dough and shape them into round cookies. Place them on a baking tray lined with parchment paper.",
+          "image": "/assets/images/products/sugar/recipes/cookies/step-4.png"
+        },
+        {
+          "title": "Bake",
+          "body": "Bake in a preheated oven at 170°C for 12–15 minutes or until the edges turn light golden.",
+          "image": "/assets/images/products/sugar/recipes/cookies/step-5.png"
+        },
+        {
+          "title": "Cool and serve",
+          "body": "Let the cookies cool completely before serving. They will become firmer and crispier as they cool.",
+          "image": "/assets/images/products/sugar/recipes/cookies/step-6.png"
+        }
+      ]
+    }
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "render": "file:./render.php"
+}

@@ -53,6 +53,9 @@
     }
   },
   "styles": {
+    "spacing": {
+      "blockGap": "0px"
+    },
     "color": {
       "gradient": "linear-gradient(90deg, #feebc7 0%, #fcf9f3 100%)",
       "text": "#333333"

@@ -1,0 +1,38 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "anandiitaa/product-variants",
+  "version": "0.1.0",
+  "title": "Anandiitaa Product Variants",
+  "category": "anandiitaa",
+  "icon": "products",
+  "description": "Two variant cards. Layout locked; edit each card's image, sizes and title.",
+  "textdomain": "anandiitaa-block",
+  "supports": {
+    "html": false,
+    "multiple": false,
+    "reusable": false,
+    "customClassName": false,
+    "className": false
+  },
+  "attributes": {
+    "variants": {
+      "type": "array",
+      "default": [
+        {
+          "image": "/assets/images/products/packets/jaggery-powder.png",
+          "available": "500 GM",
+          "title": "Jaggery Powder"
+        },
+        {
+          "image": "/assets/images/products/packets/desi-jaggery.png",
+          "available": "900 GM",
+          "title": "Jaggery Block"
+        }
+      ]
+    }
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "render": "file:./render.php"
+}

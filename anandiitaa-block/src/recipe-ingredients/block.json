@@ -1,0 +1,41 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "anandiitaa/recipe-ingredients",
+	"version": "0.1.0",
+	"title": "Anandiitaa Recipe Ingredients",
+	"category": "anandiitaa",
+	"icon": "list-view",
+	"description": "Recipe ingredients — flat or grouped list. Layout & labels locked; edit the ingredient lines (and optional group headings).",
+	"textdomain": "anandiitaa-block",
+	"supports": {
+		"html": false,
+		"multiple": false,
+		"reusable": false,
+		"customClassName": false,
+		"className": false
+	},
+	"attributes": {
+		"groups": {
+			"type": "array",
+			"default": [
+				{
+					"title": "",
+					"items": [
+						"1 cup all-purpose flour / maida",
+						"½ cup butter, softened",
+						"½ cup Anandiitaa Sugar, powdered",
+						"¼ tsp baking powder",
+						"¼ tsp baking soda",
+						"½ tsp vanilla essence",
+						"2–3 tbsp milk, as needed",
+						"2 tbsp chocolate chips or chopped nuts (optional)"
+					]
+				}
+			]
+		}
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"render": "file:./render.php"
+}

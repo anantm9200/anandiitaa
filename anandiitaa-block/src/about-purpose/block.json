@@ -1,0 +1,21 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "anandiitaa/about-purpose",
+	"version": "0.1.0",
+	"title": "Anandiitaa About — Purpose",
+	"category": "anandiitaa",
+	"icon": "heart",
+	"description": "About purpose — photo over a maroon band. Layout locked; edit the image, title and body.",
+	"textdomain": "anandiitaa-block",
+	"supports": { "html": false, "multiple": false, "reusable": false, "customClassName": false, "className": false },
+	"attributes": {
+		"image": { "type": "string", "default": "/images/about-us/mac/purpose.png" },
+		"alt": { "type": "string", "default": "Anandiitaa jaggery powder and jaggery lumps" },
+		"title": { "type": "string", "default": "Our Purpose" },
+		"body": { "type": "string", "default": "To deliver sweetness in its truest form, unadulterated, safe, & transparent, enriching lives with products that you can trust, from source to shelf, because purity shouldn’t be optional." }
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"render": "file:./render.php"
+}

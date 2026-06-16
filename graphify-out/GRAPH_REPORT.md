@@ -1,12 +1,12 @@
-# Graph Report - /Users/gauravshinde/Desktop/wp-local-dev  (2026-06-03)
+# Graph Report - /Users/gauravshinde/Desktop/wp-local-dev  (2026-06-16)
 
 ## Corpus Check
-- 336 files · ~25,020,331 words
+- 424 files · ~44,710,013 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1848 nodes · 2586 edges · 276 communities detected
-- Extraction: 74% EXTRACTED · 26% INFERRED · 0% AMBIGUOUS · INFERRED: 675 edges (avg confidence: 0.8)
+- 1947 nodes · 2643 edges · 338 communities detected
+- Extraction: 74% EXTRACTED · 26% INFERRED · 0% AMBIGUOUS · INFERRED: 680 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
 
 ## Community Hubs (Navigation)
@@ -286,6 +286,68 @@
 - [[_COMMUNITY_Community 273|Community 273]]
 - [[_COMMUNITY_Community 274|Community 274]]
 - [[_COMMUNITY_Community 275|Community 275]]
+- [[_COMMUNITY_Community 276|Community 276]]
+- [[_COMMUNITY_Community 277|Community 277]]
+- [[_COMMUNITY_Community 278|Community 278]]
+- [[_COMMUNITY_Community 279|Community 279]]
+- [[_COMMUNITY_Community 280|Community 280]]
+- [[_COMMUNITY_Community 281|Community 281]]
+- [[_COMMUNITY_Community 282|Community 282]]
+- [[_COMMUNITY_Community 283|Community 283]]
+- [[_COMMUNITY_Community 284|Community 284]]
+- [[_COMMUNITY_Community 285|Community 285]]
+- [[_COMMUNITY_Community 286|Community 286]]
+- [[_COMMUNITY_Community 287|Community 287]]
+- [[_COMMUNITY_Community 288|Community 288]]
+- [[_COMMUNITY_Community 289|Community 289]]
+- [[_COMMUNITY_Community 290|Community 290]]
+- [[_COMMUNITY_Community 291|Community 291]]
+- [[_COMMUNITY_Community 292|Community 292]]
+- [[_COMMUNITY_Community 293|Community 293]]
+- [[_COMMUNITY_Community 294|Community 294]]
+- [[_COMMUNITY_Community 295|Community 295]]
+- [[_COMMUNITY_Community 296|Community 296]]
+- [[_COMMUNITY_Community 297|Community 297]]
+- [[_COMMUNITY_Community 298|Community 298]]
+- [[_COMMUNITY_Community 299|Community 299]]
+- [[_COMMUNITY_Community 300|Community 300]]
+- [[_COMMUNITY_Community 301|Community 301]]
+- [[_COMMUNITY_Community 302|Community 302]]
+- [[_COMMUNITY_Community 303|Community 303]]
+- [[_COMMUNITY_Community 304|Community 304]]
+- [[_COMMUNITY_Community 305|Community 305]]
+- [[_COMMUNITY_Community 306|Community 306]]
+- [[_COMMUNITY_Community 307|Community 307]]
+- [[_COMMUNITY_Community 308|Community 308]]
+- [[_COMMUNITY_Community 309|Community 309]]
+- [[_COMMUNITY_Community 310|Community 310]]
+- [[_COMMUNITY_Community 311|Community 311]]
+- [[_COMMUNITY_Community 312|Community 312]]
+- [[_COMMUNITY_Community 313|Community 313]]
+- [[_COMMUNITY_Community 314|Community 314]]
+- [[_COMMUNITY_Community 315|Community 315]]
+- [[_COMMUNITY_Community 316|Community 316]]
+- [[_COMMUNITY_Community 317|Community 317]]
+- [[_COMMUNITY_Community 318|Community 318]]
+- [[_COMMUNITY_Community 319|Community 319]]
+- [[_COMMUNITY_Community 320|Community 320]]
+- [[_COMMUNITY_Community 321|Community 321]]
+- [[_COMMUNITY_Community 322|Community 322]]
+- [[_COMMUNITY_Community 323|Community 323]]
+- [[_COMMUNITY_Community 324|Community 324]]
+- [[_COMMUNITY_Community 325|Community 325]]
+- [[_COMMUNITY_Community 326|Community 326]]
+- [[_COMMUNITY_Community 327|Community 327]]
+- [[_COMMUNITY_Community 328|Community 328]]
+- [[_COMMUNITY_Community 329|Community 329]]
+- [[_COMMUNITY_Community 330|Community 330]]
+- [[_COMMUNITY_Community 331|Community 331]]
+- [[_COMMUNITY_Community 332|Community 332]]
+- [[_COMMUNITY_Community 333|Community 333]]
+- [[_COMMUNITY_Community 334|Community 334]]
+- [[_COMMUNITY_Community 335|Community 335]]
+- [[_COMMUNITY_Community 336|Community 336]]
+- [[_COMMUNITY_Community 337|Community 337]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `Helper` - 100 edges
@@ -324,400 +386,400 @@
 ## Communities
 
 ### Community 0 - "Community 0"
-Cohesion: 0.03
-Nodes (7): evaluate(), Container, Decorator, is_fulfilled(), Repository, Term_Meta_Container, Widget_Container
+Cohesion: 0.02
+Nodes (32): Color, Delimiter, Factory, anandiitaa_get_carousel_slides(), carbon_field_exists(), carbon_get(), carbon_get_comment_meta(), carbon_get_nav_menu_item_meta() (+24 more)
 
 ### Community 1 - "Community 1"
-Cohesion: 0.04
-Nodes (7): Complex_Field, Key_Toolset, Key_Value_Datastore, Legacy_Storage_Service_v_1_5, Meta_Datastore, Network_Datastore, Theme_Options_Datastore
+Cohesion: 0.03
+Nodes (7): Field, Key_Toolset, Key_Value_Datastore, Map_Field, Meta_Datastore, Theme_Options_Datastore, Time_Field
 
 ### Community 2 - "Community 2"
 Cohesion: 0.03
-Nodes (27): Color, anandiitaa_asset_ver(), anandiitaa_enqueue_assets(), anandiitaa_get_carousel_slides(), carbon_field_exists(), carbon_get(), carbon_get_comment_meta(), carbon_get_nav_menu_item_meta() (+19 more)
+Nodes (8): evaluate(), Container, Decorator, Empty_Datastore, is_fulfilled(), Repository, Term_Meta_Container, Widget_Container
 
 ### Community 3 - "Community 3"
 Cohesion: 0.03
-Nodes (5): Date_Field, Field, Map_Field, Media_Gallery_Field, Time_Field
+Nodes (13): Any_Contain_Comparer, Block_Preview_Field, Broken_Container, Contain_Comparer, Custom_Comparer, Html_Field, Incorrect_Syntax_Exception, Container (+5 more)
 
 ### Community 4 - "Community 4"
 Cohesion: 0.04
-Nodes (23): Blog_ID_Condition, Boolean_Condition, Checkbox_Field, Color_Field, compare(), Current_User_ID_Condition, Oembed_Field, Post_Ancestor_ID_Condition (+15 more)
+Nodes (23): Blog_ID_Condition, Boolean_Condition, Color_Field, compare(), Current_User_ID_Condition, Oembed_Field, Post_Ancestor_ID_Condition, Post_Format_Condition (+15 more)
 
 ### Community 5 - "Community 5"
 Cohesion: 0.04
-Nodes (30): firstComparerIsCorrect(), getEnvironmentValue(), isFulfiled(), Delimiter, fromSelector(), findFieldByName(), getBlockSetting(), getFieldsFromFieldsHolder() (+22 more)
+Nodes (30): firstComparerIsCorrect(), getEnvironmentValue(), isFulfiled(), textToRows(), fromSelector(), findFieldByName(), getBlockSetting(), getFieldsFromFieldsHolder() (+22 more)
 
 ### Community 6 - "Community 6"
-Cohesion: 0.04
-Nodes (9): Comment_Meta_Container, Datastore, get_datastore(), has_default_datastore(), set_datastore(), set_object_id(), Network_Container, Theme_Options_Container (+1 more)
+Cohesion: 0.06
+Nodes (3): Checkbox_Field, Complex_Field, Group_Field
 
 ### Community 7 - "Community 7"
-Cohesion: 0.05
-Nodes (7): Broken_Container, Empty_Datastore, Container, Nav_Menu_Item_Container, Nav_Menu_Item_Datastore, Widget_Datastore, Widget
+Cohesion: 0.06
+Nodes (4): Array_Translator, Fulfillable_Collection, Post_Meta_Container, Translator
 
 ### Community 8 - "Community 8"
-Cohesion: 0.06
-Nodes (6): Array_Translator, Factory, Fulfillable_Collection, normalizePreloadedState(), Post_Meta_Container, Translator
+Cohesion: 0.04
+Nodes (19): addContainer(), addFields(), lockSaving(), markAsInvalid(), markAsValid(), removeContainer(), removeFields(), unlockSaving() (+11 more)
 
 ### Community 9 - "Community 9"
-Cohesion: 0.04
-Nodes (9): Any_Contain_Comparer, Block_Preview_Field, Contain_Comparer, Custom_Comparer, Group_Field, Html_Field, Incorrect_Syntax_Exception, Scalar_Comparer (+1 more)
+Cohesion: 0.06
+Nodes (8): Comment_Meta_Container, Datastore, get_datastore(), has_default_datastore(), set_datastore(), set_object_id(), Network_Container, User_Meta_Container
 
 ### Community 10 - "Community 10"
-Cohesion: 0.05
-Nodes (18): addContainer(), addFields(), lockSaving(), markAsInvalid(), markAsValid(), removeContainer(), removeFields(), unlockSaving() (+10 more)
+Cohesion: 0.04
+Nodes (9): ClassLoader, hide(), onScroll(), scheduleHide(), show(), tick(), InstalledVersions, closeNav() (+1 more)
 
 ### Community 11 - "Community 11"
-Cohesion: 0.04
-Nodes (6): ClassLoader, scheduleHide(), show(), tick(), InstalledVersions, openNav()
-
-### Community 12 - "Community 12"
 Cohesion: 0.06
 Nodes (4): ComposerAutoloaderInit24e41bbaee1332276f826502c7093d78, Carbon_Fields, Revisions_Service, register()
 
-### Community 13 - "Community 13"
+### Community 12 - "Community 12"
 Cohesion: 0.05
 Nodes (47): Anandiitaa (jaggery & refined sugar brand), --brand-cream #f5ebd2 (light backgrounds, cards), --brand-maroon #6b0f1a (primary brand color), --brand-yellow #f0c869 (accent, quote mark), Project overview: high-end responsive custom WP theme, no builders, Docker-based local WordPress, localhost:8084, Visual style: luxury, minimalist, clean; maroon + cream, Rule: body text is DM Sans regular 400, never bold (+39 more)
 
-### Community 14 - "Community 14"
-Cohesion: 0.07
-Nodes (6): Multiselect_Field, Predefined_Options_Field, Scripts_Field, Select_Field, Set_Field, Sidebar_Field
-
-### Community 15 - "Community 15"
+### Community 13 - "Community 13"
 Cohesion: 0.09
 Nodes (1): Association_Field
 
-### Community 16 - "Community 16"
+### Community 14 - "Community 14"
 Cohesion: 0.09
 Nodes (3): Disabled, Loader, Service
 
-### Community 17 - "Community 17"
+### Community 15 - "Community 15"
 Cohesion: 0.08
 Nodes (1): Block_Container
 
-### Community 18 - "Community 18"
+### Community 16 - "Community 16"
+Cohesion: 0.09
+Nodes (11): go(), render(), start(), stop(), ComplexField, initializeContainers(), initializeMonitors(), renderContainer() (+3 more)
+
+### Community 17 - "Community 17"
 Cohesion: 0.1
 Nodes (5): Emitter, editorSetup(), RichTextField, PersistentListener, SingleEventListener
+
+### Community 18 - "Community 18"
+Cohesion: 0.08
+Nodes (1): Edit()
 
 ### Community 19 - "Community 19"
 Cohesion: 0.1
 Nodes (3): Comparer, Condition, Container_Condition_Provider
 
 ### Community 20 - "Community 20"
-Cohesion: 0.1
-Nodes (7): ComplexField, initializeContainers(), initializeMonitors(), renderContainer(), isGutenberg(), registerContainerRoot(), getContainers()
+Cohesion: 0.13
+Nodes (2): Legacy_Storage_Service_v_1_5, Network_Datastore
 
 ### Community 21 - "Community 21"
 Cohesion: 0.11
 Nodes (20): ACF Migration Plan, ACF Pro (Advanced Custom Fields), Anandiitaa Brand, Custom Post Type: Product, Custom Post Type: Review, Docker Local Dev (localhost:8084), Field Group: Home Carousel (Repeater), Field Groups: Product Pages (+12 more)
 
 ### Community 22 - "Community 22"
+Cohesion: 0.15
+Nodes (1): Theme_Options_Container
+
+### Community 23 - "Community 23"
 Cohesion: 0.12
 Nodes (16): ~900MB Raster Image Problem, CDN On-the-fly Transformation, Unused images/home/mac/* (180MB Dead Weight), decoding=async on Non-critical Images, fetchpriority=high on LCP Image, Run Image Optimizer (Squoosh/TinyPNG/sharp/cwebp), Image Performance Audit (2026-05-05), loading=lazy Audit (+8 more)
 
-### Community 23 - "Community 23"
+### Community 24 - "Community 24"
 Cohesion: 0.18
 Nodes (12): HTML5 <picture> responsive image strategy by page+device, Asset folder structure (images/home + products jaggery/sugar by tier), Rationale: <source> tiers bounded top AND bottom so they don't bleed into each other, Breakpoint / resolution tiers (mac/d1366/d1280/laptop/tablet/mobile), Rationale: d1366 mirrors laptop path 1:1 so PHP mapper is mechanical str_replace, Gradient-only slide guard: image=='' renders no hero-slide__bg, Open item: d1280 tier not started, Open item: product/about laptop fallbacks still old non-transparent images (+4 more)
 
-### Community 24 - "Community 24"
+### Community 25 - "Community 25"
+Cohesion: 0.27
+Nodes (1): Scripts_Field
+
+### Community 26 - "Community 26"
 Cohesion: 0.24
 Nodes (5): getAncestorsFromOption(), getLevelFromOption(), getParentIdFromOption(), getParentIdAncestorsAndLevelFromSelect(), getParentIdAncestorsAndLevelFromSelect()
 
-### Community 25 - "Community 25"
+### Community 27 - "Community 27"
+Cohesion: 0.29
+Nodes (5): anandiitaa_asset_ver(), anandiitaa_bg_picture(), anandiitaa_bust(), anandiitaa_enqueue_assets(), anandiitaa_img_url()
+
+### Community 28 - "Community 28"
 Cohesion: 0.33
 Nodes (1): Sidebar_Manager
 
-### Community 26 - "Community 26"
+### Community 29 - "Community 29"
+Cohesion: 0.28
+Nodes (1): Date_Field
+
+### Community 30 - "Community 30"
+Cohesion: 0.28
+Nodes (1): Media_Gallery_Field
+
+### Community 31 - "Community 31"
 Cohesion: 0.33
 Nodes (1): Rich_Text_Field
 
-### Community 27 - "Community 27"
+### Community 32 - "Community 32"
 Cohesion: 0.28
 Nodes (2): ServerSideRender, networkFirst()
 
-### Community 28 - "Community 28"
+### Community 33 - "Community 33"
 Cohesion: 0.31
 Nodes (1): OembedPreview
 
-### Community 29 - "Community 29"
+### Community 34 - "Community 34"
 Cohesion: 0.33
 Nodes (1): GoogleMap
 
-### Community 30 - "Community 30"
+### Community 35 - "Community 35"
 Cohesion: 0.25
 Nodes (1): Term_Meta_Datastore
 
-### Community 31 - "Community 31"
+### Community 36 - "Community 36"
 Cohesion: 0.25
 Nodes (1): ServiceIterator
 
-### Community 32 - "Community 32"
-Cohesion: 0.25
-Nodes (0): 
-
-### Community 33 - "Community 33"
-Cohesion: 0.25
-Nodes (8): ACF free installed but inactive, anandiitaa_get_carousel_slides() helper (currently disabled), Carbon Fields v3.6.9 (code-registered repeater, installed), Carbon Fields home_carousel_slides repeater + features, Spectra v2.19.26 (Gutenberg blocks, active), WP-admin editability decision (logged 2026-05-07), Hero carousel slides in front-page.php $slides array (type-tagged), vendor/ is tracked (Carbon Fields dependency, do not untrack)
-
-### Community 34 - "Community 34"
-Cohesion: 0.33
-Nodes (1): BlockEdit
-
-### Community 35 - "Community 35"
-Cohesion: 0.33
-Nodes (1): Separator_Field
-
-### Community 36 - "Community 36"
-Cohesion: 0.33
-Nodes (1): REST_API_Service
-
 ### Community 37 - "Community 37"
-Cohesion: 0.33
+Cohesion: 0.25
 Nodes (0): 
 
 ### Community 38 - "Community 38"
+Cohesion: 0.25
+Nodes (8): ACF free installed but inactive, anandiitaa_get_carousel_slides() helper (currently disabled), Carbon Fields v3.6.9 (code-registered repeater, installed), Carbon Fields home_carousel_slides repeater + features, Spectra v2.19.26 (Gutenberg blocks, active), WP-admin editability decision (logged 2026-05-07), Hero carousel slides in front-page.php $slides array (type-tagged), vendor/ is tracked (Carbon Fields dependency, do not untrack)
+
+### Community 39 - "Community 39"
+Cohesion: 0.33
+Nodes (1): BlockEdit
+
+### Community 40 - "Community 40"
+Cohesion: 0.33
+Nodes (1): Separator_Field
+
+### Community 41 - "Community 41"
+Cohesion: 0.33
+Nodes (1): REST_API_Service
+
+### Community 42 - "Community 42"
+Cohesion: 0.33
+Nodes (0): 
+
+### Community 43 - "Community 43"
 Cohesion: 0.33
 Nodes (1): FileField
 
-### Community 39 - "Community 39"
-Cohesion: 0.6
-Nodes (4): go(), render(), start(), stop()
-
-### Community 40 - "Community 40"
+### Community 44 - "Community 44"
 Cohesion: 0.4
 Nodes (1): File_Field
 
-### Community 41 - "Community 41"
+### Community 45 - "Community 45"
 Cohesion: 0.5
 Nodes (1): Hidden_Field
 
-### Community 42 - "Community 42"
+### Community 46 - "Community 46"
 Cohesion: 0.4
 Nodes (1): User_Meta_Datastore
 
-### Community 43 - "Community 43"
+### Community 47 - "Community 47"
 Cohesion: 0.4
 Nodes (1): Post_Meta_Datastore
 
-### Community 44 - "Community 44"
+### Community 48 - "Community 48"
 Cohesion: 0.4
 Nodes (1): Comment_Meta_Datastore
 
-### Community 45 - "Community 45"
+### Community 49 - "Community 49"
 Cohesion: 0.4
 Nodes (0): 
 
-### Community 46 - "Community 46"
+### Community 50 - "Community 50"
 Cohesion: 0.4
 Nodes (1): DateTimeField
 
-### Community 47 - "Community 47"
+### Community 51 - "Community 51"
 Cohesion: 0.4
 Nodes (1): Sortable
 
-### Community 48 - "Community 48"
+### Community 52 - "Community 52"
 Cohesion: 0.4
 Nodes (5): Products/Jaggery Page (page-products-jaggery.php), Products/Sugar Page (page-products-sugar.php), Route /products/jaggery, Route /products/sugar, template_include filter (functions.php)
 
-### Community 49 - "Community 49"
+### Community 53 - "Community 53"
 Cohesion: 0.4
 Nodes (5): anandiitaa_bust() asset versioning helper, ANANDIITAA_VER constant (functions.php) drives all asset versions, Cache-busting via manual version constants, CACHE_VERSION='v3' (service-worker.js) SW cache namespace, Rationale: removed filemtime auto-busting for manual constant (mixed caching layers caused confusion)
 
-### Community 50 - "Community 50"
+### Community 54 - "Community 54"
 Cohesion: 0.5
 Nodes (1): Textarea_Field
 
-### Community 51 - "Community 51"
+### Community 55 - "Community 55"
 Cohesion: 0.67
 Nodes (1): Json_Translator
 
-### Community 52 - "Community 52"
+### Community 56 - "Community 56"
 Cohesion: 0.5
 Nodes (1): BlockSave
 
-### Community 53 - "Community 53"
-Cohesion: 0.67
-Nodes (1): RadioField
-
-### Community 54 - "Community 54"
-Cohesion: 0.5
-Nodes (1): SetField
-
-### Community 55 - "Community 55"
+### Community 57 - "Community 57"
 Cohesion: 0.5
 Nodes (2): flattenField(), uniqueId()
 
-### Community 56 - "Community 56"
-Cohesion: 0.67
-Nodes (1): ComposerStaticInit24e41bbaee1332276f826502c7093d78
-
-### Community 57 - "Community 57"
-Cohesion: 0.67
-Nodes (1): Block
-
 ### Community 58 - "Community 58"
 Cohesion: 0.67
-Nodes (1): Header_Scripts_Field
+Nodes (1): RadioField
 
 ### Community 59 - "Community 59"
-Cohesion: 0.67
-Nodes (1): Footer_Scripts_Field
+Cohesion: 0.5
+Nodes (1): SetField
 
 ### Community 60 - "Community 60"
 Cohesion: 0.67
-Nodes (1): Current_User_Capability_Condition
+Nodes (1): closeOther()
 
 ### Community 61 - "Community 61"
 Cohesion: 0.67
-Nodes (1): Current_User_Role_Condition
+Nodes (1): ComposerStaticInit24e41bbaee1332276f826502c7093d78
 
 ### Community 62 - "Community 62"
 Cohesion: 0.67
-Nodes (1): Any_Equality_Comparer
+Nodes (1): Block
 
 ### Community 63 - "Community 63"
 Cohesion: 0.67
-Nodes (1): Equality_Comparer
+Nodes (1): Header_Scripts_Field
 
 ### Community 64 - "Community 64"
 Cohesion: 0.67
-Nodes (1): FrozenServiceException
+Nodes (1): Footer_Scripts_Field
 
 ### Community 65 - "Community 65"
 Cohesion: 0.67
-Nodes (1): UnknownIdentifierException
+Nodes (1): Current_User_Capability_Condition
 
 ### Community 66 - "Community 66"
 Cohesion: 0.67
-Nodes (1): InvalidServiceIdentifierException
+Nodes (1): Current_User_Role_Condition
 
 ### Community 67 - "Community 67"
 Cohesion: 0.67
-Nodes (1): Nav_Menu_Item_Edit_Walker
+Nodes (1): Any_Equality_Comparer
 
 ### Community 68 - "Community 68"
 Cohesion: 0.67
-Nodes (0): 
+Nodes (1): Equality_Comparer
 
 ### Community 69 - "Community 69"
 Cohesion: 0.67
-Nodes (0): 
+Nodes (1): FrozenServiceException
 
 ### Community 70 - "Community 70"
 Cohesion: 0.67
-Nodes (0): 
+Nodes (1): UnknownIdentifierException
 
 ### Community 71 - "Community 71"
 Cohesion: 0.67
-Nodes (1): SearchInput
+Nodes (1): InvalidServiceIdentifierException
 
 ### Community 72 - "Community 72"
 Cohesion: 0.67
-Nodes (1): HiddenField
+Nodes (1): Nav_Menu_Item_Edit_Walker
 
 ### Community 73 - "Community 73"
 Cohesion: 0.67
-Nodes (1): ComplexInserter
+Nodes (0): 
 
 ### Community 74 - "Community 74"
 Cohesion: 0.67
-Nodes (1): ComplexGroup
+Nodes (0): 
 
 ### Community 75 - "Community 75"
 Cohesion: 0.67
-Nodes (1): SeparatorField
+Nodes (0): 
 
 ### Community 76 - "Community 76"
 Cohesion: 0.67
-Nodes (1): Picker
+Nodes (1): SearchInput
 
 ### Community 77 - "Community 77"
 Cohesion: 0.67
-Nodes (1): ColorField
+Nodes (1): HiddenField
 
 ### Community 78 - "Community 78"
 Cohesion: 0.67
-Nodes (1): CheckboxField
+Nodes (1): ComplexInserter
 
 ### Community 79 - "Community 79"
 Cohesion: 0.67
-Nodes (1): TextareaField
+Nodes (1): ComplexGroup
 
 ### Community 80 - "Community 80"
 Cohesion: 0.67
-Nodes (1): TextField
+Nodes (1): SeparatorField
 
 ### Community 81 - "Community 81"
 Cohesion: 0.67
-Nodes (1): MultiselectField
+Nodes (1): Picker
 
 ### Community 82 - "Community 82"
 Cohesion: 0.67
-Nodes (0): 
+Nodes (1): ColorField
 
 ### Community 83 - "Community 83"
 Cohesion: 0.67
-Nodes (0): 
+Nodes (1): CheckboxField
 
 ### Community 84 - "Community 84"
 Cohesion: 0.67
-Nodes (0): 
+Nodes (1): TextareaField
 
 ### Community 85 - "Community 85"
-Cohesion: 1.0
-Nodes (0): 
+Cohesion: 0.67
+Nodes (1): TextField
 
 ### Community 86 - "Community 86"
-Cohesion: 1.0
-Nodes (1): Date_Time_Field
+Cohesion: 0.67
+Nodes (1): MultiselectField
 
 ### Community 87 - "Community 87"
-Cohesion: 1.0
-Nodes (1): Text_Field
+Cohesion: 0.67
+Nodes (0): 
 
 ### Community 88 - "Community 88"
-Cohesion: 1.0
-Nodes (1): Image_Field
+Cohesion: 0.67
+Nodes (0): 
 
 ### Community 89 - "Community 89"
-Cohesion: 1.0
-Nodes (1): Radio_Image_Field
+Cohesion: 0.67
+Nodes (0): 
 
 ### Community 90 - "Community 90"
 Cohesion: 1.0
-Nodes (1): Radio_Field
+Nodes (2): ImagePicker(), previewSrc()
 
 ### Community 91 - "Community 91"
 Cohesion: 1.0
-Nodes (1): Broken_Field
+Nodes (0): 
 
 ### Community 92 - "Community 92"
 Cohesion: 1.0
-Nodes (1): ExpectedInvokableException
+Nodes (1): Date_Time_Field
 
 ### Community 93 - "Community 93"
 Cohesion: 1.0
-Nodes (0): 
+Nodes (1): Text_Field
 
 ### Community 94 - "Community 94"
 Cohesion: 1.0
-Nodes (0): 
+Nodes (1): Image_Field
 
 ### Community 95 - "Community 95"
 Cohesion: 1.0
-Nodes (0): 
+Nodes (1): Radio_Image_Field
 
 ### Community 96 - "Community 96"
 Cohesion: 1.0
-Nodes (0): 
+Nodes (1): Radio_Field
 
 ### Community 97 - "Community 97"
 Cohesion: 1.0
-Nodes (0): 
+Nodes (1): Broken_Field
 
 ### Community 98 - "Community 98"
 Cohesion: 1.0
-Nodes (0): 
+Nodes (1): ExpectedInvokableException
 
 ### Community 99 - "Community 99"
 Cohesion: 1.0
@@ -797,11 +859,11 @@ Nodes (0):
 
 ### Community 118 - "Community 118"
 Cohesion: 1.0
-Nodes (2): Hardcoded Header Navigation (header.php), wp_nav_menu() Future Swap
+Nodes (0): 
 
 ### Community 119 - "Community 119"
 Cohesion: 1.0
-Nodes (2): Deployment goal: transition PNG to WebP for performance, Open item: image compression (no pngquant/optipng in env)
+Nodes (0): 
 
 ### Community 120 - "Community 120"
 Cohesion: 1.0
@@ -825,11 +887,11 @@ Nodes (0):
 
 ### Community 125 - "Community 125"
 Cohesion: 1.0
-Nodes (0): 
+Nodes (2): Hardcoded Header Navigation (header.php), wp_nav_menu() Future Swap
 
 ### Community 126 - "Community 126"
 Cohesion: 1.0
-Nodes (0): 
+Nodes (2): Deployment goal: transition PNG to WebP for performance, Open item: image compression (no pngquant/optipng in env)
 
 ### Community 127 - "Community 127"
 Cohesion: 1.0
@@ -1153,43 +1215,43 @@ Nodes (0):
 
 ### Community 207 - "Community 207"
 Cohesion: 1.0
-Nodes (1): Unbuilt Pages (Recipes, Blogs, Processing, Community, Contact)
+Nodes (0): 
 
 ### Community 208 - "Community 208"
 Cohesion: 1.0
-Nodes (1): WP-CLI in Docker Container
+Nodes (0): 
 
 ### Community 209 - "Community 209"
 Cohesion: 1.0
-Nodes (1): Bump wp_enqueue_style Version (Cache Bust)
+Nodes (0): 
 
 ### Community 210 - "Community 210"
 Cohesion: 1.0
-Nodes (1): DM Sans - SIL OFL 1.1 license
+Nodes (0): 
 
 ### Community 211 - "Community 211"
 Cohesion: 1.0
-Nodes (1): Appetite Pro - Personal Use Only license
+Nodes (0): 
 
 ### Community 212 - "Community 212"
 Cohesion: 1.0
-Nodes (1): Brand Guidelines (PDF)
+Nodes (0): 
 
 ### Community 213 - "Community 213"
 Cohesion: 1.0
-Nodes (1): About Us - Anandiitaa (PDF reference)
+Nodes (0): 
 
 ### Community 214 - "Community 214"
 Cohesion: 1.0
-Nodes (1): Sugar Page - Anandiitaa (PDF reference)
+Nodes (0): 
 
 ### Community 215 - "Community 215"
 Cohesion: 1.0
-Nodes (1): Jaggery Page - Anandiitaa (PDF reference)
+Nodes (0): 
 
 ### Community 216 - "Community 216"
 Cohesion: 1.0
-Nodes (1): Home Page (PDF reference)
+Nodes (0): 
 
 ### Community 217 - "Community 217"
 Cohesion: 1.0
@@ -1205,7 +1267,7 @@ Nodes (0):
 
 ### Community 220 - "Community 220"
 Cohesion: 1.0
-Nodes (1): 1.png (mac)
+Nodes (0): 
 
 ### Community 221 - "Community 221"
 Cohesion: 1.0
@@ -1241,11 +1303,11 @@ Nodes (0):
 
 ### Community 229 - "Community 229"
 Cohesion: 1.0
-Nodes (1): 11.png (laptop)
+Nodes (0): 
 
 ### Community 230 - "Community 230"
 Cohesion: 1.0
-Nodes (1): 11.png (mac)
+Nodes (0): 
 
 ### Community 231 - "Community 231"
 Cohesion: 1.0
@@ -1273,15 +1335,15 @@ Nodes (0):
 
 ### Community 237 - "Community 237"
 Cohesion: 1.0
-Nodes (1): jaggery-slide-1-new.png (mac)
+Nodes (0): 
 
 ### Community 238 - "Community 238"
 Cohesion: 1.0
-Nodes (1): jaggery-slide-1.png (d1366)
+Nodes (0): 
 
 ### Community 239 - "Community 239"
 Cohesion: 1.0
-Nodes (1): jaggery-slide-1.png (d1280)
+Nodes (0): 
 
 ### Community 240 - "Community 240"
 Cohesion: 1.0
@@ -1289,27 +1351,27 @@ Nodes (0):
 
 ### Community 241 - "Community 241"
 Cohesion: 1.0
-Nodes (1): 100-natural.png (jaggery)
+Nodes (0): 
 
 ### Community 242 - "Community 242"
 Cohesion: 1.0
-Nodes (1): step-1.png (jaggery process)
+Nodes (0): 
 
 ### Community 243 - "Community 243"
 Cohesion: 1.0
-Nodes (1): step-2.png (jaggery process)
+Nodes (0): 
 
 ### Community 244 - "Community 244"
 Cohesion: 1.0
-Nodes (1): step-3.png (jaggery process)
+Nodes (0): 
 
 ### Community 245 - "Community 245"
 Cohesion: 1.0
-Nodes (1): step-4.png (jaggery process)
+Nodes (0): 
 
 ### Community 246 - "Community 246"
 Cohesion: 1.0
-Nodes (1): step-5.png (jaggery process)
+Nodes (0): 
 
 ### Community 247 - "Community 247"
 Cohesion: 1.0
@@ -1333,15 +1395,15 @@ Nodes (0):
 
 ### Community 252 - "Community 252"
 Cohesion: 1.0
-Nodes (1): sugar-slide-1-new.png (mac)
+Nodes (0): 
 
 ### Community 253 - "Community 253"
 Cohesion: 1.0
-Nodes (1): sugar-slide-1.png (d1366)
+Nodes (0): 
 
 ### Community 254 - "Community 254"
 Cohesion: 1.0
-Nodes (1): sugar-slide-1.png (d1280)
+Nodes (0): 
 
 ### Community 255 - "Community 255"
 Cohesion: 1.0
@@ -1349,19 +1411,19 @@ Nodes (0):
 
 ### Community 256 - "Community 256"
 Cohesion: 1.0
-Nodes (1): 100-natural.png (sugar)
+Nodes (0): 
 
 ### Community 257 - "Community 257"
 Cohesion: 1.0
-Nodes (1): step-1.png (sugar process)
+Nodes (0): 
 
 ### Community 258 - "Community 258"
 Cohesion: 1.0
-Nodes (1): step-2.png (sugar process)
+Nodes (0): 
 
 ### Community 259 - "Community 259"
 Cohesion: 1.0
-Nodes (1): step-4.png (sugar process)
+Nodes (0): 
 
 ### Community 260 - "Community 260"
 Cohesion: 1.0
@@ -1401,178 +1463,414 @@ Nodes (0):
 
 ### Community 269 - "Community 269"
 Cohesion: 1.0
-Nodes (0): 
+Nodes (1): Unbuilt Pages (Recipes, Blogs, Processing, Community, Contact)
 
 ### Community 270 - "Community 270"
 Cohesion: 1.0
-Nodes (0): 
+Nodes (1): WP-CLI in Docker Container
 
 ### Community 271 - "Community 271"
 Cohesion: 1.0
-Nodes (1): Coding standard: provide edits as Before/After versions
+Nodes (1): Bump wp_enqueue_style Version (Cache Bust)
 
 ### Community 272 - "Community 272"
 Cohesion: 1.0
-Nodes (1): Why Home page was NOT switched to a page builder
+Nodes (1): DM Sans - SIL OFL 1.1 license
 
 ### Community 273 - "Community 273"
 Cohesion: 1.0
-Nodes (1): PHP upload limits bumped to 128MB via php-uploads.ini
+Nodes (1): Appetite Pro - Personal Use Only license
 
 ### Community 274 - "Community 274"
 Cohesion: 1.0
-Nodes (1): Theme file map (style.css, templates, fonts, images)
+Nodes (1): Brand Guidelines (PDF)
 
 ### Community 275 - "Community 275"
+Cohesion: 1.0
+Nodes (1): About Us - Anandiitaa (PDF reference)
+
+### Community 276 - "Community 276"
+Cohesion: 1.0
+Nodes (1): Sugar Page - Anandiitaa (PDF reference)
+
+### Community 277 - "Community 277"
+Cohesion: 1.0
+Nodes (1): Jaggery Page - Anandiitaa (PDF reference)
+
+### Community 278 - "Community 278"
+Cohesion: 1.0
+Nodes (1): Home Page (PDF reference)
+
+### Community 279 - "Community 279"
+Cohesion: 1.0
+Nodes (0): 
+
+### Community 280 - "Community 280"
+Cohesion: 1.0
+Nodes (0): 
+
+### Community 281 - "Community 281"
+Cohesion: 1.0
+Nodes (0): 
+
+### Community 282 - "Community 282"
+Cohesion: 1.0
+Nodes (1): 1.png (mac)
+
+### Community 283 - "Community 283"
+Cohesion: 1.0
+Nodes (0): 
+
+### Community 284 - "Community 284"
+Cohesion: 1.0
+Nodes (0): 
+
+### Community 285 - "Community 285"
+Cohesion: 1.0
+Nodes (0): 
+
+### Community 286 - "Community 286"
+Cohesion: 1.0
+Nodes (0): 
+
+### Community 287 - "Community 287"
+Cohesion: 1.0
+Nodes (0): 
+
+### Community 288 - "Community 288"
+Cohesion: 1.0
+Nodes (0): 
+
+### Community 289 - "Community 289"
+Cohesion: 1.0
+Nodes (0): 
+
+### Community 290 - "Community 290"
+Cohesion: 1.0
+Nodes (0): 
+
+### Community 291 - "Community 291"
+Cohesion: 1.0
+Nodes (1): 11.png (laptop)
+
+### Community 292 - "Community 292"
+Cohesion: 1.0
+Nodes (1): 11.png (mac)
+
+### Community 293 - "Community 293"
+Cohesion: 1.0
+Nodes (0): 
+
+### Community 294 - "Community 294"
+Cohesion: 1.0
+Nodes (0): 
+
+### Community 295 - "Community 295"
+Cohesion: 1.0
+Nodes (0): 
+
+### Community 296 - "Community 296"
+Cohesion: 1.0
+Nodes (0): 
+
+### Community 297 - "Community 297"
+Cohesion: 1.0
+Nodes (0): 
+
+### Community 298 - "Community 298"
+Cohesion: 1.0
+Nodes (0): 
+
+### Community 299 - "Community 299"
+Cohesion: 1.0
+Nodes (1): jaggery-slide-1-new.png (mac)
+
+### Community 300 - "Community 300"
+Cohesion: 1.0
+Nodes (1): jaggery-slide-1.png (d1366)
+
+### Community 301 - "Community 301"
+Cohesion: 1.0
+Nodes (1): jaggery-slide-1.png (d1280)
+
+### Community 302 - "Community 302"
+Cohesion: 1.0
+Nodes (0): 
+
+### Community 303 - "Community 303"
+Cohesion: 1.0
+Nodes (1): 100-natural.png (jaggery)
+
+### Community 304 - "Community 304"
+Cohesion: 1.0
+Nodes (1): step-1.png (jaggery process)
+
+### Community 305 - "Community 305"
+Cohesion: 1.0
+Nodes (1): step-2.png (jaggery process)
+
+### Community 306 - "Community 306"
+Cohesion: 1.0
+Nodes (1): step-3.png (jaggery process)
+
+### Community 307 - "Community 307"
+Cohesion: 1.0
+Nodes (1): step-4.png (jaggery process)
+
+### Community 308 - "Community 308"
+Cohesion: 1.0
+Nodes (1): step-5.png (jaggery process)
+
+### Community 309 - "Community 309"
+Cohesion: 1.0
+Nodes (0): 
+
+### Community 310 - "Community 310"
+Cohesion: 1.0
+Nodes (0): 
+
+### Community 311 - "Community 311"
+Cohesion: 1.0
+Nodes (0): 
+
+### Community 312 - "Community 312"
+Cohesion: 1.0
+Nodes (0): 
+
+### Community 313 - "Community 313"
+Cohesion: 1.0
+Nodes (0): 
+
+### Community 314 - "Community 314"
+Cohesion: 1.0
+Nodes (1): sugar-slide-1-new.png (mac)
+
+### Community 315 - "Community 315"
+Cohesion: 1.0
+Nodes (1): sugar-slide-1.png (d1366)
+
+### Community 316 - "Community 316"
+Cohesion: 1.0
+Nodes (1): sugar-slide-1.png (d1280)
+
+### Community 317 - "Community 317"
+Cohesion: 1.0
+Nodes (0): 
+
+### Community 318 - "Community 318"
+Cohesion: 1.0
+Nodes (1): 100-natural.png (sugar)
+
+### Community 319 - "Community 319"
+Cohesion: 1.0
+Nodes (1): step-1.png (sugar process)
+
+### Community 320 - "Community 320"
+Cohesion: 1.0
+Nodes (1): step-2.png (sugar process)
+
+### Community 321 - "Community 321"
+Cohesion: 1.0
+Nodes (1): step-4.png (sugar process)
+
+### Community 322 - "Community 322"
+Cohesion: 1.0
+Nodes (0): 
+
+### Community 323 - "Community 323"
+Cohesion: 1.0
+Nodes (0): 
+
+### Community 324 - "Community 324"
+Cohesion: 1.0
+Nodes (0): 
+
+### Community 325 - "Community 325"
+Cohesion: 1.0
+Nodes (0): 
+
+### Community 326 - "Community 326"
+Cohesion: 1.0
+Nodes (0): 
+
+### Community 327 - "Community 327"
+Cohesion: 1.0
+Nodes (0): 
+
+### Community 328 - "Community 328"
+Cohesion: 1.0
+Nodes (0): 
+
+### Community 329 - "Community 329"
+Cohesion: 1.0
+Nodes (0): 
+
+### Community 330 - "Community 330"
+Cohesion: 1.0
+Nodes (0): 
+
+### Community 331 - "Community 331"
+Cohesion: 1.0
+Nodes (0): 
+
+### Community 332 - "Community 332"
+Cohesion: 1.0
+Nodes (0): 
+
+### Community 333 - "Community 333"
+Cohesion: 1.0
+Nodes (1): Coding standard: provide edits as Before/After versions
+
+### Community 334 - "Community 334"
+Cohesion: 1.0
+Nodes (1): Why Home page was NOT switched to a page builder
+
+### Community 335 - "Community 335"
+Cohesion: 1.0
+Nodes (1): PHP upload limits bumped to 128MB via php-uploads.ini
+
+### Community 336 - "Community 336"
+Cohesion: 1.0
+Nodes (1): Theme file map (style.css, templates, fonts, images)
+
+### Community 337 - "Community 337"
 Cohesion: 1.0
 Nodes (1): Accent palette #76112D #9D2745 #BA3656 #CD3F60 #2a1810
 
 ## Knowledge Gaps
 - **104 isolated node(s):** `Date_Time_Field`, `Text_Field`, `Image_Field`, `Radio_Image_Field`, `Radio_Field` (+99 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **Thin community `Community 85`** (2 nodes): `closeOther()`, `benefits-accordion.js`
+- **Thin community `Community 91`** (2 nodes): `anandiitaa_nut_table()`, `page-nutrition.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 86`** (2 nodes): `Date_Time_Field`, `Date_Time_Field.php`
+- **Thin community `Community 92`** (2 nodes): `Date_Time_Field`, `Date_Time_Field.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 87`** (2 nodes): `Text_Field`, `Text_Field.php`
+- **Thin community `Community 93`** (2 nodes): `Text_Field`, `Text_Field.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 88`** (2 nodes): `Image_Field`, `Image_Field.php`
+- **Thin community `Community 94`** (2 nodes): `Image_Field`, `Image_Field.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 89`** (2 nodes): `Radio_Image_Field`, `Radio_Image_Field.php`
+- **Thin community `Community 95`** (2 nodes): `Radio_Image_Field`, `Radio_Image_Field.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 90`** (2 nodes): `Radio_Field`, `Radio_Field.php`
+- **Thin community `Community 96`** (2 nodes): `Radio_Field`, `Radio_Field.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 91`** (2 nodes): `Broken_Field`, `Broken_Field.php`
+- **Thin community `Community 97`** (2 nodes): `Broken_Field`, `Broken_Field.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 92`** (2 nodes): `ExpectedInvokableException`, `ExpectedInvokableException.php`
+- **Thin community `Community 98`** (2 nodes): `ExpectedInvokableException`, `ExpectedInvokableException.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 93`** (2 nodes): `transformFieldsToAttributes()`, `transform-fields-to-attributes.js`
+- **Thin community `Community 99`** (2 nodes): `transformFieldsToAttributes()`, `transform-fields-to-attributes.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 94`** (2 nodes): `NotSupportedField()`, `index.js`
+- **Thin community `Community 100`** (2 nodes): `NotSupportedField()`, `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 95`** (2 nodes): `initialize()`, `index.js`
+- **Thin community `Community 101`** (2 nodes): `initialize()`, `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 96`** (2 nodes): `Field()`, `index.js`
+- **Thin community `Community 102`** (2 nodes): `Field()`, `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 97`** (2 nodes): `NoOptions()`, `index.js`
+- **Thin community `Community 103`** (2 nodes): `NoOptions()`, `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 98`** (2 nodes): `createRegistry()`, `index.js`
+- **Thin community `Community 104`** (2 nodes): `createRegistry()`, `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 99`** (2 nodes): `ComplexPlaceholder()`, `placeholder.js`
+- **Thin community `Community 105`** (2 nodes): `ComplexPlaceholder()`, `placeholder.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 100`** (2 nodes): `ComplexTabs()`, `tabs.js`
+- **Thin community `Community 106`** (2 nodes): `ComplexTabs()`, `tabs.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 101`** (2 nodes): `HtmlField()`, `index.js`
+- **Thin community `Community 107`** (2 nodes): `HtmlField()`, `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 102`** (2 nodes): `BlockPreviewField()`, `index.js`
+- **Thin community `Community 108`** (2 nodes): `BlockPreviewField()`, `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 103`** (2 nodes): `withFilters()`, `index.js`
+- **Thin community `Community 109`** (2 nodes): `withFilters()`, `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 104`** (2 nodes): `withConditionalLogic()`, `index.js`
+- **Thin community `Community 110`** (2 nodes): `withConditionalLogic()`, `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 105`** (2 nodes): `withProps()`, `index.js`
+- **Thin community `Community 111`** (2 nodes): `withProps()`, `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 106`** (2 nodes): `RevisionsFlag()`, `index.js`
+- **Thin community `Community 112`** (2 nodes): `RevisionsFlag()`, `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 107`** (2 nodes): `ConditionalDisplay()`, `index.js`
+- **Thin community `Community 113`** (2 nodes): `ConditionalDisplay()`, `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 108`** (2 nodes): `getRoleFromSelect()`, `user-role.js`
+- **Thin community `Community 114`** (2 nodes): `getRoleFromSelect()`, `user-role.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 109`** (2 nodes): `getPostFormatFromRadioInput()`, `post-format.js`
+- **Thin community `Community 115`** (2 nodes): `getPostFormatFromRadioInput()`, `post-format.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 110`** (2 nodes): `getPostTemplateFromSelect()`, `post-template.js`
+- **Thin community `Community 116`** (2 nodes): `getPostTemplateFromSelect()`, `post-template.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 111`** (2 nodes): `getEnvironmentValue()`, `boolean.js`
+- **Thin community `Community 117`** (2 nodes): `getEnvironmentValue()`, `boolean.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 112`** (2 nodes): `isFulfiled()`, `post-template.js`
+- **Thin community `Community 118`** (2 nodes): `isFulfiled()`, `post-template.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 113`** (2 nodes): `evaluate()`, `scalar.js`
+- **Thin community `Community 119`** (2 nodes): `evaluate()`, `scalar.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 114`** (2 nodes): `evaluate()`, `contain.js`
+- **Thin community `Community 120`** (2 nodes): `evaluate()`, `contain.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 115`** (2 nodes): `evaluate()`, `any-equality.js`
+- **Thin community `Community 121`** (2 nodes): `evaluate()`, `any-equality.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 116`** (2 nodes): `evaluate()`, `equality.js`
+- **Thin community `Community 122`** (2 nodes): `evaluate()`, `equality.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 117`** (2 nodes): `urldecode()`, `urldecode.js`
+- **Thin community `Community 123`** (2 nodes): `urldecode()`, `urldecode.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 118`** (2 nodes): `Hardcoded Header Navigation (header.php)`, `wp_nav_menu() Future Swap`
+- **Thin community `Community 124`** (2 nodes): `ana_seed_upsert()`, `seed-anandiitaa-pages.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 119`** (2 nodes): `Deployment goal: transition PNG to WebP for performance`, `Open item: image compression (no pngquant/optipng in env)`
+- **Thin community `Community 125`** (2 nodes): `Hardcoded Header Navigation (header.php)`, `wp_nav_menu() Future Swap`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 120`** (1 nodes): `page-products-sugar.php`
+- **Thin community `Community 126`** (2 nodes): `Deployment goal: transition PNG to WebP for performance`, `Open item: image compression (no pngquant/optipng in env)`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 121`** (1 nodes): `page-products.php`
+- **Thin community `Community 127`** (1 nodes): `page-products-sugar.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 122`** (1 nodes): `index.php`
+- **Thin community `Community 128`** (1 nodes): `page-products.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 123`** (1 nodes): `page-recipes-gajar-ka-halwa.php`
+- **Thin community `Community 129`** (1 nodes): `index.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 124`** (1 nodes): `page-products-jaggery.php`
+- **Thin community `Community 130`** (1 nodes): `page-recipes-gajar-ka-halwa.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 125`** (1 nodes): `page-recipes-cookies.php`
+- **Thin community `Community 131`** (1 nodes): `page-products-jaggery.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 126`** (1 nodes): `header.php`
+- **Thin community `Community 132`** (1 nodes): `page-recipes-cookies.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 127`** (1 nodes): `page-recipes-choco-lava-cake.php`
+- **Thin community `Community 133`** (1 nodes): `header.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 128`** (1 nodes): `footer.php`
+- **Thin community `Community 134`** (1 nodes): `page-recipes-choco-lava-cake.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 129`** (1 nodes): `page-recipes-gulab-jamun.php`
+- **Thin community `Community 135`** (1 nodes): `footer.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 130`** (1 nodes): `front-page.php`
+- **Thin community `Community 136`** (1 nodes): `page-recipes-gulab-jamun.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 131`** (1 nodes): `page-about.php`
+- **Thin community `Community 137`** (1 nodes): `page-manufacturing-details.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 132`** (1 nodes): `scroll-reveal.js`
+- **Thin community `Community 138`** (1 nodes): `front-page.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 133`** (1 nodes): `autoload.php`
+- **Thin community `Community 139`** (1 nodes): `page-about.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 134`** (1 nodes): `autoload_namespaces.php`
+- **Thin community `Community 140`** (1 nodes): `scroll-reveal.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 135`** (1 nodes): `autoload_psr4.php`
+- **Thin community `Community 141`** (1 nodes): `autoload.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 136`** (1 nodes): `autoload_classmap.php`
+- **Thin community `Community 142`** (1 nodes): `autoload_namespaces.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 137`** (1 nodes): `platform_check.php`
+- **Thin community `Community 143`** (1 nodes): `autoload_psr4.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 138`** (1 nodes): `installed.php`
+- **Thin community `Community 144`** (1 nodes): `autoload_classmap.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 139`** (1 nodes): `webpack.config.js`
+- **Thin community `Community 145`** (1 nodes): `platform_check.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 140`** (1 nodes): `config.php`
+- **Thin community `Community 146`** (1 nodes): `installed.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 141`** (1 nodes): `app.js`
+- **Thin community `Community 147`** (1 nodes): `webpack.config.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 142`** (1 nodes): `webpack.core.js`
+- **Thin community `Community 148`** (1 nodes): `config.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 143`** (1 nodes): `wp-packages.js`
+- **Thin community `Community 149`** (1 nodes): `app.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 144`** (1 nodes): `webpack.vendor.js`
+- **Thin community `Community 150`** (1 nodes): `webpack.core.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 145`** (1 nodes): `paths.js`
+- **Thin community `Community 151`** (1 nodes): `wp-packages.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 146`** (1 nodes): `webpack.base.js`
+- **Thin community `Community 152`** (1 nodes): `webpack.vendor.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 147`** (1 nodes): `webpack.blocks.js`
+- **Thin community `Community 153`** (1 nodes): `paths.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 148`** (1 nodes): `webpack.metaboxes.js`
+- **Thin community `Community 154`** (1 nodes): `webpack.base.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 149`** (1 nodes): `index.js`
+- **Thin community `Community 155`** (1 nodes): `webpack.blocks.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 150`** (1 nodes): `index.js`
-  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 151`** (1 nodes): `index.js`
-  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 152`** (1 nodes): `index.js`
-  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 153`** (1 nodes): `index.js`
-  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 154`** (1 nodes): `index.js`
-  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 155`** (1 nodes): `index.js`
-  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 156`** (1 nodes): `index.js`
+- **Thin community `Community 156`** (1 nodes): `webpack.metaboxes.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
 - **Thin community `Community 157`** (1 nodes): `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
@@ -1600,13 +1898,13 @@ Nodes (1): Accent palette #76112D #9D2745 #BA3656 #CD3F60 #2a1810
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
 - **Thin community `Community 169`** (1 nodes): `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 170`** (1 nodes): `fetch-attachments-data.js`
+- **Thin community `Community 170`** (1 nodes): `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 171`** (1 nodes): `api-fetch.js`
+- **Thin community `Community 171`** (1 nodes): `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 172`** (1 nodes): `context.js`
+- **Thin community `Community 172`** (1 nodes): `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 173`** (1 nodes): `fields.js`
+- **Thin community `Community 173`** (1 nodes): `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
 - **Thin community `Community 174`** (1 nodes): `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
@@ -1616,15 +1914,15 @@ Nodes (1): Accent palette #76112D #9D2745 #BA3656 #CD3F60 #2a1810
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
 - **Thin community `Community 177`** (1 nodes): `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 178`** (1 nodes): `index.js`
+- **Thin community `Community 178`** (1 nodes): `fetch-attachments-data.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 179`** (1 nodes): `index.js`
+- **Thin community `Community 179`** (1 nodes): `api-fetch.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 180`** (1 nodes): `index.js`
+- **Thin community `Community 180`** (1 nodes): `context.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 181`** (1 nodes): `index.js`
+- **Thin community `Community 181`** (1 nodes): `fields.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 182`** (1 nodes): `constants.js`
+- **Thin community `Community 182`** (1 nodes): `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
 - **Thin community `Community 183`** (1 nodes): `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
@@ -1640,11 +1938,11 @@ Nodes (1): Accent palette #76112D #9D2745 #BA3656 #CD3F60 #2a1810
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
 - **Thin community `Community 189`** (1 nodes): `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 190`** (1 nodes): `index.js`
+- **Thin community `Community 190`** (1 nodes): `constants.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 191`** (1 nodes): `registry.js`
+- **Thin community `Community 191`** (1 nodes): `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 192`** (1 nodes): `hooks.js`
+- **Thin community `Community 192`** (1 nodes): `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
 - **Thin community `Community 193`** (1 nodes): `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
@@ -1654,174 +1952,298 @@ Nodes (1): Accent palette #76112D #9D2745 #BA3656 #CD3F60 #2a1810
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
 - **Thin community `Community 196`** (1 nodes): `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 197`** (1 nodes): `post_meta.php`
+- **Thin community `Community 197`** (1 nodes): `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 198`** (1 nodes): `nav_menu_item.php`
+- **Thin community `Community 198`** (1 nodes): `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 199`** (1 nodes): `user_meta.php`
+- **Thin community `Community 199`** (1 nodes): `registry.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 200`** (1 nodes): `network.php`
+- **Thin community `Community 200`** (1 nodes): `hooks.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 201`** (1 nodes): `theme_options.php`
+- **Thin community `Community 201`** (1 nodes): `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 202`** (1 nodes): `widget.php`
+- **Thin community `Community 202`** (1 nodes): `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 203`** (1 nodes): `comment_meta.php`
+- **Thin community `Community 203`** (1 nodes): `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 204`** (1 nodes): `term_meta.php`
+- **Thin community `Community 204`** (1 nodes): `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 205`** (1 nodes): `options-page.php`
+- **Thin community `Community 205`** (1 nodes): `post_meta.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 206`** (1 nodes): `incorrect-syntax.php`
+- **Thin community `Community 206`** (1 nodes): `nav_menu_item.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 207`** (1 nodes): `Unbuilt Pages (Recipes, Blogs, Processing, Community, Contact)`
+- **Thin community `Community 207`** (1 nodes): `user_meta.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 208`** (1 nodes): `WP-CLI in Docker Container`
+- **Thin community `Community 208`** (1 nodes): `network.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 209`** (1 nodes): `Bump wp_enqueue_style Version (Cache Bust)`
+- **Thin community `Community 209`** (1 nodes): `theme_options.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 210`** (1 nodes): `DM Sans - SIL OFL 1.1 license`
+- **Thin community `Community 210`** (1 nodes): `widget.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 211`** (1 nodes): `Appetite Pro - Personal Use Only license`
+- **Thin community `Community 211`** (1 nodes): `comment_meta.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 212`** (1 nodes): `Brand Guidelines (PDF)`
+- **Thin community `Community 212`** (1 nodes): `term_meta.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 213`** (1 nodes): `About Us - Anandiitaa (PDF reference)`
+- **Thin community `Community 213`** (1 nodes): `options-page.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 214`** (1 nodes): `Sugar Page - Anandiitaa (PDF reference)`
+- **Thin community `Community 214`** (1 nodes): `incorrect-syntax.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 215`** (1 nodes): `Jaggery Page - Anandiitaa (PDF reference)`
+- **Thin community `Community 215`** (1 nodes): `site-footer.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 216`** (1 nodes): `Home Page (PDF reference)`
+- **Thin community `Community 216`** (1 nodes): `site-header.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 217`** (1 nodes): `anandiitaa-wordmark.png`
+- **Thin community `Community 217`** (1 nodes): `not-found.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 218`** (1 nodes): `slide-1-sticker.png`
+- **Thin community `Community 218`** (1 nodes): `scroll-reveal.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 219`** (1 nodes): `slide-1.png`
+- **Thin community `Community 219`** (1 nodes): `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 220`** (1 nodes): `1.png (mac)`
+- **Thin community `Community 220`** (1 nodes): `render.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 221`** (1 nodes): `2-sticker.png`
+- **Thin community `Community 221`** (1 nodes): `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 222`** (1 nodes): `3-sticker.png`
+- **Thin community `Community 222`** (1 nodes): `render.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 223`** (1 nodes): `4-sticker.png`
+- **Thin community `Community 223`** (1 nodes): `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 224`** (1 nodes): `5-sticker.png`
+- **Thin community `Community 224`** (1 nodes): `render.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 225`** (1 nodes): `6-sticker.png`
+- **Thin community `Community 225`** (1 nodes): `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 226`** (1 nodes): `7-sticker.png`
+- **Thin community `Community 226`** (1 nodes): `render.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 227`** (1 nodes): `9-sticker.png`
+- **Thin community `Community 227`** (1 nodes): `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 228`** (1 nodes): `10.png`
+- **Thin community `Community 228`** (1 nodes): `render.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 229`** (1 nodes): `11.png (laptop)`
+- **Thin community `Community 229`** (1 nodes): `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 230`** (1 nodes): `11.png (mac)`
+- **Thin community `Community 230`** (1 nodes): `render.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 231`** (1 nodes): `jaggery-powder.png`
+- **Thin community `Community 231`** (1 nodes): `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 232`** (1 nodes): `bold-grain.png`
+- **Thin community `Community 232`** (1 nodes): `render.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 233`** (1 nodes): `fine-grain.png`
+- **Thin community `Community 233`** (1 nodes): `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 234`** (1 nodes): `desi-jaggery.png`
+- **Thin community `Community 234`** (1 nodes): `render.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 235`** (1 nodes): `review1.png`
+- **Thin community `Community 235`** (1 nodes): `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 236`** (1 nodes): `review2.png`
+- **Thin community `Community 236`** (1 nodes): `render.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 237`** (1 nodes): `jaggery-slide-1-new.png (mac)`
+- **Thin community `Community 237`** (1 nodes): `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 238`** (1 nodes): `jaggery-slide-1.png (d1366)`
+- **Thin community `Community 238`** (1 nodes): `render.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 239`** (1 nodes): `jaggery-slide-1.png (d1280)`
+- **Thin community `Community 239`** (1 nodes): `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 240`** (1 nodes): `jaggery-slide-1.png`
+- **Thin community `Community 240`** (1 nodes): `render.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 241`** (1 nodes): `100-natural.png (jaggery)`
+- **Thin community `Community 241`** (1 nodes): `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 242`** (1 nodes): `step-1.png (jaggery process)`
+- **Thin community `Community 242`** (1 nodes): `render.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 243`** (1 nodes): `step-2.png (jaggery process)`
+- **Thin community `Community 243`** (1 nodes): `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 244`** (1 nodes): `step-3.png (jaggery process)`
+- **Thin community `Community 244`** (1 nodes): `render.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 245`** (1 nodes): `step-4.png (jaggery process)`
+- **Thin community `Community 245`** (1 nodes): `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 246`** (1 nodes): `step-5.png (jaggery process)`
+- **Thin community `Community 246`** (1 nodes): `render.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 247`** (1 nodes): `iron.png`
+- **Thin community `Community 247`** (1 nodes): `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 248`** (1 nodes): `minerals.png`
+- **Thin community `Community 248`** (1 nodes): `render.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 249`** (1 nodes): `immunity.png`
+- **Thin community `Community 249`** (1 nodes): `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 250`** (1 nodes): `respiratory.png`
+- **Thin community `Community 250`** (1 nodes): `render.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 251`** (1 nodes): `digestion.png`
+- **Thin community `Community 251`** (1 nodes): `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 252`** (1 nodes): `sugar-slide-1-new.png (mac)`
+- **Thin community `Community 252`** (1 nodes): `render.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 253`** (1 nodes): `sugar-slide-1.png (d1366)`
+- **Thin community `Community 253`** (1 nodes): `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 254`** (1 nodes): `sugar-slide-1.png (d1280)`
+- **Thin community `Community 254`** (1 nodes): `render.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 255`** (1 nodes): `sugar-slide-1.png`
+- **Thin community `Community 255`** (1 nodes): `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 256`** (1 nodes): `100-natural.png (sugar)`
+- **Thin community `Community 256`** (1 nodes): `render.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 257`** (1 nodes): `step-1.png (sugar process)`
+- **Thin community `Community 257`** (1 nodes): `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 258`** (1 nodes): `step-2.png (sugar process)`
+- **Thin community `Community 258`** (1 nodes): `render.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 259`** (1 nodes): `step-4.png (sugar process)`
+- **Thin community `Community 259`** (1 nodes): `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 260`** (1 nodes): `cookies.png`
+- **Thin community `Community 260`** (1 nodes): `render.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 261`** (1 nodes): `gulab-jamun.png`
+- **Thin community `Community 261`** (1 nodes): `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 262`** (1 nodes): `battasa.png`
+- **Thin community `Community 262`** (1 nodes): `render.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 263`** (1 nodes): `chocolate-dessert.png`
+- **Thin community `Community 263`** (1 nodes): `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 264`** (1 nodes): `about-slide-1.png`
+- **Thin community `Community 264`** (1 nodes): `render.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 265`** (1 nodes): `about-slide-3.png`
+- **Thin community `Community 265`** (1 nodes): `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 266`** (1 nodes): `purity.png`
+- **Thin community `Community 266`** (1 nodes): `render.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 267`** (1 nodes): `hygiene.png`
+- **Thin community `Community 267`** (1 nodes): `index.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 268`** (1 nodes): `safety.png`
+- **Thin community `Community 268`** (1 nodes): `render.php`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 269`** (1 nodes): `quality.png`
+- **Thin community `Community 269`** (1 nodes): `Unbuilt Pages (Recipes, Blogs, Processing, Community, Contact)`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 270`** (1 nodes): `purpose.png`
+- **Thin community `Community 270`** (1 nodes): `WP-CLI in Docker Container`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 271`** (1 nodes): `Coding standard: provide edits as Before/After versions`
+- **Thin community `Community 271`** (1 nodes): `Bump wp_enqueue_style Version (Cache Bust)`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 272`** (1 nodes): `Why Home page was NOT switched to a page builder`
+- **Thin community `Community 272`** (1 nodes): `DM Sans - SIL OFL 1.1 license`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 273`** (1 nodes): `PHP upload limits bumped to 128MB via php-uploads.ini`
+- **Thin community `Community 273`** (1 nodes): `Appetite Pro - Personal Use Only license`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 274`** (1 nodes): `Theme file map (style.css, templates, fonts, images)`
+- **Thin community `Community 274`** (1 nodes): `Brand Guidelines (PDF)`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 275`** (1 nodes): `Accent palette #76112D #9D2745 #BA3656 #CD3F60 #2a1810`
+- **Thin community `Community 275`** (1 nodes): `About Us - Anandiitaa (PDF reference)`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 276`** (1 nodes): `Sugar Page - Anandiitaa (PDF reference)`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 277`** (1 nodes): `Jaggery Page - Anandiitaa (PDF reference)`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 278`** (1 nodes): `Home Page (PDF reference)`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 279`** (1 nodes): `anandiitaa-wordmark.png`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 280`** (1 nodes): `slide-1-sticker.png`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 281`** (1 nodes): `slide-1.png`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 282`** (1 nodes): `1.png (mac)`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 283`** (1 nodes): `2-sticker.png`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 284`** (1 nodes): `3-sticker.png`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 285`** (1 nodes): `4-sticker.png`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 286`** (1 nodes): `5-sticker.png`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 287`** (1 nodes): `6-sticker.png`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 288`** (1 nodes): `7-sticker.png`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 289`** (1 nodes): `9-sticker.png`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 290`** (1 nodes): `10.png`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 291`** (1 nodes): `11.png (laptop)`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 292`** (1 nodes): `11.png (mac)`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 293`** (1 nodes): `jaggery-powder.png`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 294`** (1 nodes): `bold-grain.png`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 295`** (1 nodes): `fine-grain.png`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 296`** (1 nodes): `desi-jaggery.png`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 297`** (1 nodes): `review1.png`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 298`** (1 nodes): `review2.png`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 299`** (1 nodes): `jaggery-slide-1-new.png (mac)`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 300`** (1 nodes): `jaggery-slide-1.png (d1366)`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 301`** (1 nodes): `jaggery-slide-1.png (d1280)`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 302`** (1 nodes): `jaggery-slide-1.png`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 303`** (1 nodes): `100-natural.png (jaggery)`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 304`** (1 nodes): `step-1.png (jaggery process)`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 305`** (1 nodes): `step-2.png (jaggery process)`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 306`** (1 nodes): `step-3.png (jaggery process)`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 307`** (1 nodes): `step-4.png (jaggery process)`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 308`** (1 nodes): `step-5.png (jaggery process)`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 309`** (1 nodes): `iron.png`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 310`** (1 nodes): `minerals.png`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 311`** (1 nodes): `immunity.png`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 312`** (1 nodes): `respiratory.png`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 313`** (1 nodes): `digestion.png`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 314`** (1 nodes): `sugar-slide-1-new.png (mac)`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 315`** (1 nodes): `sugar-slide-1.png (d1366)`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 316`** (1 nodes): `sugar-slide-1.png (d1280)`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 317`** (1 nodes): `sugar-slide-1.png`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 318`** (1 nodes): `100-natural.png (sugar)`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 319`** (1 nodes): `step-1.png (sugar process)`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 320`** (1 nodes): `step-2.png (sugar process)`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 321`** (1 nodes): `step-4.png (sugar process)`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 322`** (1 nodes): `cookies.png`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 323`** (1 nodes): `gulab-jamun.png`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 324`** (1 nodes): `battasa.png`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 325`** (1 nodes): `chocolate-dessert.png`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 326`** (1 nodes): `about-slide-1.png`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 327`** (1 nodes): `about-slide-3.png`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 328`** (1 nodes): `purity.png`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 329`** (1 nodes): `hygiene.png`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 330`** (1 nodes): `safety.png`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 331`** (1 nodes): `quality.png`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 332`** (1 nodes): `purpose.png`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 333`** (1 nodes): `Coding standard: provide edits as Before/After versions`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 334`** (1 nodes): `Why Home page was NOT switched to a page builder`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 335`** (1 nodes): `PHP upload limits bumped to 128MB via php-uploads.ini`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 336`** (1 nodes): `Theme file map (style.css, templates, fonts, images)`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 337`** (1 nodes): `Accent palette #76112D #9D2745 #BA3656 #CD3F60 #2a1810`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `Helper` connect `Community 2` to `Community 0`, `Community 1`, `Community 3`, `Community 4`, `Community 6`, `Community 7`, `Community 8`, `Community 9`, `Community 12`, `Community 14`, `Community 15`, `Community 16`, `Community 17`?**
-  _High betweenness centrality (0.140) - this node is a cross-community bridge._
-- **Why does `handler()` connect `Community 10` to `Community 5`, `Community 8`, `Community 11`, `Community 18`, `Community 20`?**
-  _High betweenness centrality (0.104) - this node is a cross-community bridge._
-- **Why does `Incorrect_Syntax_Exception` connect `Community 9` to `Community 0`, `Community 1`, `Community 3`, `Community 5`, `Community 6`, `Community 7`, `Community 8`, `Community 12`, `Community 14`, `Community 17`, `Community 19`?**
-  _High betweenness centrality (0.082) - this node is a cross-community bridge._
+- **Why does `Helper` connect `Community 0` to `Community 1`, `Community 2`, `Community 3`, `Community 4`, `Community 6`, `Community 7`, `Community 9`, `Community 11`, `Community 13`, `Community 14`, `Community 15`, `Community 20`?**
+  _High betweenness centrality (0.139) - this node is a cross-community bridge._
+- **Why does `handler()` connect `Community 8` to `Community 5`, `Community 7`, `Community 10`, `Community 16`, `Community 17`?**
+  _High betweenness centrality (0.078) - this node is a cross-community bridge._
+- **Why does `Incorrect_Syntax_Exception` connect `Community 3` to `Community 0`, `Community 1`, `Community 2`, `Community 4`, `Community 5`, `Community 6`, `Community 7`, `Community 9`, `Community 11`, `Community 15`, `Community 19`, `Community 22`?**
+  _High betweenness centrality (0.063) - this node is a cross-community bridge._
 - **Are the 62 inferred relationships involving `Helper` (e.g. with `carbon_field_exists()` and `carbon_get()`) actually correct?**
   _`Helper` has 62 INFERRED edges - model-reasoned connections that need verification._
 - **Are the 48 inferred relationships involving `Incorrect_Syntax_Exception` (e.g. with `.extend()` and `.verify_fields_registered()`) actually correct?**
@@ -1829,4 +2251,4 @@ _Questions this graph is uniquely positioned to answer:_
 - **What connects `Date_Time_Field`, `Text_Field`, `Image_Field` to the rest of the system?**
   _104 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
-  _Cohesion score 0.03 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.02 - nodes in this community are weakly interconnected._

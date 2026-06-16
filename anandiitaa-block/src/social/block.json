@@ -1,0 +1,30 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "anandiitaa/social",
+	"version": "0.1.0",
+	"title": "Anandiitaa Social CTA",
+	"category": "anandiitaa",
+	"icon": "share",
+	"description": "Community / social CTA section. Layout, wordmark and social icons locked; edit the background, heading, subtitle and the three social links.",
+	"textdomain": "anandiitaa-block",
+	"supports": {
+		"html": false,
+		"multiple": false,
+		"reusable": false,
+		"customClassName": false,
+		"className": false
+	},
+	"attributes": {
+		"image": { "type": "string", "default": "/images/home/laptop/sections/11.png" },
+		"alt": { "type": "string", "default": "For Those Who Choose Better — Anandiitaa Community" },
+		"heading": { "type": "string", "default": "For Those Who<br>Choose Better." },
+		"subtitle": { "type": "string", "default": "A growing community that believes everyday<br>food deserves higher standards." },
+		"instagram": { "type": "string", "default": "https://instagram.com" },
+		"facebook": { "type": "string", "default": "https://facebook.com" },
+		"youtube": { "type": "string", "default": "https://youtube.com" }
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"render": "file:./render.php"
+}

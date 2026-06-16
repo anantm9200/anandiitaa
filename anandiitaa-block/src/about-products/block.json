@@ -1,0 +1,37 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "anandiitaa/about-products",
+	"version": "0.1.0",
+	"title": "Anandiitaa About — Product Wall",
+	"category": "anandiitaa",
+	"icon": "id-alt",
+	"description": "About hero — product wall with title and 4 callout labels. Layout, callout positions and arrows locked; edit the background, title and the 4 label texts.",
+	"textdomain": "anandiitaa-block",
+	"supports": {
+		"html": false,
+		"multiple": false,
+		"reusable": false,
+		"customClassName": false,
+		"className": false
+	},
+	"attributes": {
+		"bgImage": { "type": "string", "default": "/images/about-us/mac/about-slide-1.png" },
+		"bgTablet": { "type": "string", "default": "/images/about-us/tab/about-hero.png" },
+		"bgPhone": { "type": "string", "default": "/images/about-us/phone/about-hero.png" },
+		"alt": { "type": "string", "default": "Anandiitaa product range — Desi Jaggery, Jaggery Powder, Bold Grain Sugar, Fine Grain Sugar" },
+		"title": { "type": "string", "default": "About us" },
+		"callouts": {
+			"type": "array",
+			"default": [
+				{ "l1": "DESI", "l2": "JAGGERY" },
+				{ "l1": "JAGGERY", "l2": "POWDER" },
+				{ "l1": "FINE GRAIN", "l2": "SUGAR" },
+				{ "l1": "BOLD GRAIN", "l2": "SUGAR" }
+			]
+		}
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"render": "file:./render.php"
+}

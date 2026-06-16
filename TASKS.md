@@ -1,5 +1,7 @@
 # Active Tasks
 
+> ⚠️ **WORDPRESS-MIGRATION MANDATE:** the `anandiitaa-block` rebuild must be a **pixel-exact replica of prod** (`my-custom-theme`) — every page/section/component/font/color/gradient/spacing/button size+shape+position matches the live site exactly. Replicate from the classic theme's code; no approximations.
+
 Tracking the current work batch. Updated as items move through stages.
 
 Status legend: `[ ]` todo · `[~]` in progress · `[x]` done · `[!]` blocked / needs input

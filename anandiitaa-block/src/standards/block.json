@@ -1,0 +1,36 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "anandiitaa/standards",
+	"version": "0.1.0",
+	"title": "Anandiitaa Standards",
+	"category": "anandiitaa",
+	"icon": "awards",
+	"description": "The Anandiitaa Standards section — 4 columns. Layout/icons locked; edit the background image and each column's title + body.",
+	"textdomain": "anandiitaa-block",
+	"supports": {
+		"html": false,
+		"multiple": false,
+		"reusable": false,
+		"customClassName": false,
+		"className": false
+	},
+	"attributes": {
+		"image": { "type": "string", "default": "/images/home/laptop/sections/6-sticker.png" },
+		"tabletImage": { "type": "string", "default": "/images/home/tablet/sections/6.png" },
+		"phoneImage": { "type": "string", "default": "/images/home/phone/sections/6.png" },
+		"alt": { "type": "string", "default": "The Anandiitaa Standards" },
+		"columns": {
+			"type": "array",
+			"default": [
+				{ "title": "Purity First, Always", "body": "No Sugar, No Bleach, No harmful Adulterants" },
+				{ "title": "Hygiene without compromise", "body": "The Highest Hygiene Standards. Period." },
+				{ "title": "Food Safety. Non-Negotiable", "body": "World Class food safety Standards" },
+				{ "title": "Quality Without Doubt", "body": "Each Batch Quality tested by Professionals" }
+			]
+		}
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"render": "file:./render.php"
+}

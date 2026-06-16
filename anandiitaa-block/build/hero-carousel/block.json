@@ -2,11 +2,11 @@
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
   "name": "anandiitaa/hero-carousel",
-  "version": "0.1.0",
-  "title": "Hero Carousel",
-  "category": "media",
-  "icon": "images-alt2",
-  "description": "Full-width homepage hero slider. Each slide is a Cover block (image + heading + CTA). Slider behavior added on the front end.",
+  "version": "0.2.0",
+  "title": "Anandiitaa Hero Carousel",
+  "category": "anandiitaa",
+  "icon": "slides",
+  "description": "Homepage hero carousel. Layout, classes and slider mechanics are locked in code — edit only each slide's image, heading, button and feature lines.",
   "keywords": [
     "carousel",
     "slider",
@@ -15,24 +15,129 @@
   ],
   "textdomain": "anandiitaa-block",
   "supports": {
-    "align": [
-      "full"
-    ],
     "html": false,
-    "anchor": true
+    "multiple": false,
+    "reusable": false,
+    "customClassName": false,
+    "className": false
   },
   "attributes": {
-    "autoplay": {
-      "type": "boolean",
-      "default": true
-    },
-    "interval": {
-      "type": "number",
-      "default": 5000
+    "slides": {
+      "type": "array",
+      "default": [
+        {
+          "image": "/images/home/laptop/slider/slide-1-sticker.png",
+          "macImage": "/images/home/mac/home-hero-1920.png",
+          "tabletImage": "/images/home/tablet/1.png",
+          "phoneImage": "/images/home/phone/1.png",
+          "alt": "Anandiitaa — Choose Pure",
+          "heading": "Choose Pure.<br>Choose Anandiitaa.",
+          "ctaLabel": "Explore More",
+          "ctaHref": "/about-us",
+          "position": "top-center",
+          "features": []
+        },
+        {
+          "image": "/images/home/laptop/2-sticker.png",
+          "tabletImage": "/images/home/tablet/2.png",
+          "phoneImage": "/images/home/phone/2.png",
+          "alt": "Choose Pure. Choose Anandiitaa.",
+          "heading": "Choose Pure.<br>Choose Anandiitaa.",
+          "ctaLabel": "Explore More",
+          "ctaHref": "/about-us",
+          "position": "",
+          "features": [
+            {
+              "icon": "shield",
+              "text": "100% Natural Taste and Aroma"
+            },
+            {
+              "icon": "clipboard",
+              "text": "Contains Vital Minerals"
+            },
+            {
+              "icon": "spoon",
+              "text": "Easy to Use"
+            }
+          ]
+        },
+        {
+          "image": "/images/home/laptop/home-hero-3-1920.png",
+          "macImage": "/images/home/mac/home-hero-3.png",
+          "tabletImage": "/images/home/tablet/3.png",
+          "phoneImage": "/images/home/phone/3.png",
+          "alt": "Choose Pure. Choose Anandiitaa.",
+          "heading": "Choose Pure.<br>Choose Anandiitaa.",
+          "ctaLabel": "Explore More",
+          "ctaHref": "/about-us",
+          "position": "",
+          "features": [
+            {
+              "icon": "shield",
+              "text": "Sulphur Less"
+            },
+            {
+              "icon": "clipboard",
+              "text": "Zero Adulteration"
+            },
+            {
+              "icon": "spoon",
+              "text": "Pure and Hygienic"
+            }
+          ]
+        },
+        {
+          "image": "/images/home/laptop/4-sticker.png",
+          "tabletImage": "/images/home/tablet/4.png",
+          "phoneImage": "/images/home/phone/4.png",
+          "alt": "Choose Pure. Choose Anandiitaa.",
+          "heading": "Choose Pure.<br>Choose Anandiitaa.",
+          "ctaLabel": "Explore More",
+          "ctaHref": "/about-us",
+          "position": "",
+          "features": [
+            {
+              "icon": "shield",
+              "text": "100% Natural Taste and Aroma"
+            },
+            {
+              "icon": "clipboard",
+              "text": "Contains Vital Minerals"
+            },
+            {
+              "icon": "spoon",
+              "text": "Traditionally Made"
+            }
+          ]
+        },
+        {
+          "image": "/images/home/laptop/5-sticker.png",
+          "tabletImage": "/images/home/tablet/5.png",
+          "phoneImage": "/images/home/phone/5.png",
+          "alt": "Choose Pure. Choose Anandiitaa.",
+          "heading": "Choose Pure.<br>Choose Anandiitaa.",
+          "ctaLabel": "Explore More",
+          "ctaHref": "/about-us",
+          "position": "",
+          "features": [
+            {
+              "icon": "shield",
+              "text": "Sulphur Less"
+            },
+            {
+              "icon": "clipboard",
+              "text": "Zero Adulteration"
+            },
+            {
+              "icon": "spoon",
+              "text": "Dissolves Easily"
+            }
+          ]
+        }
+      ]
     }
   },
   "editorScript": "file:./index.js",
-  "style": "file:./style-index.css",
   "editorStyle": "file:./index.css",
-  "viewScript": "file:./view.js"
+  "render": "file:./render.php"
 }

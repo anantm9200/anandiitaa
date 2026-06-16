@@ -1,0 +1,74 @@
+/* Shared editor-only UI for Anandiitaa section blocks. Front-end styling lives
+   entirely in prod-styles.css; these styles only shape the editing form. */
+.anandiitaa-section-editor {
+	&__hint {
+		margin: 0 0 12px;
+		padding: 8px 12px;
+		background: rgba( 107, 15, 26, 0.06 );
+		border-left: 3px solid #6b0f1a;
+		font-size: 13px;
+		color: #6b0f1a;
+	}
+
+	&__title {
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		font-size: 12px;
+		color: #6b0f1a;
+		margin: 0 0 12px;
+	}
+}
+
+.anandiitaa-imgpick {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	margin-bottom: 14px;
+
+	&__thumb {
+		width: 120px;
+		height: 72px;
+		object-fit: cover;
+		border-radius: 6px;
+		border: 1px solid #e0d8c8;
+		background: #f3ece0;
+
+		&--empty {
+			display: block;
+		}
+	}
+}
+
+.anandiitaa-card {
+	border: 1px solid #e0d8c8;
+	border-radius: 8px;
+	padding: 14px;
+	margin-bottom: 12px;
+	background: #fffdf8;
+
+	&__head {
+		font-weight: 600;
+		font-size: 11px;
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		color: #6b0f1a;
+		margin-bottom: 8px;
+	}
+}
+
+.anandiitaa-field-label {
+	display: block;
+	font-size: 11px;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+	color: #555;
+	margin-bottom: 4px;
+}
+
+.anandiitaa-grid-2 {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 12px;
+}

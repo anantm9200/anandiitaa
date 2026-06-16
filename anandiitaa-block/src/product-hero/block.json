@@ -1,0 +1,40 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "anandiitaa/product-hero",
+	"version": "0.1.0",
+	"title": "Anandiitaa Product Hero",
+	"category": "anandiitaa",
+	"icon": "cover-image",
+	"description": "Product detail hero — feature rail, wordmark + product name, hero image, 100% Natural seal. Layout/icons locked; edit the product name, feature lines and images.",
+	"textdomain": "anandiitaa-block",
+	"supports": {
+		"html": false,
+		"multiple": false,
+		"reusable": false,
+		"customClassName": false,
+		"className": false
+	},
+	"attributes": {
+		"productName": { "type": "string", "default": "Jaggery" },
+		"heroImage": { "type": "string", "default": "/assets/images/products/jaggery/jaggery-slide-1.png" },
+		"heroMac": { "type": "string", "default": "/assets/images/products/jaggery/mac/jaggery-slide-1-new.png" },
+		"heroD1366": { "type": "string", "default": "/assets/images/products/jaggery/d1366/jaggery-slide-1.png" },
+		"heroD1280": { "type": "string", "default": "/assets/images/products/jaggery/d1280/jaggery-slide-1.png" },
+		"heroTablet": { "type": "string", "default": "/assets/images/products/jaggery/tab/jaggery-slide-1.png" },
+		"heroPhone": { "type": "string", "default": "/assets/images/products/jaggery/phone/jaggery-slide-1.png" },
+		"heroAlt": { "type": "string", "default": "Anandiitaa Desi Jaggery — full product composition" },
+		"sealImage": { "type": "string", "default": "/assets/images/products/jaggery/100-natural.png" },
+		"features": {
+			"type": "array",
+			"default": [
+				{ "icon": "tested", "text": "Each batch tested<br>professionally" },
+				{ "icon": "noChem", "text": "No added chemicals or<br>preservatives" },
+				{ "icon": "minerals", "text": "Contains Vital<br>Minerals" }
+			]
+		}
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"render": "file:./render.php"
+}

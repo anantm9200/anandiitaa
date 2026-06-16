@@ -1,0 +1,35 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "anandiitaa/product-benefits",
+	"version": "0.1.0",
+	"title": "Anandiitaa Product Benefits",
+	"category": "anandiitaa",
+	"icon": "editor-ul",
+	"description": "Health-benefits accordion. Layout, numbers and the first-open behavior are locked; edit the title, footer and each item's title, body and image.",
+	"textdomain": "anandiitaa-block",
+	"supports": {
+		"html": false,
+		"multiple": false,
+		"reusable": false,
+		"customClassName": false,
+		"className": false
+	},
+	"attributes": {
+		"title": { "type": "string", "default": "Health Benefits of Jaggery" },
+		"footer": { "type": "string", "default": "These benefits come from keeping jaggery closer to its original form, less processed, more complete." },
+		"items": {
+			"type": "array",
+			"default": [
+				{ "title": "Rich in Iron — Prevents Anaemia", "image": "/assets/images/products/jaggery/benefits/iron.png", "body": "Jaggery is an excellent source of plant-based iron. Some studies suggest that the iron found in jaggery is more easily absorbed by the body than other types of plant-based iron." },
+				{ "title": "Rich in Vital Minerals", "image": "/assets/images/products/jaggery/benefits/minerals.png", "body": "Naturally rich in calcium, potassium and phosphorus — minerals that support bone strength, steady energy, and overall wellness." },
+				{ "title": "Boosts Immunity", "image": "/assets/images/products/jaggery/benefits/immunity.png", "body": "Jaggery helps strengthen the body’s natural defenses and combat oxidative stress." },
+				{ "title": "Respiratory Health", "image": "/assets/images/products/jaggery/benefits/respiratory.png", "body": "Traditionally used to ease coughs, colds and congestion. Its warming nature helps clear airways and soothe the throat." },
+				{ "title": "Aids Digestion", "image": "/assets/images/products/jaggery/benefits/digestion.png", "body": "Acts as a natural digestive — stimulates digestive enzymes and supports a healthy gut, which is why it’s often eaten after meals." }
+			]
+		}
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"render": "file:./render.php"
+}

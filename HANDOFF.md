@@ -1,5 +1,7 @@
 # HANDOFF — Anandiitaa Seamless Background + Responsive Redesign
 
+> ⚠️ **WORDPRESS-MIGRATION MANDATE (Gutenberg / Option B rebuild):** the block theme `anandiitaa-block` (on branch `gutenberg-rebuild`, dev env `:8095`) must be a **PIXEL-EXACT replica of the live classic site** (`my-custom-theme`) — every page, section, component, font, color, gradient, spacing, button size/shape, and position must match prod **exactly**. When in doubt, open the classic theme's code/CSS in `my-custom-theme/` and replicate it precisely. No approximations.
+
 > Context handoff for a fresh Claude session. Read top-to-bottom before touching anything.
 > Project: WordPress theme at `my-custom-theme/`. Local dev via Docker (`docker-compose.yml`, WP on **localhost:8084**). Live dev site: **dev-anandiitaa.pantheonsite.io** (Pantheon). Brand: Anandiitaa (desi jaggery + refined sugar).
 > Last updated: this covers the full seamless-bg work + the responsive tier build-out (mac / 1366 / 1280) + the desktop 1920 hero + the graphify knowledge graph.

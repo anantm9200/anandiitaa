@@ -1,8 +1,82 @@
-/* Editor-only: show slides stacked with a subtle divider so they're easy to
-   edit (the slider only kicks in on the front end). */
-.anandiitaa-hero-carousel.is-editing {
-	.block-editor-block-list__layout > * + * {
-		margin-top: 8px;
-		border-top: 2px dashed rgba(107, 15, 26, 0.25);
+/* Editor-only form UI for the Hero Carousel block. The real slider styling
+   lives in prod-styles.css and only runs on the front end. */
+.anandiitaa-hero-carousel-editor {
+	&__hint {
+		margin: 0 0 12px;
+		padding: 8px 12px;
+		background: rgba(107, 15, 26, 0.06);
+		border-left: 3px solid #6b0f1a;
+		font-size: 13px;
+		color: #6b0f1a;
+	}
+
+	.anandiitaa-slide-card {
+		border: 1px solid #e0d8c8;
+		border-radius: 8px;
+		padding: 16px;
+		margin-bottom: 14px;
+		background: #fffdf8;
+
+		&__head {
+			font-weight: 600;
+			text-transform: uppercase;
+			letter-spacing: 0.08em;
+			font-size: 12px;
+			color: #6b0f1a;
+			margin-bottom: 10px;
+		}
+
+		&__media {
+			display: flex;
+			align-items: center;
+			gap: 12px;
+			margin-bottom: 12px;
+		}
+
+		&__thumb {
+			width: 120px;
+			height: 72px;
+			object-fit: cover;
+			border-radius: 6px;
+			border: 1px solid #e0d8c8;
+			background: #f3ece0;
+
+			&--empty {
+				display: block;
+			}
+		}
+
+		&__heading {
+			font-family: 'Appetite Pro', Georgia, serif;
+			font-size: 22px;
+			color: #6b0f1a;
+			border: 1px dashed #d8cdb8;
+			border-radius: 6px;
+			padding: 8px 10px;
+			margin-bottom: 12px;
+		}
+	}
+
+	.anandiitaa-field-label {
+		display: block;
+		font-size: 11px;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		color: #555;
+		margin-bottom: 4px;
+	}
+
+	.anandiitaa-field-row {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 12px;
+	}
+
+	.anandiitaa-feature-row {
+		display: grid;
+		grid-template-columns: 130px 1fr;
+		gap: 10px;
+		align-items: flex-end;
 	}
 }

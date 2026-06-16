@@ -1,0 +1,33 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "anandiitaa/product-recipes",
+	"version": "0.1.0",
+	"title": "Anandiitaa Product Recipes",
+	"category": "anandiitaa",
+	"icon": "food",
+	"description": "Home Delicacies recipe cards. Layout & meta icons locked; edit the title and each recipe card.",
+	"textdomain": "anandiitaa-block",
+	"supports": {
+		"html": false,
+		"multiple": false,
+		"reusable": false,
+		"customClassName": false,
+		"className": false
+	},
+	"attributes": {
+		"title": { "type": "string", "default": "Home Delicacies Recipes" },
+		"recipes": {
+			"type": "array",
+			"default": [
+				{ "title": "Home Made Cookies", "image": "/assets/images/products/sugar/recipes/cookies.png", "body": "Home Made Cookies are simple, comforting, and perfect for tea-time snacking. Their buttery aroma, crisp edges, and soft centre make them a favourite for both children and adults…", "time": "30-40mins", "level": "Easy", "serves": "3-4 people", "url": "/recipes/home-made-cookies" },
+				{ "title": "Gajar Ka Halwa", "image": "/assets/images/products/sugar/recipes/gajar-ka-halwa.png", "body": "Gajar Ka Halwa is a classic North Indian dessert that brings warmth, richness, and festive flavour to every celebration. Made with fresh carrots, milk, and pure Anandiitaa Sugar…", "time": "45-60mins", "level": "Easy", "serves": "4-5 people", "url": "/recipes/gajar-ka-halwa" },
+				{ "title": "Gulab Jamun", "image": "/assets/images/products/sugar/recipes/battasa.png", "body": "Gulab Jamun is one of India’s most loved festive desserts, known for its soft, melt-in-the-mouth texture and rich, aromatic syrup…", "time": "1-2 hours", "level": "Medium", "serves": "4-5 people", "url": "/recipes/gulab-jamun" },
+				{ "title": "Choco Lava Cake", "image": "/assets/images/products/sugar/recipes/chocolate-dessert.png", "body": "Choco Lava Cake is a rich, indulgent dessert loved for its soft cake outside and warm molten chocolate centre inside…", "time": "25-30mins", "level": "Easy", "serves": "3-4 people", "url": "/recipes/choco-lava-cake" }
+			]
+		}
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"render": "file:./render.php"
+}

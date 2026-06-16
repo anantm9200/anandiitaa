@@ -1,0 +1,23 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "anandiitaa/about-mission",
+	"version": "0.1.0",
+	"title": "Anandiitaa About — Mission",
+	"category": "anandiitaa",
+	"icon": "megaphone",
+	"description": "About mission — full-bleed photo with copy. Layout locked; edit the background, title and body.",
+	"textdomain": "anandiitaa-block",
+	"supports": { "html": false, "multiple": false, "reusable": false, "customClassName": false, "className": false },
+	"attributes": {
+		"bgImage": { "type": "string", "default": "/images/about-us/mac/about-slide-3.png" },
+		"bgTablet": { "type": "string", "default": "/images/about-us/tab/mission.png" },
+		"bgPhone": { "type": "string", "default": "/images/about-us/phone/mission.png" },
+		"alt": { "type": "string", "default": "Sugarcane stalks and a bowl of sugar on a maroon wooden surface" },
+		"title": { "type": "string", "default": "Our Mission" },
+		"body": { "type": "string", "default": "We bring pure, uncompromised<br>food to every Indian home —<br>crafted with the highest quality,<br>handled with absolute hygiene,<br>& delivered with complete<br>confidence. Only the best." }
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"render": "file:./render.php"
+}

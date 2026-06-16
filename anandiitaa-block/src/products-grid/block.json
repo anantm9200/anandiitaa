@@ -1,0 +1,32 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "anandiitaa/products-grid",
+	"version": "0.1.0",
+	"title": "Anandiitaa Products Grid",
+	"category": "anandiitaa",
+	"icon": "grid-view",
+	"description": "Homepage 2×2 product cards. Layout and accent colors locked; edit each card's title, description, sizes, link and image.",
+	"textdomain": "anandiitaa-block",
+	"supports": {
+		"html": false,
+		"multiple": false,
+		"reusable": false,
+		"customClassName": false,
+		"className": false
+	},
+	"attributes": {
+		"products": {
+			"type": "array",
+			"default": [
+				{ "title": "Desi Jaggery Powder", "desc": "Natural Mineral rich sweetness made for your everyday convenience.", "sizes": "500 GM", "href": "/products/jaggery", "image": "/assets/images/products/packets/jaggery-powder.png" },
+				{ "title": "Bold Grain Sugar", "desc": "Sweetness that stands out based on purity.", "sizes": "1 KG | 5 KG | 20 KG", "href": "/products/sugar", "image": "/assets/images/products/packets/bold-grain.png" },
+				{ "title": "Fine Grain Sugar", "desc": "It dissolves smoothly, leaving a balanced sweetness behind.", "sizes": "1 KG | 5 KG | 25 KG", "href": "/products/sugar", "image": "/assets/images/products/packets/fine-grain.png" },
+				{ "title": "Desi Jaggery", "desc": "Cooked low & slow, the way jaggery has always been made.", "sizes": "900 GM", "href": "/products/jaggery", "image": "/assets/images/products/packets/desi-jaggery.png" }
+			]
+		}
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"render": "file:./render.php"
+}

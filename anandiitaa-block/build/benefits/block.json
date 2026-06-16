@@ -1,0 +1,64 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "anandiitaa/benefits",
+  "version": "0.1.0",
+  "title": "Anandiitaa Benefits",
+  "category": "anandiitaa",
+  "icon": "heart",
+  "description": "The Benefits of Jaggery section — 4 benefit cards. Layout/icons locked; edit the background, the title and each card's title + body.",
+  "textdomain": "anandiitaa-block",
+  "supports": {
+    "html": false,
+    "multiple": false,
+    "reusable": false,
+    "customClassName": false,
+    "className": false
+  },
+  "attributes": {
+    "image": {
+      "type": "string",
+      "default": "/images/home/laptop/sections/9-jaggery-new.jpeg"
+    },
+    "tabletImage": {
+      "type": "string",
+      "default": "/images/home/laptop/sections/9-jaggery-new.jpeg"
+    },
+    "phoneImage": {
+      "type": "string",
+      "default": "/images/home/laptop/sections/9-jaggery-new.jpeg"
+    },
+    "alt": {
+      "type": "string",
+      "default": "The Benefits of Jaggery"
+    },
+    "title": {
+      "type": "string",
+      "default": "The Benefits of Jaggery"
+    },
+    "benefits": {
+      "type": "array",
+      "default": [
+        {
+          "title": "Rich in<br>Iron",
+          "body": "100g of jaggery provides 50% of your daily iron needs."
+        },
+        {
+          "title": "Boosts<br>Digestion",
+          "body": "Jaggery acts as a natural detoxifier, promoting healthy digestion."
+        },
+        {
+          "title": "Antioxidant-<br>Rich",
+          "body": "Jaggery is packed with antioxidants, offering more benefits than sugar."
+        },
+        {
+          "title": "Helps<br>Liver Health",
+          "body": "Jaggery helps cleanse the digestive system and supports liver function."
+        }
+      ]
+    }
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "render": "file:./render.php"
+}

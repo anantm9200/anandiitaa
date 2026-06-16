@@ -1,0 +1,29 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "anandiitaa/recipe-intro",
+	"version": "0.1.0",
+	"title": "Anandiitaa Recipe Intro",
+	"category": "anandiitaa",
+	"icon": "carrot",
+	"description": "Recipe intro — dish photo, title, intro copy and time/level/serves. Layout locked; all text + the photo editable.",
+	"textdomain": "anandiitaa-block",
+	"supports": {
+		"html": false,
+		"multiple": false,
+		"reusable": false,
+		"customClassName": false,
+		"className": false
+	},
+	"attributes": {
+		"image": { "type": "string", "default": "/assets/images/products/sugar/recipes/cookies.png" },
+		"title": { "type": "string", "default": "Home Made Cookies" },
+		"intro": { "type": "string", "default": "Home Made Cookies are simple, comforting, and perfect for tea-time snacking. Their buttery aroma, crisp edges, and soft centre make them a favourite for both children and adults. Made with everyday ingredients and sweetened with pure Anandiitaa Sugar, these cookies are easy to prepare at home and perfect for gifting, festive trays, or daily treats." },
+		"time": { "type": "string", "default": "30–40 mins" },
+		"level": { "type": "string", "default": "Easy" },
+		"serves": { "type": "string", "default": "3–4 people" }
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"render": "file:./render.php"
+}

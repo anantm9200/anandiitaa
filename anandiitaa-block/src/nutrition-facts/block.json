@@ -1,0 +1,36 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "anandiitaa/nutrition-facts",
+	"version": "0.1.0",
+	"title": "Anandiitaa Nutritional Facts",
+	"category": "anandiitaa",
+	"icon": "editor-table",
+	"description": "Nutritional Facts page — Jaggery + Sugar groups with data tables. Layout & table structure locked; edit headings, product names, serve text, images and table rows.",
+	"textdomain": "anandiitaa-block",
+	"supports": { "html": false, "multiple": false, "reusable": false, "customClassName": false, "className": false },
+	"attributes": {
+		"title": { "type": "string", "default": "Nutritional Facts" },
+		"jaggeryTitle": { "type": "string", "default": "Jaggery" },
+		"sugarTitle": { "type": "string", "default": "Sugar" },
+		"sugarNote": { "type": "string", "default": "Per serve % contribution to RDA based on a 2000 Kcal energy diet for an average adult per day." },
+		"jaggery": {
+			"type": "array",
+			"default": [
+				{ "name": "Desi Jaggery", "serve": "Serve size 5 g  |  No. of serves – 180", "image": "/assets/images/products/packets/desi-jaggery.png", "alt": "Anandiitaa Desi Jaggery packet", "rows": [["Energy (Kcal)","375.98","18.80"],["Carbohydrates (g)","91.79","4.59"],["Protein (g)","0.90","0.04"],["Fat (g)","0.58","0.03"],["Added Sugar (g)","0.00","0.00"],["Iron (mg)","9.03","0.45"],["Calcium (mg)","72.61","3.63"],["Potassium (mg)","579.32","28.97"],["Sodium (mg)","12.35","0.62"],["Phosphorus (mg)","90.04","4.50"]] },
+				{ "name": "Jaggery Powder", "serve": "Serve size 5 g  |  No. of serves – 100", "image": "/assets/images/products/packets/jaggery-powder.png", "alt": "Anandiitaa Jaggery Powder packet", "rows": [["Energy (Kcal)","374.98","18.75"],["Carbohydrates (g)","91.78","4.59"],["Protein (g)","0.84","0.04"],["Fat (g)","0.50","0.02"],["Added Sugar (g)","0.00","0.00"],["Iron (mg)","9.12","0.46"],["Calcium (mg)","75.16","3.76"],["Potassium (mg)","583.26","29.16"],["Sodium (mg)","16.52","0.83"],["Phosphorus (mg)","84.98","4.25"]] }
+			]
+		},
+		"sugar": {
+			"type": "array",
+			"default": [
+				{ "name": "Sugar 1 Kg", "serve": "Serving size 5 g  |  No. of serves – 200", "packet1": "/assets/images/products/packets/sugar-1kg-green.png", "alt1": "Anandiitaa Sugar 1 Kg — Bold Grain (green pack)", "packet2": "/assets/images/products/packets/sugar-1kg-blue.png", "alt2": "Anandiitaa Sugar 1 Kg — Fine Grain (blue pack)", "rows": [["Energy (Kcal)","400","20"],["Carbohydrates (g)","99.9","4.9"],["Total Sugar (g)","99.8","4.9"],["Added Sugar (g)","0.00","0.00"],["Protein (g)","0.00","0.00"],["Total Fat (g)","0.00","0.00"],["Cholesterol (mg)","0.00","0.00"],["Sodium (mg)","0.00","0.00"]] },
+				{ "name": "Sugar 5 Kg", "serve": "Serving size 5 g  |  No. of serves – 1000", "packet1": "/assets/images/products/packets/sugar-5kg-green.png", "alt1": "Anandiitaa Sugar 5 Kg — Bold Grain (green pack)", "packet2": "/assets/images/products/packets/sugar-5kg-blue.png", "alt2": "Anandiitaa Sugar 5 Kg — Fine Grain (blue pack)", "rows": [["Energy (Kcal)","400","1.99"],["Carbohydrates (g)","99.9","4.9"],["Total Sugar (g)","99.8","4.9"],["Added Sugar (g)","0.00","0.00"],["Protein (g)","0.00","0.00"],["Total Fat (g)","0.00","0.00"],["Cholesterol (mg)","0.00","0.00"],["Sodium (mg)","0.00","0.00"]] },
+				{ "name": "Sugar 25 Kg", "serve": "Serving size 5 g  |  No. of serves – 5000", "packet1": "/assets/images/products/packets/sugar-25kg-green.png", "alt1": "Anandiitaa Sugar 25 Kg — Bold Grain (green pack)", "packet2": "/assets/images/products/packets/sugar-25kg-blue.png", "alt2": "Anandiitaa Sugar 25 Kg — Fine Grain (blue pack)", "rows": [["Energy (Kcal)","400","20"],["Carbohydrates (g)","99.9","4.9"],["Total Sugar (g)","99.8","4.9"],["Added Sugar (g)","0.00","0.00"],["Protein (g)","0.00","0.00"],["Total Fat (g)","0.00","0.00"],["Cholesterol (mg)","0.00","0.00"],["Sodium (mg)","0.00","0.00"]] }
+			]
+		}
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"render": "file:./render.php"
+}

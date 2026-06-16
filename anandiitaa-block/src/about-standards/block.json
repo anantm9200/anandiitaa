@@ -1,0 +1,26 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "anandiitaa/about-standards",
+	"version": "0.1.0",
+	"title": "Anandiitaa About — Standards",
+	"category": "anandiitaa",
+	"icon": "awards",
+	"description": "About standards — 2×2 image + card grid. Layout & wordmark locked; edit each item's image, title and body.",
+	"textdomain": "anandiitaa-block",
+	"supports": { "html": false, "multiple": false, "reusable": false, "customClassName": false, "className": false },
+	"attributes": {
+		"items": {
+			"type": "array",
+			"default": [
+				{ "image": "/images/about-us/mac/standards/purity.png", "title": "Purity First, Always", "body": "No Sugar, No Bleach, No harmful Adulterants", "alt": "Workers shaping pure jaggery in a traditional setting mould" },
+				{ "image": "/images/about-us/mac/standards/hygiene.png", "title": "Hygiene without compromise", "body": "The Highest Hygiene Standards. Period.", "alt": "Jaggery being cooked in a clean traditional kitchen" },
+				{ "image": "/images/about-us/mac/standards/safety.png", "title": "Food Safety. Non-Negotiable", "body": "World Class food safety Standards", "alt": "Finished jaggery blocks plated on a wooden board" },
+				{ "image": "/images/about-us/mac/standards/quality.png", "title": "Quality Without Doubt", "body": "Each Batch Quality tested by Professionals", "alt": "Bowl of jaggery powder beside jaggery lumps" }
+			]
+		}
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"render": "file:./render.php"
+}

@@ -1,0 +1,48 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "anandiitaa/products-landing",
+  "version": "0.1.0",
+  "title": "Anandiitaa Products Landing",
+  "category": "anandiitaa",
+  "icon": "category",
+  "description": "Products landing — intro + two category cards. Layout & accent colors locked; edit the intro text and each card's title, tagline, link and image.",
+  "textdomain": "anandiitaa-block",
+  "supports": {
+    "html": false,
+    "multiple": false,
+    "reusable": false,
+    "customClassName": false,
+    "className": false
+  },
+  "attributes": {
+    "introTitle": {
+      "type": "string",
+      "default": "Our Products"
+    },
+    "introText": {
+      "type": "string",
+      "default": "Choose a range to explore."
+    },
+    "categories": {
+      "type": "array",
+      "default": [
+        {
+          "title": "Jaggery",
+          "tagline": "Slow-cooked. Mineral-rich. Pure tradition.",
+          "href": "/products/jaggery",
+          "image": "/assets/images/products/packets/2.png"
+        },
+        {
+          "title": "Sugar",
+          "tagline": "Bold or fine grain. Clean, hygienic, dependable.",
+          "href": "/products/sugar",
+          "image": "/assets/images/products/packets/1.png"
+        }
+      ]
+    }
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "render": "file:./render.php"
+}

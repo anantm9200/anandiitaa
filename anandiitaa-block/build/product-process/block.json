@@ -1,0 +1,57 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "anandiitaa/product-process",
+  "version": "0.1.0",
+  "title": "Anandiitaa Product Process",
+  "category": "anandiitaa",
+  "icon": "list-view",
+  "description": "Process timeline — 5 alternating steps with connectors. Layout, numbers, positions and connectors locked; edit the title and each step's heading, text and image.",
+  "textdomain": "anandiitaa-block",
+  "supports": {
+    "html": false,
+    "multiple": false,
+    "reusable": false,
+    "customClassName": false,
+    "className": false
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "Process Defines Purity"
+    },
+    "steps": {
+      "type": "array",
+      "default": [
+        {
+          "bold": "Fresh Cane Extraction",
+          "rest": "Fresh sugarcane is crushed soon after harvest to retain its natural flavour and goodness.",
+          "image": "/assets/images/products/jaggery/process/extraction.png"
+        },
+        {
+          "bold": "Slow Cooking",
+          "rest": "The juice is slowly cooked in traditional pans to develop the rich taste, aroma, and natural colour of jaggery.",
+          "image": "/assets/images/products/jaggery/process/slow-cooking.png"
+        },
+        {
+          "bold": "Natural Clarification",
+          "rest": "The juice is carefully clarified using traditional methods without bleaching agents or harmful chemicals.",
+          "image": "/assets/images/products/jaggery/process/clarification.png"
+        },
+        {
+          "bold": "Hygienic Handling",
+          "rest": "The jaggery is handled in clean, controlled environments with strict hygiene standards throughout the process.",
+          "image": "/assets/images/products/jaggery/process/hygiene.png"
+        },
+        {
+          "bold": "Tested & Packed With Care",
+          "rest": "Every batch is tested for quality before being hygienically packed and sealed to lock in freshness and purity.",
+          "image": "/assets/images/products/jaggery/process/tested-packed.png"
+        }
+      ]
+    }
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "render": "file:./render.php"
+}

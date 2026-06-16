@@ -1,0 +1,47 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "anandiitaa/feature-banner",
+  "version": "0.1.0",
+  "title": "Anandiitaa Feature Banner",
+  "category": "anandiitaa",
+  "icon": "format-quote",
+  "description": "News-clippings banner with a top caption and a bottom headline. Layout locked; edit the background image and both lines of text.",
+  "textdomain": "anandiitaa-block",
+  "supports": {
+    "html": false,
+    "multiple": false,
+    "reusable": false,
+    "customClassName": false,
+    "className": false
+  },
+  "attributes": {
+    "image": {
+      "type": "string",
+      "default": "/images/home/laptop/sections/7-sticker.png"
+    },
+    "tabletImage": {
+      "type": "string",
+      "default": "/images/home/tablet/sections/7.png"
+    },
+    "phoneImage": {
+      "type": "string",
+      "default": "/images/home/phone/sections/7.png"
+    },
+    "alt": {
+      "type": "string",
+      "default": "In the era of food adulteration"
+    },
+    "captionTop": {
+      "type": "string",
+      "default": "Not all jaggery is made the same."
+    },
+    "heading": {
+      "type": "string",
+      "default": "Choose Pure, Choose Anandiitaa"
+    }
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "render": "file:./render.php"
+}

@@ -1,0 +1,19 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "anandiitaa/about-vision",
+	"version": "0.1.0",
+	"title": "Anandiitaa About — Vision",
+	"category": "anandiitaa",
+	"icon": "visibility",
+	"description": "About vision section (background is a theme style). Layout locked; edit the title and body.",
+	"textdomain": "anandiitaa-block",
+	"supports": { "html": false, "multiple": false, "reusable": false, "customClassName": false, "className": false },
+	"attributes": {
+		"title": { "type": "string", "default": "Our Vision" },
+		"body": { "type": "string", "default": "To redefine everyday food<br>with uncompromised<br>purity & trust." }
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"render": "file:./render.php"
+}

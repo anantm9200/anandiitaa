@@ -1,19 +1,26 @@
 name: Deploy Theme (Pantheon + Hostinger)
 
+# Branch → environment → theme (see DEPLOYMENT.md §3):
+#   main             → my-custom-theme (classic) → anandiitaa.com           (PROD, live — untouched)
+#   gutenberg-rebuild → anandiitaa-block (rebuild) → testing.anandiitaa.com  (STAGING)
+# Same 4 HOSTINGER_SFTP_* secrets reach both sites (one SSH account = whole /home/u605618459/);
+# only the target path differs. Jobs are gated by branch so a staging push can never touch prod.
 on:
   push:
     branches:
       - main
+      - gutenberg-rebuild
     paths-ignore:
       - '**.md'
       - '.gitignore'
 
 jobs:
   # =====================================================================
-  # PANTHEON DEPLOY — keep alive for 2-week parallel period post-migration.
-  # Remove this job once Hostinger is fully validated.
+  # PANTHEON DEPLOY (PROD) — legacy 2-week parallel. main only.
+  # Remove this job once Hostinger is fully validated / Pantheon sunset.
   # =====================================================================
   pantheon:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -54,12 +61,11 @@ jobs:
           "
 
   # =====================================================================
-  # HOSTINGER DEPLOY — primary production target post-migration.
-  # Uses password auth over SFTP (Hostinger's standard). Port is typically
-  # 65002 (set as repo secret). Path points directly at the theme folder
-  # under the anandiitaa.com domain.
+  # HOSTINGER DEPLOY — PROD. classic theme → anandiitaa.com. main only.
+  # (Live site. Left exactly as-is per DEPLOYMENT.md — only the branch gate added.)
   # =====================================================================
-  hostinger:
+  hostinger-prod:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -102,6 +108,75 @@ jobs:
             --exclude-glob .DS_Store \\
             --exclude-glob assets/design-refs/ \\
             --exclude-glob assets/images/source/ \\
+            --exclude .gitignore \\
+            --exclude docker-compose.yml \\
+            ./ ./;
+          "
+
+  # =====================================================================
+  # HOSTINGER DEPLOY — STAGING. block theme → testing.anandiitaa.com.
+  # gutenberg-rebuild only. Builds the blocks in CI (so build/ always matches
+  # src/), then SFTP-mirrors the runtime theme. NOTE: deploys THEME FILES ONLY —
+  # the editable page content lives in the DB and is migrated separately
+  # (see DEPLOYMENT.md §5 and CONTENT-MIGRATION.md).
+  # =====================================================================
+  hostinger-staging:
+    if: github.ref == 'refs/heads/gutenberg-rebuild'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Build blocks (@wordpress/scripts)
+        working-directory: anandiitaa-block
+        run: |
+          npm ci
+          npm run build
+
+      - name: Install lftp
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y lftp
+
+      - name: Deploy block theme via SFTP
+        env:
+          HOST: ${{ secrets.HOSTINGER_SFTP_HOST }}
+          PORT: ${{ secrets.HOSTINGER_SFTP_PORT }}
+          USER: ${{ secrets.HOSTINGER_SFTP_USER }}
+          PASS: ${{ secrets.HOSTINGER_SFTP_PASS }}
+        run: |
+          lftp -c "
+          set net:max-retries 10;
+          set net:timeout 30;
+          set net:reconnect-interval-base 5;
+          set net:reconnect-interval-multiplier 1.5;
+          set net:reconnect-interval-max 60;
+          set sftp:auto-confirm yes;
+          open sftp://$USER:$PASS@$HOST:$PORT;
+
+          # testing.anandiitaa.com block-theme directory.
+          # Confirmed via SSH: the testing WP lives in a SUBFOLDER of the main
+          # domain (/domains/anandiitaa.com/public_html/testing/), not a separate
+          # subdomain docroot.
+          cd /home/u605618459/domains/anandiitaa.com/public_html/testing/wp-content/themes/anandiitaa-block;
+
+          # Step into the rebuild theme inside the runner workspace.
+          lcd anandiitaa-block;
+
+          # Ship runtime files only — built blocks (build/) ship, source/tooling does not.
+          mirror -R --parallel=5 \\
+            --exclude-glob .git/ \\
+            --exclude-glob .github/ \\
+            --exclude-glob .DS_Store \\
+            --exclude-glob node_modules/ \\
+            --exclude-glob src/ \\
+            --exclude-glob package.json \\
+            --exclude-glob package-lock.json \\
             --exclude .gitignore \\
             --exclude docker-compose.yml \\
             ./ ./;

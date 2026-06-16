@@ -1,5 +1,7 @@
 # Anandiitaa — Project Context
 
+> ⚠️ **WORDPRESS-MIGRATION MANDATE:** the Gutenberg block-theme rebuild (`anandiitaa-block`, branch `gutenberg-rebuild`, dev `:8095`) must be a **PIXEL-EXACT replica of the live classic site** (`my-custom-theme`). Every page, section, component, font, color, gradient, spacing, button size/shape, and position must match prod **exactly** — replicate from the classic theme's code/CSS, no approximations.
+
 Long-lived context for this project. Read this at the start of any new chat / session before making non-trivial changes. Update it as decisions land.
 
 ## What this site is

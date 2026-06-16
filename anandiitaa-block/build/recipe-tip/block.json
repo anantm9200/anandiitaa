@@ -1,0 +1,39 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "anandiitaa/recipe-tip",
+  "version": "0.1.0",
+  "title": "Anandiitaa Recipe Tip",
+  "category": "anandiitaa",
+  "icon": "lightbulb",
+  "description": "Recipe pro-tip + back link. Badge, eyebrow and layout locked; edit the heading, tip text and back link.",
+  "textdomain": "anandiitaa-block",
+  "supports": {
+    "html": false,
+    "multiple": false,
+    "reusable": false,
+    "customClassName": false,
+    "className": false
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "For perfect cookies"
+    },
+    "body": {
+      "type": "string",
+      "default": "For better texture, chill the cookie dough for 15–20 minutes before baking. This helps the cookies hold their shape."
+    },
+    "backLabel": {
+      "type": "string",
+      "default": "Back to Sugar"
+    },
+    "backHref": {
+      "type": "string",
+      "default": "/products/sugar"
+    }
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "render": "file:./render.php"
+}

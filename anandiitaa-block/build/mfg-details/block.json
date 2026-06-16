@@ -1,0 +1,72 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "anandiitaa/mfg-details",
+  "version": "0.1.0",
+  "title": "Anandiitaa Manufacturing Details",
+  "category": "anandiitaa",
+  "icon": "building",
+  "description": "Manufacturing Details — address cards + contact card. Layout locked; edit all text and contact rows.",
+  "textdomain": "anandiitaa-block",
+  "supports": {
+    "html": false,
+    "multiple": false,
+    "reusable": false,
+    "customClassName": false,
+    "className": false
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "Manufacturing Details"
+    },
+    "addresses": {
+      "type": "array",
+      "default": [
+        {
+          "label": "Marketed By",
+          "body": "BARAMATI AGRO LTD<br>AP Shetphalgade, Tal. Indapur,<br>Indapur, Pune, Maharashtra 413130"
+        },
+        {
+          "label": "Manufactured By",
+          "body": "Alfanzyme Life Science,<br>Plot no. 628, 3rd Cross, 7th Main,<br>K.I.A.D.B Auto Nagar, Kanabargi Industrial Area,<br>Belagavi 590016, Karnataka."
+        }
+      ]
+    },
+    "contactLabel": {
+      "type": "string",
+      "default": "Please Contact Us At"
+    },
+    "contactLead": {
+      "type": "string",
+      "default": "For Customer Queries / Suggestions / Complaints / Feedback"
+    },
+    "contactAddress": {
+      "type": "string",
+      "default": "Baramati Agro Limited, 4th Floor, Farena Corporate Park,<br>Magarpatta Road, Hadapsar, District: Pune 411013, Maharashtra."
+    },
+    "contactRows": {
+      "type": "array",
+      "default": [
+        {
+          "dt": "Contact No.",
+          "text": "020-67482800",
+          "href": "tel:+912067482800"
+        },
+        {
+          "dt": "Email ID",
+          "text": "care@baramatiagro.com",
+          "href": "mailto:care@baramatiagro.com"
+        },
+        {
+          "dt": "Website",
+          "text": "www.anandiitaa.com",
+          "href": "/"
+        }
+      ]
+    }
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "render": "file:./render.php"
+}
