@@ -115,10 +115,10 @@ jobs:
 
   # =====================================================================
   # HOSTINGER DEPLOY — STAGING. block theme → testing.anandiitaa.com.
-  # gutenberg-rebuild only. Builds the blocks in CI (so build/ always matches
-  # src/), then SFTP-mirrors the runtime theme. NOTE: deploys THEME FILES ONLY —
-  # the editable page content lives in the DB and is migrated separately
-  # (see DEPLOYMENT.md §5 and CONTENT-MIGRATION.md).
+  # gutenberg-rebuild only. Builds blocks in CI, then SFTP-mirrors the runtime
+  # theme. Uses real ssh via sshpass (robust password auth + modern crypto;
+  # lftp's built-in SFTP can fail Hostinger's OpenSSH negotiation). Deploys THEME
+  # FILES ONLY — page content is migrated separately (DEPLOYMENT.md §5 / CONTENT-MIGRATION.md).
   # =====================================================================
   hostinger-staging:
     if: github.ref == 'refs/heads/gutenberg-rebuild'
@@ -138,31 +138,45 @@ jobs:
           npm ci
           npm run build
 
-      - name: Install lftp
+      - name: Install lftp + sshpass
         run: |
           sudo apt-get update
-          sudo apt-get install -y lftp
+          sudo apt-get install -y lftp sshpass
+
+      - name: Pre-flight — is the SFTP host reachable from the runner?
+        env:
+          HOST: ${{ secrets.HOSTINGER_SFTP_HOST }}
+          PORT: ${{ secrets.HOSTINGER_SFTP_PORT }}
+        run: |
+          set +e
+          timeout 15 bash -c "exec 3<>/dev/tcp/${HOST}/${PORT}" 2>/dev/null
+          if [ $? -ne 0 ]; then
+            echo "::error::Cannot open a TCP connection to the SFTP host:port from this runner."
+            echo "Likely: wrong HOSTINGER_SFTP_HOST / HOSTINGER_SFTP_PORT secret, OR Hostinger is"
+            echo "blocking the GitHub runner IP (firewall / SSH IP-allowlist). Your laptop SSH works"
+            echo "because its IP is allowed; the runner's is not."
+            exit 1
+          fi
+          echo "SFTP port reachable from runner ✓ — proceeding to transfer."
 
       - name: Deploy block theme via SFTP
         env:
           HOST: ${{ secrets.HOSTINGER_SFTP_HOST }}
           PORT: ${{ secrets.HOSTINGER_SFTP_PORT }}
           USER: ${{ secrets.HOSTINGER_SFTP_USER }}
-          PASS: ${{ secrets.HOSTINGER_SFTP_PASS }}
+          SSHPASS: ${{ secrets.HOSTINGER_SFTP_PASS }}
         run: |
+          # Feed the SSH password to the real ssh client via sshpass (-e reads $SSHPASS).
+          # ssh handles port (-p) + host-key; lftp drives the mirror. This avoids lftp's
+          # internal-SFTP crypto limits that produce "max-retries exceeded" on Hostinger.
           lftp -c "
-          set net:max-retries 10;
-          set net:timeout 30;
-          set net:reconnect-interval-base 5;
-          set net:reconnect-interval-multiplier 1.5;
-          set net:reconnect-interval-max 60;
           set sftp:auto-confirm yes;
-          open sftp://$USER:$PASS@$HOST:$PORT;
+          set sftp:connect-program 'sshpass -e ssh -a -x -p $PORT -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null';
+          set net:max-retries 2;
+          set net:timeout 25;
+          open sftp://$USER@$HOST;
 
-          # testing.anandiitaa.com block-theme directory.
-          # Confirmed via SSH: the testing WP lives in a SUBFOLDER of the main
-          # domain (/domains/anandiitaa.com/public_html/testing/), not a separate
-          # subdomain docroot.
+          # testing.anandiitaa.com is a SUBFOLDER of the main domain (confirmed via SSH).
           cd /home/u605618459/domains/anandiitaa.com/public_html/testing/wp-content/themes/anandiitaa-block;
 
           # Step into the rebuild theme inside the runner workspace.
