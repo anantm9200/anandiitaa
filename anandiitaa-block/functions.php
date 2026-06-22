@@ -180,10 +180,19 @@ add_action( 'wp_enqueue_scripts', function () {
 		array( 'anandiitaa-block-style', 'global-styles' ),
 		anandiitaa_asset_ver( '/prod-styles.css' )
 	);
+	// New UI that isn't a 1:1 prod reproduction (fluid extensions, e.g. the
+	// testimonials grid). Depends on prod-styles so it loads after and can rely
+	// on the brand CSS variables.
+	wp_enqueue_style(
+		'anandiitaa-extensions',
+		get_theme_file_uri( 'assets/css/extensions.css' ),
+		array( 'anandiitaa-prod' ),
+		anandiitaa_asset_ver( '/assets/css/extensions.css' )
+	);
 
 	// Classic front-end scripts — same set/order as prod. (No header-scroll:
 	// the classic theme never enqueues it.)
-	foreach ( array( 'hero-carousel', 'scroll-reveal', 'benefits-accordion', 'mobile-menu' ) as $js ) {
+	foreach ( array( 'hero-carousel', 'scroll-reveal', 'benefits-accordion', 'mobile-menu', 'reviews-carousel' ) as $js ) {
 		if ( file_exists( get_theme_file_path( "assets/js/$js.js" ) ) ) {
 			wp_enqueue_script(
 				"anandiitaa-$js",

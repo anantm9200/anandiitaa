@@ -16,6 +16,10 @@
     "className": false
   },
   "attributes": {
+    "variant": {
+      "type": "string",
+      "default": "photo"
+    },
     "bgImage": {
       "type": "string",
       "default": "/images/home/laptop/sections/10.png"

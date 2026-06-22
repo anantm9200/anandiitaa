@@ -1,0 +1,154 @@
+/* ============================================================================
+   Anandiitaa block-theme EXTENSIONS — new UI that isn't a 1:1 prod reproduction.
+   Loaded after prod-styles.css. Everything fluid + responsive (clamp / %, no
+   absolute or fixed sizing) so it scales across every viewport.
+   ========================================================================== */
+
+/* ── Reviews carousel (product-reviews block, variant="carousel") ──────────
+   Same U-shaped review cards as prod, but as a fluid carousel: 2 cards per
+   slide, swipeable, arrows + dots. Used on the Sugar product page. */
+
+.anandiitaa-reviews {
+	box-sizing: border-box;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: clamp(56px, 9vh, 120px) clamp(16px, 5vw, 72px);
+}
+
+.anandiitaa-reviews__title {
+	margin: 0 0 clamp(28px, 5vh, 56px);
+	font-family: 'Appetite Pro', 'Georgia', serif;
+	font-weight: var(--fw-heading, 500);
+	font-size: clamp(28px, 4.4vw, 52px);
+	line-height: 1.1;
+	color: var(--brand-maroon, #6b0f1a);
+	text-align: center;
+}
+
+.rcar {
+	position: relative;
+	width: 100%;
+	max-width: 1180px;
+	/* side gutters that hold the arrows clear of the cards */
+	padding-inline: clamp(52px, 5.5vw, 74px);
+	box-sizing: border-box;
+}
+
+.rcar__viewport {
+	overflow: hidden;
+}
+
+.rcar__track {
+	display: flex;
+	align-items: stretch;
+	transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+	will-change: transform;
+}
+
+/* Grid so the pair stretches to the track height (tallest slide) → every card,
+   on every slide, is exactly the same size regardless of quote length. */
+.rcar__slide {
+	flex: 0 0 100%;
+	min-width: 100%;
+	box-sizing: border-box;
+	display: grid;
+	align-content: stretch;
+	/* room for the big decorative quote glyph that spills from the card image */
+	padding-bottom: clamp(36px, 6vw, 80px);
+}
+
+.rcar__pair {
+	height: 100%;
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: clamp(20px, 3.4vw, 56px);
+	align-items: stretch;
+}
+
+@media (max-width: 760px) {
+	.rcar {
+		padding-inline: 0;
+	}
+	.rcar__pair {
+		grid-template-columns: 1fr;
+		gap: clamp(40px, 11vw, 64px);
+	}
+}
+
+/* Brand placeholder panel for review cards that don't have a photo yet. */
+.review-card__image--placeholder {
+	background: linear-gradient(135deg, #feebc7 0%, #f7e3bf 100%);
+}
+
+/* Arrows — vertically centred on the cards, just outside the pair. */
+.rcar__arrow {
+	position: absolute;
+	top: 42%;
+	transform: translateY(-50%);
+	width: clamp(38px, 3.4vw, 46px);
+	height: clamp(38px, 3.4vw, 46px);
+	display: grid;
+	place-items: center;
+	border: 1.5px solid #d6be9f;
+	border-radius: 50%;
+	background: rgba(255, 255, 255, 0.72);
+	color: var(--brand-maroon, #6b0f1a);
+	cursor: pointer;
+	z-index: 4;
+	transition: background 0.2s ease, transform 0.2s ease;
+}
+.rcar__arrow:hover {
+	background: #ffffff;
+	transform: translateY(-50%) scale(1.06);
+}
+.rcar__arrow svg {
+	width: 55%;
+	height: 55%;
+}
+.rcar__arrow--prev {
+	left: 0;
+}
+.rcar__arrow--next {
+	right: 0;
+}
+
+@media (max-width: 760px) {
+	.rcar__arrow {
+		top: auto;
+		bottom: 2px;
+		transform: none;
+	}
+	.rcar__arrow:hover {
+		transform: scale(1.06);
+	}
+	.rcar__arrow--prev {
+		left: 28%;
+	}
+	.rcar__arrow--next {
+		right: 28%;
+	}
+}
+
+/* Dots */
+.rcar__dots {
+	display: flex;
+	justify-content: center;
+	gap: 10px;
+	margin-top: clamp(16px, 3vh, 28px);
+}
+.rcar__dot {
+	width: 10px;
+	height: 10px;
+	padding: 0;
+	border: 0;
+	border-radius: 50%;
+	background: #d6be9f;
+	cursor: pointer;
+	transition: background 0.2s ease, transform 0.2s ease;
+}
+.rcar__dot.is-active {
+	background: var(--brand-maroon, #6b0f1a);
+	transform: scale(1.18);
+}

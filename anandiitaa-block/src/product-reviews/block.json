@@ -16,6 +16,7 @@
 		"className": false
 	},
 	"attributes": {
+		"variant": { "type": "string", "default": "photo" },
 		"bgImage": { "type": "string", "default": "/images/home/laptop/sections/10.png" },
 		"title": { "type": "string", "default": "Words that matter" },
 		"reviews": {
