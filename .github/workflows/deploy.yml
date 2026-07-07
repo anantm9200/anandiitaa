@@ -13,6 +13,9 @@ on:
     paths-ignore:
       - '**.md'
       - '.gitignore'
+  # Manual one-offs (gsc-verify below). Deploy jobs stay push-only via
+  # event_name guards, so a dispatch can never trigger a theme deploy.
+  workflow_dispatch:
 
 jobs:
   # =====================================================================
@@ -20,7 +23,7 @@ jobs:
   # Remove this job once Hostinger is fully validated / Pantheon sunset.
   # =====================================================================
   pantheon:
-    if: github.ref == 'refs/heads/main'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -65,7 +68,7 @@ jobs:
   # (Live site. Left exactly as-is per DEPLOYMENT.md — only the branch gate added.)
   # =====================================================================
   hostinger-prod:
-    if: github.ref == 'refs/heads/main'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -121,7 +124,7 @@ jobs:
   # FILES ONLY — page content is migrated separately (DEPLOYMENT.md §5 / CONTENT-MIGRATION.md).
   # =====================================================================
   hostinger-staging:
-    if: github.ref == 'refs/heads/gutenberg-rebuild'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/gutenberg-rebuild'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -195,3 +198,57 @@ jobs:
             --exclude docker-compose.yml \\
             ./ ./;
           "
+
+  # =====================================================================
+  # GSC VERIFY — manual dispatch ONLY (gh workflow run deploy.yml).
+  # Uploads the Google Search Console ownership token to the PROD web root
+  # (anandiitaa.com/googleb…html). Single inert file — no theme/site impact.
+  # This is the sanctioned exception to "staging never touches prod": it is
+  # never triggered by a push, and GSC requires the token at the domain root.
+  # Keep the file deployed — Google re-checks it periodically.
+  # =====================================================================
+  gsc-verify:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install sshpass
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y sshpass
+
+      - name: Pre-flight — is the SFTP host reachable from the runner?
+        env:
+          HOST: ${{ secrets.HOSTINGER_SFTP_HOST }}
+          PORT: ${{ secrets.HOSTINGER_SFTP_PORT }}
+        run: |
+          set +e
+          timeout 15 bash -c "exec 3<>/dev/tcp/${HOST}/${PORT}" 2>/dev/null
+          if [ $? -ne 0 ]; then
+            echo "::error::Cannot reach SFTP host:port from this runner (IP likely blocked)."
+            exit 1
+          fi
+          echo "SFTP port reachable ✓"
+
+      - name: Upload GSC verification file to prod web root
+        env:
+          HOST: ${{ secrets.HOSTINGER_SFTP_HOST }}
+          PORT: ${{ secrets.HOSTINGER_SFTP_PORT }}
+          USER: ${{ secrets.HOSTINGER_SFTP_USER }}
+          SSHPASS: ${{ secrets.HOSTINGER_SFTP_PASS }}
+        run: |
+          # scp in SFTP mode (OpenSSH 9+ default) — same subsystem the staging
+          # deploy already uses successfully via lftp's connect-program.
+          sshpass -e scp -P "$PORT" \
+            -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
+            googleb114516a6e061076.html \
+            "$USER@$HOST:/home/u605618459/domains/anandiitaa.com/public_html/"
+
+      - name: Verify token is publicly served
+        run: |
+          sleep 3
+          code=$(curl -s -o /dev/null -w "%{http_code}" https://anandiitaa.com/googleb114516a6e061076.html)
+          [ "$code" = "200" ] || { echo "::error::Expected 200, got $code"; exit 1; }
+          echo "https://anandiitaa.com/googleb114516a6e061076.html → 200 ✓"
